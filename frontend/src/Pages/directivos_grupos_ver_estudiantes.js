@@ -3,7 +3,7 @@ import {withRouter} from 'react-router-dom';
 import MainRS4 from '../Components/MainRS4';
 
 import HeaderS from '../Components/HeaderSistema';
-class SistemaRVes extends React.Component {
+class directivos_grupos_ver_estudiantes extends React.Component {
     constructor(props) {
         super(props);
         this.state = {}
@@ -28,4 +28,4 @@ class SistemaRVes extends React.Component {
     }
 }
  
-export default withRouter(SistemaRVes);
+export default withRouter(directivos_grupos_ver_estudiantes);

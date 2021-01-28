@@ -22,10 +22,7 @@ export default class Header extends React.Component {
                         <Link to="/">
                             <button className="button">Inicio</button>
                         </Link>
-                        <Link to="/Horarios">
-                            <button className="button">Horarios</button>
-                        </Link>
-                        <Link to="/Sistema">
+                        <Link to="/login">
                             <button className="button">Sistema</button>
                         </Link>
                     </nav>

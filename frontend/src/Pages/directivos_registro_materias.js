@@ -5,7 +5,7 @@ import MainRS5 from '../Components/MainRS5';
 
 import {withRouter} from 'react-router-dom';
 
-class SistemaDRMa extends React.Component {
+class directivos_registro_materias extends React.Component {
   constructor(props) {
     super(props);
     this.state = {  }
@@ -33,5 +33,5 @@ class SistemaDRMa extends React.Component {
   }
 }
  
-export default withRouter(SistemaDRMa);
+export default withRouter(directivos_registro_materias);
  

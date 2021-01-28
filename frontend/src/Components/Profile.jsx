@@ -22,7 +22,6 @@ class Profile extends React.Component {
                     <div id="DatosContainer">
                     <p className="Pprofile">Welcome {this.props.Name}</p>
                     <p className="Pprofile">Cargo: {this.props.Cargo}</p>
-                    <p className="Pprofile">Edad: {this.props.Edad}</p>
                     </div>
                     <Link to="/">
                     <button className="button button2">Cerrar sesión</button>

@@ -2,7 +2,7 @@ import React from 'react';
 
 import Header from '../Components/Header';
 import Footer from '../Components/Footer';
-import Main2 from '../Components/Main2';
+import Main2 from '../Components/Login_usuarios';
 
 import { Estudiantes } from '../Utiles/Mocks/Estudiantes';
 import { Maestros } from '../Utiles/Mocks/Maestros';
@@ -14,19 +14,19 @@ function login_usuarios() {
     <Header />
     <Main2 
     Estudiantes = {Estudiantes} 
-    LargoE = {LargoE} 
+    LargoE = {LargoEstudiantes} 
     Maestros = {Maestros} 
-    LargoM = {LargoM}
+    LargoM = {LargoMaestros}
     Directivos = {Directivos}
-    LargoD = {LargoD}
+    LargoD = {LargoDirectivos}
     />
     <Footer />
     </>
   );
 }
 
-const LargoE = Estudiantes.length;
-const LargoM = Maestros.length;
-const LargoD = Directivos.length;
+const LargoEstudiantes = Estudiantes.length;
+const LargoMaestros = Maestros.length;
+const LargoDirectivos = Directivos.length;
 
 export default login_usuarios;

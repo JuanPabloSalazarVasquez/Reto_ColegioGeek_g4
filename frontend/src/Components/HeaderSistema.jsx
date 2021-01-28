@@ -20,7 +20,7 @@ class HeaderS extends React.Component {
                         <img className="logo" src="https://1.bp.blogspot.com/-19Rj_9Y-oUU/X0BgebudCnI/AAAAAAAAPK8/Yzu1YmfJmx4Yk-wleE0m9vfPc2_2sTszwCLcBGAsYHQ/d/Logo.png" />
                     </div>
                     <div id="titleSisRContainer">
-                        <h1 id="titleQuipux">Quipux Academy</h1>
+                        <h1 id="titleQuipux">Escuela Geek</h1>
                         <h3 id="SubtitleQuipux">{this.props.Title}</h3>
                     </div>
                     <div id="bContainer">

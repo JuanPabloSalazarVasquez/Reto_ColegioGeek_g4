@@ -132,7 +132,7 @@ class Main2 extends React.Component {
                             <div id="SoloParaCentrar">
                                 <input type="button" className="button button2" value="Ingresar" onClick={this.Ingreso} />
                                 {this.state.Bool && <Redirect to={{
-                                    pathname: "/Estudiantes_Maestros",
+                                    pathname: "/estudiantes",
                                     state: {
                                         Tipo: this.state.tipo,
                                         Usuario: this.state.ContraseñaI,
@@ -144,7 +144,7 @@ class Main2 extends React.Component {
                                 }} />}
 
                                 {this.state.Bool2 && <Redirect to={{
-                                    pathname: "/Directivos",
+                                    pathname: "/directivos",
                                     state: {
                                         Tipo: this.state.tipo,
                                         Usuario: this.state.ContraseñaI,

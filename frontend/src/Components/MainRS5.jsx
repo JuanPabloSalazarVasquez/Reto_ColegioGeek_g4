@@ -89,7 +89,7 @@ class MainRS5 extends React.Component {
                         <input type="text" className="SelectR  GradoF" placeholder="Intencidad" autoComplete="off" />
                         <input id="ImgRMas" type="button" autoComplete="off" onClick={this.form} />
                         {this.state.Bool && <Redirect to={{
-                            pathname: "/Directivos/Registro_Materias",
+                            pathname: "/directivos/registro_Materias",
                             state: {
                                 Name: this.props.location.state.Name,
                                 Contraseña: this.props.location.state.Contraseña,

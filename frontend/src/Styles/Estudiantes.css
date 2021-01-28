@@ -1,8 +1,3 @@
-body{
-    background-image: url(https://1.bp.blogspot.com/-PIEIq1SkhDk/X0g6w2YItJI/AAAAAAAAPLo/Gh-epgxhUTQKvO3XBgbytw_eyJMQt3JpQCLcBGAsYHQ/s16000/FondoEntretenimiento.jpg);
-    background-size: 400px;
-}
-
 #ProfileContainer{
     background-color: #2BA84A;
     display: flex;
@@ -77,17 +72,21 @@ body{
     border-radius: 1vw;
 }
 
-#Direc1{
-    background-image: url(https://1.bp.blogspot.com/-L3l1J1Z3ytg/X0hNNESpzuI/AAAAAAAAPME/3V8A1tELyXEyZw5XJaGn3A3HxnYTFQ1cACLcBGAsYHQ/s16000/Estudiantes.png);
+.img-direc1{
+    width: 50px;
+    height: 50px;
 }
-#Direc2{
-    background-image: url(https://1.bp.blogspot.com/-zTYMDm4_vuk/X0ioVfB0ccI/AAAAAAAAPNY/Y0Ir1KWfCLUKgQw6dFWZct0qz84e-GKfACLcBGAsYHQ/s16000/Mestros.png);
+.img-direc2{
+    width: 50px;
+    height: 50px;
 }
-#Direc3{
-    background-image: url(https://1.bp.blogspot.com/-fzuKkHYNNq8/X0i-8mrociI/AAAAAAAAPOI/QD6HCg571wcMTe5C9Rz8-vTDZzNCyey8wCLcBGAsYHQ/s16000/Grupos.png);
+.img-direc3{
+    width: 50px;
+    height: 50px;
 }
-#Direc4{
-    background-image: url(https://1.bp.blogspot.com/-uMbl2HbB-W0/X0ni-gTOYbI/AAAAAAAAPOs/m-VG-q_myzkjtpV5krfPl3sRb89RWNYBQCLcBGAsYHQ/s16000/Materias.png);
+.img-direc4{
+    width: 50px;
+    height: 50px;
 }
 @media(max-width: 600px){
     #CardsCont{

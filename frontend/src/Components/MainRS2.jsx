@@ -113,7 +113,7 @@ class MainRS extends React.Component {
                             </select>
                             <input onClick={this.Push_} className="REInput" type="button" value="Agregar"/>
                             {this.state.Bool && <Redirect to={{
-                            pathname: "/Directivos/Registro_Maestros",
+                            pathname: "/directivos/registro_Maestros",
                             state: {
                                 Name: this.props.location.state.Name,
                                 Contraseña: this.props.location.state.Contraseña,

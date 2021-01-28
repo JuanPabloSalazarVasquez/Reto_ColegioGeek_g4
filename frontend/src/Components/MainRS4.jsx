@@ -80,7 +80,7 @@ class MainRS4 extends React.Component {
                                 <p >Materias</p>
                             </div>
                             <Link to={{
-                                pathname: "/Directivos/Registro_Grupos",
+                                pathname: "/directivos/registro_Grupos",
                                 state: {
                                     Name: this.props.InfoUsurio[0].Name,
                                     Contraseña: this.props.InfoUsurio[0].Contraseña,

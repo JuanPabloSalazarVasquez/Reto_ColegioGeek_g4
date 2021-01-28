@@ -26,8 +26,7 @@ class directivos_inicio extends React.Component {
                         <div id="ProfileCont">
                             <Profile
                                 Name={this.state.Name}
-                                Edad={this.state.Edad}
-                                Cargo={this.state.Cargo} />
+                                Edad={this.state.Edad} />
                         </div>
                         <div id="CardsCont">
                             <div id="Grupo1">
@@ -81,13 +80,6 @@ class directivos_inicio extends React.Component {
                                 }}> 
                                 <div id="Direc4" className="CardS"></div>
                                 </Link>
-
-                                <div id="Direc5" className="CardS">
-
-                                </div>
-                                <div id="Direc6" className="CardS">
-
-                                </div>
                             </div>
                         </div>
                     </div>

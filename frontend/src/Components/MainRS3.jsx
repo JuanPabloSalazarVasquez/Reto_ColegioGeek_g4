@@ -186,7 +186,7 @@ class MainRS extends React.Component {
                         <div className="Form2_2_2">
                             <input onClick={this.Push_} className="REInput" type="button" value="Agregar" />
                             {this.state.Bool && <Redirect to={{
-                                pathname: "/Directivos/Registro_Grupos",
+                                pathname: "/directivos/registro_Grupos",
                                 state: {
                                     Name: this.props.location.state.Name,
                                     Contraseña: this.props.location.state.Contraseña,
@@ -273,7 +273,7 @@ class MainRS extends React.Component {
                                     </div>
                                     <div className="SelectR AñoInsF">
                                         <Link to={{
-                                            pathname: '/Directivos/Grupos_VerEstudiantes',
+                                            pathname: '/directivos/grupos_VerEstudiantes',
                                             state:{
                                                 Name: this.props.location.state.Name,
                                                 Contraseña: this.props.location.state.Contraseña,
@@ -308,7 +308,7 @@ class MainRS extends React.Component {
                                     </div>
                                     <div className="SelectR AñoInsF">
                                     <Link to={{
-                                            pathname: '/Directivos/Grupos_VerEstudiantes',
+                                            pathname: '/directivos/grupos_VerEstudiantes',
                                             state:{
                                                 Name: this.props.location.state.Name,
                                                 Contraseña: this.props.location.state.Contraseña,
@@ -343,7 +343,7 @@ class MainRS extends React.Component {
                                     </div>
                                     <div className="SelectR AñoInsF">
                                     <Link to={{
-                                            pathname: '/Directivos/Grupos_VerEstudiantes',
+                                            pathname: '/directivos/grupos_VerEstudiantes',
                                             state:{
                                                 Name: this.props.location.state.Name,
                                                 Contraseña: this.props.location.state.Contraseña,
@@ -378,7 +378,7 @@ class MainRS extends React.Component {
                                     </div>
                                     <div className="SelectR AñoInsF">
                                     <Link to={{
-                                            pathname: '/Directivos/Grupos_VerEstudiantes',
+                                            pathname: '/directivos/grupos_VerEstudiantes',
                                             state:{
                                                 Name: this.props.location.state.Name,
                                                 Contraseña: this.props.location.state.Contraseña,
@@ -413,7 +413,7 @@ class MainRS extends React.Component {
                                     </div>
                                     <div className="SelectR AñoInsF">
                                     <Link to={{
-                                            pathname: '/Directivos/Grupos_VerEstudiantes',
+                                            pathname: '/directivos/grupos_VerEstudiantes',
                                             state:{
                                                 Name: this.props.location.state.Name,
                                                 Contraseña: this.props.location.state.Contraseña,
@@ -448,7 +448,7 @@ class MainRS extends React.Component {
                                     </div>
                                     <div className="SelectR AñoInsF">
                                     <Link to={{
-                                            pathname: '/Directivos/Grupos_VerEstudiantes',
+                                            pathname: '/directivos/grupos_VerEstudiantes',
                                             state:{
                                                 Name: this.props.location.state.Name,
                                                 Contraseña: this.props.location.state.Contraseña,
