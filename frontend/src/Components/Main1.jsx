@@ -13,12 +13,12 @@ export default class Main1 extends React.Component {
 
     Cambio = () => {
         if (this.state.estado == 1) {
-            document.getElementById("pCambio").innerHTML = "La semana pasada 50 de nuestros mejores estudiantes se murieron debido a que contajiaron sifilis por mantener relaciones sexuales con el maestro de ciencias sociales.";
+            document.getElementById("pCambio").innerHTML = "Dolor qui officia quo ullam magnam neque incidunt porro rem ex temporibus aperiam necessitatibus.";
             this.setState({
                 estado: 2
             });
         } else if (this.state.estado == 2) {
-            document.getElementById("pCambio").innerHTML = "El pasado sábado, uno de nuestros estudiantes fue premiado con una de las becas académicas más prestigiosas de la ciudad; Carlos Alberto Mosquera dijo: me siento muy feliz por recibir este premio, lo estaba esperando con ansias.";
+            document.getElementById("pCambio").innerHTML = 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Ab hic iste odio distinctio tempora officiis asperiores.';
             this.setState({
                 estado: 1
             });
@@ -32,26 +32,17 @@ export default class Main1 extends React.Component {
                 <div id="Main1Container">
                     <div id="Actualizaciones">
                         <div className="divTittle">
-                            <p className="title">Noticias y Actualidad</p>
+                            <p className="title">¡Bienvenido(a)!</p>
                         </div>
                         <div id="AJAAA">
                             <div className="espacio"><button className="b" onClick={this.Cambio}>←</button></div>
                             <div className="espacio" id="text">
-                                <p id="pCambio">El pasado sábado, uno de nuestros estudiantes fue premiado con una de las becas académicas más prestigiosas de la ciudad; Carlos Alberto Mosquera dijo: me siento muy feliz por recibir este premio, lo estaba esperando con ansias.</p>
+                                <p id="pCambio">Lorem ipsum dolor sit amet consectetur adipisicing elit. Ab hic iste odio distinctio tempora officiis asperiores.</p>
                             </div>
                             <div className="espacio"><button className="b" onClick={this.Cambio}>→</button></div>
                         </div>
                     </div>
-
-                    <div id="Agenda">
-                        <div className="divTittle">
-                            <p className="title">Agenda</p>
-                        </div>
-                        <div className="Agenda2">
-                            <img id="PdfImage" src="https://i.ytimg.com/vi/F3FLe8yqibA/maxresdefault.jpg" />
-                            <button className="button">Descargar</button>
-                        </div>
-                    </div>
+                    <br/>
                     <div id="RedesSociales">
                         <div className="divTittle">
                             <p className="title">Redes Sociales</p>

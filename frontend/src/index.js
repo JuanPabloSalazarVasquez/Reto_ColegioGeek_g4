@@ -7,7 +7,6 @@ import {
 } from "react-router-dom";
 import Home from './Pages/Home';
 import SistemaP from './Pages/SistemaP';
-import Horarios from './Pages/Horarios';
 import SistemaME from './Pages/SistemaMaes_Estud';
 import SistemaD from './Pages/SistemaDir';
 import SistemaDRE from './Pages/SistemaDirRE';
@@ -23,9 +22,6 @@ ReactDOM.render(
       <Switch>
         <Route path="/Sistema">
           <SistemaP />
-        </Route>
-        <Route path="/Horarios">
-          <Horarios />
         </Route>
         <Route path="/Estudiantes_Maestros">
           <SistemaME />
