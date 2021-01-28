@@ -11,8 +11,7 @@ export default class Footer extends React.Component{
         return(
             <>
             <div className="FooterContainer">
-                <p className="pFooter">Copyright © 2017 Software Académico Master2000 ® - Todos los derechos reservados.</p>
-                <button onClick={this.subir} className="button">subir</button>
+                <p className="pFooter">Copyright © 2021 Colegio Geek - Todos los derechos reservados.</p>
             </div>
             </>
         );

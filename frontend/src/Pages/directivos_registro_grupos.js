@@ -8,7 +8,7 @@ import '../Styles/RegistroEstudiantes.css';
 import {Grupos} from '../Utiles/Mocks/Grupos';
 import {withRouter} from 'react-router-dom';
 
-class SistemaDirRG extends React.Component {
+class directivos_registro_grupos extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -37,4 +37,4 @@ class SistemaDirRG extends React.Component {
     }
 }
 
-export default withRouter(SistemaDirRG);
+export default withRouter(directivos_registro_grupos);

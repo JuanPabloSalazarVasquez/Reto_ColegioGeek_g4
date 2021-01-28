@@ -1,16 +1,15 @@
 import React from 'react';
 
 import HeaderS from '../Components/HeaderSistema';
-import MainRS from '../Components/MainRS';
+import MainRS2 from '../Components/MainRS2';
 
 import '../Styles/RegistroEstudiantes.css';
 
-import {Estudiantes} from '../Utiles/Mocks/Estudiantes';
+
 import {withRouter} from 'react-router-dom';
 
 
-
-class SistemaDirRE extends React.Component {
+class directivos_registro_maestros extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -24,7 +23,7 @@ class SistemaDirRE extends React.Component {
     render() {
         return (
             <>
-                    <HeaderS Title = "Registro de estudiantes" 
+                    <HeaderS Title = "Registro de maestros" 
                     InfoUsurio = {[{
                         Name: this.props.location.state.Name,
                         Contraseña: this.props.location.state.Contraseña,
@@ -34,8 +33,7 @@ class SistemaDirRE extends React.Component {
                     }]}
 
                     />
-                    <MainRS 
-                    Estudiantes = {Estudiantes}
+                    <MainRS2 
                     InfoUsurio = {[{
                         Name: this.props.location.state.Name,
                         Contraseña: this.props.location.state.Contraseña,
@@ -49,4 +47,4 @@ class SistemaDirRE extends React.Component {
     }
 }
 
-export default withRouter(SistemaDirRE);
+export default withRouter(directivos_registro_maestros);

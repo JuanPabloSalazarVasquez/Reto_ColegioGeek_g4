@@ -1,55 +1,54 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+
+import Inicio_page from './Pages/inicio_page';
+import Login_usuarios from './Pages/login_usuarios';
+import SistemaME from './Pages/SistemaMaes_Estud';
+import Directivos_inicio from './Pages/directivos_inicio';
+import Directivos_registro_estudiantes from './Pages/directivos_registro_estudiantes';
+import Directivos_registro_maestros from './Pages/directivos_registro_maestros';
+import Directivos_registro_grupos from './Pages/directivos_registro_grupos';
+import SistemaRVEs from './Pages/SistemaRVEs';
+import SistemaDRMa from './Pages/SistemaDirRMa';
+
 import {
   BrowserRouter as Router,
   Switch,
   Route
 } from "react-router-dom";
-import Home from './Pages/Home';
-import SistemaP from './Pages/SistemaP';
-import Horarios from './Pages/Horarios';
-import SistemaME from './Pages/SistemaMaes_Estud';
-import SistemaD from './Pages/SistemaDir';
-import SistemaDRE from './Pages/SistemaDirRE';
-import SistemaDRM from './Pages/SistemaDirRM';
-import SistemaDRG from './Pages/SistemaDirRG';
-import SistemaRVEs from './Pages/SistemaRVEs';
-import SistemaDRMa from './Pages/SistemaDirRMa';
+
 
 ReactDOM.render(
   <React.StrictMode>
     
     <Router>
       <Switch>
-        <Route path="/Sistema">
-          <SistemaP />
+        <Route path="/Sistema" exact>
+          <Login_usuarios />
         </Route>
-        <Route path="/Horarios">
-          <Horarios />
-        </Route>
-        <Route path="/Estudiantes_Maestros">
+        <Route path="/Estudiantes_Maestros" exact>
           <SistemaME />
         </Route>
-        <Route path="/Directivos/Registro_Estudiantes">
-          <SistemaDRE />
+        <Route path="/Directivos/Registro_Estudiantes" exact>
+          <Directivos_registro_estudiantes />
         </Route>
-        <Route path="/Directivos/Registro_Maestros">
-          <SistemaDRM />
+        <Route path="/Directivos/Registro_Maestros" exact>
+          <Directivos_registro_maestros />
         </Route>
-        <Route path="/Directivos/Registro_Grupos">
-          <SistemaDRG />
+        <Route path="/Directivos/Registro_Grupos" exact>
+          <Directivos_registro_grupos />
         </Route>
-        <Route path="/Directivos/Grupos_VerEstudiantes">
+        <Route path="/Directivos/Grupos_VerEstudiantes" exact>
           <SistemaRVEs />
         </Route>
-        <Route path="/Directivos/Registro_Materias"> 
+        <Route path="/Directivos/Registro_Materias" exact> 
           <SistemaDRMa />
         </Route>
-        <Route path="/Directivos">
-          <SistemaD />
+        <Route path="/Directivos" exact>
+          <Directivos_inicio />
         </Route>
-        <Route path="/">
-          <Home />
+        <Route path="/" exact>
+          <Inicio_page />
         </Route>
       </Switch>
     </Router>

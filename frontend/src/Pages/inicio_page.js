@@ -2,16 +2,18 @@ import React from 'react';
 
 import Header from '../Components/Header';
 import Footer from '../Components/Footer';
-import Main3 from '../Components/Main3';
+import Main1 from '../Components/Main1';
 
-function Horarios() {
+
+
+function inicio_page() {
   return (
     <>
-    <Header />
-    <Main3 />
-    <Footer />
+      <Header />
+      <Main1 />
+      <Footer />
     </>
   );
 }
 
-export default Horarios;
+export default inicio_page;

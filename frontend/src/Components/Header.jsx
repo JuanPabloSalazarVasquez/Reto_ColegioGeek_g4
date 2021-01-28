@@ -16,7 +16,7 @@ export default class Header extends React.Component {
                         <img className="logo" src="https://1.bp.blogspot.com/-19Rj_9Y-oUU/X0BgebudCnI/AAAAAAAAPK8/Yzu1YmfJmx4Yk-wleE0m9vfPc2_2sTszwCLcBGAsYHQ/d/Logo.png" />
                     </div>
                     <div className="titleHeader">
-                        <h2 >Quipux Academy</h2>
+                        <h2 >Colegio Geek</h2>
                     </div>
                     <nav id="Navar">
                         <Link to="/">

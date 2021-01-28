@@ -6,7 +6,7 @@ body{
 
 #PadreHeader{
     margin: 0 15% 0 15%;
-    background-color: #248232;
+    background-color: #1565c0; /*Blue 800*/
 display: grid;
 grid-template-columns: 12vw 1fr;
 grid-template-rows: 1fr 1fr;
