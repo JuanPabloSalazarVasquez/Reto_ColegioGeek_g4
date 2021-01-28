@@ -6,7 +6,7 @@ import Main1 from '../Components/Main1';
 
 
 
-function Home() {
+function inicio_page() {
   return (
     <>
       <Header />
@@ -16,4 +16,4 @@ function Home() {
   );
 }
 
-export default Home;
+export default inicio_page;

@@ -13,7 +13,7 @@ export default class Header extends React.Component {
             <>
                 <div id="PadreHeader">
                     <div className="HeaderLogo HedLC">
-                        <img className="logo" src="https://1.bp.blogspot.com/-19Rj_9Y-oUU/X0BgebudCnI/AAAAAAAAPK8/Yzu1YmfJmx4Yk-wleE0m9vfPc2_2sTszwCLcBGAsYHQ/d/Logo.png" />
+                        <img className="logo" src="https://images.vexels.com/media/users/3/224155/isolated/preview/f4bbe191bcc833b27d7fa241220c470e-libro-en-logo-de-pantalla-by-vexels.png" />
                     </div>
                     <div className="titleHeader">
                         <h2 >Colegio Geek</h2>
@@ -21,9 +21,6 @@ export default class Header extends React.Component {
                     <nav id="Navar">
                         <Link to="/">
                             <button className="button">Inicio</button>
-                        </Link>
-                        <Link to="/Horarios">
-                            <button className="button">Horarios</button>
                         </Link>
                         <Link to="/Sistema">
                             <button className="button">Sistema</button>

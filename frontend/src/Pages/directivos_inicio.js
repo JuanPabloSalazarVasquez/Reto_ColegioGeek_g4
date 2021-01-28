@@ -6,7 +6,7 @@ import '../Styles/Directivos.css';
 import { withRouter } from 'react-router-dom';
 import { Link } from 'react-router-dom';
 
-class SistemaDir extends React.Component {
+class directivos_inicio extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -97,4 +97,4 @@ class SistemaDir extends React.Component {
     }
 }
 
-export default withRouter(SistemaDir);
+export default withRouter(directivos_inicio);

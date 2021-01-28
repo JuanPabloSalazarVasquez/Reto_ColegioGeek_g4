@@ -8,7 +8,7 @@ import { Estudiantes } from '../Utiles/Mocks/Estudiantes';
 import { Maestros } from '../Utiles/Mocks/Maestros';
 import { Directivos } from '../Utiles/Mocks/Directivos';
 
-function Home() {
+function login_usuarios() {
   return (
     <>
     <Header />
@@ -29,4 +29,4 @@ const LargoE = Estudiantes.length;
 const LargoM = Maestros.length;
 const LargoD = Directivos.length;
 
-export default Home;
+export default login_usuarios;
