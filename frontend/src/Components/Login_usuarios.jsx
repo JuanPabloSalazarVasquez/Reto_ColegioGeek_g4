@@ -159,7 +159,7 @@ class Main2 extends React.Component {
                     </div>
                     <div id="InfoContainer">
                         <h2>Bienvenido</h2>
-                        <p>Bienvenido al sistema de Quipux Academy, por favor seleccione su tipo de usuario.</p>
+                        <p>Bienvenido al sistema de Colegio Geek, por favor ingrese al sistema.</p>
                     </div>
                 </div>
             </>

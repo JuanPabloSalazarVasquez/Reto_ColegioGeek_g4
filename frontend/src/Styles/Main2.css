@@ -3,19 +3,12 @@ body {
 }
 
 .Main2Container {
-    padding: 5% 1% 5% 1%;
+    padding: 5% 1%;
     margin: 0% 15% 0 15%;
-    background-color: #FCFFFC;
+    background-color: lightgray;
     display: grid;
     grid-template-rows: 1fr;
     grid-template-columns: 50% 50%;
-}
-
-#Palborde {
-    background-color: #2BA84A;
-    border: 1px solid black;
-    padding: 2vw;
-    border-radius: 10px;
 }
 
 #SelecContainer {
@@ -26,13 +19,11 @@ body {
     grid-column: 1/2;
 }
 
-#InfoContainer {
-    margin-right: 3vw;
-    display: flex;
-    flex-flow: column;
-    align-items: center;
-    grid-row: 1/2;
-    grid-column: 2/3;
+#Palborde {
+    background-color: #1565c0;
+    border: 1px solid black;
+    padding: 2vw;
+    border-radius: 10px;
 }
 
 .input {
@@ -42,15 +33,28 @@ body {
     border: 1px solid black;
     height: 40px;
 }
+
 .Dis{
     display: none;
 }
+
 #SoloParaCentrar{
     text-align: center;
 }
+
 .button2{
 margin: 0;
 margin-top: 2vw;
+}
+
+#InfoContainer {
+    margin-right: 3vw;
+    display: flex;
+    flex-flow: column;
+    align-items: center;
+    grid-row: 1/2;
+    grid-column: 2/3;
+    color: black;
 }
 @media(max-width: 680px) {
     .Main2Container {
