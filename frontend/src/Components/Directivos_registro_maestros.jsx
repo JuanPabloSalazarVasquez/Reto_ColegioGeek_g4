@@ -5,7 +5,7 @@ import '../Styles/RegistroEstudiantes.css';
 import { withRouter, Redirect } from 'react-router-dom';
 import {Maestros} from '../Utiles/Mocks/Maestros';
 
-class MainRS extends React.Component {
+class Directivos_registro_maestros extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -194,4 +194,4 @@ class MainRS extends React.Component {
     }
 }
 
-export default withRouter(MainRS);
+export default withRouter(Directivos_registro_maestros);

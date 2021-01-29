@@ -1,13 +1,13 @@
 import React from 'react';
 
-import '../Styles/Main2.css';
+import '../Styles/Login_usuarios.css';
 
 import {
     BrowserRouter as Router,
     Redirect
 } from "react-router-dom";
 
-class Main2 extends React.Component {
+class Login_usuarios extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -167,4 +167,4 @@ class Main2 extends React.Component {
     }
 }
 
-export default Main2;
+export default Login_usuarios;

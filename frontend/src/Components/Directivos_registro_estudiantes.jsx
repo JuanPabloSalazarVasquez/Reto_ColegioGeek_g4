@@ -14,7 +14,7 @@ const AñoD = Año.getDate();
 
 let GrupoVar = "";
 
-class MainRS extends React.Component {
+class Directivos_registro_estudiantes extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -264,4 +264,4 @@ class MainRS extends React.Component {
     }
 }
 
-export default withRouter(MainRS);
+export default withRouter(Directivos_registro_estudiantes);

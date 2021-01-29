@@ -1,7 +1,7 @@
 import React from 'react';
 
-import HeaderS from '../Components/HeaderSistema';
-import MainRS3 from '../Components/MainRS3';
+import HeaderSistema from '../Components/HeaderSistema';
+import Directivos_registro_grupos from '../Components/Directivos_registro_grupos';
 
 import '../Styles/RegistroEstudiantes.css';
 
@@ -22,7 +22,7 @@ class directivos_registro_grupos extends React.Component {
     render() {
         return (
             <>
-                    <HeaderS Title = "Registro de grupos" 
+                    <HeaderSistema Title = "Registro de grupos" 
                     InfoUsurio = {[{
                         Name: this.props.location.state.Name,
                         Contraseña: this.props.location.state.Contraseña,
@@ -31,7 +31,7 @@ class directivos_registro_grupos extends React.Component {
                         Cargo: this.props.location.state.Cargo
                     }]}
                     />
-                    <MainRS3 Grupos ={Grupos}/>
+                    <Directivos_registro_grupos Grupos ={Grupos}/>
             </>
         );
     }

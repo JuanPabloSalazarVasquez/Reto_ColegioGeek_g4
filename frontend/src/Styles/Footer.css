@@ -4,11 +4,13 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
+    text-align: center;
     padding: 10px 50px;
 }
 
 .pFooter{
     color: white;
+    text-align: center;
 }
 
 @media(max-width: 850px){

@@ -1,6 +1,6 @@
 import React from 'react';
 
-import '../Styles/Main1.css';
+import '../Styles/Inicio_page.css';
 
 
 export default class Main1 extends React.Component {

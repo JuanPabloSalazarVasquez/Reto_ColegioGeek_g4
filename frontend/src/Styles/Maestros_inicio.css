@@ -1,4 +1,4 @@
-.ProfileContainer-Estudiantes_inicio {
+.ProfileContainer-Maestros_inicio {
   background-color: #1565c0;
   display: flex;
   flex-flow: column;
@@ -7,19 +7,19 @@
   height: 80vh;
   border-radius: 20px;
 }
-.ImgProfile-Estudiantes_inicio {
+.ImgProfile-Maestros_inicio {
   width: 15vw;
   height: 15vw;
   border-radius: 100%;
 }
-.DirectivosContainer-Estudiantes_inicio {
+.DirectivosContainer-Maestros_inicio {
   width: 100%;
   height: 100vh;
   display: flex;
   justify-content: center;
   align-items: center;
 }
-.DirectivosGrid-Estudiantes_inicio {
+.DirectivosGrid-Maestros_inicio {
   width: 100%;
   height: max-content;
   margin: 0% 10% 0% 10%;
@@ -29,25 +29,25 @@
   grid-template-rows: 1fr;
   border-radius: 20px;
 }
-.ProfileCont-Estudiantes_inicio {
+.ProfileCont-Maestros_inicio {
   grid-column: 1/2;
   grid-row: 1/2;
 }
-.CardsCont-Estudiantes_inicio {
+.CardsCont-Maestros_inicio {
   display: grid;
   grid-template-columns: 1fr;
   grid-template-rows: 1fr 1fr;
   grid-column: 2/3;
   grid-row: 1/2;
 }
-.Grupo1-Estudiantes_inicio {
+.Grupo1-Maestros_inicio {
   align-items: center;
   justify-content: space-around;
   display: flex;
   grid-column: 1/2;
   grid-row: 1/2;
 }
-.Grupo2-Estudiantes_inicio {
+.Grupo2-Maestros_inicio {
   align-items: center;
   justify-content: space-around;
   display: flex;
@@ -55,7 +55,7 @@
   grid-row: 2/3;
 }
 
-.CardS-Estudiantes_inicio {
+.CardS-Maestros_inicio {
   background-size: 100%;
   width: 13vw;
   height: 13vw;
@@ -65,95 +65,95 @@
   box-shadow: 15px 15px 20px black !important;
 }
 
-.CardS-Estudiantes_inicio:hover {
+.CardS-Maestros_inicio:hover {
   transition: all 700ms;
   width: 12vw;
   height: 12vw;
   box-shadow: 10px 10px 10px black !important;
 }
 
-.DatosContainer-Estudiantes_inicio {
+.DatosContainer-Maestros_inicio {
   background-color: white;
   padding: 1vw;
   border-radius: 1vw;
 }
 
-.img-direc1-Estudiantes_inicio {
+.img-direc1-Maestros_inicio {
   width: 13vw;
   height: 13vw;
 }
-.img-direc2-Estudiantes_inicio {
+.img-direc2-Maestros_inicio {
   width: 13vw;
   height: 13vw;
 }
-.img-direc3-Estudiantes_inicio {
+.img-direc3-Maestros_inicio {
   width: 13vw;
   height: 13vw;
 }
-.img-direc4-Estudiantes_inicio {
+.img-direc4-Maestros_inicio {
   width: 13vw;
   height: 13vw;
 }
 
-.button2-Estudiantes_inicio {
+.button2-Maestros_inicio {
   border: 0px solid;
   border-radius: 16px;
   box-shadow: 0 6px 5px 3px rgba(0, 0, 0, 0.7);
 }
-.button2-Estudiantes_inicio:hover {
+.button2-Maestros_inicio:hover {
   background-color: rgb(208, 135, 0);
   border: 2px solid white;
 }
-.Pprofile-Estudiantes_inicio {
+.Pprofile-Maestros_inicio {
   font-weight: bold;
   color: black;
 }
 
 /* Responsive */
 @media (max-width: 600px) {
-  .CardsCont-Estudiantes_inicio {
+  .CardsCont-Maestros_inicio {
     grid-template-columns: 1fr 1fr;
     grid-template-rows: 80vh;
   }
-  .Grupo1-Estudiantes_inicio {
+  .Grupo1-Maestros_inicio {
     flex-flow: column;
     grid-column: 1/2;
     grid-row: 1/2;
   }
-  .Grupo2-Estudiantes_inicio {
+  .Grupo2-Maestros_inicio {
     flex-flow: column;
     grid-column: 2/3;
     grid-row: 1/2;
   }
 
-  .CardS-Estudiantes_inicio {
+  .CardS-Maestros_inicio {
     width: 18vh;
     height: 18vh;
   }
-  .ImgProfile-Estudiantes_inicio {
+  .ImgProfile-Maestros_inicio {
     margin: 0 0 0 3px;
     width: 10vh;
   }
-  .Pprofile-Estudiantes_inicio {
+  .Pprofile-Maestros_inicio {
     margin: 0 3px 0 3px;
   }
-  .DirectivosContainer-Estudiantes_inicio {
+  .DirectivosContainer-Maestros_inicio {
     display: block;
   }
-  .ProfileContainer-Estudiantes_inicio {
+  .ProfileContainer-Maestros_inicio {
     height: 20vh;
     flex-flow: initial;
   }
-  .DirectivosGrid-Estudiantes_inicio {
+  .DirectivosGrid-Maestros_inicio {
     margin: 0;
     grid-template-columns: 1fr;
     grid-template-rows: max-content max-content;
   }
-  .ProfileCont-Estudiantes_inicio {
+  .ProfileCont-Maestros_inicio {
     grid-column: 1/2;
     grid-row: 1/2;
   }
-  .CardsCont-Estudiantes_inicio {
+  .CardsCont-Maestros_inicio {
     grid-column: 1/2;
     grid-row: 2/3;
   }

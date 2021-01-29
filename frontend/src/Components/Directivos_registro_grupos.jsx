@@ -23,7 +23,7 @@ const AñoM = Año.getMonth() + 1;
 const AñoD = Año.getDate();
 let GradoNum;
 
-class MainRS extends React.Component {
+class Directivos_registro_grupos extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -475,4 +475,4 @@ class MainRS extends React.Component {
     }
 }
 
-export default withRouter(MainRS);
+export default withRouter(Directivos_registro_grupos);

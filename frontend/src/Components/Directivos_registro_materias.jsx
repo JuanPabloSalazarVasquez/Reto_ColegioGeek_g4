@@ -3,7 +3,7 @@ import React from 'react';
 import { Redirect, withRouter } from 'react-router-dom';
 import { Materias } from '../Utiles/Mocks/Materias';
 
-class MainRS5 extends React.Component {
+class Directivos_registro_materias extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -133,4 +133,4 @@ class MainRS5 extends React.Component {
     }
 }
 
-export default withRouter(MainRS5); 
+export default withRouter(Directivos_registro_materias); 

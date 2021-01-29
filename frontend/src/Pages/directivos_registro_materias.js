@@ -1,7 +1,7 @@
 import React from 'react';
 
-import HeaderS from '../Components/HeaderSistema';
-import MainRS5 from '../Components/MainRS5';
+import HeaderSistema from '../Components/HeaderSistema';
+import Directivos_registro_materias from '../Components/Directivos_registro_materias';
 
 import {withRouter} from 'react-router-dom';
 
@@ -13,7 +13,7 @@ class directivos_registro_materias extends React.Component {
   render() { 
     return ( 
       <>
-      <HeaderS 
+      <HeaderSistema 
       InfoUsurio = {[{
                         Name: this.props.location.state.Name,
                         Contraseña: this.props.location.state.Contraseña,
@@ -21,7 +21,7 @@ class directivos_registro_materias extends React.Component {
                         Edad: this.props.location.state.Edad,
                         Cargo: this.props.location.state.Cargo
                     }]}/>
-      <MainRS5 InfoUsurio = {[{
+      <Directivos_registro_materias InfoUsurio = {[{
                         Name: this.props.location.state.Name,
                         Contraseña: this.props.location.state.Contraseña,
                         Usuario: this.props.location.state.Usuario,

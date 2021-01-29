@@ -1,7 +1,7 @@
 import React from 'react';
 
-import HeaderS from '../Components/HeaderSistema';
-import MainRS2 from '../Components/MainRS2';
+import HeaderSistema from '../Components/HeaderSistema';
+import Directivos_registro_maestros from '../Components/Directivos_registro_maestros';
 
 import '../Styles/RegistroEstudiantes.css';
 
@@ -23,7 +23,7 @@ class directivos_registro_maestros extends React.Component {
     render() {
         return (
             <>
-                    <HeaderS Title = "Registro de maestros" 
+                    <HeaderSistema Title = "Registro de maestros" 
                     InfoUsurio = {[{
                         Name: this.props.location.state.Name,
                         Contraseña: this.props.location.state.Contraseña,
@@ -33,7 +33,7 @@ class directivos_registro_maestros extends React.Component {
                     }]}
 
                     />
-                    <MainRS2 
+                    <Directivos_registro_maestros 
                     InfoUsurio = {[{
                         Name: this.props.location.state.Name,
                         Contraseña: this.props.location.state.Contraseña,
