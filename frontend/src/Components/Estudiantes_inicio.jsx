@@ -14,14 +14,6 @@ class Estudiantes_inicio extends React.Component {
   render() {
     return (
       <>
-        {/*
-        <p>
-          En la parte de estudiantes se podran consultar las notas y los
-          consolidados de notas, al igual que los años que ya curso el
-          estudiantes. Tambien podriamos poner las notas por materia, y los años
-          cursados
-        </p>
-         */}
         <div className="DirectivosContainer-Estudiantes_inicio">
           <div className="DirectivosGrid-Estudiantes_inicio">
             <div className="ProfileCont-Estudiantes_inicio">
@@ -50,36 +42,48 @@ class Estudiantes_inicio extends React.Component {
             <div className="CardsCont-Estudiantes_inicio">
               <div className="Grupo1-Estudiantes_inicio">
                 <div>
+                  <Link to='/estudiantes/mis_notas'>
                   <img
-                    src="https://1.bp.blogspot.com/-L3l1J1Z3ytg/X0hNNESpzuI/AAAAAAAAPME/3V8A1tELyXEyZw5XJaGn3A3HxnYTFQ1cACLcBGAsYHQ/s16000/Estudiantes.png"
+                    src="https://image.flaticon.com/icons/png/512/2893/2893358.png"
                     className="img-direc1-Estudiantes_inicio CardS-Estudiantes_inicio"
                     alt="logo_1"
                   />
+                  </Link>
+                  Ver mis notas
                 </div>
 
                 <div>
+                  <Link to='/estudiantes/mis_materias'>
                   <img
-                    src="https://1.bp.blogspot.com/-zTYMDm4_vuk/X0ioVfB0ccI/AAAAAAAAPNY/Y0Ir1KWfCLUKgQw6dFWZct0qz84e-GKfACLcBGAsYHQ/s16000/Mestros.png"
+                    src="https://image.flaticon.com/icons/png/512/29/29302.png"
                     className="img-direc2-Estudiantes_inicio CardS-Estudiantes_inicio"
                     alt="logo_2"
                   />
+                  </Link>
+                  Ver mis materias
                 </div>
               </div>
               <div className="Grupo2-Estudiantes_inicio">
                 <div>
+                  <Link to='/estudiantes/mis_maestros'>
                   <img
-                    src="https://1.bp.blogspot.com/-fzuKkHYNNq8/X0i-8mrociI/AAAAAAAAPOI/QD6HCg571wcMTe5C9Rz8-vTDZzNCyey8wCLcBGAsYHQ/s16000/Grupos.png"
+                    src="https://www.titecnoeducacion.com.mx/images/imgs/icono-maestros-blanco.png"
                     className="img-direc3-Estudiantes_inicio CardS-Estudiantes_inicio"
                     alt="logo_3"
                   />
+                  </Link>
+                  Ver mis maestros
                 </div>
 
                 <div>
+                  <Link to='/estudiantes/mi_cuenta'>
                   <img
-                    src="https://1.bp.blogspot.com/-uMbl2HbB-W0/X0ni-gTOYbI/AAAAAAAAPOs/m-VG-q_myzkjtpV5krfPl3sRb89RWNYBQCLcBGAsYHQ/s16000/Materias.png"
+                    src="https://w7.pngwing.com/pngs/864/574/png-transparent-computer-icons-computer-configuration-a-new-user-miscellaneous-logo-monochrome.png"
                     className="img-direc4-Estudiantes_inicio CardS-Estudiantes_inicio"
                     alt="logo_4"
                   />
+                  </Link>
+                  Configuracion de mi cuenta
                 </div>
               </div>
             </div>
