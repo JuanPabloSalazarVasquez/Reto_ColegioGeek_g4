@@ -10,6 +10,7 @@ body{
     align-items: center;
     justify-content: space-around;
     height: 80vh;
+    border-radius: 20px;
 }
 .ImgProfile{
     width: 15vw;
@@ -29,10 +30,19 @@ body{
     display: grid;
     grid-template-columns: 30% 70%;
     grid-template-rows: 1fr;
+    border-radius: 20px;
 }
 #ProfileCont{
     grid-column: 1/2;
     grid-row: 1/2;
+}
+.Pprofile{
+    font-weight: bold;
+}
+.button2{
+    border: 0px solid;
+    border-radius: 16px;
+    box-shadow: 0 6px 5px 3px rgba(0, 0, 0, 0.7);
 }
 #CardsCont{
     display: grid;
@@ -74,7 +84,7 @@ body{
 #DatosContainer{
     padding: 1vw;
     border-radius: 1vw;
-    background-color: lightgrey;
+    background-color: white;
     color: black;
 }
 

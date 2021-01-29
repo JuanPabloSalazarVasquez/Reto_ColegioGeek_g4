@@ -30,17 +30,17 @@ class directivos_inicio extends React.Component {
                         </div>
                         <div id="CardsCont">
                             <div id="Grupo1">
-                                <Link to={{ 
-                                    pathname:"/Directivos/Registro_Estudiantes",
+                                <Link to={{
+                                    pathname: "/Directivos/Registro_Estudiantes",
                                     state: {
                                         Name: this.props.location.state.Name,
                                         Contraseña: this.props.location.state.Contraseña,
                                         Usuario: this.props.location.state.Usuario,
                                         Edad: this.props.location.state.Edad,
                                         Cargo: this.props.location.state.Cargo
-                                      }   
-                                    }} >
-                                <div id="Direc1" className="CardS"></div>
+                                    }
+                                }} >
+                                    <div id="Direc1" className="CardS"></div>
                                 </Link>
                                 <Link to={{
                                     pathname: "/Directivos/Registro_Maestros",
@@ -52,9 +52,11 @@ class directivos_inicio extends React.Component {
                                         Cargo: this.props.location.state.Cargo
                                     }
                                 }}>
-                                <div id="Direc2" className="CardS"></div>
+                                    <div id="Direc2" className="CardS"></div>
                                 </Link>
-                                <Link to={{
+                            </div>
+                            <div id="Grupo2">
+                            <Link to={{
                                     pathname: "/Directivos/Registro_Grupos",
                                     state: {
                                         Name: this.props.location.state.Name,
@@ -64,10 +66,8 @@ class directivos_inicio extends React.Component {
                                         Cargo: this.props.location.state.Cargo
                                     }
                                 }}>
-                                <div id="Direc3" className="CardS"></div>
+                                    <div id="Direc3" className="CardS"></div>
                                 </Link>
-                            </div>
-                            <div id="Grupo2">
                                 <Link to={{
                                     pathname: "/Directivos/Registro_Materias",
                                     state: {
@@ -75,10 +75,10 @@ class directivos_inicio extends React.Component {
                                         Contraseña: this.props.location.state.Contraseña,
                                         Usuario: this.props.location.state.Usuario,
                                         Edad: this.props.location.state.Edad,
-                                        Cargo: this.props.location.state.Cargo     
+                                        Cargo: this.props.location.state.Cargo
                                     }
-                                }}> 
-                                <div id="Direc4" className="CardS"></div>
+                                }}>
+                                    <div id="Direc4" className="CardS"></div>
                                 </Link>
                             </div>
                         </div>
