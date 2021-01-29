@@ -2,7 +2,7 @@ import React from 'react';
 import {withRouter} from 'react-router-dom';
 import MainRS4 from '../Components/MainRS4';
 
-import HeaderS from '../Components/HeaderSistema';
+import HeaderSistema from '../Components/HeaderSistema';
 class directivos_grupos_ver_estudiantes extends React.Component {
     constructor(props) {
         super(props);
@@ -11,7 +11,7 @@ class directivos_grupos_ver_estudiantes extends React.Component {
     render() { 
         return (
             <>
-            <HeaderS classDis="Dis"/>
+            <HeaderSistema classDis="Dis"/>
             <MainRS4 
             InfoUsurio = {[{
                 Name: this.props.location.state.Name,

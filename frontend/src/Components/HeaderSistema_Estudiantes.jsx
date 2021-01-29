@@ -1,13 +1,13 @@
 import React from 'react';
 
-import '../Styles/HeaderSistema.css';
+import '../Styles/RegistroEstudiantes.css';
 import { Link } from 'react-router-dom';
 import { withRouter } from 'react-router-dom';
 
 let hola = 0;
 console.log(hola);
 
-class HeaderS extends React.Component {
+class HeaderSistema_Estudiantes extends React.Component {
     constructor(props) {
         super(props);
         this.state = {}
@@ -26,14 +26,7 @@ class HeaderS extends React.Component {
                         </div>
                         <div id="bContainer">
                             <Link to={{
-                                pathname: "/Directivos",
-                                state: {
-                                    Name: this.props.location.state.Name,
-                                    Contraseña: this.props.location.state.Contraseña,
-                                    Usuario: this.props.location.state.Usuario,
-                                    Edad: this.props.location.state.Edad,
-                                    Cargo: this.props.location.state.Cargo
-                                }
+                                pathname: this.props.pathname,
                             }}>
                                 <button className={`button ${this.props.classDis}`} >Atras</button>
                             </Link>
@@ -46,4 +39,4 @@ class HeaderS extends React.Component {
     }
 }
 
-export default withRouter(HeaderS);
+export default withRouter(HeaderSistema_Estudiantes);

@@ -11,6 +11,10 @@ import Directivos_registro_grupos from "./Pages/directivos_registro_grupos";
 import Directivos_grupos_ver_estudiantes from "./Pages/directivos_grupos_ver_estudiantes";
 import Directivos_registro_materias from "./Pages/directivos_registro_materias";
 import Maestros_inicio from "./Pages/maestros_inicio";
+import Estudiantes_notas from './Pages/estudiantes_notas';
+import Estudiantes_materias from './Pages/estudiantes_materias';
+import Estudiantes_maestros from './Pages/estudiantes_maestros';
+import Estudiantes_configuracion from './Pages/estudiantes_configuracion';
 
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 
@@ -21,12 +25,32 @@ ReactDOM.render(
         <Route path="/login" exact>
           <Login_usuarios />
         </Route>
+
+        {/* Rutas Estudiantes */}
         <Route path="/estudiantes" exact>
           <Estudiantes_inicio />
         </Route>
+        <Route path="/estudiantes/mis_notas" exact>
+          <Estudiantes_notas />
+        </Route>
+        <Route path="/estudiantes/mis_materias" exact>
+          <Estudiantes_materias />
+        </Route>
+        <Route path="/estudiantes/mis_maestros" exact>
+          <Estudiantes_maestros />
+        </Route>
+        <Route path="/estudiantes/mi_cuenta" exact>
+          <Estudiantes_configuracion />
+        </Route>
+        {/* Fin Rutas Estudiantes */}
+
+        {/* Rutas Maestros */}
         <Route path="/maestros" exact>
           <Maestros_inicio />
         </Route>
+        {/* Fin Rutas Maestros */}
+
+        {/* Rutas Directivos */}
         <Route path="/directivos/registro_Estudiantes" exact>
           <Directivos_registro_estudiantes />
         </Route>
@@ -45,6 +69,7 @@ ReactDOM.render(
         <Route path="/directivos" exact>
           <Directivos_inicio />
         </Route>
+        {/* Fin Rutas Directivos */}
         <Route path="/" exact>
           <Inicio_page />
         </Route>
