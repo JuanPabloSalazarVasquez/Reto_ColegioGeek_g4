@@ -20,7 +20,7 @@ class Profile extends React.Component {
                     <img className="ImgProfile" src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/7e/Circle-icons-profile.svg/1200px-Circle-icons-profile.svg.png" />
                     </div>
                     <div id="DatosContainer">
-                    <p className="Pprofile">Welcome {this.props.Name}</p>
+                    <p className="Pprofile">Bienvenido {this.props.Name}</p>
                     <p className="Pprofile">Cargo: {this.props.Cargo}</p>
                     </div>
                     <Link to="/">

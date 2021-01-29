@@ -1,0 +1,166 @@
+.ProfileContainer-Estudiantes_inicio {
+  background-color: #1565c0;
+  display: flex;
+  flex-flow: column;
+  align-items: center;
+  justify-content: space-around;
+  height: 80vh;
+  border-radius: 20px;
+}
+.ImgProfile-Estudiantes_inicio {
+  width: 15vw;
+  height: 15vw;
+  border-radius: 100%;
+}
+.DirectivosContainer-Estudiantes_inicio {
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.DirectivosGrid-Estudiantes_inicio {
+  width: 100%;
+  height: max-content;
+  margin: 0% 10% 0% 10%;
+  background-color: rgb(208, 135, 0);
+  display: grid;
+  grid-template-columns: 30% 70%;
+  grid-template-rows: 1fr;
+  border-radius: 20px;
+}
+.ProfileCont-Estudiantes_inicio {
+  grid-column: 1/2;
+  grid-row: 1/2;
+}
+.CardsCont-Estudiantes_inicio {
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: 1fr 1fr;
+  grid-column: 2/3;
+  grid-row: 1/2;
+}
+.Grupo1-Estudiantes_inicio {
+  align-items: center;
+  justify-content: space-around;
+  display: flex;
+  grid-column: 1/2;
+  grid-row: 1/2;
+}
+.Grupo2-Estudiantes_inicio {
+  align-items: center;
+  justify-content: space-around;
+  display: flex;
+  grid-column: 1/2;
+  grid-row: 2/3;
+}
+
+.CardS-Estudiantes_inicio {
+  background-size: 100%;
+  width: 13vw;
+  height: 13vw;
+  border-radius: 50%;
+  cursor: pointer;
+  transition: all 700ms;
+  box-shadow: 15px 15px 20px black !important;
+}
+
+.CardS-Estudiantes_inicio:hover {
+  transition: all 700ms;
+  width: 12vw;
+  height: 12vw;
+  box-shadow: 10px 10px 10px black !important;
+}
+
+.DatosContainer-Estudiantes_inicio {
+  background-color: white;
+  padding: 1vw;
+  border-radius: 1vw;
+}
+
+.img-direc1-Estudiantes_inicio {
+  width: 13vw;
+  height: 13vw;
+}
+.img-direc2-Estudiantes_inicio {
+  width: 13vw;
+  height: 13vw;
+}
+.img-direc3-Estudiantes_inicio {
+  width: 13vw;
+  height: 13vw;
+}
+.img-direc4-Estudiantes_inicio {
+  width: 13vw;
+  height: 13vw;
+}
+
+.button2-Estudiantes_inicio {
+  border: 0px solid;
+  border-radius: 16px;
+  box-shadow: 0 6px 5px 3px rgba(0, 0, 0, 0.7);
+}
+.button2-Estudiantes_inicio:hover {
+  background-color: rgb(208, 135, 0);
+  border: 2px solid white;
+}
+.Pprofile-Estudiantes_inicio {
+  font-weight: bold;
+  color: black;
+}
+
+/* Responsive */
+@media (max-width: 600px) {
+  .CardsCont-Estudiantes_inicio {
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 80vh;
+  }
+  .Grupo1-Estudiantes_inicio {
+    flex-flow: column;
+    grid-column: 1/2;
+    grid-row: 1/2;
+  }
+  .Grupo2-Estudiantes_inicio {
+    flex-flow: column;
+    grid-column: 2/3;
+    grid-row: 1/2;
+  }
+
+  .CardS-Estudiantes_inicio {
+    width: 18vh;
+    height: 18vh;
+  }
+  .ImgProfile-Estudiantes_inicio {
+    margin: 0 0 0 3px;
+    width: 10vh;
+  }
+  .Pprofile-Estudiantes_inicio {
+    margin: 0 3px 0 3px;
+  }
+  .DirectivosContainer-Estudiantes_inicio {
+    display: block;
+  }
+  .ProfileContainer-Estudiantes_inicio {
+    height: 20vh;
+    flex-flow: initial;
+  }
+  .DirectivosGrid-Estudiantes_inicio {
+    margin: 0;
+    grid-template-columns: 1fr;
+    grid-template-rows: max-content max-content;
+  }
+  .ProfileCont-Estudiantes_inicio {
+    grid-column: 1/2;
+    grid-row: 1/2;
+  }
+  .CardsCont-Estudiantes_inicio {
+    grid-column: 1/2;
+    grid-row: 2/3;
+  }
+}
+
+@media (max-width: 560px) {
+  .button2 {
+    font-size: 12px;
+  }
+}

@@ -5,7 +5,7 @@ import "../Styles/Estudiantes_inicio.css";
 import { withRouter } from "react-router-dom";
 import { Link } from "react-router-dom";
 
-class Estudiantes_inicio extends React.Component {
+class Maestros_inicio extends React.Component {
   constructor(props) {
     super(props);
     this.state = {};
@@ -14,14 +14,13 @@ class Estudiantes_inicio extends React.Component {
   render() {
     return (
       <>
-        {/*
         <p>
           En la parte de estudiantes se podran consultar las notas y los
           consolidados de notas, al igual que los años que ya curso el
           estudiantes. Tambien podriamos poner las notas por materia, y los años
           cursados
         </p>
-         */}
+
         <div className="DirectivosContainer-Estudiantes_inicio">
           <div className="DirectivosGrid-Estudiantes_inicio">
             <div className="ProfileCont-Estudiantes_inicio">
@@ -90,4 +89,4 @@ class Estudiantes_inicio extends React.Component {
   }
 }
 
-export default withRouter(Estudiantes_inicio);
+export default withRouter(Maestros_inicio);
