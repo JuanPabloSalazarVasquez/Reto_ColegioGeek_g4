@@ -1,4 +1,4 @@
 const { Router } = require('express'); 
-const router = Router();
+const grupo = Router();
 
-module.exports=router;
+module.exports=grupo;
