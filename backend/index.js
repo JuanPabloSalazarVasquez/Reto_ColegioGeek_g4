@@ -30,7 +30,7 @@ app.use("/notas", notas);
 app.use("/persona", persona);
 //Fin configuración de rutas
 
-app.set("port", process.env.PORT || 5555);
+app.set("port", process.env.PORT || 4535);
 app.listen(app.get("port"), () => {
   console.log(`Server on port:${app.get("port")}`);
 });

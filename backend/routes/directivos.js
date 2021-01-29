@@ -1,5 +1,6 @@
 const { Router } = require('express'); 
 const directivo = Router();
+const pool = require('./db/db');
 
 // Crear un nuevo registro en la tabla directivos
 // Falta configurar mysqlConnection

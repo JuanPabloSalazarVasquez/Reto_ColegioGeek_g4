@@ -1,5 +1,6 @@
 const { Router } = require('express'); 
 const estudiantes = Router();
+const pool = require('./db/db');
 
 // Crear un nuevo registro en la tabla estudiantes
 // Falta configurar mysqlConnection
