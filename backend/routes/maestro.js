@@ -31,5 +31,19 @@ maestro.get('/all-maestros', (req,res)=>{
 });
 // Fin consultar todos los maestros de la tabla maestros
 
+//
+maestro.put('maestro/:id_maestro', (req,res)=>{
+    const { id_persona,codigo_maestro } = req.body;
+    const {id_maestro} =req.params;
 
+    pool.query('UPDATE maestro SET id_persona,codigo_maestro WHERE id_maestro=?',
+    [id_persona,codigo_maestro,id_maestro], (err, rows, fields)=>{
+        if(!err){
+            res.json(rows);
+        }else{
+            console.log(err);
+        }
+    });
+});
+//
 module.exports = maestro;

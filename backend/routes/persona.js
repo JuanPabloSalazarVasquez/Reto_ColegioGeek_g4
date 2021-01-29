@@ -32,4 +32,19 @@ persona.get('/all-personas', (req,res)=>{
 });
 // Fin consultar todas las personas de la tabla personas
 
+//
+persona.put('/persona/:id_persona', (req,res)=>{
+    const { nombres,apellidos,tipo_documento,numero_documento,sexo,fecha_nacimiento,direccion_residencial,ciudad_residencial,tipo_usuario,telefono_residencial,telefono_celular,correo_electronico,estado_cuenta,foto_perfil,pdf_documento } = req.body;
+    const {id_persona} =req.params;
+
+    pool.query('UPDATE persona SET nombres=?,apellidos=?,tipo_documento=?,numero_documento=?,sexo=?,fecha_nacimiento=?,direccion_residencial=?,ciudad_residencial=?,tipo_usuario=?,telefono_residencial=?,telefono_celular=?,correo_electronico=?,estado_cuenta=?,foto_perfil=?,pdf_documento=? WHERE id_persona=?',
+    [nombres,apellidos,tipo_documento,numero_documento,sexo,fecha_nacimiento,direccion_residencial,ciudad_residencial,tipo_usuario,telefono_residencial,telefono_celular,correo_electronico,estado_cuenta,foto_perfil,pdf_documento,id_persona], (err, rows, fields)=>{
+        if(!err){
+            res.json(rows);
+        }else{
+            console.log(err);
+        }
+    });
+});
+//
 module.exports = persona;
