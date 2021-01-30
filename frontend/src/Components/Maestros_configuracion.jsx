@@ -1,11 +1,11 @@
 import React from "react";
 
-import "../Styles/Estudiantes_materias.css";
+import "../Styles/Maestros_configuracion.css";
 
 import { withRouter } from "react-router-dom";
 import { Link } from "react-router-dom";
 
-class Estudiantes_materias extends React.Component {
+class Maestros_configuracion extends React.Component {
   constructor(props) {
     super(props);
     this.state = {};
@@ -14,10 +14,10 @@ class Estudiantes_materias extends React.Component {
   render() {
     return (
       <>
-        <p>Esta es la parte de estudiantes para ver las materias a las que esta registrado.</p>
+        <p>Esta es la parte de maestros para configurar su cuenta</p>
       </>
     );
   }
 }
 
-export default withRouter(Estudiantes_materias);
+export default withRouter(Maestros_configuracion);

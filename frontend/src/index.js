@@ -3,17 +3,23 @@ import ReactDOM from "react-dom";
 
 import Inicio_page from "./Pages/inicio_page";
 import Login_usuarios from "./Pages/login_usuarios";
-import Estudiantes_inicio from "./Pages/estudiantes_inicio";
+// Directivos
 import Directivos_inicio from "./Pages/directivos_inicio";
 import Directivos_registro_estudiantes from "./Pages/directivos_registro_estudiantes";
 import Directivos_registro_maestros from "./Pages/directivos_registro_maestros";
 import Directivos_registro_grupos from "./Pages/directivos_registro_grupos";
 import Directivos_grupos_ver_estudiantes from "./Pages/directivos_grupos_ver_estudiantes";
 import Directivos_registro_materias from "./Pages/directivos_registro_materias";
+// Maestros
 import Maestros_inicio from "./Pages/maestros_inicio";
+import Maestros_registrar_notas from './Pages/maestros_registro_notas';
+import Maestros_estudiantes_grupos from './Pages/maestros_estudiantes_grupos';
+import Maestros_configuracion from './Pages/maestros_configuracion';
+// Estudiantes
+import Estudiantes_inicio from "./Pages/estudiantes_inicio";
 import Estudiantes_notas from './Pages/estudiantes_notas';
-import Estudiantes_materias from './Pages/estudiantes_materias';
-import Estudiantes_maestros from './Pages/estudiantes_maestros';
+import Estudiantes_grupos_cursados from './Pages/estudiantes_grupos_cursados';
+import Estudiantes_consolidados from './Pages/estudiantes_consolidados';
 import Estudiantes_configuracion from './Pages/estudiantes_configuracion';
 
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
@@ -33,13 +39,16 @@ ReactDOM.render(
         <Route path="/estudiantes/mis_notas" exact>
           <Estudiantes_notas />
         </Route>
-        <Route path="/estudiantes/mis_materias" exact>
-          <Estudiantes_materias />
+        <Route path="/estudiantes/grupo_cursados" exact>
+          <Estudiantes_grupos_cursados />
         </Route>
-        <Route path="/estudiantes/mis_maestros" exact>
-          <Estudiantes_maestros />
+        <Route path="/estudiantes/mis_consolidados" exact>
+          <Estudiantes_consolidados />
         </Route>
         <Route path="/estudiantes/mi_cuenta" exact>
+          <Estudiantes_configuracion />
+        </Route>
+        <Route path="/estudiantes/mis_notas/notas" exact>
           <Estudiantes_configuracion />
         </Route>
         {/* Fin Rutas Estudiantes */}
@@ -47,6 +56,15 @@ ReactDOM.render(
         {/* Rutas Maestros */}
         <Route path="/maestros" exact>
           <Maestros_inicio />
+        </Route>
+        <Route path="/maestros/registrar_notas" exact>
+          <Maestros_registrar_notas />
+        </Route>
+        <Route path="/maestros/estudiantes_grupos" exact>
+          <Maestros_estudiantes_grupos />
+        </Route>
+        <Route path="/maestros/mi_cuenta" exact>
+          <Maestros_configuracion  />
         </Route>
         {/* Fin Rutas Maestros */}
 

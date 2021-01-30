@@ -1,4 +1,4 @@
-.HeaderSisContainer-HeaderSistema_Estudiantes{
+.HeaderSisContainer-HeaderSistema_Maestros{
     display: flex;
     padding: 2vw 0;
     justify-content: space-between;
@@ -9,7 +9,7 @@
     background-size: 100% 100%;
 }
 
-.HeaderSisContainer2-HeaderSistema_Estudiantes{
+.HeaderSisContainer2-HeaderSistema_Maestros{
     display: flex;
     padding: 1vw;
     justify-content: space-between;
@@ -20,48 +20,48 @@
     background-size: 100% 100%;
     color: white;
 }
-.logo-HeaderSistema_Estudiantes{
+.logo-HeaderSistema_Maestros{
     width: 10vw;
 }
-.titleGeek-HeaderSistema_Estudiantes{
+.titleGeek-HeaderSistema_Maestros{
     font-size: 60px;
     margin-top: 0px;
     margin-bottom: 0px;
 }
-.titleSisRContainer-HeaderSistema_Estudiantes{
+.titleSisRContainer-HeaderSistema_Maestros{
     text-align: center;
 }
 
 
 @media(max-width: 450px){
-    .HeaderSisContainer-HeaderSistema_Estudiantes{
+    .HeaderSisContainer-HeaderSistema_Maestros{
         display: grid;
         grid-template-rows: 1fr 1fr 1fr;
         grid-template-columns: 60% 40%;
     }
 
 
-    .titleGeek-HeaderSistema_Estudiantes{
+    .titleGeek-HeaderSistema_Maestros{
         font-size: 26px;
     }
 
-    .titleSisRContainer-HeaderSistema_Estudiantes{
+    .titleSisRContainer-HeaderSistema_Maestros{
         grid-column: 1/2;
         grid-row: 1/4;
     }
 
-    .bContainer-HeaderSistema_Estudiantes, .LogoSistema-HeaderSistema_Estudiantes{
+    .bContainer-HeaderSistema_Maestros, .LogoSistema-HeaderSistema_Maestros{
         display: flex;
         justify-content: center;
         align-items: center;
     }
 
-    .bContainer-HeaderSistema_Estudiantes{
+    .bContainer-HeaderSistema_Maestros{
         grid-column: 2/3;
         grid-row: 3/4;
     }
 
-    .LogoSistema-HeaderSistema_Estudiantes{
+    .LogoSistema-HeaderSistema_Maestros{
         grid-column: 2/3;
         grid-row: 1/3;
     }
@@ -69,11 +69,11 @@
 }
 
 @media(max-width: 340px){
-    .titleGeek-HeaderSistema_Estudiantes{
+    .titleGeek-HeaderSistema_Maestros{
         font-size: 23px;
     }
 
-    .SubtitleGeek-HeaderSistema_Estudiantes{
+    .SubtitleGeek-HeaderSistema_Maestros{
         font-size: 17px;
     }
 

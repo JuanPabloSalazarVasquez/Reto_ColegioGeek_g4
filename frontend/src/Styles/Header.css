@@ -19,6 +19,7 @@ body{
     grid-column: 1/2;
     grid-row: 1/3;
 }
+/* Logo HeaderSistema */
 .logo{
     width: 10vw;
 }

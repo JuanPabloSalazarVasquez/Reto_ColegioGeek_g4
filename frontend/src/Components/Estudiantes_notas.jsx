@@ -14,7 +14,13 @@ class Estudiantes_notas extends React.Component {
   render() {
     return (
       <>
-        <p>Esta es la parte de estudiantes para ver las notas</p>
+        <div></div>
+        <div className="div-padre-cards-materias-Estudiante_notas">
+          <div className="div-card-materia-Estudiante_notas">
+            <div className='card-materia-Estudiantes_notas'>Matematicas</div>
+            <div className="card-estudiante-Estudiantes_notas">Emanuel Acevedo Munoz</div>
+          </div>
+        </div>
       </>
     );
   }

@@ -15,16 +15,16 @@ class HeaderS extends React.Component {
     render() {
         return (
             <>
-                <div id="HeaderSisContainer">
-                    <div id="HeaderSisContainer2">
-                        <div id="LogoSistema" >
-                            <img className="logo" src="https://images.vexels.com/media/users/3/224155/isolated/preview/f4bbe191bcc833b27d7fa241220c470e-libro-en-logo-de-pantalla-by-vexels.png" />
+                <div className='HeaderSisContainer-HeaderSistema'>
+                    <div className='HeaderSisContainer2-HeaderSistema'>
+                        <div className='LogoSistema-HeaderSistema'>
+                            <img className="logo-HeaderSistema" src="https://images.vexels.com/media/users/3/224155/isolated/preview/f4bbe191bcc833b27d7fa241220c470e-libro-en-logo-de-pantalla-by-vexels.png" />
                         </div>
-                        <div id="titleSisRContainer">
-                            <h1 id="titleQuipux">Quipux Academy</h1>
-                            <h3 id="SubtitleQuipux">{this.props.Title}</h3>
+                        <div className='titleSisRContainer-HeaderSistema'>
+                            <h1 className='titleGeek-HeaderSistema'>Colegio Geek</h1>
+                            <h3 className='SubtitleGeek-HeaderSistema'>{this.props.Title}</h3>
                         </div>
-                        <div id="bContainer">
+                        <div className='bContainer-HeaderSistema'>
                             <Link to={{
                                 pathname: "/Directivos",
                                 state: {
@@ -35,7 +35,7 @@ class HeaderS extends React.Component {
                                     Cargo: this.props.location.state.Cargo
                                 }
                             }}>
-                                <button className={`button ${this.props.classDis}`} >Atras</button>
+                                <button className={`button ${this.props.classDis}`} >Regresar</button>
                             </Link>
                         </div>
                     </div>
