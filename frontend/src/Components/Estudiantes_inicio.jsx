@@ -53,26 +53,26 @@ class Estudiantes_inicio extends React.Component {
                 </div>
 
                 <div>
-                  <Link to='/estudiantes/mis_materias'>
+                  <Link to='/estudiantes/grupo_cursados'>
                   <img
                     src="https://image.flaticon.com/icons/png/512/29/29302.png"
                     className="img-direc2-Estudiantes_inicio CardS-Estudiantes_inicio"
                     alt="logo_2"
                   />
                   </Link>
-                  Ver mis materias
+                  Ver grupos cursados
                 </div>
               </div>
               <div className="Grupo2-Estudiantes_inicio">
                 <div>
-                  <Link to='/estudiantes/mis_maestros'>
+                  <Link to='/estudiantes/mis_consolidados'>
                   <img
                     src="https://www.titecnoeducacion.com.mx/images/imgs/icono-maestros-blanco.png"
                     className="img-direc3-Estudiantes_inicio CardS-Estudiantes_inicio"
                     alt="logo_3"
                   />
                   </Link>
-                  Ver mis maestros
+                  Ver consolidados
                 </div>
 
                 <div>

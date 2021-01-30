@@ -1,11 +1,11 @@
 import React from "react";
 
-import "../Styles/Estudiantes_maestros.css";
+import "../Styles/Estudiantes_grupos_cursados.css";
 
 import { withRouter } from "react-router-dom";
 import { Link } from "react-router-dom";
 
-class Estudiantes_maestros extends React.Component {
+class Estudiantes_materias extends React.Component {
   constructor(props) {
     super(props);
     this.state = {};
@@ -14,10 +14,10 @@ class Estudiantes_maestros extends React.Component {
   render() {
     return (
       <>
-        <p>Esta es la parte de estudiantes para ver los maestros que le dan clase.</p>
+        <p>Esta es la parte de estudiantes para ver los grupos cursados.</p>
       </>
     );
   }
 }
 
-export default withRouter(Estudiantes_maestros);
+export default withRouter(Estudiantes_materias);

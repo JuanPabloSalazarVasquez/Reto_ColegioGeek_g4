@@ -21,7 +21,7 @@ class HeaderSistema_Estudiantes extends React.Component {
                             <img className="logo" src="https://images.vexels.com/media/users/3/224155/isolated/preview/f4bbe191bcc833b27d7fa241220c470e-libro-en-logo-de-pantalla-by-vexels.png" />
                         </div>
                         <div id="titleSisRContainer">
-                            <h1 id="titleQuipux">Quipux Academy</h1>
+                            <h1 id="titleQuipux">Colegio Geek</h1>
                             <h3 id="SubtitleQuipux">{this.props.Title}</h3>
                         </div>
                         <div id="bContainer">
