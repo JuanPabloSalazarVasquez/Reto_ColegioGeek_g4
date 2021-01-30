@@ -54,7 +54,7 @@ class Maestros_inicio extends React.Component {
                 </div>
 
                 <div>
-                  <Link>
+                  <Link to='/maestros/estudiantes_grupos'>
                     <img
                       src="https://1.bp.blogspot.com/-zTYMDm4_vuk/X0ioVfB0ccI/AAAAAAAAPNY/Y0Ir1KWfCLUKgQw6dFWZct0qz84e-GKfACLcBGAsYHQ/s16000/Mestros.png"
                       className="img-direc2-Maestros_inicio CardS-Maestros_inicio"
@@ -66,7 +66,7 @@ class Maestros_inicio extends React.Component {
               </div>
               <div className="Grupo2-Maestros_inicio">
                 <div>
-                  <Link>
+                  <Link to='/maestros/mi_cuenta'>
                     <img
                       src="https://1.bp.blogspot.com/-fzuKkHYNNq8/X0i-8mrociI/AAAAAAAAPOI/QD6HCg571wcMTe5C9Rz8-vTDZzNCyey8wCLcBGAsYHQ/s16000/Grupos.png"
                       className="img-direc3-Maestros_inicio CardS-Maestros_inicio"

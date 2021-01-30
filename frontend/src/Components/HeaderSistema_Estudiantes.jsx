@@ -1,6 +1,6 @@
 import React from 'react';
 
-import '../Styles/RegistroEstudiantes.css';
+import '../Styles/HeaderSistema_Estudiantes.css';
 import { Link } from 'react-router-dom';
 import { withRouter } from 'react-router-dom';
 
@@ -15,20 +15,20 @@ class HeaderSistema_Estudiantes extends React.Component {
     render() {
         return (
             <>
-                <div id="HeaderSisContainer">
-                    <div id="HeaderSisContainer2">
+                <div className='HeaderSisContainer-HeaderSistema_Estudiantes'>
+                    <div className='HeaderSisContainer2-HeaderSistema_Estudiantes'>
                         <div id="LogoSistema" >
-                            <img className="logo" src="https://images.vexels.com/media/users/3/224155/isolated/preview/f4bbe191bcc833b27d7fa241220c470e-libro-en-logo-de-pantalla-by-vexels.png" />
+                            <img className="logo-HeaderSistema_Estudiantes" src="https://images.vexels.com/media/users/3/224155/isolated/preview/f4bbe191bcc833b27d7fa241220c470e-libro-en-logo-de-pantalla-by-vexels.png" />
                         </div>
-                        <div id="titleSisRContainer">
-                            <h1 id="titleQuipux">Colegio Geek</h1>
-                            <h3 id="SubtitleQuipux">{this.props.Title}</h3>
+                        <div className='titleSisRContainer-HeaderSistema_Estudiantes'>
+                            <h1 className='titleGeek-HeaderSistema_Estudiantes'>Colegio Geek</h1>
+                            <h3 className='SubtitleGeek-HeaderSistema_Estudiantes'>{this.props.Title}</h3>
                         </div>
-                        <div id="bContainer">
+                        <div className='bContainer-HeaderSistema_Estudiantes'>
                             <Link to={{
                                 pathname: this.props.pathname,
                             }}>
-                                <button className={`button ${this.props.classDis}`} >Atras</button>
+                                <button className={`button ${this.props.classDis}`} >Regresar</button>
                             </Link>
                         </div>
                     </div>

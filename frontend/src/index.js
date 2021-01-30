@@ -3,15 +3,20 @@ import ReactDOM from "react-dom";
 
 import Inicio_page from "./Pages/inicio_page";
 import Login_usuarios from "./Pages/login_usuarios";
-import Estudiantes_inicio from "./Pages/estudiantes_inicio";
+// Directivos
 import Directivos_inicio from "./Pages/directivos_inicio";
 import Directivos_registro_estudiantes from "./Pages/directivos_registro_estudiantes";
 import Directivos_registro_maestros from "./Pages/directivos_registro_maestros";
 import Directivos_registro_grupos from "./Pages/directivos_registro_grupos";
 import Directivos_grupos_ver_estudiantes from "./Pages/directivos_grupos_ver_estudiantes";
 import Directivos_registro_materias from "./Pages/directivos_registro_materias";
+// Maestros
 import Maestros_inicio from "./Pages/maestros_inicio";
 import Maestros_registrar_notas from './Pages/maestros_registro_notas';
+import Maestros_estudiantes_grupos from './Pages/maestros_estudiantes_grupos';
+import Maestros_configuracion from './Pages/maestros_configuracion';
+// Estudiantes
+import Estudiantes_inicio from "./Pages/estudiantes_inicio";
 import Estudiantes_notas from './Pages/estudiantes_notas';
 import Estudiantes_grupos_cursados from './Pages/estudiantes_grupos_cursados';
 import Estudiantes_consolidados from './Pages/estudiantes_consolidados';
@@ -54,6 +59,12 @@ ReactDOM.render(
         </Route>
         <Route path="/maestros/registrar_notas" exact>
           <Maestros_registrar_notas />
+        </Route>
+        <Route path="/maestros/estudiantes_grupos" exact>
+          <Maestros_estudiantes_grupos />
+        </Route>
+        <Route path="/maestros/mi_cuenta" exact>
+          <Maestros_configuracion  />
         </Route>
         {/* Fin Rutas Maestros */}
 
