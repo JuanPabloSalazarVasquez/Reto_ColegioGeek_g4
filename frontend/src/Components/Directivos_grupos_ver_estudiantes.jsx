@@ -10,7 +10,7 @@ import { Materias } from '../Utiles/Mocks/Materias';
 let variablamamalona = -1;
 
 
-class MainRS4 extends React.Component {
+class Directivos_grupos_ver_estudiantes extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -116,5 +116,5 @@ class MainRS4 extends React.Component {
     }
 }
 
-export default withRouter(MainRS4);
+export default withRouter(Directivos_grupos_ver_estudiantes);
 

@@ -1,8 +1,10 @@
+/* eslint-disable react/jsx-pascal-case */
 import React from 'react';
 import {withRouter} from 'react-router-dom';
-import MainRS4 from '../Components/MainRS4';
+import Directivos_grupos_ver_estudiantes from '../Components/Directivos_grupos_ver_estudiantes';
 
 import HeaderSistema from '../Components/HeaderSistema';
+
 class directivos_grupos_ver_estudiantes extends React.Component {
     constructor(props) {
         super(props);
@@ -12,7 +14,7 @@ class directivos_grupos_ver_estudiantes extends React.Component {
         return (
             <>
             <HeaderSistema classDis="Dis"/>
-            <MainRS4 
+            <Directivos_grupos_ver_estudiantes 
             InfoUsurio = {[{
                 Name: this.props.location.state.Name,
                 Contraseña: this.props.location.state.Contraseña,

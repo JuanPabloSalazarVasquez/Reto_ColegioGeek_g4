@@ -1,3 +1,4 @@
+/* eslint-disable react/jsx-pascal-case */
 import React from "react";
 import ReactDOM from "react-dom";
 
@@ -12,15 +13,18 @@ import Directivos_grupos_ver_estudiantes from "./Pages/directivos_grupos_ver_est
 import Directivos_registro_materias from "./Pages/directivos_registro_materias";
 // Maestros
 import Maestros_inicio from "./Pages/maestros_inicio";
-import Maestros_registrar_notas from './Pages/maestros_registro_notas';
-import Maestros_estudiantes_grupos from './Pages/maestros_estudiantes_grupos';
-import Maestros_configuracion from './Pages/maestros_configuracion';
+import Maestros_registrar_notas from "./Pages/maestros_registro_notas";
+import Maestros_estudiantes_grupos from "./Pages/maestros_estudiantes_grupos";
+import Maestros_configuracion from "./Pages/maestros_configuracion";
+import Maestros_ver_estudiantes_grupos from "./Pages/maestros_ver_estudiantes_grupos";
+import Maestros_registro_notas_grupo_estudiantes from "./Pages/maestros_registro_notas_grupo_estudiantes";
+import Maestros_registrar_nota_estudiante from "./Pages/maestros_registrar_nota_estudiante";
 // Estudiantes
 import Estudiantes_inicio from "./Pages/estudiantes_inicio";
-import Estudiantes_notas from './Pages/estudiantes_notas';
-import Estudiantes_grupos_cursados from './Pages/estudiantes_grupos_cursados';
-import Estudiantes_consolidados from './Pages/estudiantes_consolidados';
-import Estudiantes_configuracion from './Pages/estudiantes_configuracion';
+import Estudiantes_notas from "./Pages/estudiantes_notas";
+import Estudiantes_grupos_cursados from "./Pages/estudiantes_grupos_cursados";
+import Estudiantes_consolidados from "./Pages/estudiantes_consolidados";
+import Estudiantes_configuracion from "./Pages/estudiantes_configuracion";
 
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 
@@ -63,8 +67,20 @@ ReactDOM.render(
         <Route path="/maestros/estudiantes_grupos" exact>
           <Maestros_estudiantes_grupos />
         </Route>
+        <Route path="/maestros/estudiantes_grupos/ver_estudiantes" exact>
+          <Maestros_ver_estudiantes_grupos />
+        </Route>
         <Route path="/maestros/mi_cuenta" exact>
-          <Maestros_configuracion  />
+          <Maestros_configuracion />
+        </Route>
+        <Route path="/maestros/registrar_notas/grupo_estudiantes" exact>
+          <Maestros_registro_notas_grupo_estudiantes />
+        </Route>
+        <Route
+          path="/maestros/registrar_notas/grupo_estudiantes/agregar_nota"
+          exact
+        >
+          <Maestros_registrar_nota_estudiante />
         </Route>
         {/* Fin Rutas Maestros */}
 

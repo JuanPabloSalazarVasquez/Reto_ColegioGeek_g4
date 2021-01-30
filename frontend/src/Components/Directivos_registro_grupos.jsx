@@ -1,3 +1,5 @@
+/* eslint-disable eqeqeq */
+/* eslint-disable no-array-constructor */
 import React from 'react';
 
 import '../Styles/RegistroEstudiantes.css';
