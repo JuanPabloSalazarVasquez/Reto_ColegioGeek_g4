@@ -1,7 +1,6 @@
 import React from "react";
 
 import "../Styles/VerRegEstu.css";
-import "../Styles/Maestros_ver_estudiantes_grupos.css";
 
 import { withRouter } from "react-router-dom";
 

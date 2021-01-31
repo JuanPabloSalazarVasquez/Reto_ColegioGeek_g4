@@ -1,7 +1,7 @@
 import React from "react";
 
 import "../Styles/VerRegEstu.css";
-import "../Styles/Maestros_ver_estudiantes_grupos.css";
+import "../Styles/Maestros_registro_notas_grupo_estudiantes.css";
 
 import { withRouter, Link } from "react-router-dom";
 
@@ -13,13 +13,13 @@ class Maestros_registro_notas_grupo_estudiantes extends React.Component {
   render() {
     return (
       <>
-        <div id="VerEstuGrupContainer">
-          <div className="FiltradoGroup">
-            <div className="FiltrosREstudiante">
+        <div className="VerEstuGrupContainer-Maestros_registro_notas_grupo_estudiantes">
+          <div className="FiltradoEstudiante-Maestros_registro_notas_grupo_estudiantes ">
+            <div className="FiltrosREstudiante-Maestros_registro_notas_grupo_estudiantes">
               <div>
                 <input
                   type="number"
-                  className="SelectR"
+                  className="SelectR-Maestros_registro_notas_grupo_estudiantes"
                   placeholder="Matricula"
                   autoComplete="off"
                 />
@@ -27,7 +27,7 @@ class Maestros_registro_notas_grupo_estudiantes extends React.Component {
               <div>
                 <input
                   type="text"
-                  className="SelectR"
+                  className="SelectR-Maestros_registro_notas_grupo_estudiantes"
                   placeholder="Nombre"
                   autoComplete="off"
                 />
@@ -35,25 +35,28 @@ class Maestros_registro_notas_grupo_estudiantes extends React.Component {
               <div>
                 <input
                   type="text"
-                  className="SelectR"
+                  className="SelectR-Maestros_registro_notas_grupo_estudiantes"
                   placeholder="Apellido"
                   autoComplete="off"
                 />
               </div>
             </div>
-            <div className=" EstuFilter">
-              <div className="FiltrosREstudiante">
-                <div className="SelectR">
-                  <p>Matricula</p>
+            {/* Estudiantes */}
+            <div className="EstuFilter-Maestros_registro_notas_grupo_estudiantes">
+              <div className="FiltrosREstudiante-Maestros_registro_notas_grupo_estudiantes">
+                <div className="SelectR-Maestros_registro_notas_grupo_estudiantes">
+                  <p className="pTexts-Maestros_registro_notas_grupo_estudiantes">Matricula</p>
                 </div>
-                <div className="SelectR">
-                  <p>Emanuel</p>
+                <div className="SelectR-Maestros_registro_notas_grupo_estudiantes">
+                  <p className="pTexts-Maestros_registro_notas_grupo_estudiantes">Emanuel</p>
                 </div>
-                <div className="SelectR">
-                  <p>Acevedo Munoz</p>
+                <div className="SelectR-Maestros_registro_notas_grupo_estudiantes">
+                  <p className="pTexts-Maestros_registro_notas_grupo_estudiantes">Acevedo Munoz</p>
                 </div>
                 <Link to="/maestros/registrar_notas/grupo_estudiantes/agregar_nota">
-                  <div className="button">Agregar nota</div>
+                  <button className="Button-Maestros_registro_notas_grupo_estudiantes">
+                    Agregar nota
+                  </button>
                 </Link>
               </div>
             </div>

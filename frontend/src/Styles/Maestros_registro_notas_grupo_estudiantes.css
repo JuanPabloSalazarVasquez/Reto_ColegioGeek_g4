@@ -1,0 +1,99 @@
+.VerEstuGrupContainer-Maestros_registro_notas_grupo_estudiantes {
+  display: grid;
+  grid-template-rows: 1fr;
+  grid-template-columns: 60% 40%;
+  width: 100%;
+  height: max-content;
+  background-color: rgb(45, 58, 58, 0.9);
+}
+
+.FiltradoEstudiante-Maestros_registro_notas_grupo_estudiantes {
+  width: 98vw;
+  padding: 1vw;
+  grid-column: 1/2;
+  grid-row: 1/2;
+  height: 100%;
+}
+.EstuFilter-Maestros_registro_notas_grupo_estudiantes {
+  margin-top: 1vw;
+}
+
+.Button-Maestros_registro_notas_grupo_estudiantes  {
+    padding-left: 16px;
+    padding-top: 8px;
+    padding-right: 16px;
+    padding-bottom: 8px;
+  background-color: white;
+  border: 1px solid black;
+  border-radius: 5px;
+  font-weight: bold;
+  color: black;
+  text-align: center;
+}
+.Button-Maestros_registro_notas_grupo_estudiantes:hover {
+  background-color: black;
+  color: white;
+  border: 2px solid white;
+}
+
+.FiltrosREstudiante-Maestros_registro_notas_grupo_estudiantes {
+  margin: 0 2vw 0 2vw;
+}
+
+.FiltrosREstudiante-Maestros_registro_notas_grupo_estudiantes {
+  display: flex;
+  justify-content: space-around;
+  padding: 5px;
+  background-color: lightgray;
+}
+
+.SelectR-Maestros_registro_notas_grupo_estudiantes {
+  width: 100px;
+  height: 40px;
+  font-family: "Alata", sans-serif;
+  font-weight: bold;
+  margin: 0px 4px 0px 4px;
+  color: black;
+}
+
+.pTexts-Maestros_registro_notas_grupo_estudiantes {
+    margin: 0px;
+    text-align: center;
+}
+
+
+.MinMin-Maestros_registro_notas_grupo_estudiantes {
+  width: 80px;
+}
+
+.Min-Maestros_registro_notas_grupo_estudiantes {
+  width: 40px;
+  height: 40px;
+  font-family: "Alata", sans-serif;
+  font-weight: bold;
+  margin: 0px 4px 0px 4px;
+}
+
+.More-Maestros_registro_notas_grupo_estudiantes {
+  width: 180px;
+  height: 40px;
+  font-family: "Alata", sans-serif;
+  font-weight: bold;
+  margin: 0px 4px 0px 4px;
+}
+
+@media (max-width: 430px) {
+  .SelectR-Maestros_registro_notas_grupo_estudiantes {
+    padding: 0;
+    font-size: 8px;
+    height: 25px;
+    width: 60px;
+  }
+}
+
+@media (max-width: 660px) {
+  .VerEstuGrupContainer-Maestros_registro_notas_grupo_estudiantes {
+    grid-template-rows: 1fr 1fr;
+    grid-template-columns: 1fr;
+  }
+}

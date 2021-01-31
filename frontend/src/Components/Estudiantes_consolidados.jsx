@@ -13,15 +13,15 @@ class Estudiantes_consolidados extends React.Component {
   render() {
     return (
       <>
-        <div id="RegistroEsContainer">
-          <div className="FiltrosREstudiante">
-            <select className="SelectR">
-              <option value="0" className="Dis">
+        <div className="RegistroEsContainer-Estudiantes_consolidados">
+          <div className="FiltrosConsolidadosEstudiantes-Estudiantes_consolidados">
+            <select className="SelectConsolidados-Estudiantes_consolidados">
+              <option value="0" className="Dis-Estudiantes_consolidados">
                 Año
               </option>
             </select>
-            <select className="SelectR MinMin">
-              <option value="0" className="Dis">
+            <select className="SelectConsolidados-Estudiantes_consolidados MinMin-Estudiantes_consolidados">
+              <option value="0" className="Dis-Estudiantes_consolidados">
                 Grado
               </option>
               <option value="Sexto">Sexto</option>
@@ -31,37 +31,38 @@ class Estudiantes_consolidados extends React.Component {
               <option value="Decimo">Decimo</option>
               <option value="Once">Once</option>
             </select>
-            <select className="SelectR More">
-              <option value="0" className="Dis">
+            <select className="SelectConsolidados-Estudiantes_consolidados More-Estudiantes_consolidados">
+              <option value="0" className="Dis-Estudiantes_consolidados">
                 Director
               </option>
             </select>
-            <div className="SelectR AñoInsF">
+            <div className="SelectConsolidados-Estudiantes_consolidados">
               <p>Consolidados</p>
             </div>
           </div>
 
-          {/* Materias */}
-          <div id="CardsContainerReEs">
-            <div className="FiltrosREstudiante">
-              <div className="SelectR">
-                <p>Año</p>
+          {/* Consolidados */}
+          <div className="CardsContainerEstudiantes_consolidados-Estudiantes_consolidados">
+            <div className="FiltrosConsolidadosEstudiantes-Estudiantes_consolidados">
+              <div className="SelectConsolidados-Estudiantes_consolidados">
+                <p className="pTextos-Estudiantes_consolidados">Año</p>
               </div>
-              <div className="SelectR">
-                <p>Grado</p>
+              <div className="SelectConsolidados-Estudiantes_consolidados">
+                <p className="pTextos-Estudiantes_consolidados">Grado</p>
               </div>
-              <div className="SelectR More">
-                <p>Profesor de la materia</p>
+              <div className="SelectConsolidados-Estudiantes_consolidados More-Estudiantes_consolidados">
+                <p className="pTextos-Estudiantes_consolidados">
+                  Profesor de la materia
+                </p>
               </div>
               <div className="Min GrupoF">
-                <p>Estado</p>
+                <p className="pTextos-Estudiantes_consolidados">Estado</p>
               </div>
-              <div className="SelectR AñoInsF">
-                
-                  <button className="DickBro">Descargar consolidado</button>
-               
+              <div className="SelectConsolidados-Estudiantes_consolidados">
+                <button className="ButtonConsolidados-Estudiantes_consolidados">
+                  Descargar consolidado
+                </button>
               </div>
-              <div className="ImgRMas"></div>
             </div>
           </div>
         </div>

@@ -1,4 +1,4 @@
-.SelectR {
+.SelectNotas-Estudiantes_notas {
   width: 100px;
   height: 40px;
   font-family: "Alata", sans-serif;
@@ -6,81 +6,63 @@
   margin: 0px 4px 0px 4px;
   color: black;
 }
-.NameF {
-  text-align: center;
-  width: 300px;
-}
 
-.FiltrosREstudiante {
+.FiltrosNotasEstudiantes-Estudiantes_notas {
   display: flex;
   justify-content: space-around;
   padding: 5px;
   background-color: lightgray;
 }
-
-.PChek {
-  color: white;
+.FiltrosNotasEstudiantes-Estudiantes_notas {
+  margin: 0 2vw 0 2vw;
 }
 
-#RegistroEsContainer {
+.RegistroEsContainer-Estudiantes_notas {
   width: 98vw - 10px;
   padding: 1vw;
   height: max-content;
   background-color: rgb(45, 58, 58, 0.8);
 }
 
-#titleSisRContainer {
+.ButtonNotas-Estudiantes_notas {
+  padding-left: 15px;
+  padding-right: 15px;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  background-color: white;
+  border: 1px solid black;
+  border-radius: 8px;
+  font-weight: bold;
+  color: black;
+  text-align: center;
+}
+.ButtonNotas-Estudiantes_notas:hover {
+  background-color: black;
+  color: white;
+  border: 2px solid white;
+}
+
+.pTextos-Estudiantes_notas {
+  margin-top: 9px;
+  margin-bottom: 0%;
+  margin-left: 0%;
+  margin-right: 0%;
   text-align: center;
 }
 
-#bContainer {
-  display: inline-flex;
-  align-items: flex-end;
-  justify-content: flex-end;
-  flex-flow: column;
-}
-
-.DickBro {
-  background-color: white;
-  border: 1px solid black;
-  border-radius: 4px;
-  font-weight: bold;
-}
-
-.Form2_2_2 {
-  display: flex;
-  flex-flow: column;
-  align-items: center;
-  justify-content: center;
-}
-
-.FiltrosREstudiante {
-  margin: 0 2vw 0 2vw;
-}
-
-#CardsContainerReEs {
+.CardsContainerEstudiantes_Notas-Estudiantes_notas {
   margin: 2vw 0vw 2vw 0vw;
 }
 
-.REInput {
-  font-family: "Alata", sans-serif;
-  font-weight: bold;
-  margin: 1vw;
-  height: 40px;
-  width: 200px;
+.Dis-Estudiantes_notas{
+  display: none;
 }
 
-#Algo_algo {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-.MinMin {
+.MinMin-Estudiantes_notas {
   width: 80px;
 }
 
-.Min {
+.Min-Estudiantes_notas {
   width: 40px;
   height: 40px;
   font-family: "Alata", sans-serif;
@@ -88,7 +70,7 @@
   margin: 0px 4px 0px 4px;
 }
 
-.More {
+.More-Estudiantes_notas {
   width: 180px;
   height: 40px;
   font-family: "Alata", sans-serif;
@@ -96,47 +78,11 @@
   margin: 0px 4px 0px 4px;
 }
 
-@media (max-width: 620px) {
-  .REInput {
-    width: 100px;
-  }
-
-  .GrupoF {
-    display: none;
-  }
-}
-
-@media (max-width: 520px) {
-  .GradoF {
-    display: none;
-  }
-}
-
 @media (max-width: 430px) {
-  .ImgRMas {
-    width: 25px;
-    height: 25px;
-  }
-
-  #ImgRMas {
-    width: 25px;
-    height: 25px;
-    background-size: 25px 25px;
-  }
-
-  .SelectR {
+  .SelectNotas-Estudiantes_notas {
     padding: 0;
     font-size: 8px;
     height: 25px;
     width: 60px;
-  }
-
-  .Peque {
-    font-size: 10px;
-  }
-
-  .NameF {
-    text-align: center;
-    width: 150px;
   }
 }

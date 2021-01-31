@@ -1,3 +1,4 @@
+/* eslint-disable react/jsx-pascal-case */
 import React from "react";
 
 import Maestros_registro_notas_grupo_estudiantes from "../Components/Maestros_registro_notas_grupo_estudiantes";

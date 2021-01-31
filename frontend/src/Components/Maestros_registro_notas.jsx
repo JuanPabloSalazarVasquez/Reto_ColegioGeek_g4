@@ -14,15 +14,15 @@ class Maestros_registro_notas extends React.Component {
   render() {
     return (
       <>
-        <div id="RegistroEsContainer">
-          <div className="FiltrosREstudiante">
-            <select className="SelectR">
-              <option value="0" className="Dis">
+        <div className='RegistroEsContainer-Maestros_registro_notas'>
+          <div className="FiltrosMaestrosRegistroNotas-Maestros_registro_notas">
+            <select className="SelectMaestrosRegistroNotas-Maestros_registro_notas">
+              <option value="0" className="Dis-Maestros_registro_notas">
                 Cod Grupo
               </option>
             </select>
-            <select className="SelectR MinMin">
-              <option value="0" className="Dis">
+            <select className="SelectMaestrosRegistroNotas-Maestros_registro_notas MinMin-Maestros_registro_notas">
+              <option value="0" className="Dis-Maestros_registro_notas">
                 Grado
               </option>
               <option value="Sexto">Sexto</option>
@@ -32,35 +32,35 @@ class Maestros_registro_notas extends React.Component {
               <option value="Decimo">Decimo</option>
               <option value="Once">Once</option>
             </select>
-            <select className="SelectR More">
-              <option value="0" className="Dis">
+            <select className="SelectMaestrosRegistroNotas-Maestros_registro_notas More-Maestros_registro_notas">
+              <option value="0" className="Dis-Maestros_registro_notas">
                 Director
               </option>
             </select>
           </div>
 
-          {/* Grupos */}
-          <div id="CardsContainerReEs">
-            <div className="FiltrosREstudiante">
-              <div className="SelectR">
+          {/* Grupos Maestros */}
+          <div className="CardsContainerMaestrosRegistroNotas-Maestros_registro_notas">
+            <div className="FiltrosMaestrosRegistroNotas-Maestros_registro_notas">
+              <div className="SelectMaestrosRegistroNotas-Maestros_registro_notas">
                 <p>qweasda</p>
               </div>
-              <div className="SelectR">
+              <div className="SelectMaestrosRegistroNotas-Maestros_registro_notas">
                 <p>Once</p>
               </div>
-              <div className="SelectR More">
+              <div className="SelectMaestrosRegistroNotas-Maestros_registro_notas More-Maestros_registro_notas">
                 <p>Emanuel</p>
               </div>
-              <div className="Min GrupoF">
+              <div className="Min-Maestros_registro_notas">
                 <p>11</p>
               </div>
-              <div className="SelectR AñoInsF">
+              <div className="SelectMaestrosRegistroNotas-Maestros_registro_notas">
                 <Link
                   to={{
                     pathname: "/maestros/registrar_notas/grupo_estudiantes",
                   }}
                 >
-                  <button className="DickBro">Ver Estudiantes</button>
+                  <button className="ButtonMaestrosRegistroNotas-Maestros_registro_notas">Ver Estudiantes</button>
                 </Link>
               </div>
             </div>
