@@ -1,4 +1,5 @@
 import React from "react";
+import axios from 'axios';
 
 import "../Styles/Estudiantes_grupos_cursados.css";
 
@@ -7,10 +8,29 @@ import { withRouter } from "react-router-dom";
 class Estudiantes_materias extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {};
+    this.state = {
+      id_estudiante: 1,
+      datos: []
+    };
   }
+// Peticion get para traer todos los grupos cursados del estudiante
+  componentDidMount(){
+    axios.get(``, { id_estudiante: this.state.id_estudiante})
+      .then(res =>{
+        console.log(res.data)
+        this.setState({
+          datos: res.data
+        })
+    }).catch(err=>{
+      console.log(err.massage)
+    })
+  }
+// Fin peticion get
 
   render() {
+    console.log(this.state.datos);
+    const gruposCursados = this.state.datos;
+
     return (
       <>
         <div className="RegistroEsContainer-Grupos_Cursados">
@@ -46,8 +66,7 @@ class Estudiantes_materias extends React.Component {
               <option value="1">2020</option>
             </select>
           </div>
-
-          {/* Grupos cursados */}
+        {/* Prueba */}
           <div className="CardsContainerGruposCursados-Grupos_Cursados">
             <div className="FiltrosGruposCursados-Grupos_Cursados">
               <div className="Select-Grupos_Cursados">
@@ -64,6 +83,28 @@ class Estudiantes_materias extends React.Component {
               </div>
             </div>
           </div>
+        {/* 
+          {characters.map((datosT) => {
+            return (
+              <div className="CardsContainerGruposCursados-Grupos_Cursados">
+            <div className="FiltrosGruposCursados-Grupos_Cursados">
+              <div className="Select-Grupos_Cursados">
+                <p className="p_Texts-Grupos_Cursados">Codigo Grupo</p>
+              </div>
+              <div className="Select-Grupos_Cursados">
+                <p className="p_Texts-Grupos_Cursados">Once</p>
+              </div>
+              <div className="Select-Grupos_Cursados More">
+                <p className="p_Texts-Grupos_Cursados">Profesor director</p>
+              </div>
+              <div className="Min">
+                <p className="p_Texts-Grupos_Cursados">Año</p>
+              </div>
+            </div>
+          </div>
+            )
+          })}
+          */}
         </div>
       </>
     );
