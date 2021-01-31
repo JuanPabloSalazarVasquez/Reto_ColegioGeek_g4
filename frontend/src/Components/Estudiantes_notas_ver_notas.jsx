@@ -1,6 +1,6 @@
 import React from "react";
 
-import "../Styles/Estudiantes_notas.css";
+import "../Styles/Estudiantes_notas_ver_notas.css";
 
 import { withRouter } from "react-router-dom";
 import { Link } from "react-router-dom";
@@ -14,51 +14,42 @@ class Estudiantes_notas_ver_notas extends React.Component {
   render() {
     return (
       <>
-        <p>Esta es la parte donde se muestran las materias del estudiante.</p>
-        <div id="VerEstuGrupContainer">
-          <div className="FiltradoGroup">
+        <div className="VerEstuGrupContainer-Estudiantes_notas_ver_notas">
+          <div className="FiltradoEstudiante-Estudiantes_notas_ver_notas">
             <div className="FiltrosREstudiante">
               <div>
                 <input
                   type="number"
-                  className="SelectR"
-                  placeholder="Matricula"
+                  className="SelectR-Estudiantes_notas_ver_notas"
+                  placeholder="Nota"
                   autoComplete="off"
                 />
               </div>
               <div>
                 <input
                   type="text"
-                  className="SelectR"
-                  placeholder="Nombre"
-                  autoComplete="off"
-                />
-              </div>
-              <div>
-                <input
-                  type="text"
-                  className="SelectR"
-                  placeholder="Apellido"
+                  className="SelectR-Estudiantes_notas_ver_notas"
+                  placeholder="Tipo nota"
                   autoComplete="off"
                 />
               </div>
             </div>
-            <div className=" EstuFilter">
-              <div className="FiltrosREstudiante">
-                <div className="SelectR">
-                  <p>Matricula</p>
+            <div className="EstuFilter-Estudiantes_notas_ver_notas">
+              <div className="FiltrosREstudiante-Estudiantes_notas_ver_notas">
+                <div className="SelectR-Estudiantes_notas_ver_notas">
+                  <p className="pTexts-Estudiantes_notas_ver_notas">Matricula</p>
                 </div>
-                <div className="SelectR">
-                  <p>Emanuel</p>
+                <div className="SelectR-Estudiantes_notas_ver_notas">
+                  <p className="pTexts-Estudiantes_notas_ver_notas">Emanuel</p>
                 </div>
-                <div className="SelectR">
-                  <p>Acevedo Munoz</p>
+                <div className="SelectR-Estudiantes_notas_ver_notas">
+                  <p className="pTexts-Estudiantes_notas_ver_notas">Acevedo Munoz</p>
                 </div>
-                <div>
-                    tipo_nota
+                <div className="SelectR-Estudiantes_notas_ver_notas">
+                    <p className="pTexts-Estudiantes_notas_ver_notas">Actitudinal</p>
                 </div>
-                <div>
-                    nota
+                <div className="SelectR-Estudiantes_notas_ver_notas">
+                    <p className="pTexts-Estudiantes_notas_ver_notas">4.5</p>
                 </div>
               </div>
             </div>

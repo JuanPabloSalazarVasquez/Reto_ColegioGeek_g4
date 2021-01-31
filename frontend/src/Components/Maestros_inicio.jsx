@@ -56,7 +56,7 @@ class Maestros_inicio extends React.Component {
                       <img src='https://cdn0.iconfinder.com/data/icons/users-android-l-lollipop-icon-pack/24/group2-512.png' alt="Cantidad Estudiantes" className='icono'/>
                     </div>
                   </Link>
-                  <p className='pIcono'>Cantidad de estudiantes por grupos</p>
+                  <p className='pIcono'>Cantidad de estudiantes</p>
                 </div>
               </div>
               <div className="Grupo2-Maestros_inicio">
@@ -66,7 +66,7 @@ class Maestros_inicio extends React.Component {
                       <img src='https://cdn0.iconfinder.com/data/icons/education-flat-7/128/02_Pen-512.png' alt="Configuraciones" className='icono'/>
                     </div>
                   </Link>
-                  <p className='pIcono'>Configuraciones de mi cuenta</p>
+                  <p className='pIcono'>Configuraciones cuenta</p>
                 </div>
               </div>
             </div>

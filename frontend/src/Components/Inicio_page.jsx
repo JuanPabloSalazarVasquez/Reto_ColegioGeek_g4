@@ -1,3 +1,5 @@
+/* eslint-disable eqeqeq */
+/* eslint-disable jsx-a11y/alt-text */
 //Página del carrusel: https://www.npmjs.com/package/react-responsive-carousel
 import React from 'react';
 import "react-responsive-carousel/lib/styles/carousel.min.css"; // require loader

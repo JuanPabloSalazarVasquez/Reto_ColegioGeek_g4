@@ -1,4 +1,4 @@
-.VerEstuGrupContainer-Maestros_Registrar_Nota_Estudiante {
+.VerEstuGrupContainer-Maestros_ver_estudiantes_grupos {
   display: grid;
   grid-template-rows: 1fr;
   grid-template-columns: 60% 40%;
@@ -7,17 +7,17 @@
   background-color: rgb(45, 58, 58, 0.9);
 }
 
-.FiltradoEstudiante-Maestros_Registrar_Nota_Estudiante {
+.FiltradoEstudiante-Maestros_ver_estudiantes_grupos {
   width: 98vw;
   padding: 1vw;
   grid-column: 1/2;
   grid-row: 1/2;
   height: 100%;
 }
-.EstuFilter-Maestros_Registrar_Nota_Estudiante {
+.EstuFilter-Maestros_ver_estudiantes_grupos {
   margin-top: 1vw;
 }
-.FiltrosREstudiante-Maestros_Registrar_Nota_Estudiante-Registro {
+.FiltrosREstudiante-Maestros_ver_estudiantes_grupos-Registro {
   margin: 0 2vw 0 2vw;
 
   display: flex;
@@ -28,36 +28,18 @@
   padding-bottom: 10px;
 }
 
-.Button-Maestros_Registrar_Nota_Estudiante {
-  padding-left: 16px;
-  padding-top: 8px;
-  padding-right: 16px;
-  padding-bottom: 8px;
-  background-color: white;
-  border: 1px solid black;
-  border-radius: 5px;
-  font-weight: bold;
-  color: black;
-  text-align: center;
-}
-.Button-Maestros_Registrar_Nota_Estudiante:hover {
-  background-color: black;
-  color: white;
-  border: 2px solid white;
-}
-
-.FiltrosREstudiante-Maestros_Registrar_Nota_Estudiante {
+.FiltrosREstudiante-Maestros_ver_estudiantes_grupos {
   margin: 0 2vw 0 2vw;
 }
 
-.FiltrosREstudiante-Maestros_Registrar_Nota_Estudiante {
+.FiltrosREstudiante-Maestros_ver_estudiantes_grupos {
   display: flex;
   justify-content: space-around;
   padding: 5px;
   background-color: lightgray;
 }
 
-.SelectR-Maestros_Registrar_Nota_Estudiante {
+.SelectR-Maestros_ver_estudiantes_grupos {
   width: 100px;
   height: 40px;
   font-family: "Alata", sans-serif;
@@ -66,16 +48,16 @@
   color: black;
 }
 
-.pTexts-Maestros_Registrar_Nota_Estudiante {
+.pTexts-Maestros_ver_estudiantes_grupos {
   margin: 0px;
   text-align: center;
 }
 
-.MinMin-Maestros_Registrar_Nota_Estudiante {
+.MinMin-Maestros_ver_estudiantes_grupos {
   width: 80px;
 }
 
-.Min-Maestros_Registrar_Nota_Estudiante {
+.Min-Maestros_ver_estudiantes_grupos {
   width: 40px;
   height: 40px;
   font-family: "Alata", sans-serif;
@@ -83,7 +65,7 @@
   margin: 0px 4px 0px 4px;
 }
 
-.More-Maestros_Registrar_Nota_Estudiante {
+.More-Maestros_ver_estudiantes_grupos {
   width: 180px;
   height: 40px;
   font-family: "Alata", sans-serif;
@@ -92,7 +74,7 @@
 }
 
 @media (max-width: 430px) {
-  .SelectR-Maestros_Registrar_Nota_Estudiante {
+  .SelectR-Maestros_ver_estudiantes_grupos {
     padding: 0;
     font-size: 8px;
     height: 25px;
@@ -101,7 +83,7 @@
 }
 
 @media (max-width: 660px) {
-  .VerEstuGrupContainer-Maestros_Registrar_Nota_Estudiante {
+  .VerEstuGrupContainer-Maestros_ver_estudiantes_grupos {
     grid-template-rows: 1fr 1fr;
     grid-template-columns: 1fr;
   }

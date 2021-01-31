@@ -15,15 +15,15 @@ class Maestros_estudiantes_grupos extends React.Component {
   render() {
     return (
       <>
-        <div id="RegistroEsContainer">
-          <div className="FiltrosREstudiante">
-            <select className="SelectR">
-              <option value="0" className="Dis">
+        <div className="RegistroEsContainer-Maestros_estudiantes_grupos">
+          <div className="Filtros-Maestros_estudiantes_grupos">
+            <select className="Select-Maestros_estudiantes_grupos">
+              <option value="0" className="Dis-Maestros_estudiantes_grupos">
                 Cod Grupo
               </option>
             </select>
-            <select className="SelectR MinMin">
-              <option value="0" className="Dis">
+            <select className="Select-Maestros_estudiantes_grupos MinMin">
+              <option value="0" className="Dis-Maestros_estudiantes_grupos">
                 Grado
               </option>
               <option value="Sexto">Sexto</option>
@@ -33,38 +33,35 @@ class Maestros_estudiantes_grupos extends React.Component {
               <option value="Decimo">Decimo</option>
               <option value="Once">Once</option>
             </select>
-            <select className="SelectR More">
-              <option value="0" className="Dis">
+            <select className="Select-Maestros_estudiantes_grupos More-Maestros_estudiantes_grupos">
+              <option value="0" className="Dis-Maestros_estudiantes_grupos">
                 Director
               </option>
             </select>
             <input
               type="number"
-              className="GrupoF Min"
-              placeholder="Cant E"
+              className="GrupoF MinMin-Maestros_estudiantes_grupos"
+              placeholder="Cantidad"
               autoComplete="off"
             />
-            <div className="SelectR AñoInsF">
-              <p>Estudiantes</p>
-            </div>
           </div>
           
           {/* Grupos */}
-          <div id="CardsContainerReEs">
-            <div className="FiltrosREstudiante">
-              <div className="SelectR">
-                <p>qweasda</p>
+          <div className='CardsContainer-Maestros_estudiantes_grupos'>
+            <div className="Filtros-Maestros_estudiantes_grupos">
+              <div className="Select-Maestros_estudiantes_grupos">
+                <p className='p_Texts-Maestros_estudiantes_grupos'>qweasda</p>
               </div>
-              <div className="SelectR">
-                <p>Once</p>
+              <div className="Select-Maestros_estudiantes_grupos">
+                <p className='p_Texts-Maestros_estudiantes_grupos'>Once</p>
               </div>
-              <div className="SelectR More">
-                <p>Emanuel</p>
+              <div className="Select-Maestros_estudiantes_grupos More-Maestros_estudiantes_grupos">
+                <p className='p_Texts-Maestros_estudiantes_grupos'>Emanuel Acevedo Munoz</p>
               </div>
-              <div className="Min GrupoF">
-                <p>11</p>
+              <div className="Min ">
+                <p className='p_Texts-Maestros_estudiantes_grupos'>11</p>
               </div>
-              <div className="SelectR AñoInsF">
+              <div className="Select-Maestros_estudiantes_grupos">
                 <Link
                   to={{
                     pathname: "/maestros/estudiantes_grupos/ver_estudiantes",
@@ -73,7 +70,6 @@ class Maestros_estudiantes_grupos extends React.Component {
                   <button className="DickBro">Ver Estudiantes</button>
                 </Link>
               </div>
-              <div className="ImgRMas"></div>
             </div>
           </div>
         </div>

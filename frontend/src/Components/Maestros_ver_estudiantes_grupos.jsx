@@ -1,6 +1,6 @@
 import React from "react";
 
-import "../Styles/VerRegEstu.css";
+import "../Styles/Maestros_ver_estudiantes_grupos.css";
 
 import { withRouter } from "react-router-dom";
 
@@ -14,13 +14,13 @@ class Maestros_ver_estudiantes_grupos extends React.Component {
   render() {
     return (
       <>
-        <div id="VerEstuGrupContainer">
-          <div className="FiltradoGroup">
-            <div className="FiltrosREstudiante">
+        <div className="VerEstuGrupContainer-Maestros_ver_estudiantes_grupos">
+          <div className="FiltradoEstudiante-Maestros_ver_estudiantes_grupos">
+            <div className="FiltrosREstudiante-Maestros_ver_estudiantes_grupos-Registro">
               <div>
                 <input
                   type="number"
-                  className="SelectR"
+                  className="SelectR-Maestros_ver_estudiantes_grupos"
                   placeholder="Matricula"
                   autoComplete="off"
                 />
@@ -28,7 +28,7 @@ class Maestros_ver_estudiantes_grupos extends React.Component {
               <div>
                 <input
                   type="text"
-                  className="SelectR"
+                  className="SelectR-Maestros_ver_estudiantes_grupos"
                   placeholder="Nombre"
                   autoComplete="off"
                 />
@@ -36,22 +36,22 @@ class Maestros_ver_estudiantes_grupos extends React.Component {
               <div>
                 <input
                   type="text"
-                  className="SelectR"
+                  className="SelectR-Maestros_ver_estudiantes_grupos"
                   placeholder="Apellido"
                   autoComplete="off"
                 />
               </div>
             </div>
-            <div className=" EstuFilter">
-              <div className="FiltrosREstudiante">
-                <div className="SelectR">
-                  <p>Matricula</p>
+            <div className="EstuFilter-Maestros_ver_estudiantes_grupos">
+              <div className="FiltrosREstudiante-Maestros_ver_estudiantes_grupos-Registro">
+                <div className="SelectR-Maestros_ver_estudiantes_grupos">
+                  <p className="pTexts-Maestros_ver_estudiantes_grupos MinMin-Maestros_ver_estudiantes_grupos">Matricula</p>
                 </div>
-                <div className="SelectR">
-                  <p>Emanuel</p>
+                <div className="SelectR-Maestros_ver_estudiantes_grupos">
+                  <p className="pTexts-Maestros_ver_estudiantes_grupos More-Maestros_ver_estudiantes_grupos">Emanuel</p>
                 </div>
-                <div className="SelectR">
-                  <p>Acevedo Munoz</p>
+                <div className="SelectR-Maestros_ver_estudiantes_grupos">
+                  <p className="pTexts-Maestros_ver_estudiantes_grupos More-Maestros_ver_estudiantes_grupos">Acevedo Munoz</p>
                 </div>
               </div>
             </div>

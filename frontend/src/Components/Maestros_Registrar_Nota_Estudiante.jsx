@@ -33,7 +33,7 @@ class Maestros_Registrar_Nota_Estudiante extends React.Component {
               </div>
             </div>
             <div className="EstuFilter-Maestros_Registrar_Nota_Estudiante">
-              <div className="FiltrosREstudiante">
+              <div className="FiltrosREstudiante-Maestros_Registrar_Nota_Estudiante-Registro">
                 <div className="SelectR-Maestros_Registrar_Nota_Estudiante">
                   <p className="pTexts-Maestros_Registrar_Nota_Estudiante">
                     Matricula
@@ -72,7 +72,7 @@ class Maestros_Registrar_Nota_Estudiante extends React.Component {
             </div>
             {/* Notas del estudiante */}
             <div className="EstuFilter-Maestros_Registrar_Nota_Estudiante">
-              <div className="FiltrosREstudiante">
+              <div className="FiltrosREstudiante-Maestros_Registrar_Nota_Estudiante">
                 <div className="SelectR-Maestros_Registrar_Nota_Estudiante">
                   <p className="pTexts-Maestros_Registrar_Nota_Estudiante">
                     Matricula
