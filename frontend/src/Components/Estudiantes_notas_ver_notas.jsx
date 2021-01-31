@@ -10,8 +10,8 @@ class Estudiantes_notas_ver_notas extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      id_estudiante: this.props.location.state.id_estudiante,
-      id_materia: this.props.location.state.id_materia,
+      //id_estudiante: this.props.location.state.id_estudiante,
+      //id_materia: this.props.location.state.id_materia,
       datos: []
     };
   }

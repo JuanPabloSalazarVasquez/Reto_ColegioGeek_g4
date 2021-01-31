@@ -1,6 +1,7 @@
 /* eslint-disable eqeqeq */
 /* eslint-disable no-array-constructor */
 import React from "react";
+import axios from 'axios';
 
 import "../Styles/Maestros_estudiantes_grupos.css";
 
@@ -9,10 +10,32 @@ import { withRouter, Link } from "react-router-dom";
 class Maestros_estudiantes_grupos extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {};
+    this.state = {
+      //id_maestro: this.props.location.id_maestro,
+      datos: [],
+      Bool: false
+    };
   }
 
+  // Peticion get para traer todos los grupos en los que el profesor da clase
+componentDidMount(){
+  axios.get(``, { id_maestro: this.state.id_maestro})
+    .then(res =>{
+      console.log(res.data)
+      this.setState({
+        datos: res.data
+      })
+  }).catch(err=>{
+    console.log(err.massage)
+  })
+}
+// Fin peticion get
+
+
   render() {
+    console.log(this.state.datos);
+    const gruposMaestro = this.state.datos;
+
     return (
       <>
         <div className="RegistroEsContainer-Maestros_estudiantes_grupos">
@@ -72,6 +95,41 @@ class Maestros_estudiantes_grupos extends React.Component {
               </div>
             </div>
           </div>
+          {/* 
+          {gruposMaestro.map((datosT) => {
+            return (
+              <div className='CardsContainer-Maestros_estudiantes_grupos'>
+            <div className="Filtros-Maestros_estudiantes_grupos">
+              <div className="Select-Maestros_estudiantes_grupos">
+                <p className='p_Texts-Maestros_estudiantes_grupos'>qweasda</p>
+              </div>
+              <div className="Select-Maestros_estudiantes_grupos">
+                <p className='p_Texts-Maestros_estudiantes_grupos'>Once</p>
+              </div>
+              <div className="Select-Maestros_estudiantes_grupos More-Maestros_estudiantes_grupos">
+                <p className='p_Texts-Maestros_estudiantes_grupos'>Emanuel Acevedo Munoz</p>
+              </div>
+              <div className="Min ">
+                <p className='p_Texts-Maestros_estudiantes_grupos'>11</p>
+              </div>
+              <div className="Select-Maestros_estudiantes_grupos">
+                
+                  <button className="DickBro">Ver Estudiantes</button>
+                {this.state.Bool && <Redirect to={{
+                                    pathname: "/maestros/estudiantes_grupos/ver_estudiantes",
+                                    state: {
+                                        id_estudiante: this.props.location.state.id_estudiante,
+                                        id_materia: this.props.location.state.id_materia,
+                                    }
+                                }} />}
+              </div>
+            </div>
+          </div>
+            )
+          })}
+          */}
+
+
         </div>
       </>
     );

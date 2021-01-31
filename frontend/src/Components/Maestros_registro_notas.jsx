@@ -1,4 +1,5 @@
 import React from "react";
+import axios from 'axios';
 
 import "../Styles/Maestros_registro_notas.css";
 
@@ -8,10 +9,31 @@ import { Link } from "react-router-dom";
 class Maestros_registro_notas extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {};
+    this.state = {
+      //id_maestro: this.props.location.id_maestro,
+      datos: []
+    };
   }
 
+// Peticion get para traer todos los grupos en los que da clase un profesor
+componentDidMount(){
+  axios.get(``, { id_maestro: this.state.id_maestro})
+    .then(res =>{
+      console.log(res.data)
+      this.setState({
+        datos: res.data
+      })
+  }).catch(err=>{
+    console.log(err.massage)
+  })
+}
+// Fin peticion get
+
+
   render() {
+    console.log(this.state.datos);
+    const gruposMaestro = this.state.datos;
+
     return (
       <>
         <div className='RegistroEsContainer-Maestros_registro_notas'>
@@ -65,6 +87,39 @@ class Maestros_registro_notas extends React.Component {
               </div>
             </div>
           </div>
+          {/* 
+          {gruposMaestro.map((datosT) => {
+            return (
+              <div className="CardsContainerMaestrosRegistroNotas-Maestros_registro_notas">
+            <div className="FiltrosMaestrosRegistroNotas-Maestros_registro_notas">
+              <div className="SelectMaestrosRegistroNotas-Maestros_registro_notas">
+                <p>qweasda</p>
+              </div>
+              <div className="SelectMaestrosRegistroNotas-Maestros_registro_notas">
+                <p>Once</p>
+              </div>
+              <div className="SelectMaestrosRegistroNotas-Maestros_registro_notas More-Maestros_registro_notas">
+                <p>Emanuel</p>
+              </div>
+              <div className="Min-Maestros_registro_notas">
+                <p>11</p>
+              </div>
+              <div className="SelectMaestrosRegistroNotas-Maestros_registro_notas">
+                <Link
+                  to={{
+                    pathname: "/maestros/registrar_notas/grupo_estudiantes",
+                  }}
+                >
+                  <button className="ButtonMaestrosRegistroNotas-Maestros_registro_notas">Ver Estudiantes</button>
+                </Link>
+              </div>
+            </div>
+          </div>
+            )
+          })}
+          */}
+
+
         </div>
       </>
     );
