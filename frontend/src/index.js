@@ -25,6 +25,7 @@ import Estudiantes_notas from "./Pages/estudiantes_notas";
 import Estudiantes_grupos_cursados from "./Pages/estudiantes_grupos_cursados";
 import Estudiantes_consolidados from "./Pages/estudiantes_consolidados";
 import Estudiantes_configuracion from "./Pages/estudiantes_configuracion";
+import Estudiantes_notas_ver_notas from './Pages/estudiantes_notas_ver_notas';
 
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 
@@ -52,8 +53,8 @@ ReactDOM.render(
         <Route path="/estudiantes/mi_cuenta" exact>
           <Estudiantes_configuracion />
         </Route>
-        <Route path="/estudiantes/mis_notas/notas" exact>
-          <Estudiantes_configuracion />
+        <Route path="/estudiantes/mis_notas/ver_notas" exact>
+          <Estudiantes_notas_ver_notas />
         </Route>
         {/* Fin Rutas Estudiantes */}
 

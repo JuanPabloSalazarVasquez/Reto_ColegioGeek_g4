@@ -14,7 +14,6 @@ class Maestros_inicio extends React.Component {
   render() {
     return (
       <>
-      <h1>Maestros</h1>
         <div className="DirectivosContainer-Maestros_inicio">
           <div className="DirectivosGrid-Maestros_inicio">
             <div className="ProfileCont-Maestros_inicio">
