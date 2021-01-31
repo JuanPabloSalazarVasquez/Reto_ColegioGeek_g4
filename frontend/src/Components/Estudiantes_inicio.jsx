@@ -43,47 +43,39 @@ class Estudiantes_inicio extends React.Component {
               <div className="Grupo1-Estudiantes_inicio">
                 <div>
                   <Link to='/estudiantes/mis_notas'>
-                  <img
-                    src="https://image.flaticon.com/icons/png/512/2893/2893358.png"
-                    className="img-direc1-Estudiantes_inicio CardS-Estudiantes_inicio"
-                    alt="logo_1"
-                  />
+                    <div className="img-direc1-Estudiantes_inicio CardS-Estudiantes_inicio">
+                      <img src='https://cdn0.iconfinder.com/data/icons/education-flat-7/128/09_Examination-512.png' alt="Cantidad Estudiantes" className='icono' />
+                    </div>
                   </Link>
-                  Ver mis notas
+                  <p className='pIcono'>Ver mis notas</p>
                 </div>
 
                 <div>
                   <Link to='/estudiantes/grupo_cursados'>
-                  <img
-                    src="https://image.flaticon.com/icons/png/512/29/29302.png"
-                    className="img-direc2-Estudiantes_inicio CardS-Estudiantes_inicio"
-                    alt="logo_2"
-                  />
+                    <div className="img-direc2-Estudiantes_inicio CardS-Estudiantes_inicio">
+                      <img src='https://cdn0.iconfinder.com/data/icons/education-flat-7/128/14_Certificate-512.png' alt="Cantidad Estudiantes" className='icono' />
+                    </div>
                   </Link>
-                  Ver grupos cursados
+                  <p className='pIcono'>Ver grupos cursados</p>
                 </div>
               </div>
               <div className="Grupo2-Estudiantes_inicio">
                 <div>
                   <Link to='/estudiantes/mis_consolidados'>
-                  <img
-                    src="https://www.titecnoeducacion.com.mx/images/imgs/icono-maestros-blanco.png"
-                    className="img-direc3-Estudiantes_inicio CardS-Estudiantes_inicio"
-                    alt="logo_3"
-                  />
+                    <div className="img-direc3-Estudiantes_inicio CardS-Estudiantes_inicio">
+                      <img src='https://cdn0.iconfinder.com/data/icons/education-flat-7/128/30_Diagram-512.png' alt="Cantidad Estudiantes" className='icono' />
+                    </div>
                   </Link>
-                  Ver consolidados
+                  <p className='pIcono'>Ver consolidados</p>
                 </div>
 
                 <div>
                   <Link to='/estudiantes/mi_cuenta'>
-                  <img
-                    src="https://w7.pngwing.com/pngs/864/574/png-transparent-computer-icons-computer-configuration-a-new-user-miscellaneous-logo-monochrome.png"
-                    className="img-direc4-Estudiantes_inicio CardS-Estudiantes_inicio"
-                    alt="logo_4"
-                  />
+                    <div className="img-direc4-Estudiantes_inicio CardS-Estudiantes_inicio">
+                      <img src='https://cdn0.iconfinder.com/data/icons/education-flat-7/128/02_Pen-512.png' alt="Cantidad Estudiantes" className='icono' />
+                    </div>
                   </Link>
-                  Configuracion de mi cuenta
+                  <p className='pIcono'>Configuracion de mi cuenta</p>
                 </div>
               </div>
             </div>

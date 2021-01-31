@@ -29,7 +29,10 @@ body{
     height: 80%;
     align-items: center;
     justify-content: space-between;
+}
+#pCambio{
     color: black;
+    font-size: 20px;
 }
 .b {
     appearance: null;
@@ -57,10 +60,17 @@ body{
     align-items: center;
     justify-content: space-around;
 }
-.Inline{
-    width: 15vw;
+#redesContainer .carousel{
+    width: 25vw;
 }
-
+.redes{
+    width: 5vw;
+    margin: 0;
+}
+.vertical{
+    margin-bottom: 15px;
+    width: 5vw;
+}
 
 @media(max-width: 680px){
     .Inline{

@@ -23,7 +23,7 @@
     width: 100%;
     height: max-content;
     margin:0% 10% 0% 10%;
-    background-color:rgb(208, 135, 0);
+    background-color:#2D3A3A;
     display: grid;
     grid-template-columns: 30% 70%;
     grid-template-rows: 1fr;
@@ -79,20 +79,36 @@
 }
 
 .img-direc1-Estudiantes_inicio{
+    background: linear-gradient(90deg, rgba(2,0,64,0.5) 0%, rgba(121,9,9,0.7) 30%, rgba(121,9,9,1) 100%);
     width: 13vw;
     height: 13vw;
 }
 .img-direc2-Estudiantes_inicio{
+    background: linear-gradient(120deg, rgba(60,0,64,0.5) 0%, rgba(248,255,0,0.7) 70%, rgba(248,255,0,1) 100%);
     width: 13vw;
     height: 13vw;
 }
 .img-direc3-Estudiantes_inicio{
+    background: linear-gradient(50deg, rgba(100, 0, 0, 0.7) 0%, rgba(0,249,255,0.7) 90%, rgba(0,249,255,1) 100%);
     width: 13vw;
     height: 13vw;
 }
 .img-direc4-Estudiantes_inicio{
+    background: linear-gradient(50deg, rgba(64,0,62,0.7) 0%, rgba(17,121,9,0.5) 50%, rgba(17,121,9,0.7) 100%);
     width: 13vw;
     height: 13vw;;
+}
+.icono{
+    width: 13vw;
+    transition: all 700ms;
+}
+.icono:hover{
+    width: 12vw;
+    transition: all 700ms;
+}
+.pIcono{
+    font-size: 1.2vw;
+    text-align: center;
 }
 
 .button2-Estudiantes_inicio{

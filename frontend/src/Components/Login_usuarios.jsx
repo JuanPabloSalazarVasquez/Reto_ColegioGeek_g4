@@ -50,7 +50,7 @@ class Login_usuarios extends React.Component {
                     }
                 }
             }
-          
+
         }
         if (this.state.tipo == 2) {
             for (let i = 0; i < this.props.LargoD; i++) {
@@ -112,23 +112,21 @@ class Login_usuarios extends React.Component {
     }
 
     render() {
-
-
         return (
             <>
                 <div className="Main2Container">
                     <div id="SelecContainer">
                         <form id="Palborde">
                             <select className="input" id="Select" onChange={this.Cambio}>
-                                <option value="0" className="Dis">Seleccione</option>
+                                <option value="0" className="Dis">Seleccione su Cargo</option>
                                 <option value="1">Estudiante</option>
                                 <option value="2">Directivo</option>
                                 <option value="3">Maestro</option>
                             </select>
-                            <p>Usuario:</p>
-                            <input type="text" id="UsuarioI" className="input" placeholder="..." autoComplete="off" ></input>
-                            <p>Contraseña:</p>
-                            <input type="password" id="ContraseñaI" className="input" placeholder="..." autoComplete="off" ></input>
+                            <p>Correo electrónico:</p>
+                            <input type="text" id="UsuarioI" className="input" placeholder="correo@ejemplo.com" autoComplete="off" ></input>
+                            <p>Documento:</p>
+                            <input type="password" id="ContraseñaI" className="input" placeholder="Ingrese su documento" autoComplete="off" ></input>
                             <div id="SoloParaCentrar">
                                 <input type="button" className="button button2" value="Ingresar" onClick={this.Ingreso} />
                                 {this.state.Bool && <Redirect to={{
@@ -158,8 +156,13 @@ class Login_usuarios extends React.Component {
                         </form>
                     </div>
                     <div id="InfoContainer">
-                        <h2>Bienvenido</h2>
-                        <p>Bienvenido al sistema de Colegio Geek, por favor ingrese al sistema.</p>
+                        <div>
+                                <img src="https://images.vexels.com/media/users/3/224155/isolated/preview/f4bbe191bcc833b27d7fa241220c470e-libro-en-logo-de-pantalla-by-vexels.png" alt="Logo"/>
+                        </div>
+                        <div>
+                            <h2>¡Bienvenido!</h2>
+                            <p>Por favor, ingrese al sistema de Colegio Geek.</p>
+                        </div>
                     </div>
                 </div>
             </>
