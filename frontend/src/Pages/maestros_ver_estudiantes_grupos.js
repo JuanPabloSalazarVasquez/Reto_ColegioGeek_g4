@@ -13,7 +13,7 @@ class maestros_ver_estudiantes_grupos extends React.Component {
     render() { 
         return (
             <>
-            <HeaderSistema_Maestros pathname = '/maestros'/>
+            <HeaderSistema_Maestros pathname = '/maestros/estudiantes_grupos'/>
             <Maestros_ver_estudiantes_grupos />
             </>
          );

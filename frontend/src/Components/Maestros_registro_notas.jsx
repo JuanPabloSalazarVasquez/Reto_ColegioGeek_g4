@@ -14,7 +14,6 @@ class Maestros_registro_notas extends React.Component {
   render() {
     return (
       <>
-        <p>Esta es la parte de maestros para registrar notas</p>
         <div id="RegistroEsContainer">
           <div className="FiltrosREstudiante">
             <select className="SelectR">
@@ -38,15 +37,6 @@ class Maestros_registro_notas extends React.Component {
                 Director
               </option>
             </select>
-            <input
-              type="number"
-              className="GrupoF Min"
-              placeholder="Cant E"
-              autoComplete="off"
-            />
-            <div className="SelectR AñoInsF">
-              <p>Estudiantes</p>
-            </div>
           </div>
 
           {/* Grupos */}
@@ -73,7 +63,6 @@ class Maestros_registro_notas extends React.Component {
                   <button className="DickBro">Ver Estudiantes</button>
                 </Link>
               </div>
-              <div className="ImgRMas"></div>
             </div>
           </div>
         </div>

@@ -1,3 +1,4 @@
+/* eslint-disable react/jsx-pascal-case */
 import React from "react";
 
 import Estudiantes_grupos_cursados from "../Components/Estudiantes_grupos_cursados";
