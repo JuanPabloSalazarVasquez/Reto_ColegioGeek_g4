@@ -126,9 +126,7 @@ class Directivos_registro_estudiantes extends React.Component {
             <>
                 <div id="Form">
                     <div id="Form2">
-
                         <div id="Form2_21">
-
                             <img className="ImgProfile" src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/7e/Circle-icons-profile.svg/1200px-Circle-icons-profile.svg.png" />
                         </div>
                         <div id="Form2_2">
@@ -144,7 +142,6 @@ class Directivos_registro_estudiantes extends React.Component {
                             </div>
                         </div>
                         <div className="Form2_2_2">
-
                             <select className="REInput" id="GradoIn" onChange={this.Cambiar}>
                                 <option value="0" className="Dis">Grado</option>
                                 <option value="Sexto">Sexto</option>
