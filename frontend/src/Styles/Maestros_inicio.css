@@ -23,7 +23,7 @@
   width: 100%;
   height: max-content;
   margin: 0% 10% 0% 10%;
-  background-color: rgb(208, 135, 0);
+  background-color: #2D3A3A;
   display: grid;
   grid-template-columns: 30% 70%;
   grid-template-rows: 1fr;
@@ -79,20 +79,43 @@
 }
 
 .img-direc1-Maestros_inicio {
+  background: linear-gradient(90deg, rgba(2,0,64,0.5) 0%, rgba(121,9,9,0.7) 30%, rgba(121,9,9,1) 100%);
   width: 13vw;
   height: 13vw;
 }
 .img-direc2-Maestros_inicio {
+  background: linear-gradient(50deg, rgba(0,0,0,0.7) 0%, rgba(255,255,255,0.7) 70%, rgba(255,255,255,1) 100%);
   width: 13vw;
   height: 13vw;
 }
+/*El ícono de configuración es mas grande que los demás, así que es 1vw mas pequeño*/
 .img-direc3-Maestros_inicio {
+  background: linear-gradient(60deg, rgba(64,0,62,0.7) 0%, rgba(17,121,9,0.5) 50%, rgba(17,121,9,0.7) 100%);
   width: 13vw;
   height: 13vw;
 }
+.img-direc3-Maestros_inicio .icono {
+  width: 12vw;
+}
+.img-direc3-Maestros_inicio .icono:hover {
+  width: 11vw;
+}
+/*El ícono de configuración es mas grande que los demás, así que es 1vw mas pequeño*/
 .img-direc4-Maestros_inicio {
   width: 13vw;
   height: 13vw;
+}
+.icono{
+  width: 13vw;
+  transition: all 700ms;
+}
+.icono:hover{
+  width: 12vw;
+  transition: all 700ms;
+}
+.pIcono{
+  font-size: 1.2vw;
+  text-align: center;
 }
 
 .button2-Maestros_inicio {
