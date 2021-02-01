@@ -1,6 +1,6 @@
 const { Router } = require('express'); 
 const directivo = Router();
-const pool = require('./db/db');
+const pool = require('../db/db');
 
 // Crear un nuevo registro en la tabla directivos
 directivo.post('/nuevo-directivo', (req,res)=>{
@@ -30,5 +30,23 @@ directivo.get('/all-directivos', (req,res)=>{
     });
 });
 // Fin consultar todos los directivos
+
+//
+directivo.put('/directivo/:id_directivo', (req,res)=>{
+    const {id_persona,cargo_directivo } = req.body;
+    const {id_directivo} =req.params;
+
+    pool.query('UPDATE directivos SET id_persona=?,cargo_directivo=? WHERE id_directivo=?',
+    [id_persona,cargo_directivo,id_directivo], (err, rows, fields)=>{
+        if(!err){
+            res.json(rows);
+        }else{
+            console.log(err);
+        }
+    });
+});
+//
+
+
 
 module.exports = directivo;

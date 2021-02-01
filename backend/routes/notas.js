@@ -1,6 +1,6 @@
 const { Router } = require('express'); 
 const notas = Router();
-const pool = require('./db/db');
+const pool = require('../db/db');
 
 // Crear un nuevo registro en la tabla notas
 notas.post('/nueva-nota', (req,res)=>{
@@ -31,5 +31,19 @@ notas.get('/all-notas', (req,res)=>{
 });
 // Fin consultar todas la notas de la tabla notas
 
+//
+notas.put('/nota/:id_nota', (req,res)=>{
+    const { id_materia,id_grupo,id_estudiante,nota,tipo_nota } = req.body;
+    const {id_nota} =req.params;
 
+    pool.query('UPDATE nota SET id_materia=?,id_grupo=?,id_estudiante=?,nota=?,tipo_nota=? WHERE id_nota=?',
+    [id_nota, id_materia,id_grupo,id_estudiante,nota,tipo_nota], (err, rows, fields)=>{
+        if(!err){
+            res.json(rows);
+        }else{
+            console.log(err);
+        }
+    });
+});
+//
 module.exports = notas;

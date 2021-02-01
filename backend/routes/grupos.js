@@ -1,6 +1,6 @@
 const { Router } = require('express'); 
 const grupos = Router();
-const pool = require('./db/db');
+const pool = require('../db/db');
 
 // Crear un nuevo registro en la tabla grupos
 grupos.post('/nuevo-grupo', (req,res)=>{
@@ -30,6 +30,22 @@ grupos.get('/all-grupos', (req,res)=>{
     });
 });
 // Fin consultar todos los registros de la tabla grupos
+
+//
+grupos.put('/grupo/:id_grupo', (req,res)=>{
+    const {director_grupo,jornada_grupo,grado_grupo,year_grupo,estado } = req.body;
+    const {id_grupo} =req.params;
+
+    pool.query('UPDATE grupo SET director_grupo=?,jornada_grupo=?,grado_grupo=?,year_grupo=?,estado=? WHERE id_grupo=?',
+    [director_grupo,jornada_grupo,grado_grupo,year_grupo,estado,id_grupo], (err, rows, fields)=>{
+        if(!err){
+            res.json(rows);
+        }else{
+            console.log(err);
+        }
+    });
+});
+//
 
 
 module.exports = grupos;
