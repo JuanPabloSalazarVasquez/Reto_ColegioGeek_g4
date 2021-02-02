@@ -1,305 +1,273 @@
-CREATE DATABASE colegio_geek_db
+CREATE USER emanuel;
+ALTER USER emanuel WITH PASSWORD '1000306848';
 
---
--- Estructura de tabla para la tabla `directivos`
---
 
-CREATE TABLE `directivos` (
-  `id_directivo` int(10) UNSIGNED NOT NULL,
-  `id_persona` int(10) UNSIGNED NOT NULL,
-  `cargo_directivo` varchar(100) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+CREATE DATABASE colegio_geek_db WITH 
+OWNER = 'emanuel'
+ENCODING = 'UTF8'
 
--- --------------------------------------------------------
+CREATE DATABASE colegio_geek_db WITH 
+ENCODING = 'UTF8';
 
---
--- Estructura de tabla para la tabla `estudiante`
---
 
-CREATE TABLE `estudiante` (
-  `id_estudiante` int(10) UNSIGNED NOT NULL,
-  `id_persona` int(10) UNSIGNED NOT NULL,
-  `id_grupo` int(10) UNSIGNED NOT NULL,
-  `grado` varchar(20) NOT NULL,
-  `codigo_estudiante` varchar(20) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+-- Eliminación de tablas
+DROP TABLE IF EXISTS directivos;
+DROP TABLE IF EXISTS consolidados;
+DROP TABLE IF EXISTS grupos_estudiantes;
+DROP TABLE IF EXISTS grupos_materias;
+DROP TABLE IF EXISTS notas;
+DROP TABLE IF EXISTS estudiante;
+DROP TABLE IF EXISTS materias;
+DROP TABLE IF EXISTS grupos;
+DROP TABLE IF EXISTS maestros;
+DROP TABLE IF EXISTS persona;
 
---
--- Volcado de datos para la tabla `estudiante`
---
+-- Eliminación de secuencias
+DROP SEQUENCE IF EXISTS directivos_seq;
+DROP SEQUENCE IF EXISTS consolidados_seq;
+DROP SEQUENCE IF EXISTS grupos_estudiantes_seq;
+DROP SEQUENCE IF EXISTS grupos_materias_seq;
+DROP SEQUENCE IF EXISTS notas_seq;
+DROP SEQUENCE IF EXISTS estudiante_seq;
+DROP SEQUENCE IF EXISTS materias_seq;
+DROP SEQUENCE IF EXISTS grupos_seq;
+DROP SEQUENCE IF EXISTS maestros_seq;
+DROP SEQUENCE IF EXISTS persona_seq;
 
-INSERT INTO `estudiante` (`id_estudiante`, `id_persona`, `id_grupo`, `grado`, `codigo_estudiante`) VALUES
-(1, 1, 1, '8', 'EMA001'),
-(2, 4, 1, '8', 'CON001');
 
--- --------------------------------------------------------
+-- Eliminación de enumracíon
+DROP TYPE IF EXISTS enum_genero;
+DROP TYPE IF EXISTS enum_estado_estudiante;
+DROP TYPE IF EXISTS enum_estado_grupo_estudiantes;
+DROP TYPE IF EXISTS enum_materia_sexto;
+DROP TYPE IF EXISTS enum_materia_septimo;
+DROP TYPE IF EXISTS enum_materia_octavo;
+DROP TYPE IF EXISTS enum_materia_noveno;
+DROP TYPE IF EXISTS enum_materia_decimo;
+DROP TYPE IF EXISTS enum_materia_once;
+DROP TYPE IF EXISTS enum_persona_estado_cuenta;
+DROP TYPE IF EXISTS enum_persona_tipo_usuario;
 
---
--- Estructura de tabla para la tabla `grupos`
---
+-- Creación de secuencias 
+CREATE SEQUENCE directivos_seq;
+CREATE SEQUENCE consolidados_seq;
+CREATE SEQUENCE grupos_estudiantes_seq;
+CREATE SEQUENCE grupos_materias_seq;
+CREATE SEQUENCE notas_seq;
+CREATE SEQUENCE estudiante_seq;
+CREATE SEQUENCE materias_seq;
+CREATE SEQUENCE grupos_seq;
+CREATE SEQUENCE maestros_seq;
+CREATE SEQUENCE persona_seq;
 
-CREATE TABLE `grupos` (
-  `id_grupo` int(10) UNSIGNED NOT NULL,
-  `director_grupo` int(10) UNSIGNED NOT NULL,
-  `jornada_grupo` varchar(20) NOT NULL,
-  `grado_grupo` varchar(20) NOT NULL,
-  `year_grupo` varchar(10) NOT NULL,
-  `estado` enum('En curso','Aprobado','Reprobado') NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+-- Creación de enumeraciones 
+CREATE TYPE enum_genero AS ENUM ('Hombre', 'Mujer');
+CREATE TYPE enum_estado_estudiante AS ENUM ('Estudiando','Graduado');
+CREATE TYPE enum_estado_grupo_estudiantes AS ENUM ('En curso','Aprobado','Reprobado');
+CREATE TYPE enum_materia_sexto AS ENUM ('S','N');
+CREATE TYPE enum_materia_septimo AS ENUM ('S','N');
+CREATE TYPE enum_materia_octavo AS ENUM ('S','N');
+CREATE TYPE enum_materia_noveno AS ENUM ('S','N');
+CREATE TYPE enum_materia_decimo AS ENUM ('S','N');
+CREATE TYPE enum_materia_once AS ENUM ('S','N');
+CREATE TYPE enum_persona_estado_cuenta AS ENUM ('Activa','Inactiva');
+CREATE TYPE enum_persona_tipo_usuario AS ENUM ('Directivo','Maestro','Estudiante');
 
---
--- Volcado de datos para la tabla `grupos`
---
 
-INSERT INTO `grupos` (`id_grupo`, `director_grupo`, `jornada_grupo`, `grado_grupo`, `year_grupo`, `estado`) VALUES
-(1, 1, 'Mañana', '8', '2021', 'En curso');
 
--- --------------------------------------------------------
+-- Tabla consolidados
+CREATE TABLE consolidados (
+  id_consolidado int4 NOT NULL DEFAULT NEXTVAL ('consolidados_seq'),
+  id_estudiante int4 NOT NULL,
+  consolidado text NOT NULL,
+  PRIMARY KEY (id_consolidado)
+);
 
---
--- Estructura de tabla para la tabla `maestro`
---
 
-CREATE TABLE `maestro` (
-  `id_maestro` int(10) UNSIGNED NOT NULL,
-  `id_persona` int(10) UNSIGNED NOT NULL,
-  `codigo_maestro` varchar(30) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+-- Tabla directivos
+CREATE TABLE directivos (
+  id_directivo int4 NOT NULL DEFAULT NEXTVAL ('directivos_seq'),
+  id_persona int4 NOT NULL,
+  cargo_directivo varchar(20) NOT NULL,
+  PRIMARY KEY (id_directivo)
+);
 
---
--- Volcado de datos para la tabla `maestro`
---
 
-INSERT INTO `maestro` (`id_maestro`, `id_persona`, `codigo_maestro`) VALUES
-(1, 2, 'SAN001'),
-(2, 3, 'CES001');
+-- Tabla estudiante
+CREATE TABLE estudiante (
+  id_estudiante int4 NOT NULL DEFAULT NEXTVAL ('estudiante_seq'),
+  id_persona int4 NOT NULL,
+  codigo_estudiante varchar(20) NOT NULL,
+  estado_estudiante enum_estado_estudiante NOT NULL,
+  PRIMARY KEY (id_estudiante)
+);
 
--- --------------------------------------------------------
+ALTER TABLE estudiante
+  ADD CONSTRAINT UQ_estudiante_codigo
+  UNIQUE (codigo_estudiante);
 
---
--- Estructura de tabla para la tabla `materias`
---
 
-CREATE TABLE `materias` (
-  `id_materia` int(10) UNSIGNED NOT NULL,
-  `id_grupo` int(10) UNSIGNED NOT NULL,
-  `id_maestro` int(10) UNSIGNED NOT NULL,
-  `nombre_materia` varchar(50) NOT NULL,
-  `codigo_materia` varchar(20) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+-- Tabla grupos
+CREATE TABLE grupos (
+  id_grupo int4 NOT NULL DEFAULT NEXTVAL ('grupos_seq'),
+  director_id_maestro int4  NOT NULL,
+  codigo_grupo varchar(20) NOT NULL,
+  jornada_grupo varchar(20) NOT NULL,
+  grado_grupo varchar(20) NOT NULL,
+  year_grupo varchar(10) NOT NULL,
+  PRIMARY KEY (id_grupo)
+);
 
---
--- Volcado de datos para la tabla `materias`
---
+ALTER TABLE grupos
+  ADD CONSTRAINT UQ_grupos_codigo
+  UNIQUE (codigo_grupo);
 
-INSERT INTO `materias` (`id_materia`, `id_grupo`, `id_maestro`, `nombre_materia`, `codigo_materia`) VALUES
-(1, 1, 2, 'Español', 'IDM001');
 
--- --------------------------------------------------------
+-- Tablagrupos-estudiantes
+CREATE TABLE grupos_estudiantes (
+  id_grupo_estudiante int4 NOT NULL DEFAULT NEXTVAL ('grupos_estudiantes_seq'),
+  id_estudiante int4 NOT NULL,
+  id_grupo int4 NOT NULL,
+  estado enum_estado_grupo_estudiantes NOT NULL,
+  PRIMARY KEY (id_grupo_estudiante)
+);
 
---
--- Estructura de tabla para la tabla `notas`
---
 
-CREATE TABLE `notas` (
-  `id_nota` int(10) UNSIGNED NOT NULL,
-  `id_materia` int(10) UNSIGNED NOT NULL,
-  `id_grupo` int(10) UNSIGNED NOT NULL,
-  `id_estudiante` int(10) UNSIGNED NOT NULL,
-  `nota` float UNSIGNED DEFAULT NULL,
-  `estado` enum('En curso','Aprobado','Reprobado') NOT NULL,
-  `tipo_nota` varchar(20) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+-- Tabla grupos-materias
+CREATE TABLE grupos_materias (
+  id_grupo_materia int4 NOT NULL DEFAULT NEXTVAL ('grupos_materias_seq'),
+  id_materia int4 NOT NULL,
+  id_grupo int4 NOT NULL,
+  id_maestro int4 NOT NULL,
+  PRIMARY KEY (id_grupo_materia)
+);
 
---
--- Volcado de datos para la tabla `notas`
---
 
-INSERT INTO `notas` (`id_nota`, `id_materia`, `id_grupo`, `id_estudiante`, `nota`, `estado`, `tipo_nota`) VALUES
-(1, 1, 1, 1, 4.6, 'En curso', 'Examen'),
-(2, 1, 1, 1, 3.4, 'En curso', 'Taller'),
-(3, 1, 1, 2, 5, 'En curso', 'Taller');
+-- Tabla maestros
+CREATE TABLE maestros (
+  id_maestro int4 NOT NULL DEFAULT NEXTVAL ('maestros_seq'),
+  id_persona int4 NOT NULL,
+  codigo_maestro varchar(20) NOT NULL,
+  PRIMARY KEY (id_maestro)
+);
 
--- --------------------------------------------------------
+ALTER TABLE maestros
+  ADD CONSTRAINT UQ_maestros_codigo
+  UNIQUE (codigo_maestro);
 
---
--- Estructura de tabla para la tabla `persona`
---
 
-CREATE TABLE `persona` (
-  `id_persona` int(10) UNSIGNED NOT NULL,
-  `nombres` varchar(100) NOT NULL,
-  `apellidos` varchar(100) NOT NULL,
-  `tipo_documento` varchar(30) NOT NULL,
-  `numero_documento` bigint(10) NOT NULL,
-  `sexo` enum('Hombre','Mujer') NOT NULL,
-  `fecha_nacimiento` date NOT NULL,
-  `direccion_residencial` varchar(100) NOT NULL,
-  `ciudad_residencial` varchar(100) NOT NULL,
-  `tipo_usuario` enum('Directivo','Estudiante','Maestro') NOT NULL,
-  `telefono_residencial` varchar(15) NOT NULL,
-  `telefono_celular` varchar(15) NOT NULL,
-  `correo_electronico` varchar(30) NOT NULL,
-  `estado_cuenta` enum('Activa','Inactiva') NOT NULL,
-  `foto_perfil` text NOT NULL,
-  `pdf_documento` text NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+-- Tabla materias
+CREATE TABLE materias (
+  id_materia int4 NOT NULL,
+  nombre_materia varchar(20) NOT NULL DEFAULT NEXTVAL ('materias_seq'),
+  codigo_materia varchar(20) NOT NULL,
+  sexto enum_materia_sexto NOT NULL,
+  septimo enum_materia_septimo NOT NULL,
+  octavo enum_materia_octavo NOT NULL,
+  noveno enum_materia_noveno NOT NULL,
+  decimo enum_materia_decimo NOT NULL,
+  once enum_materia_once NOT NULL,
+  PRIMARY KEY (id_materia)
+);
 
---
--- Volcado de datos para la tabla `persona`
---
+ALTER TABLE materias
+  ADD CONSTRAINT UQ_materias_codigo
+  UNIQUE (codigo_materia);
 
-INSERT INTO `persona` (`id_persona`, `nombres`, `apellidos`, `tipo_documento`, `numero_documento`, `sexo`, `fecha_nacimiento`, `direccion_residencial`, `ciudad_residencial`, `tipo_usuario`, `telefono_residencial`, `telefono_celular`, `correo_electronico`, `estado_cuenta`, `foto_perfil`, `pdf_documento`) VALUES
-(1, 'Emanuel', 'Acevedo Muñoz', 'T.I', 1000306848, 'Hombre', '2003-07-09', 'Carrera 66 # 52 Sur 60', 'Medellín', 'Estudiante', '4187277', '3187604393', 'emanuelacag@gmail.com', 'Inactiva', '', ''),
-(2, 'Santiago', 'Alvarez Muñoz', 'C.C', 3716594082, 'Hombre', '2004-04-08', '1523 Don Skyway', 'Medellín', 'Maestro', '8799187892', '634922274', 'owazazu-1022@yopmail.com', 'Inactiva', '', ''),
-(3, 'Cesar', 'Muela Gamboa', 'C.C', 8799187892, 'Hombre', '1992-07-02', '15724 Konopelski Lock', 'Medellín', 'Maestro', '8406918325', '663692374', 'wihussanill-2074@yopmail.com', 'Inactiva', '', ''),
-(4, 'Concepcion Lavin', 'San Jose', 'T.I', 7301824623, 'Hombre', '2003-02-25', '444 Damon Extensions', 'Medellín', 'Estudiante', '7315996727', '600479671', 'esocullix-6225@yopmail.com', 'Inactiva', '', '');
 
---
--- Índices para tablas volcadas
---
+-- Tabla notas
+CREATE TABLE notas (
+  id_nota int4 NOT NULL DEFAULT NEXTVAL ('notas_seq'),
+  id_materia int4 NOT NULL,
+  id_grupo int4 NOT NULL,
+  id_estudiante int4 NOT NULL,
+  nota float8 NOT NULL,
+  tipo_nota varchar(20) NOT NULL,
+  PRIMARY KEY (id_nota)
+);
 
---
--- Indices de la tabla `directivos`
---
-ALTER TABLE `directivos`
-  ADD PRIMARY KEY (`id_directivo`),
-  ADD KEY `fk_id_persona_directivos-persona` (`id_persona`);
 
---
--- Indices de la tabla `estudiante`
---
-ALTER TABLE `estudiante`
-  ADD PRIMARY KEY (`id_estudiante`),
-  ADD KEY `fk_id_persona_estudiante-persona` (`id_persona`),
-  ADD KEY `fk_id_grupo_estudiante-grupos` (`id_grupo`);
+-- Tabla persona
+CREATE TABLE persona (
+  id_persona int4 NOT NULL DEFAULT NEXTVAL ('persona_seq'),
+  nombres varchar(100) NOT NULL,
+  apellidos varchar(100) NOT NULL,
+  tipo_documento varchar(30) NOT NULL,
+  numero_documento integer NOT NULL,
+  sexo enum_genero NOT NULL,
+  fecha_nacimiento date NOT NULL,
+  direccion_residencial varchar(100) NOT NULL,
+  ciudad_residencial varchar(100) NOT NULL,
+  telefono_residencial varchar(15) NOT NULL,
+  telefono_celular varchar(15) NOT NULL,
+  correo_electronico varchar(30) NOT NULL,
+  estado_cuenta enum_persona_estado_cuenta NOT NULL,
+  foto_perfil text NOT NULL,
+  pdf_documento text NOT NULL,
+  tipo_usuario enum_persona_tipo_usuario NOT NULL,
+  PRIMARY KEY (id_persona)
+);
 
---
--- Indices de la tabla `grupos`
---
-ALTER TABLE `grupos`
-  ADD PRIMARY KEY (`id_grupo`),
-  ADD KEY `fk_director_grupo_grupos-maestro` (`director_grupo`);
+-- Campos unicos en la tabla
 
---
--- Indices de la tabla `maestro`
---
-ALTER TABLE `maestro`
-  ADD PRIMARY KEY (`id_maestro`),
-  ADD KEY `fk_id_persona_maestro-persona` (`id_persona`);
+ALTER TABLE persona
+  ADD CONSTRAINT UQ_persona_documento
+  UNIQUE (numero_documento);
 
---
--- Indices de la tabla `materias`
---
-ALTER TABLE `materias`
-  ADD PRIMARY KEY (`id_materia`),
-  ADD KEY `fk_id_maestro_materias-maestro` (`id_maestro`),
-  ADD KEY `fk_id_grupo_materias-grupos` (`id_grupo`);
+ALTER TABLE persona
+  ADD CONSTRAINT UQ_persona_correo
+  UNIQUE (correo_electronico);
 
---
--- Indices de la tabla `notas`
---
-ALTER TABLE `notas`
-  ADD PRIMARY KEY (`id_nota`),
-  ADD KEY `fk_id_materia_nota-materia` (`id_materia`),
-  ADD KEY `fk_id_grupo_nota-grupos` (`id_grupo`),
-  ADD KEY `fk_id_estudiante_nota-estudiante` (`id_estudiante`);
 
---
--- Indices de la tabla `persona`
---
-ALTER TABLE `persona`
-  ADD PRIMARY KEY (`id_persona`),
-  ADD UNIQUE KEY `correo_electronico` (`correo_electronico`);
 
---
--- AUTO_INCREMENT de las tablas volcadas
---
+-- Llaves foraneas coneccion con otras tablas
 
---
--- AUTO_INCREMENT de la tabla `directivos`
---
-ALTER TABLE `directivos`
-  MODIFY `id_directivo` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
 
---
--- AUTO_INCREMENT de la tabla `estudiante`
---
-ALTER TABLE `estudiante`
-  MODIFY `id_estudiante` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+-- Constraint consolidados
+ALTER TABLE consolidados ADD CONSTRAINT fk_id_estudiante_consolidados_estudiante FOREIGN KEY (id_estudiante) REFERENCES estudiante (id_estudiante) ON DELETE RESTRICT ON UPDATE CASCADE;
+CREATE INDEX fk_id_estudiante_consolidados_estudiante ON consolidados using btree (id_estudiante);
 
---
--- AUTO_INCREMENT de la tabla `grupos`
---
-ALTER TABLE `grupos`
-  MODIFY `id_grupo` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+-- Constraint directivos
+ALTER TABLE directivos ADD CONSTRAINT fk_id_persona_directivos_persona FOREIGN KEY (id_persona) REFERENCES persona (id_persona) ON DELETE RESTRICT ON UPDATE CASCADE;
+CREATE INDEX fk_id_persona_directivos_persona ON directivos using btree (id_persona);
 
---
--- AUTO_INCREMENT de la tabla `maestro`
---
-ALTER TABLE `maestro`
-  MODIFY `id_maestro` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+-- Constraint estudiante
+ALTER TABLE estudiante ADD CONSTRAINT fk_id_persona_estudiante_persona FOREIGN KEY (id_persona) REFERENCES persona (id_persona) ON DELETE RESTRICT ON UPDATE CASCADE;
+CREATE INDEX fk_id_persona_estudiante_persona ON estudiante using btree (id_persona);
 
---
--- AUTO_INCREMENT de la tabla `materias`
---
-ALTER TABLE `materias`
-  MODIFY `id_materia` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+-- Constraint grupos
+ALTER TABLE grupos ADD CONSTRAINT fk_director_id_maestro_grupos_maestros FOREIGN KEY (director_id_maestro) REFERENCES maestros (id_maestro) ON DELETE RESTRICT ON UPDATE CASCADE;
+CREATE INDEX fk_director_id_maestro_grupos_maestros ON grupos using btree (director_id_maestro);
 
---
--- AUTO_INCREMENT de la tabla `notas`
---
-ALTER TABLE `notas`
-  MODIFY `id_nota` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+-- Constraint grupos-estudiantes
+ALTER TABLE grupos_estudiantes
+  ADD CONSTRAINT fk_id_estudiante_grupos_estudiantes_estudiante FOREIGN KEY (id_estudiante) REFERENCES estudiante (id_estudiante) ON DELETE RESTRICT ON UPDATE CASCADE,
+  ADD CONSTRAINT fk_id_grupo_grupos_estudiantes_grupos FOREIGN KEY (id_grupo) REFERENCES grupos (id_grupo) ON DELETE RESTRICT ON UPDATE CASCADE;
+CREATE INDEX fk_id_estudiante_grupos_estudiantes_estudiante ON grupos_estudiantes using btree (id_estudiante);
+CREATE INDEX fk_id_grupo_grupos_estudiantes_grupos ON grupos_estudiantes using btree (id_grupo);
 
---
--- AUTO_INCREMENT de la tabla `persona`
---
-ALTER TABLE `persona`
-  MODIFY `id_persona` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+-- Constraint grupos-materias
+ALTER TABLE grupos_materias
+  ADD CONSTRAINT fk_id_grupos_grupos_materias_grupos FOREIGN KEY (id_grupo) REFERENCES grupos (id_grupo) ON DELETE RESTRICT ON UPDATE CASCADE,
+  ADD CONSTRAINT fk_id_maestro_grupos_materias_maestros FOREIGN KEY (id_maestro) REFERENCES maestros (id_maestro) ON DELETE RESTRICT ON UPDATE CASCADE,
+  ADD CONSTRAINT fk_id_materia_grupos_materias_materias FOREIGN KEY (id_materia) REFERENCES materias (id_materia) ON DELETE RESTRICT ON UPDATE CASCADE;
 
---
--- Restricciones para tablas volcadas
---
+CREATE INDEX fk_id_grupos_grupos_materias_grupos ON grupos_materias using btree (id_grupo);
+CREATE INDEX fk_id_maestro_grupos_materias_maestros ON grupos_materias using btree (id_maestro);
+CREATE INDEX fk_id_materia_grupos_materias_materias ON grupos_materias using btree (id_materia);
 
---
--- Filtros para la tabla `directivos`
---
-ALTER TABLE `directivos`
-  ADD CONSTRAINT `fk_id_persona_directivos-persona` FOREIGN KEY (`id_persona`) REFERENCES `persona` (`id_persona`) ON UPDATE CASCADE;
 
---
--- Filtros para la tabla `estudiante`
---
-ALTER TABLE `estudiante`
-  ADD CONSTRAINT `fk_id_grupo_estudiante-grupos` FOREIGN KEY (`id_grupo`) REFERENCES `grupos` (`id_grupo`) ON UPDATE CASCADE,
-  ADD CONSTRAINT `fk_id_persona_estudiante-persona` FOREIGN KEY (`id_persona`) REFERENCES `persona` (`id_persona`) ON UPDATE CASCADE;
 
---
--- Filtros para la tabla `grupos`
---
-ALTER TABLE `grupos`
-  ADD CONSTRAINT `fk_director_grupo_grupos-maestro` FOREIGN KEY (`director_grupo`) REFERENCES `maestro` (`id_maestro`) ON UPDATE CASCADE;
+-- Constraint maestros
+ALTER TABLE maestros ADD CONSTRAINT fk_id_persona_maestros_persona FOREIGN KEY (id_persona) REFERENCES persona (id_persona) ON DELETE RESTRICT ON UPDATE CASCADE;
+CREATE INDEX fk_id_persona_maestros_persona ON maestros using btree (id_persona);
 
---
--- Filtros para la tabla `maestro`
---
-ALTER TABLE `maestro`
-  ADD CONSTRAINT `fk_id_persona_maestro-persona` FOREIGN KEY (`id_persona`) REFERENCES `persona` (`id_persona`) ON UPDATE CASCADE;
+-- Constraint notas
+ALTER TABLE notas
+  ADD CONSTRAINT fk_id_estudiante_notas_estudiante FOREIGN KEY (id_estudiante) REFERENCES estudiante (id_estudiante) ON DELETE RESTRICT ON UPDATE CASCADE,
+  ADD CONSTRAINT fk_id_grupo_notas_grupos FOREIGN KEY (id_grupo) REFERENCES grupos (id_grupo) ON DELETE RESTRICT ON UPDATE CASCADE,
+  ADD CONSTRAINT fk_id_materia_notas_materias FOREIGN KEY (id_materia) REFERENCES materias (id_materia) ON DELETE RESTRICT ON UPDATE CASCADE;
 
---
--- Filtros para la tabla `materias`
---
-ALTER TABLE `materias`
-  ADD CONSTRAINT `fk_id_grupo_materias-grupos` FOREIGN KEY (`id_grupo`) REFERENCES `grupos` (`id_grupo`) ON UPDATE CASCADE,
-  ADD CONSTRAINT `fk_id_maestro_materias-maestro` FOREIGN KEY (`id_maestro`) REFERENCES `maestro` (`id_maestro`) ON UPDATE CASCADE;
-
---
--- Filtros para la tabla `notas`
---
-ALTER TABLE `notas`
-  ADD CONSTRAINT `fk_id_estudiante_nota-estudiante` FOREIGN KEY (`id_estudiante`) REFERENCES `estudiante` (`id_estudiante`) ON UPDATE CASCADE,
-  ADD CONSTRAINT `fk_id_grupo_nota-grupos` FOREIGN KEY (`id_grupo`) REFERENCES `grupos` (`id_grupo`) ON UPDATE CASCADE,
-  ADD CONSTRAINT `fk_id_materia_nota-materia` FOREIGN KEY (`id_materia`) REFERENCES `materias` (`id_materia`) ON UPDATE CASCADE;
-COMMIT;
-
+CREATE INDEX fk_id_estudiante_notas_estudiante ON notas using btree (id_estudiante);
+CREATE INDEX fk_id_grupo_notas_grupos ON notas using btree (id_grupo);
+CREATE INDEX fk_id_materia_notas_materias ON notas using btree (id_materia);

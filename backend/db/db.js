@@ -1,11 +1,13 @@
 const Pool = require("pg").Pool;
 
 const pool = new Pool({
-    user: process.env.USER,
-    password: process.env.PASSWORD,
-    host: process.env.HOST,
-    port: process.env.DB_PORT,
-    database: process.env.DATABASE
+  user: "emanuel",
+  password: "1000306848",
+  host: "localhost",
+  database: "colegio_geek_db",
+  max: 20,
+  idleTimeoutMillis: 30000,
+  connectionTimeoutMillis: 2000,
 });
 
-module.exports = pool;
+module.exports = { pool };

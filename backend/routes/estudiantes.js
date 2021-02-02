@@ -1,6 +1,6 @@
 const { Router } = require('express'); 
 const estudiantes = Router();
-const pool = require('../db/db');
+const {pool} = require('../db/db');
 
 // Crear un nuevo registro en la tabla estudiantes
 estudiantes.post('/nuevo-estudiante', (req,res)=>{

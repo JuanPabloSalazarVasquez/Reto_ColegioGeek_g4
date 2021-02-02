@@ -1,6 +1,6 @@
 const { Router } = require('express'); 
 const persona = Router();
-const pool = require('../db/db');
+const {pool} = require('../db/db');
 
 // Crear un nuevo registro en la tabla personas
 // Falta configurar como se enviran foto_perfil y pdf_documento

@@ -1,6 +1,41 @@
 const { Router } = require('express'); 
 const grupos_materias = Router();
-const pool = require('./db/db');
+const { pool } = require('../db/db');
+
+
+// Peticion get para traer todos los grupos en los que da clase un profesor respecto al id_maestro
+// Faltan organizar
+// Se hace la consulta a la tabla grupos-materias y se hace un inner join con grupos y grupos-estudiantes
+// /maestros/registrar_notas
+grupos_materias.get("/materias-estudiante", async (req, res) => {
+    let client = await pool.connect();
+    const id_estudiante = req.body;
+    try {
+      const result = await client.query(
+        `SELECT * FROM consolidados WHERE id_estudiante = ${id_estudiante}`,
+        []
+      );
+      if (result) {
+        res.json(result[0]);
+      } else {
+        res.json({});
+      }
+    } catch (error) {
+      console.log(error);
+    } finally {
+    }
+  });
+// Fin peticion get 
+
+
+
+
+
+
+
+
+
+// PETICIONES SEGUNDARIAS
 
 // Crear un nuevo registro en la tabla notas
 grupos_materias.post('/nueva-nota', (req,res)=>{
