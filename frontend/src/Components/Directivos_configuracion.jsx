@@ -4,9 +4,8 @@ import axios from 'axios';
 import "../Styles/Maestros_configuracion.css";
 
 import { withRouter } from "react-router-dom";
-import { Link } from "react-router-dom";
 
-class Maestros_configuracion extends React.Component {
+class DirectivosConfiguracion extends React.Component {
   constructor(props) {
     super(props);
     this.state = {};
@@ -28,10 +27,9 @@ class Maestros_configuracion extends React.Component {
 
   render() {
     console.log(this.state.datos);
-    const estudiantesGrupo = this.state.datos;
+
     return (
       <>
-
         <div className="VerEstuGrupContainer-Maestros_ver_estudiantes_grupos">
           <div className="FiltradoEstudiante-Maestros_ver_estudiantes_grupos">
             <div className="FiltrosREstudiante-Maestros_ver_estudiantes_grupos-Registro">
@@ -147,4 +145,4 @@ class Maestros_configuracion extends React.Component {
   }
 }
 
-export default withRouter(Maestros_configuracion);
+export default withRouter(DirectivosConfiguracion);

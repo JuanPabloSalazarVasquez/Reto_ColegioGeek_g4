@@ -28,10 +28,9 @@ class Maestros_configuracion extends React.Component {
 
   render() {
     console.log(this.state.datos);
-    const estudiantesGrupo = this.state.datos;
+
     return (
       <>
-
         <div className="VerEstuGrupContainer-Maestros_ver_estudiantes_grupos">
           <div className="FiltradoEstudiante-Maestros_ver_estudiantes_grupos">
             <div className="FiltrosREstudiante-Maestros_ver_estudiantes_grupos-Registro">

@@ -124,13 +124,29 @@ class directivos_inicio extends React.Component {
                   </Link>
                   <p className="pIcono">Materias</p>
                 </div>
+
                 <div>
-                  <Link to='/maestros/mi_cuenta'>
-                  <div className="img-direc3-Maestros_inicio CardS-Maestros_inicio">
-                      <img src='https://cdn0.iconfinder.com/data/icons/education-flat-7/128/02_Pen-512.png' alt="Configuraciones" className='icono'/>
+                  <Link
+                    to={{
+                      pathname: "/directivos/mi_cuenta",
+                      state: {
+                        Name: this.props.location.state.Name,
+                        Contraseña: this.props.location.state.Contraseña,
+                        Usuario: this.props.location.state.Usuario,
+                        Edad: this.props.location.state.Edad,
+                        Cargo: this.props.location.state.Cargo,
+                      },
+                    }}
+                  >
+                    <div className="img-direc3-Maestros_inicio CardS-Maestros_inicio">
+                      <img
+                        src="https://cdn0.iconfinder.com/data/icons/education-flat-7/128/02_Pen-512.png"
+                        alt="Configuraciones"
+                        className="icono"
+                      />
                     </div>
                   </Link>
-                  <p className='pIcono'>Configuraciones cuenta</p>
+                  <p className="pIcono">Configuraciones cuenta</p>
                 </div>
               </div>
             </div>

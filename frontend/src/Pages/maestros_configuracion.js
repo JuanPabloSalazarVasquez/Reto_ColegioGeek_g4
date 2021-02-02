@@ -14,7 +14,7 @@ class maestros_configuracion extends React.Component {
   render() {
     return (
       <>
-      <HeaderSistema_Maestros Title = "Configuracion cuenta" pathname = '/maestros' />
+      <HeaderSistema_Maestros Title = "Configuracion de cuenta Maestros" pathname = '/maestros' />
         <Maestros_configuracion />
       </>
     );
