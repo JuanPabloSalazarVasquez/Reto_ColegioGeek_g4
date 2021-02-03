@@ -83,6 +83,10 @@ CREATE TABLE consolidados (
   PRIMARY KEY (id_consolidado)
 );
 
+-- Insert
+INSERT INTO consolidados VALUES (NEXTVAL ('consolidados_seq'), 1, 'https://rickandmortyapi.com/api/character/avatar/1.jpeg');
+
+
 
 -- Tabla directivos
 CREATE TABLE directivos (
@@ -91,6 +95,9 @@ CREATE TABLE directivos (
   cargo_directivo varchar(20) NOT NULL,
   PRIMARY KEY (id_directivo)
 );
+
+-- Insert
+INSERT INTO directivos VALUES (NEXTVAL ('directivos_seq'), 3, '2020001');
 
 
 -- Tabla estudiante
@@ -105,6 +112,12 @@ CREATE TABLE estudiante (
 ALTER TABLE estudiante
   ADD CONSTRAINT UQ_estudiante_codigo
   UNIQUE (codigo_estudiante);
+
+-- Insert
+INSERT INTO estudiante VALUES (NEXTVAL ('estudiante_seq'), 1, '2020001', 'Estudiando');
+INSERT INTO estudiante VALUES (NEXTVAL ('estudiante_seq'), 2, '2020002', 'Estudiando');
+INSERT INTO estudiante VALUES (NEXTVAL ('estudiante_seq'), 4, '2020003', 'Estudiando');
+
 
 
 -- Tabla grupos
@@ -122,6 +135,9 @@ ALTER TABLE grupos
   ADD CONSTRAINT UQ_grupos_codigo
   UNIQUE (codigo_grupo);
 
+-- Insert
+INSERT INTO grupos VALUES (NEXTVAL ('grupos_seq'), 1, '20206001', 'Mañana', '6', '2020');
+
 
 -- Tablagrupos-estudiantes
 CREATE TABLE grupos_estudiantes (
@@ -132,6 +148,12 @@ CREATE TABLE grupos_estudiantes (
   PRIMARY KEY (id_grupo_estudiante)
 );
 
+-- Insert
+INSERT INTO grupos_estudiantes VALUES (NEXTVAL ('grupos_estudiantes_seq'), 1, 1, 'En curso');
+INSERT INTO grupos_estudiantes VALUES (NEXTVAL ('grupos_estudiantes_seq'), 2, 1, 'En curso');
+INSERT INTO grupos_estudiantes VALUES (NEXTVAL ('grupos_estudiantes_seq'), 3, 1, 'En curso');
+
+
 
 -- Tabla grupos-materias
 CREATE TABLE grupos_materias (
@@ -141,6 +163,15 @@ CREATE TABLE grupos_materias (
   id_maestro int4 NOT NULL,
   PRIMARY KEY (id_grupo_materia)
 );
+
+-- Insert
+INSERT INTO grupos_materias VALUES (NEXTVAL ('grupos_materias_seq'), 1, 1, 1);
+INSERT INTO grupos_materias VALUES (NEXTVAL ('grupos_materias_seq'), 2, 1, 2);
+INSERT INTO grupos_materias VALUES (NEXTVAL ('grupos_materias_seq'), 4, 1, 4);
+INSERT INTO grupos_materias VALUES (NEXTVAL ('grupos_materias_seq'), 5, 1, 5);
+INSERT INTO grupos_materias VALUES (NEXTVAL ('grupos_materias_seq'), 6, 1, 9);
+INSERT INTO grupos_materias VALUES (NEXTVAL ('grupos_materias_seq'), 10, 1, 10);
+
 
 
 -- Tabla maestros
@@ -154,6 +185,20 @@ CREATE TABLE maestros (
 ALTER TABLE maestros
   ADD CONSTRAINT UQ_maestros_codigo
   UNIQUE (codigo_maestro);
+
+-- Insert
+INSERT INTO maestros VALUES (NEXTVAL ('maestros_seq'), 5, '2020001');
+INSERT INTO maestros VALUES (NEXTVAL ('maestros_seq'), 6, '2020002');
+INSERT INTO maestros VALUES (NEXTVAL ('maestros_seq'), 7, '2020003');
+INSERT INTO maestros VALUES (NEXTVAL ('maestros_seq'), 8, '2020004');
+INSERT INTO maestros VALUES (NEXTVAL ('maestros_seq'), 9, '2020005');
+INSERT INTO maestros VALUES (NEXTVAL ('maestros_seq'), 10, '2020006');
+INSERT INTO maestros VALUES (NEXTVAL ('maestros_seq'), 11, '2020007');
+INSERT INTO maestros VALUES (NEXTVAL ('maestros_seq'), 12, '2020008');
+INSERT INTO maestros VALUES (NEXTVAL ('maestros_seq'), 13, '2020009');
+INSERT INTO maestros VALUES (NEXTVAL ('maestros_seq'), 14, '2020010');
+
+
 
 
 -- Tabla materias
@@ -174,6 +219,21 @@ ALTER TABLE materias
   ADD CONSTRAINT UQ_materias_codigo
   UNIQUE (codigo_materia);
 
+-- Insert
+INSERT INTO materias VALUES (NEXTVAL ('materias_seq'), 'GEOGRAFÍA', 'SOC001', 'S', 'S', 'S', 'S', 'S', 'S');
+INSERT INTO materias VALUES (NEXTVAL ('materias_seq'), 'HISTORIA', 'SOC002', 'S', 'S', 'S', 'N', 'N', 'N');
+INSERT INTO materias VALUES (NEXTVAL ('materias_seq'), 'FILOSOFÍA', 'SOC003', 'N', 'N', 'N', 'S', 'S', 'S');
+INSERT INTO materias VALUES (NEXTVAL ('materias_seq'), 'ESPAÑOL', 'IDM001', 'S', 'S', 'S', 'S', 'S', 'S');
+INSERT INTO materias VALUES (NEXTVAL ('materias_seq'), 'INGLÉS', 'IDM003', 'S', 'S', 'S', 'S', 'S', 'S');
+INSERT INTO materias VALUES (NEXTVAL ('materias_seq'), 'MATEMÁTICAS', 'MAT001', 'S', 'S', 'N', 'N', 'N', 'N');
+INSERT INTO materias VALUES (NEXTVAL ('materias_seq'), 'GEOMETRÍA', 'MAT002', 'N', 'N', 'S', 'S', 'N', 'N');
+INSERT INTO materias VALUES (NEXTVAL ('materias_seq'), 'TRIGONOMETRÍA', 'MAT003', 'N', 'N', 'N', 'N', 'S', 'S');
+INSERT INTO materias VALUES (NEXTVAL ('materias_seq'), 'FISICA', 'MAT004', 'N', 'N', 'N', 'N', 'S', 'S');
+INSERT INTO materias VALUES (NEXTVAL ('materias_seq'), 'ED. FISICA', 'EDF001', 'S', 'S', 'S', 'S', 'S', 'S');
+
+
+
+
 
 -- Tabla notas
 CREATE TABLE notas (
@@ -186,6 +246,28 @@ CREATE TABLE notas (
   PRIMARY KEY (id_nota)
 );
 
+-- Insert
+INSERT INTO notas VALUES (NEXTVAL ('notas_seq'), 1, 1, 1, 3.7, 'Actitudinal');
+INSERT INTO notas VALUES (NEXTVAL ('notas_seq'), 2, 1, 1, 4.5, 'Actitudinal');
+INSERT INTO notas VALUES (NEXTVAL ('notas_seq'), 4, 1, 1, 3.4, 'Procedimental');
+INSERT INTO notas VALUES (NEXTVAL ('notas_seq'), 5, 1, 1, 5, 'Procedimental');
+INSERT INTO notas VALUES (NEXTVAL ('notas_seq'), 6, 1, 1, 2.3, 'Conceptual');
+INSERT INTO notas VALUES (NEXTVAL ('notas_seq'), 10, 1, 1, 2.9, 'Conceptual');
+INSERT INTO notas VALUES (NEXTVAL ('notas_seq'), 1, 1, 2, 3.5, 'Procedimental');
+INSERT INTO notas VALUES (NEXTVAL ('notas_seq'), 2, 1, 2, 2.1, 'Procedimental');
+INSERT INTO notas VALUES (NEXTVAL ('notas_seq'), 4, 1, 2, 4.5, 'Actitudinal');
+INSERT INTO notas VALUES (NEXTVAL ('notas_seq'), 5, 1, 2, 3.9, 'Actitudinal');
+INSERT INTO notas VALUES (NEXTVAL ('notas_seq'), 6, 1, 2, 1.3, 'Procedimental');
+INSERT INTO notas VALUES (NEXTVAL ('notas_seq'), 10, 1, 2, 3.2, 'Procedimental');
+INSERT INTO notas VALUES (NEXTVAL ('notas_seq'), 1, 1, 3, 4.5, 'Actitudinal');
+INSERT INTO notas VALUES (NEXTVAL ('notas_seq'), 2, 1, 3, 3.2, 'Procedimental');
+INSERT INTO notas VALUES (NEXTVAL ('notas_seq'), 4, 1, 3, 3.7, 'Conceptual');
+INSERT INTO notas VALUES (NEXTVAL ('notas_seq'), 5, 1, 3, 1, 'Conceptual');
+INSERT INTO notas VALUES (NEXTVAL ('notas_seq'), 6, 1, 3, 2.7, 'Procedimental');
+INSERT INTO notas VALUES (NEXTVAL ('notas_seq'), 10, 1, 3, 4.5, 'Conceptual');
+
+
+
 
 -- Tabla persona
 CREATE TABLE persona (
@@ -193,7 +275,7 @@ CREATE TABLE persona (
   nombres varchar(100) NOT NULL,
   apellidos varchar(100) NOT NULL,
   tipo_documento varchar(30) NOT NULL,
-  numero_documento integer NOT NULL,
+  numero_documento varchar(20) NOT NULL,
   sexo enum_genero NOT NULL,
   fecha_nacimiento date NOT NULL,
   direccion_residencial varchar(100) NOT NULL,
@@ -217,6 +299,23 @@ ALTER TABLE persona
 ALTER TABLE persona
   ADD CONSTRAINT UQ_persona_correo
   UNIQUE (correo_electronico);
+
+
+-- Insert
+INSERT INTO persona VALUES (NEXTVAL ('persona_seq'), 'Miguel Angel', 'Milan Justo', 'Tarjeta de identidad', '6782377707', 'Hombre', '2003-02-25', '19302 McGlynn Mill', 'Medellín', '7726499731', '672090393', 'ifivesom-9896@yopmail.com', 'Activa', 'https://rickandmortyapi.com/api/character/avatar/1.jpeg', 'https://rickandmortyapi.com/api/character/avatar/1.jpeg', 'Estudiante');
+INSERT INTO persona VALUES (NEXTVAL ('persona_seq'), 'Carla', 'Monreal Rodas', 'Tarjeta de identidad', '7516886105', 'Mujer', '2000-04-15', '2762 Beer Mills', 'Medellín', '8674082463', '8322509130', 'zimuviha-9501@yopmail.com', 'Activa', 'https://rickandmortyapi.com/api/character/avatar/2.jpeg', 'https://rickandmortyapi.com/api/character/avatar/2.jpeg', 'Estudiante');
+INSERT INTO persona VALUES (NEXTVAL ('persona_seq'), 'Ismael', 'Plaza Antunez', 'Cédula', '8676999420', 'Hombre', '1980-08-15', '6166 Adrienne Branch', 'Medellín', '6114480436', '818563363', 'hazohesatt-4725@yopmail.com', 'Activa', 'https://rickandmortyapi.com/api/character/avatar/5.jpeg', 'https://rickandmortyapi.com/api/character/avatar/5.jpeg', 'Directivo');
+INSERT INTO persona VALUES (NEXTVAL ('persona_seq'), 'Maria Antonia', 'Paris Fonseca', 'Tarjeta de identidad', '7827713443', 'Mujer', '2001-06-07', '0428 Anne Course', 'Medellín', '7514593230', '7586887020', 'azeddehe-3130@yopmail.com', 'Activa', 'https://rickandmortyapi.com/api/character/avatar/4.jpeg', 'https://rickandmortyapi.com/api/character/avatar/4.jpeg', 'Estudiante');
+INSERT INTO persona VALUES (NEXTVAL ('persona_seq'), 'Fabio', 'Leon Restrepo', 'Cédula', '7341368261', 'Hombre', '1990-02-28', '331 Koss Way Apt. 201', 'Medellín', '7885536423', '6890053925', 'sappyrennimm-3416@yopmail.com', 'Activa', 'https://rickandmortyapi.com/api/character/avatar/1.jpeg', 'https://rickandmortyapi.com/api/character/avatar/1.jpeg', 'Maestro');
+INSERT INTO persona VALUES (NEXTVAL ('persona_seq'), 'Jaime', 'Alberto Giraldo', 'Cédula', '7826319142', 'Hombre', '1985-09-20', '4740 Kreiger Trace Apt. 283', 'Medellín', '7567476522', '8494740409', 'sappyrennimm@yopmail.com', 'Activa', 'https://rickandmortyapi.com/api/character/avatar/1.jpeg', 'https://rickandmortyapi.com/api/character/avatar/1.jpeg', 'Maestro');
+INSERT INTO persona VALUES (NEXTVAL ('persona_seq'), 'Adriana', 'Maria Zuluaga', 'Cédula', '8222387486', 'Mujer', '1982-12-02', '93389 Crona Extension Suite 241', 'Medellín', '6614059051', '8646368817', 'egepuffak-4221@yopmail.com', 'Activa', 'https://rickandmortyapi.com/api/character/avatar/3.jpeg', 'https://rickandmortyapi.com/api/character/avatar/3.jpeg', 'Maestro');
+INSERT INTO persona VALUES (NEXTVAL ('persona_seq'), 'Fabiola', 'Ramirez', 'Cédula', '8934157706', 'Mujer', '1980-02-20', '757 Wolff Causeway Suite 354', 'Medellín', '7403498447', '6980401935', 'afazossod-2011@yopmail.com', 'Activa', 'https://rickandmortyapi.com/api/character/avatar/3.jpeg', 'https://rickandmortyapi.com/api/character/avatar/3.jpeg', 'Maestro');
+INSERT INTO persona VALUES (NEXTVAL ('persona_seq'), 'Maria', 'Dolores Smith', 'Cédula', '6222327989', 'Mujer', '1995-08-15', '42874 Kuhlman Greens Apt. 334', 'Medellín', '7452264309', '8314393507', 'pebekaza-8263@yopmail.com', 'Activa', 'https://rickandmortyapi.com/api/character/avatar/3.jpeg', 'https://rickandmortyapi.com/api/character/avatar/3.jpeg', 'Maestro');
+INSERT INTO persona VALUES (NEXTVAL ('persona_seq'), 'Alberto', 'Cañas', 'Cédula', '6844565792', 'Hombre', '1979-12-02', '63585 Klocko Burg Apt. 368', 'Medellín', '6173991840', '7395966699', 'hocaleppuh-3083@yopmail.com', 'Activa', 'https://rickandmortyapi.com/api/character/avatar/2.jpeg', 'https://rickandmortyapi.com/api/character/avatar/2.jpeg', 'Maestro');
+INSERT INTO persona VALUES (NEXTVAL ('persona_seq'), 'Alexander', 'Restrepo', 'Cédula', '7425690638', 'Hombre', '1992-02-01', '54814 Oberbrunner Springs Apt. 648', 'Medellín', '7732861419', '8679230225', 'maxiffine-1844@yopmail.com', 'Activa', 'https://rickandmortyapi.com/api/character/avatar/2.jpeg', 'https://rickandmortyapi.com/api/character/avatar/2.jpeg', 'Maestro');
+INSERT INTO persona VALUES (NEXTVAL ('persona_seq'), 'Aurora', 'Martinez', 'Cédula', '7726464574', 'Mujer', '1985-10-12', '2705 Jodie Fields Suite 253', 'Medellín', '8395164326', '6293154604', 'tattadegov-4600@yopmail.com', 'Activa', 'https://rickandmortyapi.com/api/character/avatar/4.jpeg', 'https://rickandmortyapi.com/api/character/avatar/4.jpeg', 'Maestro');
+INSERT INTO persona VALUES (NEXTVAL ('persona_seq'), 'Guillermo Alberto ', 'Marín', 'Cédula', '8219354794', 'Hombre', '1980-08-15', '58197 Conn Junctions Apt. 316', 'Medellín', '8223499382', '8860139891', 'kehehalemo-9833@yopmail.com', 'Activa', 'https://rickandmortyapi.com/api/character/avatar/2.jpeg', 'https://rickandmortyapi.com/api/character/avatar/2.jpeg', 'Maestro');
+INSERT INTO persona VALUES (NEXTVAL ('persona_seq'), 'Fabio', 'Ramirez Castaño', 'Cédula', '8516745348', 'Hombre', '1994-12-20', '597 Reynolds Junction Apt. 080', 'Medellín', '8832511255', '8463660588', 'philopatr@rtfn.site', 'Activa', 'https://rickandmortyapi.com/api/character/avatar/1.jpeg', 'https://rickandmortyapi.com/api/character/avatar/1.jpeg', 'Maestro');
 
 
 

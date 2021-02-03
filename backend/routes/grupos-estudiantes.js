@@ -4,19 +4,22 @@ const { pool } = require('../db/db');
 
 
 // Peticion get para traer todos lo grupos cursados de un estudiante segun el estado y el id_estudiante
-// Faltan organizar
 // /estudiantes/grupo_cursados
 // Esta peticion necesita id_estudiante
-grupos_estudiantes.get("/materias-estudiante", async (req, res) => {
+// Esta peticion funciona
+grupos_estudiantes.get("/grupos-cursados", async (req, res) => {
     let client = await pool.connect();
-    const id_estudiante = req.body;
+    const { id_estudiante } = req.body;
     try {
       const result = await client.query(
-        `SELECT * FROM consolidados WHERE id_estudiante = ${id_estudiante}`,
+        `SELECT codigo_grupo, grado_grupo, director_id_maestro, year_grupo
+        FROM grupos_estudiantes
+        INNER JOIN grupos 
+        ON grupos_estudiantes.id_grupo = grupos.id_grupo AND id_estudiante = ${id_estudiante} AND estado = 'Aprobado' OR estado = 'Reprobado';`,
         []
       );
-      if (result) {
-        res.json(result[0]);
+      if (result.rows) {
+        res.json(result.rows);
       } else {
         res.json({});
       }
@@ -30,17 +33,22 @@ grupos_estudiantes.get("/materias-estudiante", async (req, res) => {
 
 // Peticion get para traer todos lo estudiantes que hacen parte de un grupo
 // /maestros/registrar_notas/grupo_estudiantes
-// Faltan organizar
-grupos_estudiantes.get("/materias-estudiante", async (req, res) => {
+// Esta peticion necesita id_grupo
+// Esta peticion funciona
+grupos_estudiantes.get("/estudiantes-grupo-notas", async (req, res) => {
     let client = await pool.connect();
-    const id_estudiante = req.body;
+    const { id_grupo } = req.body;
     try {
       const result = await client.query(
-        `SELECT * FROM consolidados WHERE id_estudiante = ${id_estudiante}`,
-        []
+        `SELECT codigo_estudiante, nombres, apellidos
+        FROM grupos_estudiantes
+        INNER JOIN estudiante
+        ON grupos_estudiantes.id_estudiante = estudiante.id_estudiante AND id_grupo = ${id_grupo} AND estado = 'En curso'
+        INNER JOIN persona
+        ON estudiante.id_persona = persona.id_persona;`
       );
-      if (result) {
-        res.json(result[0]);
+      if (result.rows) {
+        res.json(result.rows);
       } else {
         res.json({});
       }
@@ -54,18 +62,23 @@ grupos_estudiantes.get("/materias-estudiante", async (req, res) => {
 
 // Peticion get para traer todos los estudiantes que hacen parte de un grupo
 // /directivos/grupos_VerEstudiantes
-// Faltan organizar
 // Esta peticion requiere de id_grupo
-grupos_estudiantes.get("/materias-estudiante", async (req, res) => {
+// Esta peticion funciona
+grupos_estudiantes.get("/estudiantes-ver-grupos-directivos", async (req, res) => {
     let client = await pool.connect();
-    const id_estudiante = req.body;
+    const { id_grupo } = req.body;
     try {
       const result = await client.query(
-        `SELECT * FROM consolidados WHERE id_estudiante = ${id_estudiante}`,
+        `SELECT codigo_estudiante, nombres, apellidos
+        FROM grupos_estudiantes
+        INNER JOIN estudiante
+        ON grupos_estudiantes.id_estudiante = estudiante.id_estudiante AND id_grupo = ${id_grupo} AND estado = 'En curso'
+        INNER JOIN persona
+        ON estudiante.id_persona = persona.id_persona;`,
         []
       );
-      if (result) {
-        res.json(result[0]);
+      if (result.rows) {
+        res.json(result.rows);
       } else {
         res.json({});
       }
@@ -79,45 +92,6 @@ grupos_estudiantes.get("/materias-estudiante", async (req, res) => {
 
 
 
-
-
-
-
-
-
-
-
-
-// PETICIONES SEGUNDARIAS
-
-// Crear un nuevo registro en la tabla notas
-grupos_estudiantes.post('/nueva-nota', (req,res)=>{
-    const { id_materia,id_grupo,id_estudiante,nota,tipo_nota } = req.body;
-    const notas = [ id_materia,id_grupo,id_estudiante,nota,tipo_nota ];
-
-    const nuevaNotas = `INSERT INTO notas(id_materia,id_grupo,id_estudiante,nota,tipo_nota) VALUES (?,?,?,?,?)`;
-
-    pool.query(nuevaNotas, notas, (err, results, fields)=>{
-        if(err){
-            return console.error(err.message);
-        }else{
-            res.json({message: `se creo una nueva nota`});
-        }
-    });
-});
-// Fin crear un nuevo registro en la tabla notas
-
-// Consultar todas la notas de la tabla notas
-grupos_estudiantes.get('/all-notas', (req,res)=>{
-    pool.query('SELECT * FROM notas', (err, rows, fields)=>{
-        if(!err){
-            res.json(rows);
-        }else{
-            console.log(err);
-        }
-    });
-});
-// Fin consultar todas la notas de la tabla notas
 
 
 module.exports = grupos_estudiantes;
