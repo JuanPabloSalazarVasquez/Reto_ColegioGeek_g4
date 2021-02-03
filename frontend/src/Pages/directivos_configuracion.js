@@ -1,6 +1,6 @@
 import React from "react";
 
-import Directivos_configuracion from "../Components/Directivos_configuracion";
+import Directivos_configuracion from "../Components/directivos";
 import HeaderSistema from '../Components/HeaderSistema';
 
 import { withRouter } from "react-router-dom";

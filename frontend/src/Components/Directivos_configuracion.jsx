@@ -2,8 +2,28 @@ import React from "react";
 import axios from 'axios';
 
 import "../Styles/Maestros_configuracion.css";
+import "../sass/Directivos.scss";
 
 import { withRouter } from "react-router-dom";
+
+import { makeStyles } from '@material-ui/core/styles';
+import Paper from '@material-ui/core/Paper';
+import Grid from '@material-ui/core/Grid';
+import Avatar from '@material-ui/core/Avatar';
+import FormControlLabel from '@material-ui/core/FormControlLabel';
+import Typography from '@material-ui/core/Typography';
+import Container from '@material-ui/core/Container';
+
+const useStyles = makeStyles((theme) => ({
+  root: {
+    flexGrow: 1,
+  },
+  paper: {
+    padding: theme.spacing(2),
+    textAlign: 'center',
+    color: theme.palette.text.secondary,
+  }
+}));
 
 class DirectivosConfiguracion extends React.Component {
   constructor(props) {
@@ -140,6 +160,13 @@ class DirectivosConfiguracion extends React.Component {
             </div>
           </div>
         </div>
+
+        {/* Formulario datos personales */}
+        <Container component="main" maxWidth="sm">
+          <Typography component="h1" variant="h5">
+            Sign up
+        </Typography>
+        </Container>
       </>
     );
   }
