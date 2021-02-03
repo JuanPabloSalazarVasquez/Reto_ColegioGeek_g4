@@ -33,31 +33,10 @@ estudiantes.get("/directivos-all-estudiantes", async (req, res) => {
 
 
 // PETICIONES PARA CREAR UN NUEVO ESTUDIANTE
-// Peticion post para crear un nuevo estudiante
 
-// Fin peticion post crear estudiante
-// /Directivos/Registro_Estudiantes
-estudiantes.post('/directivos-nuevo-estudiante', async(req,res)=>{
-    let client = await pool.connect();
-  const {
-    id_persona,
-    codigo_estudiante,
-    estado_estudiante
-  } = req.body
-  try {
-      const result = await client.query(`INSERT INTO estudiante VALUES (NEXTVAL ('estudiante_seq'), ${id_persona}, '${codigo_estudiante}', '${estado_estudiante}');`)
-      if (result) {
-        res.json({message: 'Se creo un nuevo estudiante.'});
-      } else {
-        res.json({message: 'No se creo un nuevo estudiante.'});
-      }
-  } catch (e) {
-      res.status(500).json({ errorCode: e.errno, message: "Error en el servidor" })
-  }
-});
-
-// Peticion post para crear un registro en la tabla de personas\
+// Peticion post para crear un registro en la tabla de personas y ala vez en la tabla de estudiantes
 /// Directivos/Registro_Estudiantes
+// Esta peticion funciona
 estudiantes.post('/directivos-nuevo-estudiante-persona', async(req,res)=>{
     let client = await pool.connect();
   const {
@@ -75,20 +54,28 @@ estudiantes.post('/directivos-nuevo-estudiante-persona', async(req,res)=>{
     estado_cuenta,
     foto_perfil,
     pdf_documento,
-    tipo_usuario
-  } = req.body
+    tipo_usuario,
+    codigo_estudiante,
+    estado_estudiante
+  } = req.body;
   try {
-      const result = await client.query(`INSERT INTO persona VALUES (NEXTVAL ('persona_seq'), 'Miguel Angel', 'Milan Justo', 'Tarjeta de identidad', '6782377707', 'Hombre', '2003-02-25', '19302 McGlynn Mill', 'Medellín', '7726499731', '672090393', 'ifivesom-9896@yopmail.com', 'Activa', 'https://rickandmortyapi.com/api/character/avatar/1.jpeg', 'https://rickandmortyapi.com/api/character/avatar/1.jpeg', 'Estudiante');`)
-      if (result) {
-        res.json({message: 'Se creo una nueva persona.'});
+      const result = await client.query(`INSERT INTO persona VALUES (NEXTVAL ('persona_seq'), '${nombres}', '${apellidos}', '${tipo_documento}', '${numero_documento}', '${sexo}', '${fecha_nacimiento}', '${direccion_residencial}', '${ciudad_residencial}', '${telefono_residencial}', '${telefono_celular}', '${correo_electronico}', '${estado_cuenta}', '${foto_perfil}', '${pdf_documento}', '${tipo_usuario}') RETURNING id_persona;`)
+      if (result.rows) {
+          console.log(result.rows[0].id_persona);
+       const result2 = await client.query(`INSERT INTO estudiante VALUES (NEXTVAL ('estudiante_seq'), ${result.rows[0].id_persona}, '${codigo_estudiante}', '${estado_estudiante}');`);
+       if(result2){
+           res.json({message: 'Se creo un nuevo estudiante.'});
+       }else{
+           res.json({message: "No se ha creado un nuevo estudiante."});
+       }
       } else {
-        res.json({message: 'No se creo una nueva persona '});
+        res.json({message: 'No se creo una nueva persona'});
       }
   } catch (e) {
       res.status(500).json({ errorCode: e.errno, message: "Error en el servidor" })
   }
 });
-// Fin peticion post para crear una nueva persona
+// Fin peticion post para crear una nueva persona y estudiante
 
 // FIN PETICIONES PARA CREAR UN NUEVO ESTUDIANTE
 
