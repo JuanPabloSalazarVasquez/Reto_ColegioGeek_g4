@@ -2,6 +2,9 @@ const { Router } = require("express");
 const grupos_materias = Router();
 const { pool } = require("../db/db");
 
+
+// MAESTROS
+
 // Peticion get para traer todos los grupos en los que da clase un profesor respecto al id_maestro
 // Se hace la consulta a la tabla grupos-materias y se hace un inner join con grupos y grupos-estudiantes
 // /maestros/registrar_notas
@@ -32,5 +35,7 @@ grupos_materias.get("/grupos-clase-maestro", async (req, res) => {
   }
 });
 // Fin peticion get
+
+// FIN MAESTROS
 
 module.exports = grupos_materias;

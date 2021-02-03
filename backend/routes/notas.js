@@ -3,6 +3,8 @@ const notas = Router();
 const { pool } = require("../db/db");
 
 
+// ESTUDIANTES
+
 // Peticion get para traer todas las materias en las que se encuentra registrado un estudiante
 // /estudiantes/mis_notas
 // Esta peticion necesita el id_estudiante
@@ -12,7 +14,7 @@ notas.get("/materias-estudiante", async (req, res) => {
   const { id_estudiante } = req.body;
   try {
     const result = await client.query(
-      `SELECT codigo_materia,nombre_materia,grado_grupo, nombres, apellidos
+      `SELECT materias.id_materia, codigo_materia,nombre_materia,grado_grupo, nombres, apellidos
       FROM notas
       INNER JOIN materias 
       ON notas.id_materia = materias.id_materia AND notas.id_estudiante = ${id_estudiante}
@@ -37,6 +39,42 @@ notas.get("/materias-estudiante", async (req, res) => {
 });
 // Fin peticion get
 
+// Peticion get para traer todas las notas de un estudiante respecto a una materia y un id_estudiante
+// /maestros/registrar_notas/grupo_estudiantes/agregar_nota
+// /estudiantes/mis_notas/ver_notas
+// Esta peticion funciona
+notas.get("/estudiante-ver-notas-materia-estudiante", async (req, res) => {
+  let client = await pool.connect();
+  const {
+    id_estudiante,
+    id_materia
+  } = req.body;
+  try {
+    const result = await client.query(
+      `SELECT codigo_estudiante, nombres, apellidos, tipo_nota, nota
+      FROM notas 
+      INNER JOIN estudiante 
+      ON notas.id_estudiante = estudiante.id_estudiante AND notas.id_materia = ${id_materia} AND notas.id_estudiante = ${id_estudiante}
+      INNER JOIN persona
+      ON estudiante.id_persona = persona.id_persona;`,
+      []
+    );
+    if (result.rows) {
+      res.json(result.rows);
+    } else {
+      res.json({});
+    }
+  } catch (error) {
+    console.log(error);
+  } finally {
+  }
+});
+// Fin peticion get
+
+// FIN ESTUDIANTES
+
+
+// MAESTROS
 
 // Peticion get para traer todas las notas de un estudiante respecto a una materia y un id_estudiante
 // /maestros/registrar_notas/grupo_estudiantes/agregar_nota
@@ -98,7 +136,7 @@ notas.post("/nueva-nota-estudiante", async(req, res) => {
 });
 // Fin peticion post
 
-
+// FIN MAESTROS
 
 
 
