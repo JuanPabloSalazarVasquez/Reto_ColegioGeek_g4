@@ -10,6 +10,9 @@ class Maestros_Registrar_Nota_Estudiante extends React.Component {
     super(props);
     this.state = {
       datos: [],
+      from: {
+        
+      }
     };
   }
 
@@ -19,7 +22,7 @@ class Maestros_Registrar_Nota_Estudiante extends React.Component {
     delete this.state.form.ConfirmarCorreo;
     await axios
       .post(
-        "http://localhost:4020/api/nuevo-trabajador/registro",
+        "",
         this.state.form
       )
       .then((response) => {
