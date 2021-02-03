@@ -110,30 +110,29 @@ notas.get("/notas-materia-estudiante", async (req, res) => {
 
 
 // Peticion post para crear una nueva nota en la tabla de notas
-// Falta comprobar
 // /maestros/registrar_notas/grupo_estudiantes/agregar_nota
 // El post se hace respecto a id_estudiante, id_materia y id_grupo
-notas.post("/nueva-nota-estudiante", async(req, res) => {
+// Esta peticion funciona
+notas.post('/nueva-nota-estudiante', async (req, res) => {
   let client = await pool.connect();
-  const { 
-  id_materia,
-  id_grupo,
-  id_estudiante,
-  nota,
-  tipo_nota
-} = req.body;
-  const notas = [id_materia, id_grupo, id_estudiante, nota, tipo_nota];
-
-  const nuevaNotas = `INSERT INTO notas VALUES (NEXTVAL ('notas_seq'), ${id_materia}, ${id_grupo}, ${id_estudiante}, ${nota}, ${tipo_nota})`;
-
-  await client.query(nuevaNotas, notas, (err, results, fields) => {
-    if (err) {
-      return console.error(err.message);
-    } else {
-      res.json({ message: `se creo una nueva nota` });
-    }
-  });
-});
+  const {
+    id_materia,
+    id_grupo,
+    id_estudiante,
+    nota,
+    tipo_nota
+  } = req.body
+  try {
+      const result = await client.query(`INSERT INTO notas VALUES (NEXTVAL ('notas_seq'), ${id_materia}, ${id_grupo}, ${id_estudiante}, ${nota}, '${tipo_nota}');`)
+      if (result) {
+        res.json({message: 'Se creo una nueva nota.'});
+      } else {
+        res.json({message: 'No se creo una nueva nota.'});
+      }
+  } catch (e) {
+      res.status(500).json({ errorCode: e.errno, message: "Error en el servidor" })
+  }
+})
 // Fin peticion post
 
 // FIN MAESTROS

@@ -166,7 +166,7 @@ grupos_estudiantes.get("/maestros-ver-estudiantes-grupo", async (req, res) => {
 // /directivos/grupos_VerEstudiantes
 // Esta peticion requiere de id_grupo
 // Esta peticion funciona
-grupos_estudiantes.get("/estudiantes-ver-grupos-directivos", async (req, res) => {
+grupos_estudiantes.get("/estudiantes-ver-grupos-estudiantes-directivos", async (req, res) => {
     let client = await pool.connect();
     const { id_grupo } = req.body;
     try {

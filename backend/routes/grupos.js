@@ -3,44 +3,63 @@ const grupos = Router();
 const { pool } = require('../db/db');
 
 
-// Peticion post para crear un nuevo grupo
+// Peticion post para crear un nuevo grupo en la parte de directivos
 // /Directivos/Registro_Grupos
-// Falta comprobar
-grupos.post('/nuevo-grupo', (req,res)=>{
-    const { director_id_maestro,codigo_grupo,jornada_grupo,grado_grupo,year_grupo } = req.body;
-    const grupo = [ director_id_maestro,codigo_grupo,jornada_grupo,grado_grupo,year_grupo ];
-
-    const nuevoGrupo = `INSERT INTO grupos VALUES (NEXTVAL ('grupos_seq'), ${director_id_maestro}, ${codigo_grupo}, ${jornada_grupo}, ${grado_grupo}, ${year_grupo});`;
-
-    pool.query(nuevoGrupo, grupo, (err, results, fields)=>{
-        if(err){
-            return console.error(err.message);
-        }else{
-            res.json({message: `se creo una nuevo grupo`});
-        }
-    });
+// Esta peticion se realiza a la tabla de grupos para crear un nuevo grupo
+// Esta peticion funciona
+grupos.post('/directivos-nuevo-grupo', async(req,res)=>{
+    let client = await pool.connect();
+  const {
+    director_id_maestro,
+    codigo_grupo,
+    joranada_grupo,
+    grado_grupo,
+    year_grupo
+  } = req.body
+  try {
+      const result = await client.query(`INSERT INTO grupos VALUES (NEXTVAL ('grupos_seq'), ${director_id_maestro}, '${codigo_grupo}', '${joranada_grupo}', '${grado_grupo}', '${year_grupo}');`)
+      if (result) {
+        res.json({message: 'Se creo un nuevo grupo.'});
+      } else {
+        res.json({message: 'No se creo un nuevo grupo.'});
+      }
+  } catch (e) {
+      res.status(500).json({ errorCode: e.errno, message: "Error en el servidor" })
+  }
 });
 // Fin post
 
 
 // Peticion get para mostrar todos los grupos y la cantidad de estudiantes por cada uno
 // /Directivos/Registro_Grupos
-// Falta organizar
 // Esta peticion se realiza a la tabla de grupos-estudiantes y se cuentan los estudiantes por cada grupo
 // trayendo, ademas, los datos de cada grupo
-grupos.put('/grupo/:id_grupo', (req,res)=>{
-    const {director_grupo,jornada_grupo,grado_grupo,year_grupo,estado } = req.body;
-    const {id_grupo} =req.params;
-
-    pool.query('UPDATE grupo SET director_grupo=?,jornada_grupo=?,grado_grupo=?,year_grupo=?,estado=? WHERE id_grupo=?',
-    [director_grupo,jornada_grupo,grado_grupo,year_grupo,estado,id_grupo], (err, rows, fields)=>{
-        if(!err){
-            res.json(rows);
-        }else{
-            console.log(err);
-        }
-    });
-});
+// Esta peticion funciona
+grupos.get("/directivos-ver-grupos", async (req, res) => {
+    let client = await pool.connect();
+    try {
+      const result = await client.query(
+        `SELECT grupos.id_grupo, estado, codigo_grupo, grado_grupo, director_id_maestro, nombres, apellidos , COUNT(grupos.id_grupo) AS cantidad_estudiantes
+        FROM grupos
+        INNER JOIN maestros
+        ON grupos.director_id_maestro = maestros.id_maestro
+        INNER JOIN persona
+        ON maestros.id_persona = persona.id_persona
+        INNER JOIN grupos_estudiantes
+        ON grupos_estudiantes.id_grupo = grupos.id_grupo AND grupos_estudiantes.estado = 'En curso'
+        GROUP BY grupos.id_grupo, estado, codigo_grupo, grado_grupo, director_id_maestro, nombres, apellidos
+        ;`
+      );
+      if (result.rows) {
+        res.json(result.rows);
+      } else {
+        res.json({});
+      }
+    } catch (error) {
+      console.log(error);
+    } finally {
+    }
+  });
 // Fin get
 
 
