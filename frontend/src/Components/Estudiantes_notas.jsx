@@ -28,6 +28,42 @@ componentDidMount(){
     console.log(err.massage)
   })
 }
+
+componentDidMount(){
+  axios.get(``, { id_estudiante: this.state.id_estudiante, codigo_materia: this.state.codigo_materia})
+    .then(res =>{
+      console.log(res.data)
+      this.setState({
+        datos: res.data
+      })
+  }).catch(err=>{
+    console.log(err.massage)
+  })
+} //Filtro por codigo de materia
+
+componentDidMount(){
+  axios.get(``, { id_estudiante: this.state.id_estudiante, grado: this.state.grado})
+    .then(res =>{
+      console.log(res.data)
+      this.setState({
+        datos: res.data
+      })
+  }).catch(err=>{
+    console.log(err.massage)
+  })
+} //Filtro por grado
+
+componentDidMount(){
+  axios.get(``, { id_estudiante: this.state.id_estudiante, profesor: this.state.profesor})
+    .then(res =>{
+      console.log(res.data)
+      this.setState({
+        datos: res.data
+      })
+  }).catch(err=>{
+    console.log(err.massage)
+  })
+} //Filtro por profesor
 // Fin peticion get
 
 Ingresar = () => {

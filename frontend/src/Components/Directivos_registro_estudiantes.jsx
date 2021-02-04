@@ -1,4 +1,5 @@
 import React from 'react';
+import axios from 'axios';
 
 import '../Styles/RegistroEstudiantes.css';
 
@@ -42,50 +43,50 @@ class Directivos_registro_estudiantes extends React.Component {
             TipoD: document.getElementById("TipoDI").value,
             Name: document.getElementById("NombreIn").value,
             Apellido: document.getElementById("ApellidoIn").value,
-            Grado: document.getElementById("GradoIn").value, 
+            Grado: document.getElementById("GradoIn").value,
             Grupo: document.getElementById("GrupoIn").value,/*Clave foranea con código de grupo*/
             Matricula: AñoY + "" + (LengES.padStart(3, 0)),
             Año: AñoD + "/" + AñoM + "/" + AñoY
         });
-        
-        if(GrupoVar== "Sexto"){
-            for(let i = 0; i < Grupos[0].length; i++){
-                if(document.getElementById("GrupoIn").value == Grupos[0][i].CodGrupo){
+
+        if (GrupoVar == "Sexto") {
+            for (let i = 0; i < Grupos[0].length; i++) {
+                if (document.getElementById("GrupoIn").value == Grupos[0][i].CodGrupo) {
                     console.log("Entraste");
                     Grupos[0][i].CEstudiantes = Grupos[0][i].CEstudiantes + 1;
                 }
             }
-        } else if(GrupoVar== "Septimo"){
-            for(let i = 0; i < Grupos[1].length; i++){
-                if(document.getElementById("GrupoIn").value == Grupos[1][i].CodGrupo){
+        } else if (GrupoVar == "Septimo") {
+            for (let i = 0; i < Grupos[1].length; i++) {
+                if (document.getElementById("GrupoIn").value == Grupos[1][i].CodGrupo) {
                     console.log("Entraste");
                     Grupos[1][i].CEstudiantes = Grupos[1][i].CEstudiantes + 1;
                 }
             }
-        } else if(GrupoVar== "Octavo"){
-            for(let i = 0; i < Grupos[2].length; i++){
-                if(document.getElementById("GrupoIn").value == Grupos[2][i].CodGrupo){
+        } else if (GrupoVar == "Octavo") {
+            for (let i = 0; i < Grupos[2].length; i++) {
+                if (document.getElementById("GrupoIn").value == Grupos[2][i].CodGrupo) {
                     console.log("Entraste");
                     Grupos[2][i].CEstudiantes = Grupos[2][i].CEstudiantes + 1;
                 }
             }
-        }else if(GrupoVar== "Noveno"){
-            for(let i = 0; i < Grupos[3].length; i++){
-                if(document.getElementById("GrupoIn").value == Grupos[3][i].CodGrupo){
+        } else if (GrupoVar == "Noveno") {
+            for (let i = 0; i < Grupos[3].length; i++) {
+                if (document.getElementById("GrupoIn").value == Grupos[3][i].CodGrupo) {
                     console.log("Entraste");
                     Grupos[3][i].CEstudiantes = Grupos[3][i].CEstudiantes + 1;
                 }
             }
-        }else if(GrupoVar== "Decimo"){
-            for(let i = 0; i < Grupos[4].length; i++){
-                if(document.getElementById("GrupoIn").value == Grupos[4][i].CodGrupo){
+        } else if (GrupoVar == "Decimo") {
+            for (let i = 0; i < Grupos[4].length; i++) {
+                if (document.getElementById("GrupoIn").value == Grupos[4][i].CodGrupo) {
                     console.log("Entraste");
                     Grupos[4][i].CEstudiantes = Grupos[4][i].CEstudiantes + 1;
                 }
             }
-        }else if(GrupoVar== "Once"){
-            for(let i = 0; i < Grupos[5].length; i++){
-                if(document.getElementById("GrupoIn").value == Grupos[5][i].CodGrupo){
+        } else if (GrupoVar == "Once") {
+            for (let i = 0; i < Grupos[5].length; i++) {
+                if (document.getElementById("GrupoIn").value == Grupos[5][i].CodGrupo) {
                     console.log("Entraste");
                     Grupos[5][i].CEstudiantes = Grupos[5][i].CEstudiantes + 1;
                 }
@@ -105,22 +106,52 @@ class Directivos_registro_estudiantes extends React.Component {
         document.getElementById("Form").style.display = "none";
         document.getElementById("RegistroEsContainer").style.filter = "blur(0)";
     }
-    Cambiar = () =>{
+    Cambiar = () => {
         let Xd = document.getElementById("GradoIn").value;
-        if(Xd == "Sexto"){
+        if (Xd == "Sexto") {
             GrupoVar = "Sexto";
-        } else if(Xd == "Septimo"){
+        } else if (Xd == "Septimo") {
             GrupoVar = "Septimo";
-        }else if(Xd == "Octavo"){
+        } else if (Xd == "Octavo") {
             GrupoVar = "Octavo";
-        }else if(Xd == "Noveno"){
+        } else if (Xd == "Noveno") {
             GrupoVar = "Noveno";
-        }else if(Xd == "Decimo"){
+        } else if (Xd == "Decimo") {
             GrupoVar = "Decimo";
-        }else if(Xd == "Once"){
+        } else if (Xd == "Once") {
             GrupoVar = "Once";
         }
     }
+
+    //Petición get para obtener los estudiantes existentes
+    componentDidMount() {
+        axios.get(``, { /* ??? */ })
+            .then(res => {
+                console.log(res.data)
+                this.setState({
+                    datos: res.data
+                })
+            }).catch(err => {
+                console.log(err.massage)
+            })
+    }
+    //Fin get
+
+    //Petición post para agregar nuevos estudiantes
+    componentDidMount() {
+        axios.post(``, { matricula: this.state.matricula, nombre: this.state.nombre, apellido: this.state.apellido, materia: this.state.materia, director: this.state.director, codigo_grupo: this.state.codigo_grupo })
+            .then(res => {
+                console.log(res.data)
+                this.setState({
+                    datos: res.data
+                })
+            }).catch(err => {
+                console.log(err.massage)
+            })
+    }
+    //Fin post
+
+
     render() {
         return (
             <>
