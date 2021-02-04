@@ -1,4 +1,5 @@
 import React from 'react';
+import axios from 'axios';
 
 import '../Styles/RegistroEstudiantes.css';
 
@@ -68,6 +69,35 @@ class Directivos_registro_maestros extends React.Component {
         document.getElementById("Form").style.display = "none";
         document.getElementById("RegistroEsContainer").style.filter = "blur(0)";
     }
+
+    //Petición get para obtener los maestros existentes
+    componentDidMount(){
+        axios.get(``, { /* ??? */ })
+          .then(res =>{
+            console.log(res.data)
+            this.setState({
+              datos: res.data
+            })
+        }).catch(err=>{
+          console.log(err.massage)
+        })
+      }
+    //Fin get
+
+    //Petición post para agregar nuevos maestros
+    componentDidMount(){
+        axios.post(``, { cedula: this.state.cedula, nombre: this.state.nombre, apellido: this.state.apellido, materia: this.state.materia, director: this.state.director, codigo_grupo: this.state.codigo_grupo })
+          .then(res =>{
+            console.log(res.data)
+            this.setState({
+              datos: res.data
+            })
+        }).catch(err=>{
+          console.log(err.massage)
+        })
+      }
+    //Fin post
+
     render() {
         return (
             <>
