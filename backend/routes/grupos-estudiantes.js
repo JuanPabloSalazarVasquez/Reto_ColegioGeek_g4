@@ -40,12 +40,12 @@ grupos_estudiantes.get("/grupos-cursados", async (req, res) => {
 // /maestros/registrar_notas/grupo_estudiantes
 // Esta peticion necesita id_grupo
 // Esta peticion funciona
-grupos_estudiantes.get("/estudiantes-grupo-notas-ver-all-estudiantes", async (req, res) => {
+grupos_estudiantes.get("/estudiantes-grupo-notas-ver-all-estudiantes/:id_grupo", async (req, res) => {
     let client = await pool.connect();
-    const { id_grupo } = req.body;
+    const { id_grupo } = req.params;
     try {
       const result = await client.query(
-        `SELECT codigo_estudiante, nombres, apellidos
+        `SELECT estudiante.id_estudiante, codigo_estudiante, nombres, apellidos
         FROM grupos_estudiantes
         INNER JOIN estudiante
         ON grupos_estudiantes.id_estudiante = estudiante.id_estudiante AND id_grupo = ${id_grupo} AND estado = 'En curso'
@@ -68,12 +68,12 @@ grupos_estudiantes.get("/estudiantes-grupo-notas-ver-all-estudiantes", async (re
 // /maestros/registrar_notas
 // Esta peticion necesita id_maestro
 // Esta peticion funciona
-grupos_estudiantes.get("/estudiantes-grupo-notas-ver-clases-grupos", async (req, res) => {
+grupos_estudiantes.get("/estudiantes-grupo-notas-ver-clases-grupos/:id_maestro", async (req, res) => {
   let client = await pool.connect();
-  const { id_maestro } = req.body;
+  const { id_maestro } = req.params;
   try {
     const result = await client.query(
-      `SELECT grupos.id_grupo, codigo_grupo, grado_grupo, nombres, apellidos, nombre_materia
+      `SELECT materias.id_materia, grupos.id_grupo, codigo_grupo, grado_grupo, nombres, apellidos, nombre_materia
       FROM grupos_materias
       INNER JOIN grupos 
       ON grupos_materias.id_grupo = grupos.id_grupo AND id_maestro = ${id_maestro}

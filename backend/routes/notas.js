@@ -9,9 +9,10 @@ const { pool } = require("../db/db");
 // /estudiantes/mis_notas
 // Esta peticion necesita el id_estudiante
 // Esta peticion funciona
-notas.get("/materias-estudiante", async (req, res) => {
+notas.get("/materias-estudiante/:id_estudiante", async (req, res) => {
   let client = await pool.connect();
-  const { id_estudiante } = req.body;
+  const { id_estudiante } = req.params;
+  console.log(id_estudiante)
   try {
     const result = await client.query(
       `SELECT materias.id_materia, codigo_materia,nombre_materia,grado_grupo, nombres, apellidos
@@ -25,7 +26,8 @@ notas.get("/materias-estudiante", async (req, res) => {
       INNER JOIN maestros
       ON grupos_materias.id_maestro = maestros.id_maestro
       INNER JOIN persona
-      ON maestros.id_persona = persona.id_persona;`
+      ON maestros.id_persona = persona.id_persona
+      GROUP BY materias.id_materia, codigo_materia,nombre_materia,grado_grupo, nombres, apellidos;`
     );
     if (result.rows) {
       res.json(result.rows);
@@ -43,12 +45,14 @@ notas.get("/materias-estudiante", async (req, res) => {
 // /maestros/registrar_notas/grupo_estudiantes/agregar_nota
 // /estudiantes/mis_notas/ver_notas
 // Esta peticion funciona
-notas.get("/estudiante-ver-notas-materia-estudiante", async (req, res) => {
+notas.get("/estudiante-ver-notas-materia-estudiante/:id_estudiante/:id_materia", async (req, res) => {
   let client = await pool.connect();
   const {
     id_estudiante,
     id_materia
-  } = req.body;
+  } = req.params;
+  console.log(id_materia);
+  console.log(id_estudiante);
   try {
     const result = await client.query(
       `SELECT codigo_estudiante, nombres, apellidos, tipo_nota, nota
@@ -80,12 +84,12 @@ notas.get("/estudiante-ver-notas-materia-estudiante", async (req, res) => {
 // /maestros/registrar_notas/grupo_estudiantes/agregar_nota
 // Esta peticion necesita el id_materia y el id_estudiante
 // Esta peticion funciona
-notas.get("/notas-materia-estudiante", async (req, res) => {
+notas.get("/notas-materia-estudiante/:id_materia/:id_estudiante", async (req, res) => {
   let client = await pool.connect();
   const {
     id_estudiante,
     id_materia
-  } = req.body;
+  } = req.params;
   try {
     const result = await client.query(
       `SELECT codigo_estudiante, nombres, apellidos, tipo_nota, nota
