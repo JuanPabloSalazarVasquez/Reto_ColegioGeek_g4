@@ -1,6 +1,6 @@
 import React from "react";
 
-import Maestros_configuracion from "../Components/Maestros_configuracion";
+import Maestros_configuracion from "../Components/maestros";
 import HeaderSistema_Maestros from '../Components/HeaderSistema_Maestros';
 
 import { withRouter } from "react-router-dom";
@@ -14,7 +14,7 @@ class maestros_configuracion extends React.Component {
   render() {
     return (
       <>
-      <HeaderSistema_Maestros Title = "Configuracion cuenta" pathname = '/maestros' />
+      <HeaderSistema_Maestros Title = "Configuracion de cuenta Maestros" pathname = '/maestros' />
         <Maestros_configuracion />
       </>
     );
