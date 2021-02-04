@@ -9,7 +9,7 @@ const { pool } = require('../db/db');
 // /estudiantes/grupo_cursados
 // Esta peticion necesita id_estudiante
 // Esta peticion funciona
-grupos_estudiantes.get("/grupos-cursados", async (req, res) => {
+grupos_estudiantes.get("/grupos-cursados/:id_estudiante", async (req, res) => {
     let client = await pool.connect();
     const { id_estudiante } = req.body;
     try {
@@ -40,7 +40,7 @@ grupos_estudiantes.get("/grupos-cursados", async (req, res) => {
 // /maestros/registrar_notas/grupo_estudiantes
 // Esta peticion necesita id_grupo
 // Esta peticion funciona
-grupos_estudiantes.get("/estudiantes-grupo-notas-ver-all-estudiantes", async (req, res) => {
+grupos_estudiantes.get("/estudiantes-grupo-notas-ver-all-estudiantes/:id_maestro", async (req, res) => {
     let client = await pool.connect();
     const { id_grupo } = req.body;
     try {
@@ -68,7 +68,7 @@ grupos_estudiantes.get("/estudiantes-grupo-notas-ver-all-estudiantes", async (re
 // /maestros/registrar_notas
 // Esta peticion necesita id_maestro
 // Esta peticion funciona
-grupos_estudiantes.get("/estudiantes-grupo-notas-ver-clases-grupos", async (req, res) => {
+grupos_estudiantes.get("/estudiantes-grupo-notas-ver-clases-grupos/:id_maestro", async (req, res) => {
   let client = await pool.connect();
   const { id_maestro } = req.body;
   try {
@@ -101,7 +101,7 @@ grupos_estudiantes.get("/estudiantes-grupo-notas-ver-clases-grupos", async (req,
 // /maestros/estudiantes_grupos
 // Esta peticion necesita id_maestro
 // Esta peticion funciona
-grupos_estudiantes.get("/maestros-ver-grupos", async (req, res) => {
+grupos_estudiantes.get("/maestros-ver-grupos/:id_maestro", async (req, res) => {
   let client = await pool.connect();
   const { id_maestro } = req.body;
   try {
@@ -134,7 +134,7 @@ grupos_estudiantes.get("/maestros-ver-grupos", async (req, res) => {
 // /maestros/estudiantes_grupos/ver_estudiantes
 // Esta peticion necesita id_grupo
 // Esta peticion funciona
-grupos_estudiantes.get("/maestros-ver-estudiantes-grupo", async (req, res) => {
+grupos_estudiantes.get("/maestros-ver-estudiantes-grupo/:id_maestro", async (req, res) => {
   let client = await pool.connect();
   const { id_grupo } = req.body;
   try {
@@ -166,7 +166,7 @@ grupos_estudiantes.get("/maestros-ver-estudiantes-grupo", async (req, res) => {
 // /directivos/grupos_VerEstudiantes
 // Esta peticion requiere de id_grupo
 // Esta peticion funciona
-grupos_estudiantes.get("/estudiantes-ver-grupos-estudiantes-directivos", async (req, res) => {
+grupos_estudiantes.get("/estudiantes-ver-grupos-estudiantes-directivos/:id_directivo", async (req, res) => {
     let client = await pool.connect();
     const { id_grupo } = req.body;
     try {

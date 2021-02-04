@@ -9,7 +9,7 @@ const { pool } = require("../db/db");
 // /estudiantes/mis_notas
 // Esta peticion necesita el id_estudiante
 // Esta peticion funciona
-notas.get("/materias-estudiante", async (req, res) => {
+notas.get("/materias-estudiante/:id_estudiante", async (req, res) => {
   let client = await pool.connect();
   const { id_estudiante } = req.body;
   try {
@@ -43,7 +43,7 @@ notas.get("/materias-estudiante", async (req, res) => {
 // /maestros/registrar_notas/grupo_estudiantes/agregar_nota
 // /estudiantes/mis_notas/ver_notas
 // Esta peticion funciona
-notas.get("/estudiante-ver-notas-materia-estudiante", async (req, res) => {
+notas.get("/estudiante-ver-notas-materia-estudiante/:id_estudiante", async (req, res) => {
   let client = await pool.connect();
   const {
     id_estudiante,
@@ -80,7 +80,7 @@ notas.get("/estudiante-ver-notas-materia-estudiante", async (req, res) => {
 // /maestros/registrar_notas/grupo_estudiantes/agregar_nota
 // Esta peticion necesita el id_materia y el id_estudiante
 // Esta peticion funciona
-notas.get("/notas-materia-estudiante", async (req, res) => {
+notas.get("/notas-materia-estudiante/:id_maestro", async (req, res) => {
   let client = await pool.connect();
   const {
     id_estudiante,
@@ -113,7 +113,7 @@ notas.get("/notas-materia-estudiante", async (req, res) => {
 // /maestros/registrar_notas/grupo_estudiantes/agregar_nota
 // El post se hace respecto a id_estudiante, id_materia y id_grupo
 // Esta peticion funciona
-notas.post('/nueva-nota-estudiante', async (req, res) => {
+notas.post('/nueva-nota-estudiante/:id_maestro', async (req, res) => {
   let client = await pool.connect();
   const {
     id_materia,

@@ -6,7 +6,7 @@ const { pool } = require('../db/db');
 // Peticion get para consultar todos los estudiantes mostrandonos algunos datos del mismo
 // /Directivos/Registro_Estudiantes
 // Esta peticion funciona correctamente
-estudiantes.get("/directivos-all-estudiantes", async (req, res) => {
+estudiantes.get("/directivos-all-estudiantes/:id_directivo", async (req, res) => {
     let client = await pool.connect();
     try {
       const result = await client.query(
@@ -37,7 +37,7 @@ estudiantes.get("/directivos-all-estudiantes", async (req, res) => {
 // Peticion post para crear un registro en la tabla de personas y ala vez en la tabla de estudiantes
 /// Directivos/Registro_Estudiantes
 // Esta peticion funciona
-estudiantes.post('/directivos-nuevo-estudiante-persona', async(req,res)=>{
+estudiantes.post('/directivos-nuevo-estudiante-persona/:id_directivo', async(req,res)=>{
     let client = await pool.connect();
   const {
     nombres,

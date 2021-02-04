@@ -8,7 +8,7 @@ const { pool } = require('../db/db');
 // Esta es una peticion que se realiza a la tabla de maestros donde consultamos todos los maestros,
 // con las materias que enseñan y si son o no directores de algun grupo
 // Esta peticion funciona
-maestro.get("/directivos-ver-maestros-materias-directores", async (req, res) => {
+maestro.get("/directivos-ver-maestros-materias-directores/:id_directivo", async (req, res) => {
     let client = await pool.connect();
     try {
       const result = await client.query(
@@ -42,7 +42,7 @@ maestro.get("/directivos-ver-maestros-materias-directores", async (req, res) => 
 // Peticion post para crear un registro en la tabla de personas y ala vez en la tabla de maestros
 /// /Directivos/Registro_Maestros
 // Esta peticion funciona
-maestro.post('/directivos-nuevo-maestro-persona', async(req,res)=>{
+maestro.post('/directivos-nuevo-maestro-persona/:id_directivo', async(req,res)=>{
     let client = await pool.connect();
   const {
     nombres,
