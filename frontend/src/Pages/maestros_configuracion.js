@@ -1,6 +1,6 @@
 import React from "react";
 
-import Maestros_configuracion from "../Components/Maestros_configuracion";
+import Maestros_configuracion from "../Components/maestros";
 import HeaderSistema_Maestros from '../Components/HeaderSistema_Maestros';
 
 import { withRouter } from "react-router-dom";

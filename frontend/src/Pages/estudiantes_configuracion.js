@@ -1,6 +1,6 @@
 import React from "react";
 
-import Estudiantes_configuracion from "../Components/Estudiantes_configuracion";
+import Estudiantes_configuracion from "../Components/estudiantes";
 import HeaderSistema_Estudiantes from "../Components/HeaderSistema_Estudiantes";
 
 import { withRouter } from "react-router-dom";

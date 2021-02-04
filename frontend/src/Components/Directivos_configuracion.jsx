@@ -14,15 +14,47 @@ import FormControlLabel from '@material-ui/core/FormControlLabel';
 import Typography from '@material-ui/core/Typography';
 import Container from '@material-ui/core/Container';
 
+const identificacion = [
+  {
+    value: 'Cedula',
+    label: 'CC',
+  },
+  {
+    value: 'Tarjeta de identidad',
+    label: 'TI',
+  }
+];
+
+const genero = [
+  {
+    value: 'Femenino',
+    label: 'F',
+  },
+  {
+    value: 'Masculino',
+    label: 'M',
+  }
+];
+
 const useStyles = makeStyles((theme) => ({
   root: {
     flexGrow: 1,
+    '& .MuiTextField-root': {
+      margin: theme.spacing(1),
+      width: '25ch',
+    },
   },
   paper: {
     padding: theme.spacing(2),
     textAlign: 'center',
     color: theme.palette.text.secondary,
-  }
+  },
+  large: {
+    width: theme.spacing(16),
+    height: theme.spacing(16),
+    margin: 'auto'
+  },
+  // input: {display: 'none'},
 }));
 
 class DirectivosConfiguracion extends React.Component {
@@ -50,7 +82,7 @@ class DirectivosConfiguracion extends React.Component {
 
     return (
       <>
-        <div className="VerEstuGrupContainer-Maestros_ver_estudiantes_grupos">
+        <div className="VerEstuGrupContainer-Maestros_ver_estudiantes_grupos" style={{display:'none'}}>
           <div className="FiltradoEstudiante-Maestros_ver_estudiantes_grupos">
             <div className="FiltrosREstudiante-Maestros_ver_estudiantes_grupos-Registro">
               <div>

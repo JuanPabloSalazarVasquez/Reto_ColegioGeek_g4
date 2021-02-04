@@ -66,7 +66,7 @@ function handleClick(event) {
   console.info('You clicked a breadcrumb.');
 }
 
-export default function DirectivosConfiguracion() {
+export default function EstudiantesConfiguracion() {
   const classes = useStyles();
   const [currency, setCurrency] = useState('Cedula');
   const [selectedDate, setSelectedDate] = useState(new Date());
@@ -101,7 +101,7 @@ export default function DirectivosConfiguracion() {
       <Paper className={classes.paper}>
         <Breadcrumbs separator={<NavigateNextIcon fontSize="small" />} aria-label="breadcrumb">
           <Link color="inherit" href="#" onClick={handleClick}>Colegio Geek</Link>
-          <Link color="inherit" href="#" onClick={handleClick}>Directivos</Link>
+          <Link color="inherit" href="#" onClick={handleClick}>Estudiantes</Link>
           <Typography color="textPrimary">Configuración</Typography>
         </Breadcrumbs>
         {/* <Paper className={classes.paper}>
