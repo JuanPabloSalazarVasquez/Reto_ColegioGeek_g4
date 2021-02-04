@@ -4,7 +4,7 @@ import axios from 'axios';
 import "../Styles/Estudiantes_notas.css";
 
 import { withRouter } from "react-router-dom";
-import { Link } from "react-router-dom";
+import { Link, Redirect } from "react-router-dom";
 
 class Estudiantes_notas extends React.Component {
   constructor(props) {
@@ -18,7 +18,7 @@ class Estudiantes_notas extends React.Component {
 
 // Peticion get para traer todas las materias a la que esta registrado un estudiante
 componentDidMount(){
-  axios.get(``, { id_estudiante: this.state.id_estudiante})
+  axios.get(`http://localhost:4535/notas/materias-estudiante/${this.state.id_estudiante}`)
     .then(res =>{
       console.log(res.data)
       this.setState({
@@ -30,6 +30,17 @@ componentDidMount(){
 }
 // Fin peticion get
 
+Ingresar = () => {
+  if(this.state.Bool == false){
+    this.setState({
+      Bool:true
+    })
+  }else{
+    this.setState({
+      Bool: false
+    })
+  }
+}
 
   render() {
     console.log(this.state.datos);
@@ -61,56 +72,30 @@ componentDidMount(){
               </option>
             </select>
           </div>
-
-          {/* Materias */}
-          <div className='CardsContainerEstudiantes_Notas-Estudiantes_notas'>
-            <div className="FiltrosREstudiante">
-              <div className="SelectNotas-Estudiantes_notas">
-                <p className="pTextos-Estudiantes_notas">CodMateria</p>
-              </div>
-              <div className="SelectNotas-Estudiantes_notas">
-                <p className="pTextos-Estudiantes_notas">NombreMateria</p>
-              </div>
-              <div className="SelectNotas-Estudiantes_notas">
-                <p className="pTextos-Estudiantes_notas">Once</p>
-              </div>
-              <div className="SelectNotas-Estudiantes_notas More-Estudiantes_notas">
-                <p className="pTextos-Estudiantes_notas">Profesor de la materia</p>
-              </div>
-              <div className="SelectNotas-Estudiantes_notas">
-                <Link to="/estudiantes/mis_notas/ver_notas">
-                  <button className="ButtonNotas-Estudiantes_notas">Ver notas</button>
-                </Link>
-              </div>
-            </div>
-          </div>
-
-          {/* 
+         
           {materiasEstudiante.map((datosT) => {
             return (
               <div className='CardsContainerEstudiantes_Notas-Estudiantes_notas'>
             <div className="FiltrosREstudiante">
               <div className="SelectNotas-Estudiantes_notas">
-                <p className="pTextos-Estudiantes_notas">CodMateria</p>
+                <p className="pTextos-Estudiantes_notas">{datosT.codigo_materia}</p>
               </div>
               <div className="SelectNotas-Estudiantes_notas">
-                <p className="pTextos-Estudiantes_notas">NombreMateria</p>
+                <p className="pTextos-Estudiantes_notas">{datosT.nombre_materia}</p>
               </div>
               <div className="SelectNotas-Estudiantes_notas">
-                <p className="pTextos-Estudiantes_notas">Once</p>
+                <p className="pTextos-Estudiantes_notas">{datosT.grado_grupo}</p>
               </div>
               <div className="SelectNotas-Estudiantes_notas More-Estudiantes_notas">
-                <p className="pTextos-Estudiantes_notas">Profesor de la materia</p>
+                <p className="pTextos-Estudiantes_notas">{datosT.nombres} {datosT.apellidos}</p>
               </div>
               <div className="SelectNotas-Estudiantes_notas">
-                <Link to="/estudiantes/mis_notas/ver_notas">
-                  <button className="ButtonNotas-Estudiantes_notas">Ver notas</button>
-                </Link>
+                  <button className="ButtonNotas-Estudiantes_notas" onClick={this.Ingresar}>Ver notas</button>
                 {this.state.Bool && <Redirect to={{
                                     pathname: "/estudiantes/mis_notas/ver_notas",
                                     state: {
-                                        id_estudiante: this.props.location.state.id_estudiante,
-                                        id_materia: this.props.location.state.id_materia,
+                                        id_estudiante: this.state.id_estudiante,
+                                        id_materia: datosT.id_materia,
                                     }
                                 }} />}
               </div>
@@ -118,7 +103,7 @@ componentDidMount(){
           </div>
             )
           })}
-          */}
+          
         </div>
       </>
     );
