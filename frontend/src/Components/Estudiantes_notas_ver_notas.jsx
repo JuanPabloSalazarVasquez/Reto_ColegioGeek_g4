@@ -28,6 +28,42 @@ componentDidMount(){
     console.log(err.massage)
   })
 }
+
+componentDidMount(){
+  axios.get(``, { id_estudiante: this.state.id_estudiante, id_materia: this.state.id_materia, nota: this.state.nota})
+    .then(res =>{
+      console.log(res.data)
+      this.setState({
+        datos: res.data
+      })
+  }).catch(err=>{
+    console.log(err.massage)
+  })
+} //Filtro por nota
+
+componentDidMount(){
+  axios.get(``, { id_estudiante: this.state.id_estudiante, id_materia: this.state.id_materia, tipo_nota: this.state.tipo_nota})
+    .then(res =>{
+      console.log(res.data)
+      this.setState({
+        datos: res.data
+      })
+  }).catch(err=>{
+    console.log(err.massage)
+  })
+} // Filtro por tipo de nota
+
+componentDidMount(){
+  axios.get(``, { id_estudiante: this.state.id_estudiante, id_materia: this.state.id_materia, nota: this.state.nota, tipo_nota: this.state.tipo_nota})
+    .then(res =>{
+      console.log(res.data)
+      this.setState({
+        datos: res.data
+      })
+  }).catch(err=>{
+    console.log(err.massage)
+  })
+} //Filtro por nota y tipo de nota
 // Fin peticion get
 
 

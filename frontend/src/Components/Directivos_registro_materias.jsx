@@ -1,4 +1,5 @@
 import React from 'react';
+import axios from 'axios';
 
 import { Redirect, withRouter } from 'react-router-dom';
 import { Materias } from '../Utiles/Mocks/Materias';
@@ -33,17 +34,45 @@ class Directivos_registro_materias extends React.Component {
             Decimo: document.getElementById("Check5").checked,
             Once: document.getElementById("Check6").checked,
             Intencidad: document.getElementById("IntencidadIn").value
-         });
+        });
 
-         document.getElementById("Form").style.display = "none";
-         document.getElementById("RegistroEsContainer").style.filter = "blur(0)";
+        document.getElementById("Form").style.display = "none";
+        document.getElementById("RegistroEsContainer").style.filter = "blur(0)";
 
         this.setState({
             Bool: true
         })
 
         return this;
-     }
+    }
+
+    //Petición get para obtener las materias existentes
+    componentDidMount(){
+        axios.get(``, { /* ??? */ })
+          .then(res =>{
+            console.log(res.data)
+            this.setState({
+              datos: res.data
+            })
+        }).catch(err=>{
+          console.log(err.massage)
+        })
+      }
+    //Fin get
+
+    //Petición post para agregar nuevas materias
+    componentDidMount(){
+        axios.post(``, { cod_materia: this.state.cod_materia, nombre_materia: this.state.nombre_materia, sexto: this.state.sexto, septimo: this.state.septimo, octavo: this.state.octavo, noveno: this.state.noveno, decimo: this.state.decimo, once: this.state.once,  })
+          .then(res =>{
+            console.log(res.data)
+            this.setState({
+              datos: res.data
+            })
+        }).catch(err=>{
+          console.log(err.massage)
+        })
+      }
+    //Fin post
     render() {
         return (
             <>
@@ -58,18 +87,18 @@ class Directivos_registro_materias extends React.Component {
                             <div className="Form2_2_2">
                                 <input className="REInput" id="CodigoGIn" placeholder="Codigo" autoComplete="off" />
                                 <input className="REInput" id="NombreIn" placeholder="Nombre" autoComplete="off" />
-                                <input className="REInput" id="IntencidadIn"type="number" min="0" placeholder="Intencidad horaria" autoComplete="off" />
+                                <input className="REInput" id="IntencidadIn" type="number" min="0" placeholder="Intencidad horaria" autoComplete="off" />
                                 <input onClick={this.Push_} className="REInput" type="button" value="Agregar" />
                                 <input type="button" onClick={this.Cambio} className="REInput" value="Cancelar" />
                             </div>
                         </div>
                         <div className="Form2_2_2">
-                        <p className="PChek">6: <input type="checkbox" id="Check1"/></p>
-                        <p className="PChek">7: <input type="checkbox"  id="Check2"/></p>
-                        <p className="PChek">8: <input type="checkbox"  id="Check3"/></p>
-                        <p className="PChek">9: <input type="checkbox"  id="Check4"/></p>
-                        <p className="PChek">10: <input type="checkbox"  id="Check5"/></p>
-                        <p className="PChek">11: <input type="checkbox"  id="Check6"/></p>
+                            <p className="PChek">6: <input type="checkbox" id="Check1" /></p>
+                            <p className="PChek">7: <input type="checkbox" id="Check2" /></p>
+                            <p className="PChek">8: <input type="checkbox" id="Check3" /></p>
+                            <p className="PChek">9: <input type="checkbox" id="Check4" /></p>
+                            <p className="PChek">10: <input type="checkbox" id="Check5" /></p>
+                            <p className="PChek">11: <input type="checkbox" id="Check6" /></p>
                         </div>
 
                     </div>
@@ -79,10 +108,10 @@ class Directivos_registro_materias extends React.Component {
                     <div className="FiltrosREstudiante">
                         <input type="text" className="SelectR" placeholder="Cod Materia" autoComplete="off" />
                         <input type="text" className="SelectR" placeholder="Nombre" autoComplete="off" />
-                        <p className="Chek Sexto"  >6: <input type="checkbox"   /></p>
-                        <p className="Chek Septimo">7: <input type="checkbox"   /></p>
-                        <p className="Chek Octavo" >8: <input type="checkbox"  /></p>
-                        <p className="Chek Noveno" >9: <input type="checkbox"  /></p>
+                        <p className="Chek Sexto"  >6: <input type="checkbox" /></p>
+                        <p className="Chek Septimo">7: <input type="checkbox" /></p>
+                        <p className="Chek Octavo" >8: <input type="checkbox" /></p>
+                        <p className="Chek Noveno" >9: <input type="checkbox" /></p>
                         <p className="Chek Decimo" >10: <input type="checkbox" /></p>
                         <p className="Chek Once"   >11: <input type="checkbox" /></p>
 
@@ -111,12 +140,12 @@ class Directivos_registro_materias extends React.Component {
                                         <p className="Peque" >{Esito.Nombre}</p>
                                     </div>
 
-                                    <input type="checkbox"  className="Chek Sexto" checked={Esito.Sexto}/>
-                                    <input type="checkbox" className="Chek Septimo" checked={Esito.Septimo}/>
-                                    <input type="checkbox" className="Chek Octavo" checked={Esito.Octavo}/>
-                                    <input type="checkbox" className="Chek Noveno" checked={Esito.Noveno}/>
-                                    <input type="checkbox" className="Chek Decimo" checked={Esito.Decimo}/>
-                                    <input type="checkbox" className="Chek Once" checked={Esito.Once}/>
+                                    <input type="checkbox" className="Chek Sexto" checked={Esito.Sexto} />
+                                    <input type="checkbox" className="Chek Septimo" checked={Esito.Septimo} />
+                                    <input type="checkbox" className="Chek Octavo" checked={Esito.Octavo} />
+                                    <input type="checkbox" className="Chek Noveno" checked={Esito.Noveno} />
+                                    <input type="checkbox" className="Chek Decimo" checked={Esito.Decimo} />
+                                    <input type="checkbox" className="Chek Once" checked={Esito.Once} />
 
                                     <div className="SelectR GradoF">
                                         <p>{Esito.Intencidad}</p>
