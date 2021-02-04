@@ -6,6 +6,7 @@ import Inicio_page from "./Pages/inicio_page";
 import Login_usuarios from "./Pages/login_usuarios";
 // Directivos
 import Directivos_inicio from "./Pages/directivos_inicio";
+import Directivos_configuracion from "./Pages/directivos_configuracion";
 import Directivos_registro_estudiantes from "./Pages/directivos_registro_estudiantes";
 import Directivos_registro_maestros from "./Pages/directivos_registro_maestros";
 import Directivos_registro_grupos from "./Pages/directivos_registro_grupos";
@@ -100,6 +101,9 @@ ReactDOM.render(
         </Route>
         <Route path="/directivos/registro_Materias" exact>
           <Directivos_registro_materias />
+        </Route>
+        <Route path="/directivos/mi_cuenta" exact>
+          <Directivos_configuracion />
         </Route>
         <Route path="/directivos" exact>
           <Directivos_inicio />
