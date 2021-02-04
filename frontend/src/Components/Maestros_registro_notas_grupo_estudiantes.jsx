@@ -19,7 +19,7 @@ class Maestros_registro_notas_grupo_estudiantes extends React.Component {
   // Peticion get para traer todos los estudiantes de un grupo
   componentDidMount() {
     axios
-      .get(``, { id_maestro: this.state.id_maestro, id_grupo: this.state.id_grupo })
+      .get(`http://localhost:4535/grupos-estudiantes/estudiantes-grupo-notas-ver-all-estudiantes/${this.state.id_grupo}`)
       .then((res) => {
         console.log(res.data);
         this.setState({

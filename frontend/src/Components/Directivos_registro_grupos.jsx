@@ -1,6 +1,7 @@
 /* eslint-disable eqeqeq */
 /* eslint-disable no-array-constructor */
 import React from 'react';
+import axios from 'axios';
 
 import '../Styles/RegistroEstudiantes.css';
 import { Grupos } from '../Utiles/Mocks/Grupos';
@@ -159,6 +160,35 @@ class Directivos_registro_grupos extends React.Component {
         document.getElementById("Form").style.display = "none";
         document.getElementById("RegistroEsContainer").style.filter = "blur(0)";
     }
+
+    //Petición get para obtener los grupos existentes
+    componentDidMount(){
+        axios.get(`http://localhost:4535/grupos/directivos-ver-grupos/${this.state.id_directivo}`)
+          .then(res =>{
+            console.log(res.data)
+            this.setState({
+              datos: res.data
+            })
+        }).catch(err=>{
+          console.log(err.massage)
+        })
+      }
+    //Fin get
+    
+    //Petición post para agregar nuevos grupos
+    post_grupo(){
+        axios.post(`http://localhost:4535/grupos/directivos-nuevo-grupo/${this.state.id_directivo}`, {  })
+          .then(res =>{
+            console.log(res.data)
+            this.setState({
+              datos: res.data
+            })
+        }).catch(err=>{
+          console.log(err.massage)
+        })
+      }
+    //Fin post
+
     render() {
         return (
             <>

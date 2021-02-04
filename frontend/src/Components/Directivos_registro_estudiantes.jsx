@@ -124,31 +124,31 @@ class Directivos_registro_estudiantes extends React.Component {
     }
 
     //Petición get para obtener los estudiantes existentes
-    componentDidMount() {
-        axios.get(``, { /* ??? */ })
-            .then(res => {
-                console.log(res.data)
-                this.setState({
-                    datos: res.data
-                })
-            }).catch(err => {
-                console.log(err.massage)
+    componentDidMount(){
+        axios.get(`http://localhost:4535/estudiantes/directivos-all-estudiantes/${this.state.id_directivo}`)
+          .then(res =>{
+            console.log(res.data)
+            this.setState({
+              datos: res.data
             })
-    }
+        }).catch(err=>{
+          console.log(err.massage)
+        })
+      }
     //Fin get
-
+    
     //Petición post para agregar nuevos estudiantes
-    componentDidMount() {
-        axios.post(``, { matricula: this.state.matricula, nombre: this.state.nombre, apellido: this.state.apellido, materia: this.state.materia, director: this.state.director, codigo_grupo: this.state.codigo_grupo })
-            .then(res => {
-                console.log(res.data)
-                this.setState({
-                    datos: res.data
-                })
-            }).catch(err => {
-                console.log(err.massage)
+    post_estudiante(){
+        axios.post(`http://localhost:4535/estudiantes/directivos-nuevo-estudiante-persona/${this.state.id_directivo}`, {  })
+          .then(res =>{
+            console.log(res.data)
+            this.setState({
+              datos: res.data
             })
-    }
+        }).catch(err=>{
+          console.log(err.massage)
+        })
+      }
     //Fin post
 
 

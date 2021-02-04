@@ -17,7 +17,7 @@ class Maestros_registro_notas extends React.Component {
 
 // Peticion get para traer todos los grupos en los que da clase un profesor
 componentDidMount(){
-  axios.get(``, { id_maestro: this.state.id_maestro})
+  axios.get(`http://localhost:4535/grupos-estudiantes/estudiantes-grupo-notas-ver-clases-grupos/${this.state.id_maestro}`)
     .then(res =>{
       console.log(res.data)
       this.setState({

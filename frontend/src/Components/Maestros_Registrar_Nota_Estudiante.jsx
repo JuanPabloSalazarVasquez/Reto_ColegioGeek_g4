@@ -30,13 +30,26 @@ class Maestros_Registrar_Nota_Estudiante extends React.Component {
       });
   };
 
-  // Peticion get para traer todos los estudiantes de un grupo
+  // Peticion get para ver las notas de une studiante
   componentDidMount() {
     axios
-      .get(``, {
-        id_maestro: this.state.id_maestro,
-        id_grupo: this.state.id_grupo,
+      .get(`http://localhost:4535/notas/notas-materia-estudiante/${this.state.id_materia}/${this.state.id_estudiante}`)
+      .then((res) => {
+        console.log(res.data);
+        this.setState({
+          datos: res.data,
+        });
       })
+      .catch((err) => {
+        console.log(err.massage);
+      });
+  }
+  // Fin peticion get
+
+  // Peticion post agregar nota a un estudiante
+  componentDidMount() {
+    axios
+      .post(`http://localhost:4535/notas/nueva-nota-estudiante/${this.state.id_maestro}`, {  })
       .then((res) => {
         console.log(res.data);
         this.setState({

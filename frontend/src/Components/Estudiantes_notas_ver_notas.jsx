@@ -18,7 +18,7 @@ class Estudiantes_notas_ver_notas extends React.Component {
 
   // Peticion get para traer todas las notas que corresponde a un estudiante respecto a una materia
 componentDidMount(){
-  axios.get(``, { id_estudiante: this.state.id_estudiante, id_materia: this.state.id_materia})
+  axios.get(`http://localhost:4535/notas/estudiante-ver-notas-materia-estudiante/${this.state.id_estudiante}`)
     .then(res =>{
       console.log(res.data)
       this.setState({
@@ -28,42 +28,6 @@ componentDidMount(){
     console.log(err.massage)
   })
 }
-
-componentDidMount(){
-  axios.get(``, { id_estudiante: this.state.id_estudiante, id_materia: this.state.id_materia, nota: this.state.nota})
-    .then(res =>{
-      console.log(res.data)
-      this.setState({
-        datos: res.data
-      })
-  }).catch(err=>{
-    console.log(err.massage)
-  })
-} //Filtro por nota
-
-componentDidMount(){
-  axios.get(``, { id_estudiante: this.state.id_estudiante, id_materia: this.state.id_materia, tipo_nota: this.state.tipo_nota})
-    .then(res =>{
-      console.log(res.data)
-      this.setState({
-        datos: res.data
-      })
-  }).catch(err=>{
-    console.log(err.massage)
-  })
-} // Filtro por tipo de nota
-
-componentDidMount(){
-  axios.get(``, { id_estudiante: this.state.id_estudiante, id_materia: this.state.id_materia, nota: this.state.nota, tipo_nota: this.state.tipo_nota})
-    .then(res =>{
-      console.log(res.data)
-      this.setState({
-        datos: res.data
-      })
-  }).catch(err=>{
-    console.log(err.massage)
-  })
-} //Filtro por nota y tipo de nota
 // Fin peticion get
 
 
@@ -93,28 +57,7 @@ componentDidMount(){
                 />
               </div>
             </div>
-            {/* Notas del estudiante */}
-            <div className="EstuFilter-Estudiantes_notas_ver_notas">
-              <div className="FiltrosREstudiante-Estudiantes_notas_ver_notas">
-                <div className="SelectR-Estudiantes_notas_ver_notas">
-                  <p className="pTexts-Estudiantes_notas_ver_notas">Matricula</p>
-                </div>
-                <div className="SelectR-Estudiantes_notas_ver_notas">
-                  <p className="pTexts-Estudiantes_notas_ver_notas">Emanuel</p>
-                </div>
-                <div className="SelectR-Estudiantes_notas_ver_notas">
-                  <p className="pTexts-Estudiantes_notas_ver_notas">Acevedo Munoz</p>
-                </div>
-                <div className="SelectR-Estudiantes_notas_ver_notas">
-                    <p className="pTexts-Estudiantes_notas_ver_notas">Actitudinal</p>
-                </div>
-                <div className="SelectR-Estudiantes_notas_ver_notas">
-                    <p className="pTexts-Estudiantes_notas_ver_notas">4.5</p>
-                </div>
-              </div>
-            </div>
 
-            {/* 
           {notasEstudiante.map((datosT) => {
             return (
               <div className="EstuFilter-Estudiantes_notas_ver_notas">
@@ -138,7 +81,6 @@ componentDidMount(){
             </div>
             )
           })}
-          */}
 
           </div>
         </div>
