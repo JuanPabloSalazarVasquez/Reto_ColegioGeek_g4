@@ -12,6 +12,7 @@ import Container from '@material-ui/core/Container';
 import Avatar from '@material-ui/core/Avatar';
 import Button from '@material-ui/core/Button';
 import IconButton from '@material-ui/core/IconButton';
+import SaveIcon from '@material-ui/icons/Save';
 import PhotoCamera from '@material-ui/icons/PhotoCamera';
 import PictureAsPdfIcon from '@material-ui/icons/PictureAsPdf';
 import DateFnsUtils from '@date-io/date-fns';
@@ -31,12 +32,27 @@ const identificacion = [
 
 const genero = [
   {
-    value: 'Femenino',
-    label: 'F',
+    value: 'Mujer',
+    label: 'Mujer',
   },
   {
-    value: 'Masculino',
-    label: 'M',
+    value: 'Hombre',
+    label: 'Hombre',
+  }
+];
+
+const tipoUsuario = [
+  {
+    value: 'Directivo',
+    label: 'Directivo',
+  },
+  {
+    value: 'Maestro',
+    label: 'Maestro',
+  },
+  {
+    value: 'Estudiante',
+    label: 'Estudiante',
   }
 ];
 
@@ -69,7 +85,7 @@ function handleClick(event) {
 export default function DirectivosConfiguracion() {
   const classes = useStyles();
   const [currency, setCurrency] = useState('Cedula');
-  const [selectedDate, setSelectedDate] = useState(new Date());
+  const [selectedDate, setSelectedDate] = useState(new Date('2014-08-18T21:11:54'));
 
   const handleChange = (event) => {
     setCurrency(event.target.value);
@@ -161,7 +177,7 @@ export default function DirectivosConfiguracion() {
               <TextField
                 id="outlined-genero"
                 select
-                label="Genro"
+                label="Genero"
                 value={currency}
                 onChange={handleChange}
                 SelectProps={{
@@ -236,30 +252,21 @@ export default function DirectivosConfiguracion() {
 
               <TextField
                 id="outlined-tipo-usuario"
+                select
                 label="Tipo de usuario"
-                defaultValue=""
+                value={currency}
+                onChange={handleChange}
+                SelectProps={{
+                  native: true,
+                }}
                 variant="outlined"
-              />
-
-              {/* <TextField
-                id="icon-img-perfil"
-                label={
-                  <label htmlFor="icon-button-file">
-                    <IconButton color="primary" aria-label="upload picture" component="span" style={{ padding: 0 }} > <PhotoCamera /> </IconButton>
-                  </label>
-                }
-                defaultValue=""
-                variant="outlined"
-                accept="image/*"
-                type="file"
-              />
-
-              <TextField
-                id="outlined-pdf-doc-usuario"
-                label="PDF de documento"
-                defaultValue=""
-                variant="outlined"
-              /> */}
+              >
+                {tipoUsuario.map((option) => (
+                  <option key={option.value} value={option.value}>
+                    {option.label}
+                  </option>
+                ))}
+              </TextField>
             </Container>
 
             <Container className="archivo-pdf">
@@ -283,6 +290,13 @@ export default function DirectivosConfiguracion() {
               </label>
               <input accept="image/*" className={classes.input} id="icon-button-fotoperfil" type="file" />
             </Container>
+            <Button
+              variant="contained"
+              color="primary"
+              className={classes.button}
+            >
+              Guardar
+            </Button>
           </form>
         </Paper>
       </Paper>

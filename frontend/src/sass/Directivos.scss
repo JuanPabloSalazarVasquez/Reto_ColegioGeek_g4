@@ -65,12 +65,15 @@ body {
             }
           }
         }
-        .archivo-pdf {
+        .archivo-pdf, .archivo-img  {
           padding-bottom: 1rem;
         }
         .archivo-img {
         }
       }
     }
+  }
+  .MuiPickersModal-dialogRoot {
+    background-color:white;
   }
 }
