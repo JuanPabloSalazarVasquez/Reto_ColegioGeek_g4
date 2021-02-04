@@ -27,42 +27,6 @@ componentDidMount(){
   })
 }
 
-componentDidMount(){ //¿Qué se usa para filtrar por fecha?
-  axios.get(``, { id_estudiante: this.state.id_estudiante, id_consolidado: this.state.id_consolidado})
-    .then(res =>{
-      console.log(res.data)
-      this.setState({
-        datos: res.data
-      })
-  }).catch(err=>{
-    console.log(err.massage)
-  })
-} // filtro por año
-
-componentDidMount(){
-  axios.get(``, { id_estudiante: this.state.id_estudiante, id_consolidado: this.state.id_consolidado, id_grupo: this.state.id_grupo})
-    .then(res =>{
-      console.log(res.data)
-      this.setState({
-        datos: res.data
-      })
-  }).catch(err=>{
-    console.log(err.massage)
-  })
-} // filtro por grado
-
-componentDidMount(){
-  axios.get(``, { id_estudiante: this.state.id_estudiante, id_consolidado: this.state.id_consolidado, id_directivo: this.state.id_directivo})
-    .then(res =>{
-      console.log(res.data)
-      this.setState({
-        datos: res.data
-      })
-  }).catch(err=>{
-    console.log(err.massage)
-  })
-} // filtro por director
-// Fin peticion get
 
 
   render() {

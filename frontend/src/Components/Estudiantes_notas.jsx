@@ -4,7 +4,7 @@ import axios from 'axios';
 import "../Styles/Estudiantes_notas.css";
 
 import { withRouter } from "react-router-dom";
-import { Link, Redirect } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 class Estudiantes_notas extends React.Component {
   constructor(props) {
@@ -29,54 +29,7 @@ componentDidMount(){
   })
 }
 
-componentDidMount(){
-  axios.get(``, { id_estudiante: this.state.id_estudiante, codigo_materia: this.state.codigo_materia})
-    .then(res =>{
-      console.log(res.data)
-      this.setState({
-        datos: res.data
-      })
-  }).catch(err=>{
-    console.log(err.massage)
-  })
-} //Filtro por codigo de materia
 
-componentDidMount(){
-  axios.get(``, { id_estudiante: this.state.id_estudiante, grado: this.state.grado})
-    .then(res =>{
-      console.log(res.data)
-      this.setState({
-        datos: res.data
-      })
-  }).catch(err=>{
-    console.log(err.massage)
-  })
-} //Filtro por grado
-
-componentDidMount(){
-  axios.get(``, { id_estudiante: this.state.id_estudiante, profesor: this.state.profesor})
-    .then(res =>{
-      console.log(res.data)
-      this.setState({
-        datos: res.data
-      })
-  }).catch(err=>{
-    console.log(err.massage)
-  })
-} //Filtro por profesor
-// Fin peticion get
-
-Ingresar = () => {
-  if(this.state.Bool == false){
-    this.setState({
-      Bool:true
-    })
-  }else{
-    this.setState({
-      Bool: false
-    })
-  }
-}
 
   render() {
     console.log(this.state.datos);
@@ -126,14 +79,16 @@ Ingresar = () => {
                 <p className="pTextos-Estudiantes_notas">{datosT.nombres} {datosT.apellidos}</p>
               </div>
               <div className="SelectNotas-Estudiantes_notas">
-                  <button className="ButtonNotas-Estudiantes_notas" onClick={this.Ingresar}>Ver notas</button>
-                {this.state.Bool && <Redirect to={{
+                <Link to={{
                                     pathname: "/estudiantes/mis_notas/ver_notas",
                                     state: {
                                         id_estudiante: this.state.id_estudiante,
                                         id_materia: datosT.id_materia,
                                     }
-                                }} />}
+                                }}>
+                  <button className="ButtonNotas-Estudiantes_notas">Ver notas</button>
+                  </Link>
+                
               </div>
             </div>
           </div>

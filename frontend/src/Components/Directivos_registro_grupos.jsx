@@ -1,6 +1,7 @@
 /* eslint-disable eqeqeq */
 /* eslint-disable no-array-constructor */
 import React from 'react';
+import axios from 'axios';
 
 import '../Styles/RegistroEstudiantes.css';
 import { Grupos } from '../Utiles/Mocks/Grupos';
@@ -155,11 +156,40 @@ class Directivos_registro_grupos extends React.Component {
         
         return this;
     }
+
     Cambio = () =>{
         document.getElementById("Form").style.display = "none";
         document.getElementById("RegistroEsContainer").style.filter = "blur(0)";
     }
+
+    PostGrupo(){
+        axios.post(``, { id_estudiante: this.state.id_estudiante, id_consolidado: this.state.id_consolidado})
+          .then(res =>{
+            console.log(res.data)
+            this.setState({
+              datos: res.data
+            })
+        }).catch(err=>{
+          console.log(err.massage)
+        })
+    }
+
+// Este es el get para traer todos los grupos registrados
+    componentDidMount(){
+        axios.get(``, { id_estudiante: this.state.id_estudiante, id_consolidado: this.state.id_consolidado})
+          .then(res =>{
+            console.log(res.data)
+            this.setState({
+              datos: res.data
+            })
+        }).catch(err=>{
+          console.log(err.massage)
+        })
+      }
+
+
     render() {
+
         return (
             <>
                 <div id="Form">
