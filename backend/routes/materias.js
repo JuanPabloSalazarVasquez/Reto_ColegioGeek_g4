@@ -3,10 +3,8 @@ const materias = Router();
 const { pool } = require('../db/db');
 
 
-// Peticion get para mostrar todos los maestros con las materias que enseñan y si son o no directores de grupo
+// Peticion get para mostrar todos las materias que se encuentran registradas
 // /Directivos/Registro_Materias
-// Esta es una peticion que se realiza a la tabla de maestros donde consultamos todos los maestros,
-// con las materias que enseñan y si son o no directores de algun grupo
 // Esta peticion funciona
 materias.get("/directivos-ver-all-materias/:id_directivo", async (req, res) => {
     let client = await pool.connect();
@@ -28,9 +26,9 @@ materias.get("/directivos-ver-all-materias/:id_directivo", async (req, res) => {
 // Fin get
 
 
-// PETICIONES PARA CREAR UN NUEVO MAESTRO
+// PETICIONES PARA CREAR UNA NUEVA MATERIA
 
-// Peticion post para crear un registro en la tabla de personas y ala vez en la tabla de maestros
+// Peticion post para crear un registro en la tabla de materias
 /// /Directivos/Registro_Materias
 // Esta peticion funciona
 materias.post('/directivos-nuevo-materia/:id_directivo', async(req,res)=>{
@@ -58,7 +56,7 @@ materias.post('/directivos-nuevo-materia/:id_directivo', async(req,res)=>{
 });
 // Fin peticion post para crear una nueva persona y maestro
 
-// FIN PETICIONES PARA CREAR UN NUEVO MAESTRO
+// FIN PETICIONES PARA CREAR UNA NUEVA MATERIA
 
 
 

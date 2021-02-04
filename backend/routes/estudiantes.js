@@ -32,6 +32,32 @@ estudiantes.get("/directivos-all-estudiantes/:id_directivo", async (req, res) =>
 // Fin peticion get
 
 
+// Peticion get para consultar los datos de un estudiante
+// /maestros/registrar_notas/grupo_estudiantes/agregar_nota
+// Esta peticion funciona correctamente
+estudiantes.get("/maestro-registro-estudiante-info-estudiante/:id_estudiante", async (req, res) => {
+  let client = await pool.connect();
+  const { id_estudiante } = req.params;
+  try {
+    const result = await client.query(
+      `SELECT estudiante.id_estudiante, nombres, apellidos, codigo_estudiante
+      FROM estudiante
+      INNER JOIN persona
+      ON estudiante.id_persona = persona.id_persona AND id_estudiante = ${id_estudiante};`
+    );
+    if (result.rows) {
+      res.json(result.rows);
+    } else {
+      res.json({});
+    }
+  } catch (error) {
+    console.log(error);
+  } finally {
+  }
+});
+// Fin peticion get
+
+
 // PETICIONES PARA CREAR UN NUEVO ESTUDIANTE
 
 // Peticion post para crear un registro en la tabla de personas y ala vez en la tabla de estudiantes
