@@ -1,3 +1,4 @@
+/* eslint-disable react/jsx-pascal-case */
 import React from 'react';
 
 import HeaderSistema from '../Components/HeaderSistema';
@@ -13,21 +14,8 @@ class directivos_registro_materias extends React.Component {
   render() { 
     return ( 
       <>
-      <HeaderSistema 
-      InfoUsurio = {[{
-                        Name: this.props.location.state.Name,
-                        Contraseña: this.props.location.state.Contraseña,
-                        Usuario: this.props.location.state.Usuario,
-                        Edad: this.props.location.state.Edad,
-                        Cargo: this.props.location.state.Cargo
-                    }]}/>
-      <Directivos_registro_materias InfoUsurio = {[{
-                        Name: this.props.location.state.Name,
-                        Contraseña: this.props.location.state.Contraseña,
-                        Usuario: this.props.location.state.Usuario,
-                        Edad: this.props.location.state.Edad,
-                        Cargo: this.props.location.state.Cargo
-                    }]}/>
+      <HeaderSistema />
+      <Directivos_registro_materias />
       </>
      );
   }

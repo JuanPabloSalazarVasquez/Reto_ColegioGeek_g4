@@ -25,16 +25,9 @@ class Estudiantes_consolidados extends React.Component {
       }).catch(err => {
         console.log(err.massage)
       })
-<<<<<<< HEAD
-  }).catch(err=>{
-    console.log(err.massage)
-  })
-}
-
-=======
   }
-  // Fin peticion get
->>>>>>> d43b4309ec29fdbf8ffebb17284f3d9129261e03
+
+
 
 
   render() {

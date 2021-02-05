@@ -5,8 +5,7 @@ import '../Styles/RegistroEstudiantes.css';
 
 import { withRouter, Redirect } from 'react-router-dom';
 
-import { Grupos } from '../Utiles/Mocks/Grupos';
-import { Estudiantes } from '../Utiles/Mocks/Estudiantes';
+
 
 const Año = new Date();
 const AñoY = Año.getFullYear();
@@ -19,8 +18,7 @@ class Directivos_registro_estudiantes extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            Bool: false,
-            LengE: Estudiantes.length
+            Bool: false
         }
     }
 
@@ -30,98 +28,13 @@ class Directivos_registro_estudiantes extends React.Component {
         document.getElementById("Form").style.zIndex = "60";
     }
 
-    Push_ = () => {
-        this.setState({
-            LengE: this.state.LengE + 1
-        })
-        let LengES = this.state.LengE.toString();
-
-        this.props.Estudiantes.push({
-            Tipo: 1,
-            Usuario: document.getElementById("DocumentoIn").value,
-            Contraseña: document.getElementById("DocumentoIn").value,
-            TipoD: document.getElementById("TipoDI").value,
-            Name: document.getElementById("NombreIn").value,
-            Apellido: document.getElementById("ApellidoIn").value,
-            Grado: document.getElementById("GradoIn").value,
-            Grupo: document.getElementById("GrupoIn").value,/*Clave foranea con código de grupo*/
-            Matricula: AñoY + "" + (LengES.padStart(3, 0)),
-            Año: AñoD + "/" + AñoM + "/" + AñoY
-        });
-
-        if (GrupoVar == "Sexto") {
-            for (let i = 0; i < Grupos[0].length; i++) {
-                if (document.getElementById("GrupoIn").value == Grupos[0][i].CodGrupo) {
-                    console.log("Entraste");
-                    Grupos[0][i].CEstudiantes = Grupos[0][i].CEstudiantes + 1;
-                }
-            }
-        } else if (GrupoVar == "Septimo") {
-            for (let i = 0; i < Grupos[1].length; i++) {
-                if (document.getElementById("GrupoIn").value == Grupos[1][i].CodGrupo) {
-                    console.log("Entraste");
-                    Grupos[1][i].CEstudiantes = Grupos[1][i].CEstudiantes + 1;
-                }
-            }
-        } else if (GrupoVar == "Octavo") {
-            for (let i = 0; i < Grupos[2].length; i++) {
-                if (document.getElementById("GrupoIn").value == Grupos[2][i].CodGrupo) {
-                    console.log("Entraste");
-                    Grupos[2][i].CEstudiantes = Grupos[2][i].CEstudiantes + 1;
-                }
-            }
-        } else if (GrupoVar == "Noveno") {
-            for (let i = 0; i < Grupos[3].length; i++) {
-                if (document.getElementById("GrupoIn").value == Grupos[3][i].CodGrupo) {
-                    console.log("Entraste");
-                    Grupos[3][i].CEstudiantes = Grupos[3][i].CEstudiantes + 1;
-                }
-            }
-        } else if (GrupoVar == "Decimo") {
-            for (let i = 0; i < Grupos[4].length; i++) {
-                if (document.getElementById("GrupoIn").value == Grupos[4][i].CodGrupo) {
-                    console.log("Entraste");
-                    Grupos[4][i].CEstudiantes = Grupos[4][i].CEstudiantes + 1;
-                }
-            }
-        } else if (GrupoVar == "Once") {
-            for (let i = 0; i < Grupos[5].length; i++) {
-                if (document.getElementById("GrupoIn").value == Grupos[5][i].CodGrupo) {
-                    console.log("Entraste");
-                    Grupos[5][i].CEstudiantes = Grupos[5][i].CEstudiantes + 1;
-                }
-            }
-        }
-
-        document.getElementById("Form").style.display = "none";
-        document.getElementById("RegistroEsContainer").style.filter = "blur(0)";
-
-        this.setState({
-            Bool: true
-        });
-        return this;
-    }
+    
 
     Cambio = () => {
         document.getElementById("Form").style.display = "none";
         document.getElementById("RegistroEsContainer").style.filter = "blur(0)";
     }
-    Cambiar = () => {
-        let Xd = document.getElementById("GradoIn").value;
-        if (Xd == "Sexto") {
-            GrupoVar = "Sexto";
-        } else if (Xd == "Septimo") {
-            GrupoVar = "Septimo";
-        } else if (Xd == "Octavo") {
-            GrupoVar = "Octavo";
-        } else if (Xd == "Noveno") {
-            GrupoVar = "Noveno";
-        } else if (Xd == "Decimo") {
-            GrupoVar = "Decimo";
-        } else if (Xd == "Once") {
-            GrupoVar = "Once";
-        }
-    }
+   
 
     //Petición get para obtener los estudiantes existentes
     componentDidMount(){
@@ -184,31 +97,9 @@ class Directivos_registro_estudiantes extends React.Component {
                             </select>
                             <select className="REInput" id="GrupoIn">
                                 <option value="0" className="Dis">Grupo</option>
-                                {Grupos[0].map((Esito, index) => {
-                                    return (
-                                        <option key={index} value={Esito.CodGrupo}>{Esito.CodGrupo}</option>
-                                    );
-                                })}{Grupos[1].map((Esito, index) => {
-                                    return (
-                                        <option key={index} value={Esito.CodGrupo}>{Esito.CodGrupo}</option>
-                                    );
-                                })}{Grupos[2].map((Esito, index) => {
-                                    return (
-                                        <option key={index} value={Esito.CodGrupo}>{Esito.CodGrupo}</option>
-                                    );
-                                })}{Grupos[3].map((Esito, index) => {
-                                    return (
-                                        <option key={index} value={Esito.CodGrupo}>{Esito.CodGrupo}</option>
-                                    );
-                                })}{Grupos[4].map((Esito, index) => {
-                                    return (
-                                        <option key={index} value={Esito.CodGrupo}>{Esito.CodGrupo}</option>
-                                    );
-                                })}{Grupos[5].map((Esito, index) => {
-                                    return (
-                                        <option key={index} value={Esito.CodGrupo}>{Esito.CodGrupo}</option>
-                                    );
-                                })}
+                                
+                                        <option value="Esito.CodGrupo">Esito.CodGrupo</option>
+                                   
                             </select>
                             <input onClick={this.Push_} className="REInput" type="button" value="Agregar" />
                             <input type="button" onClick={this.Cambio} className="REInput" value="Cancelar" />
@@ -252,11 +143,7 @@ class Directivos_registro_estudiantes extends React.Component {
                         {this.state.Bool && <Redirect to={{
                             pathname: "/Directivos/Registro_Estudiantes",
                             state: {
-                                Name: this.props.location.state.Name,
-                                Contraseña: this.props.location.state.Contraseña,
-                                Usuario: this.props.location.state.Usuario,
-                                Edad: this.props.location.state.Edad,
-                                Cargo: this.props.location.state.Cargo
+                                
                             }
                         }}>
                         </Redirect>}
