@@ -162,8 +162,14 @@ class Directivos_registro_grupos extends React.Component {
         document.getElementById("RegistroEsContainer").style.filter = "blur(0)";
     }
 
+<<<<<<< HEAD
     PostGrupo(){
         axios.post(``, { id_estudiante: this.state.id_estudiante, id_consolidado: this.state.id_consolidado})
+=======
+    //Petición get para obtener los grupos existentes
+    componentDidMount(){
+        axios.get(`http://localhost:4535/grupos/directivos-ver-grupos/${this.state.id_directivo}`)
+>>>>>>> d43b4309ec29fdbf8ffebb17284f3d9129261e03
           .then(res =>{
             console.log(res.data)
             this.setState({
@@ -172,11 +178,20 @@ class Directivos_registro_grupos extends React.Component {
         }).catch(err=>{
           console.log(err.massage)
         })
+<<<<<<< HEAD
     }
 
 // Este es el get para traer todos los grupos registrados
     componentDidMount(){
         axios.get(``, { id_estudiante: this.state.id_estudiante, id_consolidado: this.state.id_consolidado})
+=======
+      }
+    //Fin get
+    
+    //Petición post para agregar nuevos grupos
+    post_grupo(){
+        axios.post(`http://localhost:4535/grupos/directivos-nuevo-grupo/${this.state.id_directivo}`, {  })
+>>>>>>> d43b4309ec29fdbf8ffebb17284f3d9129261e03
           .then(res =>{
             console.log(res.data)
             this.setState({
@@ -186,7 +201,11 @@ class Directivos_registro_grupos extends React.Component {
           console.log(err.massage)
         })
       }
+<<<<<<< HEAD
 
+=======
+    //Fin post
+>>>>>>> d43b4309ec29fdbf8ffebb17284f3d9129261e03
 
     render() {
 

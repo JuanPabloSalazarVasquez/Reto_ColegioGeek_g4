@@ -18,7 +18,11 @@ class Estudiantes_notas_ver_notas extends React.Component {
 
   // Peticion get para traer todas las notas que corresponde a un estudiante respecto a una materia
 componentDidMount(){
+<<<<<<< HEAD
   axios.get(`http://localhost:4535/notas/estudiante-ver-notas-materia-estudiante/${this.state.id_estudiante}/${this.state.id_materia}`)
+=======
+  axios.get(`http://localhost:4535/notas/estudiante-ver-notas-materia-estudiante/${this.state.id_estudiante}`)
+>>>>>>> d43b4309ec29fdbf8ffebb17284f3d9129261e03
     .then(res =>{
       console.log(res.data)
       this.setState({
@@ -28,7 +32,11 @@ componentDidMount(){
     console.log(err.massage)
   })
 }
+<<<<<<< HEAD
 
+=======
+// Fin peticion get
+>>>>>>> d43b4309ec29fdbf8ffebb17284f3d9129261e03
 
 
   render() {

@@ -24,7 +24,7 @@ class Directivos_registro_materias extends React.Component {
 
     Push_ = () => {
 
-        Materias.push({
+        const Materia = {
             CodigoM: document.getElementById("CodigoGIn").value,
             Nombre: document.getElementById("NombreIn").value.toUpperCase(),
             Sexto: document.getElementById("Check1").checked,
@@ -34,7 +34,7 @@ class Directivos_registro_materias extends React.Component {
             Decimo: document.getElementById("Check5").checked,
             Once: document.getElementById("Check6").checked,
             Intencidad: document.getElementById("IntencidadIn").value
-        });
+        };
 
         document.getElementById("Form").style.display = "none";
         document.getElementById("RegistroEsContainer").style.filter = "blur(0)";
@@ -45,34 +45,35 @@ class Directivos_registro_materias extends React.Component {
 
         return this;
     }
+    //Fin post
 
     //Petición get para obtener las materias existentes
-    componentDidMount(){
-        axios.get(``, { /* ??? */ })
-          .then(res =>{
-            console.log(res.data)
-            this.setState({
-              datos: res.data
+    componentDidMount() {
+        axios.get(`http://localhost:4535/notas/estudiante-ver-notas-materia-estudiante/${this.state.id_directivo}`)
+            .then(res => {
+                console.log(res.data)
+                this.setState({
+                    datos: res.data
+                })
+            }).catch(err => {
+                console.log(err.massage)
             })
-        }).catch(err=>{
-          console.log(err.massage)
-        })
-      }
+    }
     //Fin get
 
     //Petición post para agregar nuevas materias
-    componentDidMount(){
-        axios.post(``, { cod_materia: this.state.cod_materia, nombre_materia: this.state.nombre_materia, sexto: this.state.sexto, septimo: this.state.septimo, octavo: this.state.octavo, noveno: this.state.noveno, decimo: this.state.decimo, once: this.state.once,  })
-          .then(res =>{
-            console.log(res.data)
-            this.setState({
-              datos: res.data
+    post_materia() {
+        axios.post(`http://localhost:4535/materias/directivos-nuevo-materia/${this.state.id_directivo}`, {  })
+            .then(res => {
+                console.log(res.data)
+                this.setState({
+                    datos: res.data
+                })
+            }).catch(err => {
+                console.log(err.massage)
             })
-        }).catch(err=>{
-          console.log(err.massage)
-        })
-      }
-    //Fin post
+    }
+
     render() {
         return (
             <>

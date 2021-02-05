@@ -14,17 +14,17 @@ class Estudiantes_materias extends React.Component {
     };
   }
 // Peticion get para traer todos los grupos cursados del estudiante
-  componentDidMount(){
-    axios.get(``, { id_estudiante: this.state.id_estudiante})
-      .then(res =>{
-        console.log(res.data)
-        this.setState({
-          datos: res.data
-        })
-    }).catch(err=>{
+componentDidMount() {
+  axios.get(`http://localhost:4535/grupos-estudiantes/grupos-cursados/${this.state.id_estudiante}`)
+    .then(res => {
+      console.log(res.data)
+      this.setState({
+        datos: res.data
+      })
+    }).catch(err => {
       console.log(err.massage)
     })
-  }
+}
 // Fin peticion get
 
   render() {
@@ -66,25 +66,8 @@ class Estudiantes_materias extends React.Component {
               <option value="1">2020</option>
             </select>
           </div>
-        {/* Prueba */}
-          <div className="CardsContainerGruposCursados-Grupos_Cursados">
-            <div className="FiltrosGruposCursados-Grupos_Cursados">
-              <div className="Select-Grupos_Cursados">
-                <p className="p_Texts-Grupos_Cursados">Codigo Grupo</p>
-              </div>
-              <div className="Select-Grupos_Cursados">
-                <p className="p_Texts-Grupos_Cursados">Once</p>
-              </div>
-              <div className="Select-Grupos_Cursados More">
-                <p className="p_Texts-Grupos_Cursados">Profesor director</p>
-              </div>
-              <div className="Min">
-                <p className="p_Texts-Grupos_Cursados">Año</p>
-              </div>
-            </div>
-          </div>
-        {/* 
-          {characters.map((datosT) => {
+        
+          {gruposCursados.map((datosT) => {
             return (
               <div className="CardsContainerGruposCursados-Grupos_Cursados">
             <div className="FiltrosGruposCursados-Grupos_Cursados">
@@ -104,7 +87,7 @@ class Estudiantes_materias extends React.Component {
           </div>
             )
           })}
-          */}
+
         </div>
       </>
     );

@@ -72,7 +72,7 @@ class Directivos_registro_maestros extends React.Component {
 
     //Petición get para obtener los maestros existentes
     componentDidMount(){
-        axios.get(``, { /* ??? */ })
+        axios.get(`http://localhost:4535/maestro/directivos-ver-maestros-materias-directores/${this.state.id_directivo}`, {  })
           .then(res =>{
             console.log(res.data)
             this.setState({
@@ -85,8 +85,8 @@ class Directivos_registro_maestros extends React.Component {
     //Fin get
 
     //Petición post para agregar nuevos maestros
-    componentDidMount(){
-        axios.post(``, { cedula: this.state.cedula, nombre: this.state.nombre, apellido: this.state.apellido, materia: this.state.materia, director: this.state.director, codigo_grupo: this.state.codigo_grupo })
+    post_maestro(){
+        axios.post(`http://localhost:4535/maestro/directivos-nuevo-maestro-persona/${this.state.id_directivo}`, {  }, {  })
           .then(res =>{
             console.log(res.data)
             this.setState({

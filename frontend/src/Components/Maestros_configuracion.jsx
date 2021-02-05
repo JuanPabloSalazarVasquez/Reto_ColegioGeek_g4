@@ -12,9 +12,9 @@ class Maestros_configuracion extends React.Component {
     this.state = {};
   }
 
-  // Peticion get para traer todos estudiantes de un grupo
+  //Petición get para obtener información de la cuenta
   componentDidMount() {
-    axios.get(``, { id_maestro: this.state.id_maestro })
+    axios.get(`http://localhost:4535/persona/${this.state.id_maestro}`) //Esta peticion está pendiente en el backend
       .then(res => {
         console.log(res.data)
         this.setState({
@@ -23,8 +23,22 @@ class Maestros_configuracion extends React.Component {
       }).catch(err => {
         console.log(err.massage)
       })
-  }
-  // Fin peticion get
+  } // Obtener información de la cuenta
+  //Fin get
+
+  //Petición put para modificar los datos de la cuenta
+  componentDidMount() {
+    axios.put(`http://localhost:4535/persona/${this.state.id_maestro}`) //Esta peticion está pendiente en el backend
+      .then(res => {
+        console.log(res.data)
+        this.setState({
+          datos: res.data
+        })
+      }).catch(err => {
+        console.log(err.massage)
+      })
+  } // Modificar información de la cuenta
+  //Fin put 
 
   render() {
     console.log(this.state.datos);

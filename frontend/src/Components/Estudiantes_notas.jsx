@@ -16,6 +16,7 @@ class Estudiantes_notas extends React.Component {
     };
   }
 
+<<<<<<< HEAD
 // Peticion get para traer todas las materias a la que esta registrado un estudiante
 componentDidMount(){
   axios.get(`http://localhost:4535/notas/materias-estudiante/${this.state.id_estudiante}`)
@@ -29,6 +30,21 @@ componentDidMount(){
   })
 }
 
+=======
+  // Peticion get para traer todas las materias a la que esta registrado un estudiante
+  componentDidMount() { 
+    axios.get(`http://localhost:4535/notas/materias-estudiante/${this.state.id_estudiante}`)
+      .then(res => {
+        console.log(res.data)
+        this.setState({
+          datos: res.data
+        })
+      }).catch(err => {
+        console.log(err.massage)
+      })
+  }
+  // Fin peticion get
+>>>>>>> d43b4309ec29fdbf8ffebb17284f3d9129261e03
 
 
   render() {
