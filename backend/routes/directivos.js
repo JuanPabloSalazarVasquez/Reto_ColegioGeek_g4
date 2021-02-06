@@ -6,7 +6,7 @@ const { pool } = require('../db/db');
 // Peticion get para consultar los datos de un directivo
 // /directivo
 // Esta peticion funciona correctamente
-directivo.get("/directivos-inicio-directivo/:id_directivo", async (req, res) => {
+directivo.get("/directivos-inicio-directivo", async (req, res) => {
     let client = await pool.connect();
     const { id_directivo } = req.params;
     try {

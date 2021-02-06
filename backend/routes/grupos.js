@@ -7,7 +7,7 @@ const { pool } = require('../db/db');
 // /Directivos/Registro_Grupos
 // Esta peticion se realiza a la tabla de grupos para crear un nuevo grupo
 // Esta peticion funciona
-grupos.post('/directivos-nuevo-grupo/:id_directivo', async(req,res)=>{
+grupos.post('/directivos-nuevo-grupo', async(req,res)=>{
     let client = await pool.connect();
   const {
     director_id_maestro,
@@ -35,7 +35,7 @@ grupos.post('/directivos-nuevo-grupo/:id_directivo', async(req,res)=>{
 // Esta peticion se realiza a la tabla de grupos-estudiantes y se cuentan los estudiantes por cada grupo
 // trayendo, ademas, los datos de cada grupo
 // Esta peticion funciona
-grupos.get("/directivos-ver-grupos/:id_directivo", async (req, res) => {
+grupos.get("/directivos-ver-grupos", async (req, res) => {
     let client = await pool.connect();
     try {
       const result = await client.query(

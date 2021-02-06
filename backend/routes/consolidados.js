@@ -7,7 +7,7 @@ const { pool } = require("../db/db");
 // /estudiantes/mis_consolidados
 // Esta peticion necesita el id_estudiante
 // Esta peticion funciona
-consolidados.get("/consolidados-estudiante/:id_estudiante", async (req, res) => {
+consolidados.get("/consolidados-estudiante", async (req, res) => {
   let client = await pool.connect();
   const { id_estudiante } = req.params;
   try {

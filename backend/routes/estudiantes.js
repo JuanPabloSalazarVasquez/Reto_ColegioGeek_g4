@@ -6,7 +6,7 @@ const { pool } = require('../db/db');
 // Peticion get para consultar los datos de un estudiante
 // /estudiantes
 // Esta peticion funciona correctamente
-estudiantes.get("/estudiantes-inicio-estudiante/:id_estudiante", async (req, res) => {
+estudiantes.get("/estudiantes-inicio-estudiante", async (req, res) => {
   let client = await pool.connect();
   const { id_estudiante } = req.params;
   try {
@@ -60,7 +60,7 @@ estudiantes.get("/directivos-all-estudiantes", async (req, res) => {
 // Peticion get para consultar los datos de un estudiante
 // /maestros/registrar_notas/grupo_estudiantes/agregar_nota
 // Esta peticion funciona correctamente
-estudiantes.get("/maestro-registro-estudiante-info-estudiante/:id_estudiante", async (req, res) => {
+estudiantes.get("/maestro-registro-estudiante-info-estudiante", async (req, res) => {
   let client = await pool.connect();
   const { id_estudiante } = req.params;
   try {

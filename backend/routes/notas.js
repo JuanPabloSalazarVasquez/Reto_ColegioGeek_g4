@@ -9,7 +9,7 @@ const { pool } = require("../db/db");
 // /estudiantes/mis_notas
 // Esta peticion necesita el id_estudiante
 // Esta peticion funciona
-notas.get("/materias-estudiante/:id_estudiante", async (req, res) => {
+notas.get("/materias-estudiante", async (req, res) => {
   let client = await pool.connect();
   const { id_estudiante } = req.params;
   console.log(id_estudiante)
@@ -117,7 +117,7 @@ notas.get("/notas-materia-estudiante/:id_materia/:id_estudiante", async (req, re
 // /maestros/registrar_notas/grupo_estudiantes/agregar_nota
 // El post se hace respecto a id_estudiante, id_materia y id_grupo
 // Esta peticion funciona
-notas.post('/nueva-nota-estudiante/:id_maestro', async (req, res) => {
+notas.post('/nueva-nota-estudiante', async (req, res) => {
   let client = await pool.connect();
   const {
     id_materia,
