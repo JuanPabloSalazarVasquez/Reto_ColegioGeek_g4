@@ -11,7 +11,7 @@ class directivos_inicio extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      datos: this.props.location.state.datos_user2,
+      datos: JSON.parse(sessionStorage.getItem('id_directivo')),
       datos_directivos: ''
     };
   }

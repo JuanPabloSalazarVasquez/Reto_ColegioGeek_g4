@@ -5,7 +5,6 @@ import "../Styles/VerRegEstu.css";
 
 import { withRouter, Link } from "react-router-dom";
 
-let variablamamalona = -1;
 
 class Directivos_grupos_ver_estudiantes extends React.Component {
   constructor(props) {
@@ -102,7 +101,7 @@ class Directivos_grupos_ver_estudiantes extends React.Component {
               </div>
               <Link
                 to={{
-                  pathname: "/directivos/registro_Grupos",
+                  pathname: "/directivos/registro_Grupos"
                 }}
               >
                 <button className="SelectR button">Volver</button>

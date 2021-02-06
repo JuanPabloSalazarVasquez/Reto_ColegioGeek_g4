@@ -4,22 +4,27 @@ import axios from 'axios';
 import "../Styles/Estudiantes_inicio.css";
 
 import { withRouter } from "react-router-dom";
-import { Link } from "react-router-dom";
+import { Link, Redirect } from "react-router-dom";
 
 class Estudiantes_inicio extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      datos: this.props.location.state.datos_user2,
-      datos_estudiante: ''
+      //datos: this.props.location.state.datos_user2,
+      datos: JSON.parse(sessionStorage.getItem('id_estudiante')),
+      datos_estudiante: '',
+      Bool1: false
     };
   }
 
   // Peticion get para traer todos los grupos cursados del estudiante
 componentDidMount() {
+  console.log('Este es el id_estudiante en estudiante inicio:',sessionStorage.getItem('id_estudiante'))
+  console.log('Esta es datos del estado:',this.state.datos);
+  console.log('Esta es datos del estado el id:',this.state.datos.id_estudiante);
   axios.get(`http://localhost:4535/estudiantes/estudiantes-inicio-estudiante/${this.state.datos.id_estudiante}`)
     .then(res => {
-      console.log(res.data)
+      console.log('res.data del get',res.data)
       this.setState({
         datos_estudiante: res.data[0]
       })
@@ -28,6 +33,12 @@ componentDidMount() {
     })
 }
 // Fin peticion get
+
+logout = () => {
+  sessionStorage.clear()
+  this.setState({Bool1: true})
+}
+
 
   render() {
     console.log(this.state.datos)
@@ -53,21 +64,25 @@ componentDidMount() {
                     Cargo: Estudiante
                   </p>
                 </div>
-                <Link to="/">
-                  <button className="button button2-Estudiantes_inicio">
+                
+                  <button className="button button2-Estudiantes_inicio" onClick={this.logout}>
                     Cerrar sesión
                   </button>
-                </Link>
+             
+                {this.state.Bool1 && (
+                  <Redirect
+                    to={{
+                      pathname: "/"
+                    }}
+                  ></Redirect>
+                )}
               </div>
             </div>
             <div className="CardsCont-Estudiantes_inicio">
               <div className="Grupo1-Estudiantes_inicio">
                 <div>
                   <Link to={{
-                    pathname: "/estudiantes/mis_notas",
-                    state: {
-                      id_estudiante: this.state.datos_estudiante.id_estudiante
-                    }
+                    pathname: "/estudiantes/mis_notas"
                   }} >
                     <div className="img-direc1-Estudiantes_inicio CardS-Estudiantes_inicio">
                       <img src='https://cdn0.iconfinder.com/data/icons/education-flat-7/128/09_Examination-512.png' alt="Cantidad Estudiantes" className='icono' />

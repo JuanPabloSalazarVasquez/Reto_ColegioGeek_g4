@@ -10,7 +10,7 @@ class Maestros_registro_notas_grupo_estudiantes extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      id_maestro: this.props.location.state.id_maestro,
+      id_maestro: JSON.parse(sessionStorage.getItem('id_maestro')),
       id_grupo: this.props.location.state.id_grupo,
       id_materia: this.props.location.state.id_materia,
       datos: []
@@ -19,7 +19,35 @@ class Maestros_registro_notas_grupo_estudiantes extends React.Component {
 
   // Peticion get para traer todos los estudiantes de un grupo
   componentDidMount() {
-    axios
+    if(this.state.id_grupo == null){
+      console.log('No hay nada en la sessionStorage')
+      //console.log(sessionStorage.getItem('El del if 1:','id_grupo'))
+      this.setState({
+        id_grupo: JSON.parse(sessionStorage.getItem('id_grupo')).id_grupo,
+        id_materia: JSON.parse(sessionStorage.getItem('id_materia')).id_materia
+      })
+
+      axios
+      .get(`http://localhost:4535/grupos-estudiantes/estudiantes-grupo-notas-ver-all-estudiantes/${JSON.parse(sessionStorage.getItem('id_grupo')).id_grupo}`)
+      .then((res) => {
+        console.log(res.data);
+        this.setState({
+          datos: res.data,
+        });
+      })
+      .catch((err) => {
+        console.log(err.massage);
+      });
+    }else if(this.state.id_grupo != null){
+      //console.log(sessionStorage.getItem('El del if 2:','id_grupo'))
+      sessionStorage.setItem('id_grupo', JSON.stringify({
+        id_grupo: this.state.id_grupo
+      }))
+      sessionStorage.setItem('id_materia', JSON.stringify({
+        id_materia: this.state.id_materia
+      }))
+
+      axios
       .get(`http://localhost:4535/grupos-estudiantes/estudiantes-grupo-notas-ver-all-estudiantes/${this.state.id_grupo}`)
       .then((res) => {
         console.log(res.data);
@@ -30,6 +58,10 @@ class Maestros_registro_notas_grupo_estudiantes extends React.Component {
       .catch((err) => {
         console.log(err.massage);
       });
+    }
+    console.log('este es el id_grupo:', JSON.parse(sessionStorage.getItem('id_grupo')).id_grupo)
+    console.log('este el id_grupo en el estado:', this.state.id_grupo)
+    
   }
   // Fin peticion get
 
@@ -71,7 +103,7 @@ class Maestros_registro_notas_grupo_estudiantes extends React.Component {
           {gruposEstudiantes.map((datosT) => {
             return (
               <div className="EstuFilter-Maestros_registro_notas_grupo_estudiantes">
-              <div className="FiltrosREstudiante-Maestros_registro_notas_grupo_estudiantes">
+              <div className="FiltrosREstudiante-Maestros_registro_notas_grupo_estudiantes"key={datosT.codigo_estudiante}>
                 <div className="SelectR-Maestros_registro_notas_grupo_estudiantes">
                   <p className="pTexts-Maestros_registro_notas_grupo_estudiantes">
                     {datosT.codigo_estudiante}
@@ -90,7 +122,6 @@ class Maestros_registro_notas_grupo_estudiantes extends React.Component {
                 <Link to={{
                     pathname: "/maestros/registrar_notas/grupo_estudiantes/agregar_nota",
                     state: {
-                      id_maestro: this.state.id_maestro,
                       id_grupo: this.state.id_grupo,
                       id_estudiante: datosT.id_estudiante,
                       id_materia: this.state.id_materia

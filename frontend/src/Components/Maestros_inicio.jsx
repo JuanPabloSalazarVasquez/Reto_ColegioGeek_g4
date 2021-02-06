@@ -4,14 +4,15 @@ import axios from 'axios';
 import "../Styles/Maestros_inicio.css";
 
 import { withRouter } from "react-router-dom";
-import { Link } from "react-router-dom";
+import { Link, Redirect } from "react-router-dom";
 
 class Maestros_inicio extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      datos: this.props.location.state.datos_user2,
-      datos_maestro: ''
+      datos: JSON.parse(sessionStorage.getItem('id_maestro')),
+      datos_maestro: '',
+      Bool1: false
     };
   }
 
@@ -28,6 +29,11 @@ componentDidMount() {
     })
 }
 // Fin peticion get
+
+logout = () => {
+  sessionStorage.clear()
+  this.setState({Bool1: true})
+}
 
   render() {
 
@@ -53,11 +59,17 @@ componentDidMount() {
                     Cargo: Maestro
                   </p>
                 </div>
-                <Link to="/">
-                  <button className="button button2-Maestros_inicio">
+                
+                  <button className="button button2-Maestros_inicio" onClick={this.logout}>
                     Cerrar sesión
                   </button>
-                </Link>
+                  {this.state.Bool1 && (
+                  <Redirect
+                    to={{
+                      pathname: "/"
+                    }}
+                  ></Redirect>
+                )}
               </div>
             </div>
             <div className="CardsCont-Maestros_inicio">

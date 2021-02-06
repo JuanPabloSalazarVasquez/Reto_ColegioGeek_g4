@@ -3,15 +3,22 @@ import React from 'react';
 import '../Styles/Directivos.css';
 
 import {
-    BrowserRouter as Router,
-     Link
+    Redirect
 } from "react-router-dom";
 
 class Profile extends React.Component {
     constructor(props) {
         super(props);
-        this.state = {}
+        this.state = {
+            Bool1: false
+        }
     }
+
+    logout = () => {
+        sessionStorage.clear()
+        this.setState({Bool1: true})
+      }
+
     render() {
         return (
             <>
@@ -23,9 +30,15 @@ class Profile extends React.Component {
                     <p className="Pprofile">Bienvenido {this.props.Name}</p>
                     <p className="Pprofile">Cargo: {this.props.Cargo}</p>
                     </div>
-                    <Link to="/">
-                    <button className="button button2">Cerrar sesión</button>
-                    </Link>
+                    
+                    <button className="button button2" onClick={this.logout}>Cerrar sesión</button>
+                    {this.state.Bool1 && (
+                  <Redirect
+                    to={{
+                      pathname: "/"
+                    }}
+                  ></Redirect>
+                )}
                 </div>
             </>
         );
