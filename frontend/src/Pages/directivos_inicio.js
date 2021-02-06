@@ -1,5 +1,6 @@
 import React from "react";
 import Profile from "../Components/Profile";
+import axios from 'axios';
 
 import "../Styles/Directivos.css";
 
@@ -9,16 +10,36 @@ import { Link } from "react-router-dom";
 class directivos_inicio extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {};
+    this.state = {
+      datos: this.props.location.state.datos_user2,
+      datos_directivos: ''
+    };
   }
 
+  // Peticion get para traer la informacion de un directivo
+componentDidMount() {
+  axios.get(`http://localhost:4535/directivos/directivos-inicio-directivo/${this.state.datos.id_directivo}`)
+    .then(res => {
+      console.log(res.data)
+      this.setState({
+        datos_directivos: res.data[0]
+      })
+    }).catch(err => {
+      console.log(err.massage)
+    })
+}
+// Fin peticion get
+
   render() {
+
+    let directivo = this.state.datos_directivos;
+
     return (
       <>
         <div id="DirectivosContainer">
           <div id="DirectivosGrid">
             <div id="ProfileCont">
-              <Profile Name={this.state.Name} Edad={this.state.Edad} />
+              <Profile Name={directivo.nombres} Cargo="Directivo"/>
             </div>
             <div id="CardsCont">
               <div id="Grupo1">
