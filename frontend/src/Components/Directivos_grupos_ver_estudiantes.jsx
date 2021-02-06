@@ -16,59 +16,59 @@ class Directivos_grupos_ver_estudiantes extends React.Component {
         super(props);
         this.state = {
             filter: Estudiantes.filter(Esito => Esito.Grupo == this.props.InfoUsurio[0].CodGrupo),
-            ArregloMamalon:[
-                Materias.filter(Esito => Esito.Sexto == true), 
-                Materias.filter(Esito => Esito.Septimo == true), 
-                Materias.filter(Esito => Esito.Octavo == true), 
-                Materias.filter(Esito => Esito.Noveno == true), 
+            ArregloMamalon: [
+                Materias.filter(Esito => Esito.Sexto == true),
+                Materias.filter(Esito => Esito.Septimo == true),
+                Materias.filter(Esito => Esito.Octavo == true),
+                Materias.filter(Esito => Esito.Noveno == true),
                 Materias.filter(Esito => Esito.Decimo == true),
                 Materias.filter(Esito => Esito.Once == true)]
         }
     }
- funti = () =>{
+    funti = () => {
 
-    if (this.props.InfoUsurio[0].Grado == "Sexto") {
-        variablamamalona = 0;
-} else if (this.props.InfoUsurio[0].Grado == "Septimo"){
-    variablamamalona = 1;
-}else if (this.props.InfoUsurio[0].Grado == "Octavo"){
-    variablamamalona = 2;
-}else if (this.props.InfoUsurio[0].Grado == "Noveno"){
-    variablamamalona = 3;
-}else if (this.props.InfoUsurio[0].Grado == "Decimo"){
-    variablamamalona = 4;
-}else if (this.props.InfoUsurio[0].Grado == "Once"){
-    variablamamalona = 5;
-}
- }
+        if (this.props.InfoUsurio[0].Grado == "Sexto") {
+            variablamamalona = 0;
+        } else if (this.props.InfoUsurio[0].Grado == "Septimo") {
+            variablamamalona = 1;
+        } else if (this.props.InfoUsurio[0].Grado == "Octavo") {
+            variablamamalona = 2;
+        } else if (this.props.InfoUsurio[0].Grado == "Noveno") {
+            variablamamalona = 3;
+        } else if (this.props.InfoUsurio[0].Grado == "Decimo") {
+            variablamamalona = 4;
+        } else if (this.props.InfoUsurio[0].Grado == "Once") {
+            variablamamalona = 5;
+        }
+    }
 
- //Petición get para obtener los estudiantes existentes dentro de un grupo
- componentDidMount(){
-    axios.get(`http://localhost:4535/grupos-estudiantes/estudiantes-ver-grupos-estudiantes-directivos/${this.state.id_directivo}`)
-      .then(res =>{
-        console.log(res.data)
-        this.setState({
-          datos: res.data
-        })
-    }).catch(err=>{
-      console.log(err.massage)
-    })
-  }
-//Fin get
+    //Petición get para obtener los estudiantes existentes dentro de un grupo
+    componentDidMount() {
+        axios.get(`http://localhost:4535/grupos-estudiantes/estudiantes-ver-grupos-estudiantes-directivos/${this.state.id_directivo}`)
+            .then(res => {
+                console.log(res.data)
+                this.setState({
+                    datos: res.data
+                })
+            }).catch(err => {
+                console.log(err.massage)
+            })
+    }
+    //Fin get
 
-//Petición post para agregar nuevos estudiantes dentro de un grupo
-post_grupo(){
-    axios.post(`http://localhost:4535/grupos-estudiantes//${this.state.id_directivo}`, {  }) //Esta petición está pendiente en el backend
-      .then(res =>{
-        console.log(res.data)
-        this.setState({
-          datos: res.data
-        })
-    }).catch(err=>{
-      console.log(err.massage)
-    })
-  }
-//Fin post
+    //Petición post para agregar nuevos estudiantes dentro de un grupo
+    post_grupo() {
+        axios.post(`http://localhost:4535/grupos-estudiantes//${this.state.id_directivo}`, {}) //Esta petición está pendiente en el backend
+            .then(res => {
+                console.log(res.data)
+                this.setState({
+                    datos: res.data
+                })
+            }).catch(err=>{
+                console.log(err.massage)
+            })
+    }
+    //Fin post
 
     render() {
         return (
@@ -123,7 +123,7 @@ post_grupo(){
                             </Link>
                         </div>
                         <div className="VerMate3">
-                        {this.funti()}
+                            {this.funti()}
                             {
                                 this.state.ArregloMamalon[variablamamalona].map((Esito, index) => {
                                     return (
@@ -131,7 +131,7 @@ post_grupo(){
                                             <div className="SelectR">
                                                 <p> {Esito.Nombre}  </p>
                                             </div>
-                                            <div className="SelectR"> 
+                                            <div className="SelectR">
                                                 <p>{Esito.CodigoM}</p>
                                             </div>
                                         </div>
