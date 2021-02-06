@@ -10,8 +10,9 @@ class Maestros_registro_notas_grupo_estudiantes extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      //id_maestro: this.props.location.id_maestro,
-      //id_grupo: this.props.location.id_grupo,
+      id_maestro: this.props.location.state.id_maestro,
+      id_grupo: this.props.location.state.id_grupo,
+      id_materia: this.props.location.state.id_materia,
       datos: []
     };
   }
@@ -66,63 +67,44 @@ class Maestros_registro_notas_grupo_estudiantes extends React.Component {
                 />
               </div>
             </div>
-            {/* Estudiantes */}
-            <div className="EstuFilter-Maestros_registro_notas_grupo_estudiantes">
+
+          {gruposEstudiantes.map((datosT) => {
+            return (
+              <div className="EstuFilter-Maestros_registro_notas_grupo_estudiantes">
               <div className="FiltrosREstudiante-Maestros_registro_notas_grupo_estudiantes">
                 <div className="SelectR-Maestros_registro_notas_grupo_estudiantes">
                   <p className="pTexts-Maestros_registro_notas_grupo_estudiantes">
-                    Matricula
+                    {datosT.codigo_estudiante}
                   </p>
                 </div>
                 <div className="SelectR-Maestros_registro_notas_grupo_estudiantes">
                   <p className="pTexts-Maestros_registro_notas_grupo_estudiantes">
-                    Emanuel
+                    {datosT.nombres}
                   </p>
                 </div>
                 <div className="SelectR-Maestros_registro_notas_grupo_estudiantes">
                   <p className="pTexts-Maestros_registro_notas_grupo_estudiantes">
-                    Acevedo Munoz
+                    {datosT.apellidos}
                   </p>
                 </div>
-                <Link to="/maestros/registrar_notas/grupo_estudiantes/agregar_nota">
+                <Link to={{
+                    pathname: "/maestros/registrar_notas/grupo_estudiantes/agregar_nota",
+                    state: {
+                      id_maestro: this.state.id_maestro,
+                      id_grupo: this.state.id_grupo,
+                      id_estudiante: datosT.id_estudiante,
+                      id_materia: this.state.id_materia
+                  }
+                  }}>
                   <button className="Button-Maestros_registro_notas_grupo_estudiantes">
                     Agregar nota
                   </button>
                 </Link>
               </div>
             </div>
-
-            {/* 
-          {gruposEstudiantes.map((datosT) => {
-            return (
-              <div className="CardsContainerMaestrosRegistroNotas-Maestros_registro_notas">
-            <div className="FiltrosMaestrosRegistroNotas-Maestros_registro_notas">
-              <div className="SelectMaestrosRegistroNotas-Maestros_registro_notas">
-                <p>qweasda</p>
-              </div>
-              <div className="SelectMaestrosRegistroNotas-Maestros_registro_notas">
-                <p>Once</p>
-              </div>
-              <div className="SelectMaestrosRegistroNotas-Maestros_registro_notas More-Maestros_registro_notas">
-                <p>Emanuel</p>
-              </div>
-              <div className="Min-Maestros_registro_notas">
-                <p>11</p>
-              </div>
-              <div className="SelectMaestrosRegistroNotas-Maestros_registro_notas">
-                <Link
-                  to={{
-                    pathname: "/maestros/registrar_notas/grupo_estudiantes",
-                  }}
-                >
-                  <button className="ButtonMaestrosRegistroNotas-Maestros_registro_notas">Ver Estudiantes</button>
-                </Link>
-              </div>
-            </div>
-          </div>
             )
           })}
-          */}
+
           </div>
         </div>
       </>

@@ -15,15 +15,6 @@ class directivos_grupos_ver_estudiantes extends React.Component {
             <>
             <HeaderSistema classDis="Dis"/>
             <Directivos_grupos_ver_estudiantes 
-            InfoUsurio = {[{
-                Name: this.props.location.state.Name,
-                Contraseña: this.props.location.state.Contraseña,
-                Usuario: this.props.location.state.Usuario,
-                Edad: this.props.location.state.Edad,
-                Cargo: this.props.location.state.Cargo,
-                CodGrupo: this.props.location.state.CodGrupo,
-                Grado: this.props.location.state.Grado
-            }]}
             />
             </>
          );

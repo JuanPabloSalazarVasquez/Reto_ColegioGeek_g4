@@ -63,7 +63,7 @@ class DirectivosConfiguracion extends React.Component {
     this.state = {};
   }
 
-  // Peticion get para traer todos estudiantes de un grupo
+  // Peticion get para traer todos los datos de un trabajador
   componentDidMount() {
     axios.get(``, { id_maestro: this.state.id_maestro })
       .then(res => {

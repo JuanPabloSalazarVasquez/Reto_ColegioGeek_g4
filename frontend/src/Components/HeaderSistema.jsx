@@ -27,13 +27,7 @@ class HeaderS extends React.Component {
             <div className='bContainer-HeaderSistema'>
               <Link to={{
                 pathname: "/Directivos",
-                state: {
-                  Name: this.props.location.state.Name,
-                  Contraseña: this.props.location.state.Contraseña,
-                  Usuario: this.props.location.state.Usuario,
-                  Edad: this.props.location.state.Edad,
-                  Cargo: this.props.location.state.Cargo
-                }
+                
               }}>
                 <button className={`button ${this.props.classDis}`} >Regresar</button>
               </Link>

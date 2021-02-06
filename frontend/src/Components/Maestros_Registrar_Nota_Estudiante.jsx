@@ -1,7 +1,10 @@
+/* eslint-disable react/jsx-pascal-case */
 import React from "react";
 import axios from "axios";
 
 import "../Styles/Maestros_Registrar_Nota_Estudiante.css";
+
+import HeaderSistema_Maestros from "./HeaderSistema_Maestros";
 
 import { withRouter } from "react-router-dom";
 
@@ -9,7 +12,15 @@ class Maestros_Registrar_Nota_Estudiante extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
+      id_maestro: this.props.location.state.id_maestro,
+      id_grupo: this.props.location.state.id_grupo,
+      id_estudiante: this.props.location.state.id_estudiante,
+      id_materia: this.props.location.state.id_materia,
       datos: [],
+      datosEstudiante: [],
+      from: {
+        
+      }
     };
   }
 
@@ -19,7 +30,7 @@ class Maestros_Registrar_Nota_Estudiante extends React.Component {
     delete this.state.form.ConfirmarCorreo;
     await axios
       .post(
-        "http://localhost:4020/api/nuevo-trabajador/registro",
+        "",
         this.state.form
       )
       .then((response) => {
@@ -30,30 +41,32 @@ class Maestros_Registrar_Nota_Estudiante extends React.Component {
       });
   };
 
-  // Peticion get para ver las notas de une studiante
+// Peticion get para traer todas las notas de un estudiante
+
+componentWillMount() {
+  axios
+    .get(`http://localhost:4535/estudiantes/maestro-registro-estudiante-info-estudiante/${this.state.id_estudiante}`)
+    .then((res) => {
+      console.log(res.data);
+      this.setState({
+        datosEstudiante: res.data[0]
+      });
+    })
+    .catch((err) => {
+      console.log(err.massage);
+    });
+}
+
+// Fin peticion get
+
+  // Peticion get para traer todas las notas de un estudiante
   componentDidMount() {
     axios
       .get(`http://localhost:4535/notas/notas-materia-estudiante/${this.state.id_materia}/${this.state.id_estudiante}`)
       .then((res) => {
         console.log(res.data);
         this.setState({
-          datos: res.data,
-        });
-      })
-      .catch((err) => {
-        console.log(err.massage);
-      });
-  }
-  // Fin peticion get
-
-  // Peticion post agregar nota a un estudiante
-  componentDidMount() {
-    axios
-      .post(`http://localhost:4535/notas/nueva-nota-estudiante/${this.state.id_maestro}`, {  })
-      .then((res) => {
-        console.log(res.data);
-        this.setState({
-          datos: res.data,
+          datos: res.data
         });
       })
       .catch((err) => {
@@ -65,9 +78,16 @@ class Maestros_Registrar_Nota_Estudiante extends React.Component {
   render() {
     console.log(this.state.datos);
     const notasEstudiante = this.state.datos;
+    console.log(this.state.datosEstudiante);
 
     return (
       <>
+      <HeaderSistema_Maestros pathname="/maestros/registrar_notas/grupo_estudiantes" PaginaAnterior = {[{
+                        id_maestro: this.state.id_maestro,
+                        id_grupo: this.state.id_grupo,
+                        id_estudiante: this.state.id_estudiante,
+                        id_materia: this.state.id_materia
+                    }]} />
         <div className="VerEstuGrupContainer-Maestros_Registrar_Nota_Estudiante">
           <div className="FiltradoEstudiante-Maestros_Registrar_Nota_Estudiante">
             {/* Filtrar las notas de un estudiante */}
@@ -94,17 +114,17 @@ class Maestros_Registrar_Nota_Estudiante extends React.Component {
               <div className="FiltrosREstudiante-Maestros_Registrar_Nota_Estudiante-Registro">
                 <div className="SelectR-Maestros_Registrar_Nota_Estudiante">
                   <p className="pTexts-Maestros_Registrar_Nota_Estudiante">
-                    Matricula
+                    {this.state.datosEstudiante.codigo_estudiante}
                   </p>
                 </div>
                 <div className="SelectR-Maestros_Registrar_Nota_Estudiante">
                   <p className="pTexts-Maestros_Registrar_Nota_Estudiante">
-                    Emanuel
+                  {this.state.datosEstudiante.nombres}
                   </p>
                 </div>
                 <div className="SelectR-Maestros_Registrar_Nota_Estudiante">
                   <p className="pTexts-Maestros_Registrar_Nota_Estudiante">
-                    Acevedo Munoz
+                  {this.state.datosEstudiante.apellidos}
                   </p>
                 </div>
                 <div className="SelectR-Maestros_Registrar_Nota_Estudiante">
@@ -129,72 +149,40 @@ class Maestros_Registrar_Nota_Estudiante extends React.Component {
               </div>
             </div>
 
-            {/* Notas del estudiante */}
-            <div className="EstuFilter-Maestros_Registrar_Nota_Estudiante">
-              <div className="FiltrosREstudiante-Maestros_Registrar_Nota_Estudiante">
-                <div className="SelectR-Maestros_Registrar_Nota_Estudiante">
-                  <p className="pTexts-Maestros_Registrar_Nota_Estudiante">
-                    Matricula
-                  </p>
-                </div>
-                <div className="SelectR-Maestros_Registrar_Nota_Estudiante">
-                  <p className="pTexts-Maestros_Registrar_Nota_Estudiante">
-                    Emanuel
-                  </p>
-                </div>
-                <div className="SelectR-Maestros_Registrar_Nota_Estudiante">
-                  <p className="pTexts-Maestros_Registrar_Nota_Estudiante">
-                    Acevedo Munoz
-                  </p>
-                </div>
-                <div className="SelectR-Maestros_Registrar_Nota_Estudiante">
-                  <p className="pTexts-Maestros_Registrar_Nota_Estudiante">
-                    4.5
-                  </p>
-                </div>
-                <div className="SelectR-Maestros_Registrar_Nota_Estudiante">
-                  <p className="pTexts-Maestros_Registrar_Nota_Estudiante">
-                    Actitudinal
-                  </p>
-                </div>
-              </div>
-            </div>
-
-            {/* 
           {notasEstudiante.map((datosT) => {
             return (
               <div className="EstuFilter-Maestros_Registrar_Nota_Estudiante">
               <div className="FiltrosREstudiante-Maestros_Registrar_Nota_Estudiante">
                 <div className="SelectR-Maestros_Registrar_Nota_Estudiante">
                   <p className="pTexts-Maestros_Registrar_Nota_Estudiante">
-                    Matricula
+                    {datosT.codigo_estudiante}
                   </p>
                 </div>
                 <div className="SelectR-Maestros_Registrar_Nota_Estudiante">
                   <p className="pTexts-Maestros_Registrar_Nota_Estudiante">
-                    Emanuel
+                  {datosT.nombres}
                   </p>
                 </div>
                 <div className="SelectR-Maestros_Registrar_Nota_Estudiante">
                   <p className="pTexts-Maestros_Registrar_Nota_Estudiante">
-                    Acevedo Munoz
+                  {datosT.apellidos}
                   </p>
                 </div>
                 <div className="SelectR-Maestros_Registrar_Nota_Estudiante">
                   <p className="pTexts-Maestros_Registrar_Nota_Estudiante">
-                    4.5
+                  {datosT.nota}
                   </p>
                 </div>
                 <div className="SelectR-Maestros_Registrar_Nota_Estudiante">
                   <p className="pTexts-Maestros_Registrar_Nota_Estudiante">
-                    Actitudinal
+                  {datosT.tipo_nota}
                   </p>
                 </div>
               </div>
             </div>
             )
           })}
-          */}
+
           </div>
         </div>
       </>
