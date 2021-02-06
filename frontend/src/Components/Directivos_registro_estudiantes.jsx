@@ -18,7 +18,12 @@ class Directivos_registro_estudiantes extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            Bool: false
+            Bool: false,
+            datos: [],
+            form: {
+                nombres: '',
+                apellidos: ''
+            }
         }
     }
 
@@ -38,7 +43,7 @@ class Directivos_registro_estudiantes extends React.Component {
 
     //Petición get para obtener los estudiantes existentes
     componentDidMount(){
-        axios.get(`http://localhost:4535/estudiantes/directivos-all-estudiantes/${this.state.id_directivo}`)
+        axios.get(`http://localhost:4535/estudiantes/directivos-all-estudiantes`)
           .then(res =>{
             console.log(res.data)
             this.setState({
@@ -52,7 +57,10 @@ class Directivos_registro_estudiantes extends React.Component {
     
     //Petición post para agregar nuevos estudiantes
     post_estudiante(){
-        axios.post(`http://localhost:4535/estudiantes/directivos-nuevo-estudiante-persona/${this.state.id_directivo}`, {  })
+        axios.post(`http://localhost:4535/estudiantes/directivos-nuevo-estudiante-persona`, { 
+            nombres: this.state.form.nombres,
+            apellidos: this.state.form.apellidos
+         })
           .then(res =>{
             console.log(res.data)
             this.setState({
@@ -64,6 +72,17 @@ class Directivos_registro_estudiantes extends React.Component {
       }
     //Fin post
 
+    handleChange = async (e) => {
+        e.persist();
+        await this.setState({
+          form: {
+            ...this.state.form,
+            [e.target.name]: e.target.value
+          },
+        });
+        console.log(this.state.form);
+      };
+    
 
     render() {
         return (
@@ -75,8 +94,10 @@ class Directivos_registro_estudiantes extends React.Component {
                         </div>
                         <div id="Form2_2">
                             <div className="Form2_2_2">
-                                <input className="REInput" id="NombreIn" placeholder="Nombre" autoComplete="off" />
-                                <input className="REInput" id="ApellidoIn" placeholder="Apellido" autoComplete="off" />
+                                <input className="REInput" id="NombreIn" placeholder="Nombre" autoComplete="off" onChange={this.handleChange}
+                name="nombres" />
+                                <input className="REInput" id="ApellidoIn" placeholder="Apellido" autoComplete="off" onChange={this.handleChange}
+                name="apellidos" />
                                 <select className="REInput" id="TipoDI">
                                     <option value="0" className="Dis">Tipo Documento</option>
                                     <option value="1">Cédula</option>
@@ -149,29 +170,28 @@ class Directivos_registro_estudiantes extends React.Component {
                         </Redirect>}
                     </div>
                     <div id="CardsContainerReEs">
-                        {this.props.Estudiantes.map((Esito, index) => {
-                            return (
-                                <div key={index} className="FiltrosREstudiante">
+                        
+                            
+                                <div className="FiltrosREstudiante">
                                     <div className="SelectR">
-                                        <p>{Esito.Matricula}</p>
+                                        <p>Esito.Matricula</p>
                                     </div>
                                     <div className="SelectR NameF">
-                                        <p className="Peque" >{Esito.Name} {Esito.Apellido}</p>
+                                        <p className="Peque" >Esito.Name Esito.Apellido</p>
                                     </div>
                                     <div className="SelectR GradoF">
-                                        <p>{Esito.Grado}</p>
+                                        <p>Esito.Grado</p>
                                     </div>
                                     <div className="SelectR GrupoF">
-                                        <p>{Esito.Grupo}</p>
+                                        <p>Esito.Grupo</p>
                                     </div>
                                     <div className="SelectR AñoInsF">
-                                        <p>{Esito.Año}</p>
+                                        <p>Esito.Año</p>
                                     </div>
                                     <div className="ImgRMas">
                                     </div>
                                 </div>
-                            );
-                        })}
+                           
                     </div>
                 </div>
             </>
