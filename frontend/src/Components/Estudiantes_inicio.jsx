@@ -1,4 +1,5 @@
 import React from "react";
+import axios from 'axios';
 
 import "../Styles/Estudiantes_inicio.css";
 
@@ -8,10 +9,30 @@ import { Link } from "react-router-dom";
 class Estudiantes_inicio extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {};
+    this.state = {
+      datos: this.props.location.state.datos_user2,
+      datos_estudiante: ''
+    };
   }
 
+  // Peticion get para traer todos los grupos cursados del estudiante
+componentDidMount() {
+  axios.get(`http://localhost:4535/estudiantes/estudiantes-inicio-estudiante/${this.state.datos.id_estudiante}`)
+    .then(res => {
+      console.log(res.data)
+      this.setState({
+        datos_estudiante: res.data[0]
+      })
+    }).catch(err => {
+      console.log(err.massage)
+    })
+}
+// Fin peticion get
+
   render() {
+    console.log(this.state.datos)
+    console.log(this.state.datos_estudiante.nombres)
+    let estudiante = this.state.datos_estudiante;
     return (
       <>
         <div className="DirectivosContainer-Estudiantes_inicio">
@@ -26,10 +47,10 @@ class Estudiantes_inicio extends React.Component {
                 </div>
                 <div className="DatosContainer-Estudiantes_inicio">
                   <p className="Pprofile-Estudiantes_inicio">
-                    Bienvenido {this.props.Name}
+                    Bienvenido {estudiante.nombres}
                   </p>
                   <p className="Pprofile-Estudiantes_inicio">
-                    Cargo: {this.props.Cargo}
+                    Cargo: Estudiante
                   </p>
                 </div>
                 <Link to="/">
