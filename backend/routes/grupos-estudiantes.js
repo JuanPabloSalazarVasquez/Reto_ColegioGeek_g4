@@ -78,9 +78,9 @@ grupos_estudiantes.get("/estudiantes-grupo-notas-ver-clases-grupos/:id_maestro",
       INNER JOIN grupos 
       ON grupos_materias.id_grupo = grupos.id_grupo AND id_maestro = ${id_maestro}
       INNER JOIN maestro
-      ON grupos.director_id_maestro = maestros.id_maestro
+      ON grupos.director_id_maestro = maestro.id_maestro
       INNER JOIN persona
-      ON maestros.id_persona = persona.id_persona
+      ON maestro.id_persona = persona.id_persona
       INNER JOIN materias
       ON grupos_materias.id_materia = materias.id_materia
       ;`
