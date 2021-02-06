@@ -1,4 +1,5 @@
 import React from "react";
+import axios from 'axios';
 
 import "../Styles/Maestros_inicio.css";
 
@@ -8,10 +9,30 @@ import { Link } from "react-router-dom";
 class Maestros_inicio extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {};
+    this.state = {
+      datos: this.props.location.state.datos_user2,
+      datos_maestro: ''
+    };
   }
 
+  // Peticion get para traer la informacion de un directivo
+componentDidMount() {
+  axios.get(`http://localhost:4535/maestro/maestros-inicio-maestro/${this.state.datos.id_maestro}`)
+    .then(res => {
+      console.log(res.data)
+      this.setState({
+        datos_maestro: res.data[0]
+      })
+    }).catch(err => {
+      console.log(err.massage)
+    })
+}
+// Fin peticion get
+
   render() {
+
+    let maestro = this.state.datos_maestro;
+
     return (
       <>
         <div className="DirectivosContainer-Maestros_inicio">
@@ -26,10 +47,10 @@ class Maestros_inicio extends React.Component {
                 </div>
                 <div className="DatosContainer-Maestros_inicio">
                   <p className="Pprofile-Maestros_inicio">
-                    Bienvenido {this.props.Name}
+                    Bienvenido {maestro.nombres}
                   </p>
                   <p className="Pprofile-Maestros_inicio">
-                    Cargo: {this.props.Cargo}
+                    Cargo: Maestro
                   </p>
                 </div>
                 <Link to="/">

@@ -10,9 +10,12 @@ console.log(hola);
 class HeaderSistema_Estudiantes extends React.Component {
     constructor(props) {
         super(props);
-        this.state = {}
+        this.state = {
+            datos: this.props.location.state.datos_user2
+        }
     }
     render() {
+        console.log(this.state.datos)
         return (
             <>
                 <div className='HeaderSisContainer-HeaderSistema_Estudiantes'>
@@ -27,6 +30,9 @@ class HeaderSistema_Estudiantes extends React.Component {
                         <div className='bContainer-HeaderSistema_Estudiantes'>
                             <Link to={{
                                 pathname: this.props.pathname,
+                                state: {
+                                    datos_user2: this.state.datos
+                                }
                             }}>
                                 <button className={`button ${this.props.classDis}`} >Regresar</button>
                             </Link>

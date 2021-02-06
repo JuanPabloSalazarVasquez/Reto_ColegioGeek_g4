@@ -92,7 +92,15 @@ class Login_usuarios extends React.Component {
               this.setState({datos_user2: res.data[0]})
               this.setState({Bool3: true})
           }
-        
+          if(this.state.datos_user.tipo_usuario == 'Maestro'){
+            this.setState({datos_user2: res.data[0]})
+            this.setState({Bool2: true})
+        }
+        if(this.state.datos_user.tipo_usuario == 'Directivo'){
+            this.setState({datos_user2: res.data[0]})
+            this.setState({Bool1: true})
+        }
+
       })
       .catch((err) => {
         console.log(err.massage);
@@ -179,7 +187,7 @@ class Login_usuarios extends React.Component {
                       pathname: "/directivos",
                       state: {
                         datos_user2: this.state.datos_user2
-                      },
+                      }
                     }}
                   ></Redirect>
                 )}
@@ -191,7 +199,7 @@ class Login_usuarios extends React.Component {
                       pathname: "/maestros",
                       state: {
                         datos_user2: this.state.datos_user2
-                      },
+                      }
                     }}
                   ></Redirect>
                 )}
@@ -203,7 +211,7 @@ class Login_usuarios extends React.Component {
                       pathname: "/estudiantes",
                       state: {
                         datos_user2: this.state.datos_user2
-                      },
+                      }
                     }}
                   ></Redirect>
                 )}

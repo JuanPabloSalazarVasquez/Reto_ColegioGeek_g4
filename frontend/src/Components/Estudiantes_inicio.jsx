@@ -63,7 +63,12 @@ componentDidMount() {
             <div className="CardsCont-Estudiantes_inicio">
               <div className="Grupo1-Estudiantes_inicio">
                 <div>
-                  <Link to='/estudiantes/mis_notas'>
+                  <Link to={{
+                    pathname: "/estudiantes/mis_notas",
+                    state: {
+                      id_estudiante: this.state.datos_estudiante.id_estudiante
+                    }
+                  }} >
                     <div className="img-direc1-Estudiantes_inicio CardS-Estudiantes_inicio">
                       <img src='https://cdn0.iconfinder.com/data/icons/education-flat-7/128/09_Examination-512.png' alt="Cantidad Estudiantes" className='icono' />
                     </div>
