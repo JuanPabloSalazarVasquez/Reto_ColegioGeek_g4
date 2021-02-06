@@ -23,10 +23,10 @@ notas.get("/materias-estudiante/:id_estudiante", async (req, res) => {
       ON notas.id_grupo = grupos.id_grupo
       INNER JOIN grupos_materias
       ON notas.id_materia = grupos_materias.id_materia AND notas.id_grupo = grupos_materias.id_grupo
-      INNER JOIN maestros
-      ON grupos_materias.id_maestro = maestros.id_maestro
+      INNER JOIN maestro
+      ON grupos_materias.id_maestro = maestro.id_maestro
       INNER JOIN persona
-      ON maestros.id_persona = persona.id_persona
+      ON maestro.id_persona = persona.id_persona
       GROUP BY materias.id_materia, codigo_materia,nombre_materia,grado_grupo, nombres, apellidos;`
     );
     if (result.rows) {

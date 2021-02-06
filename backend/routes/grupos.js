@@ -41,10 +41,10 @@ grupos.get("/directivos-ver-grupos/:id_directivo", async (req, res) => {
       const result = await client.query(
         `SELECT grupos.id_grupo, estado, codigo_grupo, grado_grupo, director_id_maestro, nombres, apellidos , COUNT(grupos.id_grupo) AS cantidad_estudiantes
         FROM grupos
-        INNER JOIN maestros
+        INNER JOIN maestro
         ON grupos.director_id_maestro = maestros.id_maestro
         INNER JOIN persona
-        ON maestros.id_persona = persona.id_persona
+        ON maestro.id_persona = persona.id_persona
         INNER JOIN grupos_estudiantes
         ON grupos_estudiantes.id_grupo = grupos.id_grupo AND grupos_estudiantes.estado = 'En curso'
         GROUP BY grupos.id_grupo, estado, codigo_grupo, grado_grupo, director_id_maestro, nombres, apellidos

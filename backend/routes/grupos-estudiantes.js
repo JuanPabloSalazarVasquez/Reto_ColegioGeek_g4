@@ -77,7 +77,7 @@ grupos_estudiantes.get("/estudiantes-grupo-notas-ver-clases-grupos/:id_maestro",
       FROM grupos_materias
       INNER JOIN grupos 
       ON grupos_materias.id_grupo = grupos.id_grupo AND id_maestro = ${id_maestro}
-      INNER JOIN maestros
+      INNER JOIN maestro
       ON grupos.director_id_maestro = maestros.id_maestro
       INNER JOIN persona
       ON maestros.id_persona = persona.id_persona
@@ -110,7 +110,7 @@ grupos_estudiantes.get("/maestros-ver-grupos/:id_maestro", async (req, res) => {
       FROM grupos_materias
       INNER JOIN grupos 
       ON grupos_materias.id_grupo = grupos.id_grupo AND id_maestro = ${id_maestro}
-      INNER JOIN maestros
+      INNER JOIN maestro
       ON grupos.director_id_maestro = maestros.id_maestro
       INNER JOIN persona
       ON maestros.id_persona = persona.id_persona
