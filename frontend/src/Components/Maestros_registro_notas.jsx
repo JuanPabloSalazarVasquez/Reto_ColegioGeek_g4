@@ -10,14 +10,14 @@ class Maestros_registro_notas extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      id_maestro: 1,
+      id_maestro: this.props.location.state.id_maestro,
       datos: []
     };
   }
 
 // Peticion get para traer todos los grupos en los que da clase un profesor
 componentDidMount(){
-  axios.get(`http://localhost:4535/grupos-estudiantes/estudiantes-grupo-notas-ver-clases-grupos/${this.state.id_maestro}`)
+  axios.get(`http://localhost:4535/grupos-estudiantes/estudiantes-grupo-notas-ver-clases-grupos`)
     .then(res =>{
       console.log(res.data)
       this.setState({

@@ -8,6 +8,16 @@ class Directivos_registro_materias extends React.Component {
     super(props);
     this.state = {
       Bool: false,
+      form: {
+        nombre_materia: '',
+        codigo_materia: '',
+        sexto: '',
+        septimo: '',
+        octavo: '',
+        noveno: '',
+        decimo: '',
+        once: ''
+      }
     };
   }
 
@@ -25,7 +35,7 @@ class Directivos_registro_materias extends React.Component {
   componentDidMount() {
     axios
       .get(
-        `http://localhost:4535/notas/estudiante-ver-notas-materia-estudiante/${this.state.id_directivo}`
+        `http://localhost:4535/notas/estudiante-ver-notas-materia-estudiante`
       )
       .then((res) => {
         console.log(res.data);
@@ -43,8 +53,17 @@ class Directivos_registro_materias extends React.Component {
   post_materia() {
     axios
       .post(
-        `http://localhost:4535/materias/directivos-nuevo-materia/${this.state.id_directivo}`,
-        {}
+        `http://localhost:4535/materias/directivos-nuevo-materia`,
+        {
+          nombre_materia: this.state.form.nombre_materia,
+          codigo_materia: this.state.form.codigo_materia,
+          sexto: this.state.form.sexto,
+          septimo: this.state.form.septimo,
+          octavo: this.state.form.octavo,
+          noveno: this.state.form.noveno,
+          decimo: this.state.form.decimo,
+          once: this.state.form.once
+        }
       )
       .then((res) => {
         console.log(res.data);
@@ -63,10 +82,13 @@ class Directivos_registro_materias extends React.Component {
         <div id="Form">
           <div id="Form2">
             <div id="Form2_21">
-              <img
-                className="ImgProfile"
-                src="https://1.bp.blogspot.com/-uMbl2HbB-W0/X0ni-gTOYbI/AAAAAAAAPOs/m-VG-q_myzkjtpV5krfPl3sRb89RWNYBQCLcBGAsYHQ/s16000/Materias.png"
-              />
+              <div className="Direc4 CardS ImgProfile">
+                <img
+                  src="https://cdn0.iconfinder.com/data/icons/education-flat-7/128/07_Note_Book-512.png"
+                  alt="Materias"
+                  className="icono"
+                />
+              </div>
             </div>
             <div id="Form2_2">
               <div className="Form2_2_2">

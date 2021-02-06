@@ -9,7 +9,10 @@ import { Link } from "react-router-dom";
 class Estudiantes_configuracion extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {};
+    this.state = {
+      id_estudiante: this.props.location.state.id_estudiante,
+      datos: []
+    };
   }
 
 //Petición get para obtener información de la cuenta

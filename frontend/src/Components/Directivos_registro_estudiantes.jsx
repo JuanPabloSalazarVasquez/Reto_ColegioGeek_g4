@@ -22,7 +22,9 @@ class Directivos_registro_estudiantes extends React.Component {
             datos: [],
             form: {
                 nombres: '',
-                apellidos: ''
+                apellidos: '',
+                tipo_documento: '',
+                numero_documento: ''
             }
         }
     }
@@ -59,7 +61,9 @@ class Directivos_registro_estudiantes extends React.Component {
     post_estudiante(){
         axios.post(`http://localhost:4535/estudiantes/directivos-nuevo-estudiante-persona`, { 
             nombres: this.state.form.nombres,
-            apellidos: this.state.form.apellidos
+            apellidos: this.state.form.apellidos,
+            tipo_documento: this.state.form.tipo_documento,
+            numero_documento: this.state.form.numero_documento
          })
           .then(res =>{
             console.log(res.data)

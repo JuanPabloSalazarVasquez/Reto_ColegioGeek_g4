@@ -10,7 +10,7 @@ class Estudiantes_notas extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      id_estudiante: 1,
+      id_estudiante: this.props.location.state.id_estudiante,
       datos: [],
       Bool: false
     };

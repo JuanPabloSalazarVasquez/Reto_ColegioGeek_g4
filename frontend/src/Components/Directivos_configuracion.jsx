@@ -60,12 +60,15 @@ const useStyles = makeStyles((theme) => ({
 class DirectivosConfiguracion extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {};
+    this.state = {
+      id_directivo: this.props.location.state.id_estudiante,
+      datos: []
+    };
   }
 
-  // Peticion get para traer todos los datos de un trabajador
+  // Peticion get para traer todos los datos de un directivo
   componentDidMount() {
-    axios.get(``, { id_maestro: this.state.id_maestro })
+    axios.get(``)
       .then(res => {
         console.log(res.data)
         this.setState({

@@ -11,6 +11,18 @@ class Directivos_registro_maestros extends React.Component {
     this.state = {
       Bool: false,
       LengE: this.props.LengE + 1,
+      form: {
+        nombres: '',
+        apellidos: '',
+        edad: '', //esto falta en el backend
+        numero_documento: '',
+        telefono_residencial: '',
+        telefono_celular: '',
+        correo_electronico: '',
+        direccion_residencial: '',
+        estado_civil: '', //esto falta en el backend
+        materia: '', //esto falta en el backend
+      }
     };
   }
 
@@ -29,8 +41,7 @@ class Directivos_registro_maestros extends React.Component {
   componentDidMount() {
     axios
       .get(
-        `http://localhost:4535/maestro/directivos-ver-maestros-materias-directores/${this.state.id_directivo}`,
-        {}
+        `http://localhost:4535/maestro/directivos-ver-maestros-materias-directores`
       )
       .then((res) => {
         console.log(res.data);
@@ -48,9 +59,19 @@ class Directivos_registro_maestros extends React.Component {
   post_maestro() {
     axios
       .post(
-        `http://localhost:4535/maestro/directivos-nuevo-maestro-persona/${this.state.id_directivo}`,
-        {},
-        {}
+        `http://localhost:4535/maestro/directivos-nuevo-maestro-persona`,
+        {
+          nombres: this.state.form.nombres,
+          apellidos: this.state.form.apellidos,
+          edad: this.state.form.edad, //esto falta en el backend
+          numero_documento: this.state.form.numero_documento,
+          telefono_residencial: this.state.form.telefono_residencial,
+          telefono_celular: this.state.form.telefono_celular,
+          correo_electronico: this.state.form.correo_electronico,
+          direccion_residencial: this.state.form.direccion_residencial,
+          estado_civil: this.state.form.estado_civil, //esto falta en el backend
+          materia: this.state.form.materia, //esto falta en el backend
+        }
       )
       .then((res) => {
         console.log(res.data);

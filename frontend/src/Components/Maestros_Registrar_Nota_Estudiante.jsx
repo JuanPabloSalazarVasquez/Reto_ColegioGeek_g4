@@ -18,8 +18,8 @@ class Maestros_Registrar_Nota_Estudiante extends React.Component {
       id_materia: this.props.location.state.id_materia,
       datos: [],
       datosEstudiante: [],
-      from: {
-        
+      form: {
+        //Falta la petición en el backend, hay que tenerla antes de hacer esto
       }
     };
   }
@@ -30,7 +30,7 @@ class Maestros_Registrar_Nota_Estudiante extends React.Component {
     delete this.state.form.ConfirmarCorreo;
     await axios
       .post(
-        "",
+        "", //Esta petición falta en el backend
         this.state.form
       )
       .then((response) => {

@@ -21,6 +21,10 @@ class Directivos_registro_grupos extends React.Component {
     super(props);
     this.state = {
       Bool: false,
+      form: {
+        grado_grupo: '',
+        director_id_maestro: ''
+      }
     };
   }
 
@@ -39,7 +43,7 @@ class Directivos_registro_grupos extends React.Component {
   componentDidMount() {
     axios
       .get(
-        `http://localhost:4535/grupos/directivos-ver-grupos/${this.state.id_directivo}`
+        `http://localhost:4535/grupos/directivos-ver-grupos`
       )
       .then((res) => {
         console.log(res.data);
@@ -57,8 +61,11 @@ class Directivos_registro_grupos extends React.Component {
   post_grupo() {
     axios
       .post(
-        `http://localhost:4535/grupos/directivos-nuevo-grupo/${this.state.id_directivo}`,
-        {}
+        `http://localhost:4535/grupos/directivos-nuevo-grupo/`,
+        {
+          grado_grupo: this.state.form.grado_grupo,
+          director_id_maestro: this.state.form.director_id_maestro
+        }
       )
       .then((res) => {
         console.log(res.data);

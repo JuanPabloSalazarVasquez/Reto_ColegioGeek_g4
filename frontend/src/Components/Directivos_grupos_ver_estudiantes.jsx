@@ -10,14 +10,22 @@ let variablamamalona = -1;
 class Directivos_grupos_ver_estudiantes extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {};
+    this.state = {
+      id_directivo: this.props.location.state.id_directivo,
+      datos: [],
+      form: {
+        matricula: '',
+        nombres: '',
+        apellidos: ''
+      }
+    };
   }
 
   //Petición get para obtener los estudiantes existentes dentro de un grupo
   componentDidMount() {
     axios
       .get(
-        `http://localhost:4535/grupos-estudiantes/estudiantes-ver-grupos-estudiantes-directivos/${this.state.id_directivo}`
+        `http://localhost:4535/grupos-estudiantes/estudiantes-ver-grupos-estudiantes-directivos`
       )
       .then((res) => {
         console.log(res.data);
@@ -35,8 +43,12 @@ class Directivos_grupos_ver_estudiantes extends React.Component {
   post_grupo() {
     axios
       .post(
-        `http://localhost:4535/grupos-estudiantes//${this.state.id_directivo}`,
-        {}
+        `http://localhost:4535/grupos-estudiantes/`,
+        {
+          matricula: this.state.form.matricula,
+          nombres: this.state.form.nombres,
+          apellidos: this.state.form.nombres
+        }
       ) //Esta petición está pendiente en el backend
       .then((res) => {
         console.log(res.data);
