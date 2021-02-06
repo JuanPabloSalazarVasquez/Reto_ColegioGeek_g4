@@ -1,5 +1,5 @@
 import React from "react";
-import axios from 'axios';
+import axios from "axios";
 
 import "../Styles/Login_usuarios.css";
 
@@ -13,57 +13,100 @@ class Login_usuarios extends React.Component {
         tipo_usuario: null,
         correo_electronico: null,
         numero_documento: null,
-        login: false,
-        token: null
       },
-      datos: []
+      login: false,
+      token: null,
+      datos: [],
+      datos_user: null,
+      datos_user2: null,
+      Bool1: false,
+      Bool2: false,
+      Bool3: false
     };
   }
 
-  
   login = async () => {
-    await axios.post(`http://localhost:4535/api/login`, { 
+    await axios
+      .post(`http://localhost:4535/api/login`, {
         tipo_usuario: this.state.form.tipo_usuario,
         correo_electronico: this.state.form.correo_electronico,
-        numero_documento: this.state.form.numero_documento
-     })
-          .then(res =>{
-            console.log(res);
-            console.log(res.data.token)
-            if(res.data.message == 'Asegurese de ingresar los datos correctamente.'){
-                console.log(res.data.message)
-            }else{
-                localStorage.setItem('login', JSON.stringify({
-                    login: true,
-                    token: res.data.token
-                }));
-                this.setState({login:true, token: res.data.token})
-            }
-            
-        }).catch(err=>{
-          console.log(err.massage)
-        })
-  }
+        numero_documento: this.state.form.numero_documento,
+      })
+      .then((res) => {
+        console.log(res);
+        console.log(res.data.token);
+        this.setState({ token: res.data.token });
+        console.log(this.state.token);
+        if (
+          res.data.message == "Asegurese de ingresar los datos correctamente."
+        ) {
+          console.log(res.data.message);
+        } else {
+          localStorage.setItem(
+            "login",
+            JSON.stringify({
+              login: true,
+              token: res.data.token,
+            })
+          );
+          this.login2();
+        }
+      })
+      .catch((err) => {
+        console.log(err.massage);
+      });
+  };
 
   login2 = async () => {
-      let token="bearer "+
-    await axios.get(`http://localhost:4535/api/privada`)
-    .then(res =>{
-      console.log(res.data)
-      this.setState({
-        datos: res.data
+    let token_authorization = "bearer " + this.state.token;
+    console.log(token_authorization);
+    await axios
+      .get(`http://localhost:4535/api/privada`, {
+        headers: {
+          Authorization: `${token_authorization}`,
+        },
       })
-  }).catch(err=>{
-    console.log(err.massage)
-  })
+      .then((res) => {
+        this.setState({ datos_user: res.data.data });
+        this.Ingreso();
+          /*
+        console.log(res);
+        console.log(res.data);
+        console.log(res.data.data.id_persona);
+        this.setState({ id_persona: res.data.id_persona });
+        console.log(this.state.id_persona);
+        */
+      })
+      .catch((err) => {
+        console.log(err.massage);
+      });
+  };
+
+  Ingreso = async() => {
+    await axios
+      .get(`http://localhost:4535/api/user-datos/${this.state.datos_user.id_persona}/${this.state.datos_user.tipo_usuario}`)
+      .then((res) => {
+          console.log('Esta es la informacion de la tabla del usuario logeado:', res.data[0])
+          console.log('Tipo_usuario:', this.state.datos_user.tipo_usuario)
+          if(this.state.datos_user.tipo_usuario == 'Estudiante'){
+              this.setState({datos_user2: res.data[0]})
+              this.setState({Bool3: true})
+          }
+        
+      })
+      .catch((err) => {
+        console.log(err.massage);
+      });
   }
+
+
 
   handleChange = async (e) => {
     e.persist();
     await this.setState({
       form: {
         ...this.state.form,
-        [e.target.name]: e.target.value
+        [e.target.name]: e.target.value,
       },
     });
     console.log(this.state.form);
@@ -72,9 +115,9 @@ class Login_usuarios extends React.Component {
   handleSubmit = (e) => {
     e.preventDefault();
     const user = {
-        tipo_usuario: this.state.form.tipo_usuario,
-        correo_electronico: this.state.form.correo_electronico,
-        numero_documento: this.state.form.numero_documento
+      tipo_usuario: this.state.form.tipo_usuario,
+      correo_electronico: this.state.form.correo_electronico,
+      numero_documento: this.state.form.numero_documento,
     };
     this.setState({
       form: user,
@@ -82,14 +125,18 @@ class Login_usuarios extends React.Component {
     console.log(user);
   };
 
-
   render() {
     return (
       <>
         <div className="Main2Container">
           <div id="SelecContainer">
             <form id="Palborde" onSubmit={this.handleSubmit}>
-              <select className="input" id="Select" name="tipo_usuario" onChange={this.handleChange}>
+              <select
+                className="input"
+                id="Select"
+                name="tipo_usuario"
+                onChange={this.handleChange}
+              >
                 <option value="0" className="Dis">
                   Seleccione su Cargo
                 </option>
@@ -122,8 +169,44 @@ class Login_usuarios extends React.Component {
                   type="button"
                   className="button button2"
                   onClick={this.login}
-                >Ingresar</button>
-            
+                >
+                  Ingresar
+                </button>
+                {/* Directivos */}
+                {this.state.Bool1 && (
+                  <Redirect
+                    to={{
+                      pathname: "/directivos",
+                      state: {
+                        datos_user2: this.state.datos_user2
+                      },
+                    }}
+                  ></Redirect>
+                )}
+
+                {/* Maestros */}
+                {this.state.Bool2 && (
+                  <Redirect
+                    to={{
+                      pathname: "/maestros",
+                      state: {
+                        datos_user2: this.state.datos_user2
+                      },
+                    }}
+                  ></Redirect>
+                )}
+
+                {/* Estudiantes */}
+                {this.state.Bool3 && (
+                  <Redirect
+                    to={{
+                      pathname: "/estudiantes",
+                      state: {
+                        datos_user2: this.state.datos_user2
+                      },
+                    }}
+                  ></Redirect>
+                )}
               </div>
             </form>
           </div>
