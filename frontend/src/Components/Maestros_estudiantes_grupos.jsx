@@ -18,18 +18,18 @@ class Maestros_estudiantes_grupos extends React.Component {
   }
 
   // Peticion get para traer todos los grupos en los que el profesor da clase
-componentDidMount(){
-  axios.get(``, { id_maestro: this.state.id_maestro})
-    .then(res =>{
-      console.log(res.data)
-      this.setState({
-        datos: res.data
+  componentDidMount() {
+    axios.get(`http://localhost:4535/grupos-estudiantes/maestros-ver-grupos`)
+      .then(res => {
+        console.log(res.data)
+        this.setState({
+          datos: res.data
+        })
+      }).catch(err => {
+        console.log(err.massage)
       })
-  }).catch(err=>{
-    console.log(err.massage)
-  })
-}
-// Fin peticion get
+  }
+  // Fin peticion get
 
 
   render() {
@@ -68,7 +68,7 @@ componentDidMount(){
               autoComplete="off"
             />
           </div>
-          
+
           {/* Grupos */}
           <div className='CardsContainer-Maestros_estudiantes_grupos'>
             <div className="Filtros-Maestros_estudiantes_grupos">

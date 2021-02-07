@@ -10,14 +10,14 @@ class Maestros_registro_notas extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      //id_maestro: this.props.location.id_maestro,
+      id_maestro: this.props.location.state.id_maestro,
       datos: []
     };
   }
 
 // Peticion get para traer todos los grupos en los que da clase un profesor
 componentDidMount(){
-  axios.get(``, { id_maestro: this.state.id_maestro})
+  axios.get(`http://localhost:4535/grupos-estudiantes/estudiantes-grupo-notas-ver-clases-grupos`)
     .then(res =>{
       console.log(res.data)
       this.setState({
@@ -61,53 +61,32 @@ componentDidMount(){
             </select>
           </div>
 
-          {/* Grupos Maestros */}
-          <div className="CardsContainerMaestrosRegistroNotas-Maestros_registro_notas">
-            <div className="FiltrosMaestrosRegistroNotas-Maestros_registro_notas">
-              <div className="SelectMaestrosRegistroNotas-Maestros_registro_notas">
-                <p>qweasda</p>
-              </div>
-              <div className="SelectMaestrosRegistroNotas-Maestros_registro_notas">
-                <p>Once</p>
-              </div>
-              <div className="SelectMaestrosRegistroNotas-Maestros_registro_notas More-Maestros_registro_notas">
-                <p>Emanuel</p>
-              </div>
-              <div className="Min-Maestros_registro_notas">
-                <p>11</p>
-              </div>
-              <div className="SelectMaestrosRegistroNotas-Maestros_registro_notas">
-                <Link
-                  to={{
-                    pathname: "/maestros/registrar_notas/grupo_estudiantes",
-                  }}
-                >
-                  <button className="ButtonMaestrosRegistroNotas-Maestros_registro_notas">Ver Estudiantes</button>
-                </Link>
-              </div>
-            </div>
-          </div>
-          {/* 
+          
           {gruposMaestro.map((datosT) => {
             return (
               <div className="CardsContainerMaestrosRegistroNotas-Maestros_registro_notas">
             <div className="FiltrosMaestrosRegistroNotas-Maestros_registro_notas">
               <div className="SelectMaestrosRegistroNotas-Maestros_registro_notas">
-                <p>qweasda</p>
+                <p>{datosT.codigo_grupo}</p>
               </div>
               <div className="SelectMaestrosRegistroNotas-Maestros_registro_notas">
-                <p>Once</p>
+                <p>{datosT.grado_grupo}</p>
               </div>
               <div className="SelectMaestrosRegistroNotas-Maestros_registro_notas More-Maestros_registro_notas">
-                <p>Emanuel</p>
+                <p>{datosT.nombres} {datosT.apellidos}</p>
               </div>
-              <div className="Min-Maestros_registro_notas">
-                <p>11</p>
+              <div className="SelectMaestrosRegistroNotas-Maestros_registro_notas More-Maestros_registro_notas">
+                <p>{datosT.nombre_materia}</p>
               </div>
               <div className="SelectMaestrosRegistroNotas-Maestros_registro_notas">
                 <Link
                   to={{
                     pathname: "/maestros/registrar_notas/grupo_estudiantes",
+                    state: {
+                      id_maestro: this.state.id_maestro,
+                      id_grupo: datosT.id_grupo,
+                      id_materia: datosT.id_materia
+                  }
                   }}
                 >
                   <button className="ButtonMaestrosRegistroNotas-Maestros_registro_notas">Ver Estudiantes</button>
@@ -117,7 +96,7 @@ componentDidMount(){
           </div>
             )
           })}
-          */}
+
 
 
         </div>

@@ -1,173 +1,239 @@
-import React from 'react';
+import React from "react";
+import axios from "axios";
 
-import '../Styles/Login_usuarios.css';
+import "../Styles/Login_usuarios.css";
 
-import {
-    BrowserRouter as Router,
-    Redirect
-} from "react-router-dom";
+import { BrowserRouter as Router, Redirect } from "react-router-dom";
 
 class Login_usuarios extends React.Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            tipo: 0,
-            UsuarioI: 0,
-            ContraseñaI: 0,
-            Bool: false,
-            Bool2: false,
-            Name: "",
-            Edad: 0,
-            Cargo: ""
-        }
-    }
+  constructor(props) {
+    super(props);
+    this.state = {
+      form: {
+        tipo_usuario: null,
+        correo_electronico: null,
+        numero_documento: null,
+      },
+      login: false,
+      token: null,
+      datos: [],
+      datos_user: null,
+      datos_user2: null,
+      Bool1: false,
+      Bool2: false,
+      Bool3: false
+    };
+  }
 
-    Cambio = () => {
-        let value = document.getElementById("Select").value;
-        this.setState({
-            tipo: value
-        })
-    }
-    Ingreso = () => {
-        let UsuarioI = document.getElementById("UsuarioI").value;
-        let ContraseñaI = document.getElementById("ContraseñaI").value;
-        let bool = false, bool1 = false;
-
-        if (this.state.tipo == 1) {
-            for (let i = 0; i < this.props.LargoE; i++) {
-                if (this.state.tipo == this.props.Estudiantes[i].Tipo) {
-                    bool1 = true;
-                    if (UsuarioI == this.props.Estudiantes[i].Usuario && ContraseñaI == this.props.Estudiantes[i].Contraseña) {
-                        bool = true;
-                        this.setState({
-                            UsuarioI: this.props.Estudiantes[i].Usuario,
-                            ContraseñaI: this.props.Estudiantes[i].Contraseña,
-                            Name: this.props.Estudiantes[i].Name,
-                            Edad: this.props.Estudiantes[i].Edad,
-                            Cargo: this.props.Estudiantes[i].Cargo,
-                            Bool: true
-                        });
-                    }
-                }
-            }
-
+  login = async () => {
+    await axios
+      .post(`http://localhost:4535/api/login`, {
+        tipo_usuario: this.state.form.tipo_usuario,
+        correo_electronico: this.state.form.correo_electronico,
+        numero_documento: this.state.form.numero_documento,
+      })
+      .then((res) => {
+        console.log(res);
+        console.log(res.data.token);
+        this.setState({ token: res.data.token });
+        console.log(this.state.token);
+        if (
+          res.data.message == "Asegurese de ingresar los datos correctamente."
+        ) {
+          console.log(res.data.message);
+        } else {
+          localStorage.setItem(
+            "login",
+            JSON.stringify({
+              login: true,
+              token: res.data.token,
+            })
+          );
+          this.login2();
         }
-        if (this.state.tipo == 2) {
-            for (let i = 0; i < this.props.LargoD; i++) {
-                if (this.state.tipo == this.props.Directivos[i].Tipo) {
-                    bool1 = true;
-                    if (UsuarioI == this.props.Directivos[i].Usuario && ContraseñaI == this.props.Directivos[i].Contraseña) {
-                        bool = true;
-                        this.setState({
-                            UsuarioI: this.props.Directivos[i].Usuario,
-                            ContraseñaI: this.props.Directivos[i].Contraseña,
-                            Name: this.props.Directivos[i].Name,
-                            Edad: this.props.Directivos[i].Edad,
-                            Cargo: this.props.Directivos[i].Cargo,
-                            Bool2: true
-                        });
-                    }
-                }
-            }
-        }
-        if (this.state.tipo == 3) {
-            for (let i = 0; i < this.props.LargoM; i++) {
-                if (this.state.tipo == this.props.Maestros[i].Tipo) {
-                    bool1 = true;
-                    if (UsuarioI == this.props.Maestros[i].Usuario && ContraseñaI == this.props.Maestros[i].Contraseña) {
-                        bool = true;
-                        this.setState({
-                            UsuarioI: this.props.Maestros[i].Usuario,
-                            ContraseñaI: this.props.Maestros[i].Contraseña,
-                            Name: this.props.Maestros[i].Name,
-                            Edad: this.props.Maestros[i].Edad,
-                            Cargo: this.props.Maestros[i].Cargo,
-                            Bool: true
-                        });
-                    }
-                }
-            }
-        }
-        if (!bool1) {
-            document.getElementById("Select").style.backgroundColor = "#ef233c";
-            setTimeout(function () {
-                document.getElementById("Select").style.backgroundColor = "#fcfcfc";
-            }, 1000);
-        }
-        if (!bool) {
-            document.getElementById("UsuarioI").value = "Dato mal ingresado.";
-            document.getElementById("ContraseñaI").value = "Dato mal ingresado.";
-            document.getElementById("UsuarioI").style.color = "red";
-            document.getElementById("ContraseñaI").type = "text";
-            document.getElementById("ContraseñaI").style.color = "red";
+      })
+      .catch((err) => {
+        console.log(err.massage);
+      });
+  };
 
-            setTimeout(function () {
-                document.getElementById("UsuarioI").value = "";
-                document.getElementById("ContraseñaI").value = "";
-                document.getElementById("UsuarioI").style.color = "black";
-                document.getElementById("ContraseñaI").type = "password";
-                document.getElementById("ContraseñaI").style.color = "black";
-            }, 1000);
+  login2 = async () => {
+    let token_authorization = "bearer " + this.state.token;
+    console.log(token_authorization);
+    await axios
+      .get(`http://localhost:4535/api/privada`, {
+        headers: {
+          Authorization: `${token_authorization}`,
+        },
+      })
+      .then((res) => {
+        this.setState({ datos_user: res.data.data });
+        this.Ingreso();
+          /*
+        console.log(res);
+        console.log(res.data);
+        console.log(res.data.data.id_persona);
+        this.setState({ id_persona: res.data.id_persona });
+        console.log(this.state.id_persona);
+        */
+      })
+      .catch((err) => {
+        console.log(err.massage);
+      });
+  };
+
+  Ingreso = async() => {
+    await axios
+      .get(`http://localhost:4535/api/user-datos/${this.state.datos_user.id_persona}/${this.state.datos_user.tipo_usuario}`)
+      .then((res) => {
+          console.log('Esta es la informacion de la tabla del usuario logeado:', res.data[0])
+          console.log('Tipo_usuario:', this.state.datos_user.tipo_usuario)
+          if(this.state.datos_user.tipo_usuario == 'Estudiante'){
+              this.setState({datos_user2: res.data[0]})
+              this.setState({Bool3: true})
+          }
+          if(this.state.datos_user.tipo_usuario == 'Maestro'){
+            this.setState({datos_user2: res.data[0]})
+            this.setState({Bool2: true})
         }
-    }
+        if(this.state.datos_user.tipo_usuario == 'Directivo'){
+            this.setState({datos_user2: res.data[0]})
+            this.setState({Bool1: true})
+        }
 
-    render() {
-        return (
-            <>
-                <div className="Main2Container">
-                    <div id="SelecContainer">
-                        <form id="Palborde">
-                            <select className="input" id="Select" onChange={this.Cambio}>
-                                <option value="0" className="Dis">Seleccione su Cargo</option>
-                                <option value="1">Estudiante</option>
-                                <option value="2">Directivo</option>
-                                <option value="3">Maestro</option>
-                            </select>
-                            <p>Correo electrónico:</p>
-                            <input type="text" id="UsuarioI" className="input" placeholder="correo@ejemplo.com" autoComplete="off" ></input>
-                            <p>Documento:</p>
-                            <input type="password" id="ContraseñaI" className="input" placeholder="Ingrese su documento" autoComplete="off" ></input>
-                            <div id="SoloParaCentrar">
-                                <input type="button" className="button button2" value="Ingresar" onClick={this.Ingreso} />
-                                {this.state.Bool && <Redirect to={{
-                                    pathname: "/estudiantes",
-                                    state: {
-                                        Tipo: this.state.tipo,
-                                        Usuario: this.state.ContraseñaI,
-                                        Contraseña: this.state.ContraseñaI,
-                                        Name: this.state.Name,
-                                        Edad: this.state.Edad,
-                                        Cargo: this.state.Cargo
-                                    }
-                                }} />}
+      })
+      .catch((err) => {
+        console.log(err.massage);
+      });
+  }
 
-                                {this.state.Bool2 && <Redirect to={{
-                                    pathname: "/directivos",
-                                    state: {
-                                        Tipo: this.state.tipo,
-                                        Usuario: this.state.ContraseñaI,
-                                        Contraseña: this.state.ContraseñaI,
-                                        Name: this.state.Name,
-                                        Edad: this.state.Edad,
-                                        Cargo: this.state.Cargo
-                                    }
-                                }} />}
-                            </div>
-                        </form>
-                    </div>
-                    <div id="InfoContainer">
-                        <div>
-                                <img src="https://images.vexels.com/media/users/3/224155/isolated/preview/f4bbe191bcc833b27d7fa241220c470e-libro-en-logo-de-pantalla-by-vexels.png" alt="Logo"/>
-                        </div>
-                        <div>
-                            <h2>¡Bienvenido!</h2>
-                            <p>Por favor, ingrese al sistema de Colegio Geek.</p>
-                        </div>
-                    </div>
-                </div>
-            </>
-        );
-    }
+
+
+  handleChange = async (e) => {
+    e.persist();
+    await this.setState({
+      form: {
+        ...this.state.form,
+        [e.target.name]: e.target.value,
+      },
+    });
+    console.log(this.state.form);
+  };
+
+  handleSubmit = (e) => {
+    e.preventDefault();
+    const user = {
+      tipo_usuario: this.state.form.tipo_usuario,
+      correo_electronico: this.state.form.correo_electronico,
+      numero_documento: this.state.form.numero_documento,
+    };
+    this.setState({
+      form: user,
+    });
+    console.log(user);
+  };
+
+  render() {
+    return (
+      <>
+        <div className="Main2Container">
+          <div id="SelecContainer">
+            <form id="Palborde" onSubmit={this.handleSubmit}>
+              <select
+                className="input"
+                id="Select"
+                name="tipo_usuario"
+                onChange={this.handleChange}
+              >
+                <option value="0" className="Dis">
+                  Seleccione su Cargo
+                </option>
+                <option value="Estudiante">Estudiante</option>
+                <option value="Directivo">Directivo</option>
+                <option value="Maestro">Maestro</option>
+              </select>
+              <p>Correo electrónico:</p>
+              <input
+                type="text"
+                id="UsuarioI"
+                className="input"
+                placeholder="correo@ejemplo.com"
+                autoComplete="off"
+                onChange={this.handleChange}
+                name="correo_electronico"
+              ></input>
+              <p>Documento:</p>
+              <input
+                type="password"
+                id="ContraseñaI"
+                className="input"
+                placeholder="Ingrese su documento"
+                autoComplete="off"
+                onChange={this.handleChange}
+                name="numero_documento"
+              ></input>
+              <div id="SoloParaCentrar">
+                <button
+                  type="button"
+                  className="button button2"
+                  onClick={this.login}
+                >
+                  Ingresar
+                </button>
+                {/* Directivos */}
+                {this.state.Bool1 && (
+                  <Redirect
+                    to={{
+                      pathname: "/directivos",
+                      state: {
+                        datos_user2: this.state.datos_user2
+                      }
+                    }}
+                  ></Redirect>
+                )}
+
+                {/* Maestros */}
+                {this.state.Bool2 && (
+                  <Redirect
+                    to={{
+                      pathname: "/maestros",
+                      state: {
+                        datos_user2: this.state.datos_user2
+                      }
+                    }}
+                  ></Redirect>
+                )}
+
+                {/* Estudiantes */}
+                {this.state.Bool3 && (
+                  <Redirect
+                    to={{
+                      pathname: "/estudiantes",
+                      state: {
+                        datos_user2: this.state.datos_user2
+                      }
+                    }}
+                  ></Redirect>
+                )}
+              </div>
+            </form>
+          </div>
+          <div id="InfoContainer">
+            <div>
+              <img
+                src="https://images.vexels.com/media/users/3/224155/isolated/preview/f4bbe191bcc833b27d7fa241220c470e-libro-en-logo-de-pantalla-by-vexels.png"
+                alt="Logo"
+              />
+            </div>
+            <div>
+              <h2>¡Bienvenido!</h2>
+              <p>Por favor, ingrese al sistema de Colegio Geek.</p>
+            </div>
+          </div>
+        </div>
+      </>
+    );
+  }
 }
 
 export default Login_usuarios;

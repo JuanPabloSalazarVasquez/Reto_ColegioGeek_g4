@@ -1,5 +1,6 @@
 import React from "react";
 import Profile from "../Components/Profile";
+import axios from 'axios';
 
 import "../Styles/Directivos.css";
 
@@ -11,35 +12,35 @@ class directivos_inicio extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      Name: this.props.location.state.Name,
-      Contraseña: this.props.location.state.Contraseña,
-      Usuario: this.props.location.state.Usuario,
-      Edad: this.props.location.state.Edad,
-      Cargo: this.props.location.state.Cargo,
+      datos: this.props.location.state.datos_user2,
+      datos_directivos: ''
     };
   }
 
-  // Peticion get para traer los datos
-  componentDidMount() {
-    axios.get(`https://jsonplaceholder.typicode.com/users`, { id_maestro: this.state.id_maestro })
-      .then(res => {
-        console.log(res.data)
-        this.setState({
-          datos: res.data
-        })
-      }).catch(err => {
-        console.log(err.massage)
+  // Peticion get para traer la informacion de un directivo
+componentDidMount() {
+  axios.get(`http://localhost:4535/directivos/directivos-inicio-directivo/${this.state.datos.id_directivo}`)
+    .then(res => {
+      console.log(res.data)
+      this.setState({
+        datos_directivos: res.data[0]
       })
-  }
-  // Fin peticion get
+    }).catch(err => {
+      console.log(err.massage)
+    })
+}
+// Fin peticion get
 
   render() {
+
+    let directivo = this.state.datos_directivos;
+
     return (
       <>
         <div id="DirectivosContainer">
           <div id="DirectivosGrid">
             <div id="ProfileCont">
-              <Profile Name={this.state.Name} Edad={this.state.Edad} />
+              <Profile Name={directivo.nombres} Cargo="Directivo"/>
             </div>
             <div id="CardsCont">
               <div id="Grupo1">
@@ -47,13 +48,6 @@ class directivos_inicio extends React.Component {
                   <Link
                     to={{
                       pathname: "/Directivos/Registro_Grupos",
-                      state: {
-                        Name: this.props.location.state.Name,
-                        Contraseña: this.props.location.state.Contraseña,
-                        Usuario: this.props.location.state.Usuario,
-                        Edad: this.props.location.state.Edad,
-                        Cargo: this.props.location.state.Cargo,
-                      },
                     }}
                   >
                     <div className="Direc1 CardS">
@@ -71,13 +65,6 @@ class directivos_inicio extends React.Component {
                   <Link
                     to={{
                       pathname: "/Directivos/Registro_Estudiantes",
-                      state: {
-                        Name: this.props.location.state.Name,
-                        Contraseña: this.props.location.state.Contraseña,
-                        Usuario: this.props.location.state.Usuario,
-                        Edad: this.props.location.state.Edad,
-                        Cargo: this.props.location.state.Cargo,
-                      },
                     }}
                   >
                     <div className="Direc2 CardS">
@@ -96,13 +83,6 @@ class directivos_inicio extends React.Component {
                   <Link
                     to={{
                       pathname: "/Directivos/Registro_Maestros",
-                      state: {
-                        Name: this.props.location.state.Name,
-                        Contraseña: this.props.location.state.Contraseña,
-                        Usuario: this.props.location.state.Usuario,
-                        Edad: this.props.location.state.Edad,
-                        Cargo: this.props.location.state.Cargo,
-                      },
                     }}
                   >
                     <div className="Direc3 CardS">
@@ -120,13 +100,6 @@ class directivos_inicio extends React.Component {
                   <Link
                     to={{
                       pathname: "/Directivos/Registro_Materias",
-                      state: {
-                        Name: this.props.location.state.Name,
-                        Contraseña: this.props.location.state.Contraseña,
-                        Usuario: this.props.location.state.Usuario,
-                        Edad: this.props.location.state.Edad,
-                        Cargo: this.props.location.state.Cargo,
-                      },
                     }}
                   >
                     <div className="Direc4 CardS">
@@ -144,13 +117,6 @@ class directivos_inicio extends React.Component {
                   <Link
                     to={{
                       pathname: "/directivos/mi_cuenta",
-                      state: {
-                        Name: this.props.location.state.Name,
-                        Contraseña: this.props.location.state.Contraseña,
-                        Usuario: this.props.location.state.Usuario,
-                        Edad: this.props.location.state.Edad,
-                        Cargo: this.props.location.state.Cargo,
-                      },
                     }}
                     onClick={() => this.componentDidMount}
                   >

@@ -10,7 +10,7 @@ class Estudiantes_notas extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      id_estudiante: 1,
+      id_estudiante: this.props.location.state.id_estudiante,
       datos: [],
       Bool: false
     };
@@ -18,7 +18,7 @@ class Estudiantes_notas extends React.Component {
 
 // Peticion get para traer todas las materias a la que esta registrado un estudiante
 componentDidMount(){
-  axios.get(``, { id_estudiante: this.state.id_estudiante})
+  axios.get(`http://localhost:4535/notas/materias-estudiante/${this.state.id_estudiante}`)
     .then(res =>{
       console.log(res.data)
       this.setState({
@@ -29,42 +29,6 @@ componentDidMount(){
   })
 }
 
-componentDidMount(){
-  axios.get(``, { id_estudiante: this.state.id_estudiante, codigo_materia: this.state.codigo_materia})
-    .then(res =>{
-      console.log(res.data)
-      this.setState({
-        datos: res.data
-      })
-  }).catch(err=>{
-    console.log(err.massage)
-  })
-} //Filtro por codigo de materia
-
-componentDidMount(){
-  axios.get(``, { id_estudiante: this.state.id_estudiante, grado: this.state.grado})
-    .then(res =>{
-      console.log(res.data)
-      this.setState({
-        datos: res.data
-      })
-  }).catch(err=>{
-    console.log(err.massage)
-  })
-} //Filtro por grado
-
-componentDidMount(){
-  axios.get(``, { id_estudiante: this.state.id_estudiante, profesor: this.state.profesor})
-    .then(res =>{
-      console.log(res.data)
-      this.setState({
-        datos: res.data
-      })
-  }).catch(err=>{
-    console.log(err.massage)
-  })
-} //Filtro por profesor
-// Fin peticion get
 
 
   render() {
@@ -97,66 +61,40 @@ componentDidMount(){
               </option>
             </select>
           </div>
-
-          {/* Materias */}
-          <div className='CardsContainerEstudiantes_Notas-Estudiantes_notas'>
-            <div className="FiltrosREstudiante">
-              <div className="SelectNotas-Estudiantes_notas">
-                <p className="pTextos-Estudiantes_notas">CodMateria</p>
-              </div>
-              <div className="SelectNotas-Estudiantes_notas">
-                <p className="pTextos-Estudiantes_notas">NombreMateria</p>
-              </div>
-              <div className="SelectNotas-Estudiantes_notas">
-                <p className="pTextos-Estudiantes_notas">Once</p>
-              </div>
-              <div className="SelectNotas-Estudiantes_notas More-Estudiantes_notas">
-                <p className="pTextos-Estudiantes_notas">Profesor de la materia</p>
-              </div>
-              <div className="SelectNotas-Estudiantes_notas">
-                <Link to="/estudiantes/mis_notas/ver_notas">
-                  <button className="ButtonNotas-Estudiantes_notas">Ver notas</button>
-                </Link>
-              </div>
-            </div>
-          </div>
-
-          {/* 
+         
           {materiasEstudiante.map((datosT) => {
             return (
               <div className='CardsContainerEstudiantes_Notas-Estudiantes_notas'>
             <div className="FiltrosREstudiante">
               <div className="SelectNotas-Estudiantes_notas">
-                <p className="pTextos-Estudiantes_notas">CodMateria</p>
+                <p className="pTextos-Estudiantes_notas">{datosT.codigo_materia}</p>
               </div>
               <div className="SelectNotas-Estudiantes_notas">
-                <p className="pTextos-Estudiantes_notas">NombreMateria</p>
+                <p className="pTextos-Estudiantes_notas">{datosT.nombre_materia}</p>
               </div>
               <div className="SelectNotas-Estudiantes_notas">
-                <p className="pTextos-Estudiantes_notas">Once</p>
+                <p className="pTextos-Estudiantes_notas">{datosT.grado_grupo}</p>
               </div>
               <div className="SelectNotas-Estudiantes_notas More-Estudiantes_notas">
-                <p className="pTextos-Estudiantes_notas">Profesor de la materia</p>
+                <p className="pTextos-Estudiantes_notas">{datosT.nombres} {datosT.apellidos}</p>
               </div>
               <div className="SelectNotas-Estudiantes_notas">
-                <Link to="/estudiantes/mis_notas/ver_notas">
-                  <button className="ButtonNotas-Estudiantes_notas">Ver notas</button>
-                </Link>
-                {this.state.Bool && <Redirect to={{
+                <Link to={{
                                     pathname: "/estudiantes/mis_notas/ver_notas",
                                     state: {
-                                        id_estudiante: this.props.location.state.id_estudiante,
-                                        id_materia: this.props.location.state.id_materia,
+                                        id_estudiante: this.state.id_estudiante,
+                                        id_materia: datosT.id_materia,
                                     }
-                                }} />}
+                                }}>
+                  <button className="ButtonNotas-Estudiantes_notas">Ver notas</button>
+                  </Link>
+                
               </div>
             </div>
           </div>
             )
           })}
-          */}
-
-
+          
         </div>
       </>
     );

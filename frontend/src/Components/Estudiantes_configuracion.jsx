@@ -9,11 +9,15 @@ import { Link } from "react-router-dom";
 class Estudiantes_configuracion extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {};
+    this.state = {
+      id_estudiante: this.props.location.state.id_estudiante,
+      datos: []
+    };
   }
+
 //Petición get para obtener información de la cuenta
   componentDidMount(){
-    axios.get(``, { id_estudiante: this.state.id_estudiante })
+    axios.get(`http://localhost:4535/persona/${this.state.id_estudiante}`) //Esta peticion está pendiente en el backend
       .then(res =>{
         console.log(res.data)
         this.setState({
@@ -27,7 +31,7 @@ class Estudiantes_configuracion extends React.Component {
 
   //Petición put para modificar los datos de la cuenta
   componentDidMount(){
-    axios.put(``, { id_estudiante: this.state.id_estudiante })
+    axios.put(`http://localhost:4535/persona/${this.state.id_estudiante}`) //Esta peticion está pendiente en el backend
       .then(res =>{
         console.log(res.data)
         this.setState({
