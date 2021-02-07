@@ -11,50 +11,11 @@ import TextField from '@material-ui/core/TextField';
 import Container from '@material-ui/core/Container';
 import Avatar from '@material-ui/core/Avatar';
 import Button from '@material-ui/core/Button';
-import IconButton from '@material-ui/core/IconButton';
-import SaveIcon from '@material-ui/icons/Save';
 import PhotoCamera from '@material-ui/icons/PhotoCamera';
 import PictureAsPdfIcon from '@material-ui/icons/PictureAsPdf';
 import DateFnsUtils from '@date-io/date-fns';
 import { MuiPickersUtilsProvider, KeyboardTimePicker, KeyboardDatePicker } from '@material-ui/pickers';
 import { TimePicker, DatePicker, DateTimePicker } from 'formik-material-ui-pickers';
-
-const identificacion = [
-  {
-    value: 'Cedula',
-    label: 'CC',
-  },
-  {
-    value: 'Tarjeta de identidad',
-    label: 'TI',
-  }
-];
-
-const genero = [
-  {
-    value: 'Mujer',
-    label: 'Mujer',
-  },
-  {
-    value: 'Hombre',
-    label: 'Hombre',
-  }
-];
-
-const tipoUsuario = [
-  {
-    value: 'Directivo',
-    label: 'Directivo',
-  },
-  {
-    value: 'Maestro',
-    label: 'Maestro',
-  },
-  {
-    value: 'Estudiante',
-    label: 'Estudiante',
-  }
-];
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -77,6 +38,22 @@ const useStyles = makeStyles((theme) => ({
   // input: {display: 'none'},
 }));
 
+const identificacion = [
+  { value: 'Cedula', label: 'CC', },
+  { value: 'Tarjeta de identidad', label: 'TI', }
+];
+
+const genero = [
+  { value: 'Mujer', label: 'Mujer', },
+  { value: 'Hombre', label: 'Hombre', }
+];
+
+const tipoUsuario = [
+  { value: 'Directivo', label: 'Directivo', },
+  { value: 'Maestro', label: 'Maestro', },
+  { value: 'Estudiante', label: 'Estudiante', }
+];
+
 function handleClick(event) {
   event.preventDefault();
   console.info('You clicked a breadcrumb.');
@@ -84,13 +61,13 @@ function handleClick(event) {
 
 export default function EstudiantesConfiguracion() {
   const classes = useStyles();
-  const [currency, setCurrency] = useState('Cedula');
-  const [selectedDate, setSelectedDate] = useState(new Date('2014-08-18T21:11:54'));
 
+  const [currency, setCurrency] = useState('Cedula');
   const handleChange = (event) => {
     setCurrency(event.target.value);
   };
 
+  const [selectedDate, setSelectedDate] = useState(new Date('2014-08-18T21:11:54'));
   const handleDateChange = (date) => {
     setSelectedDate(date);
   };
@@ -127,7 +104,7 @@ export default function EstudiantesConfiguracion() {
         <Paper className={classes.paper} className="form">
           <form className={classes.root} noValidate autoComplete="off">
             <Container className="img-perfil">
-              <Avatar alt="Remy Sharp" src="/static/images/avatar/1.jpg" className={classes.large} />
+              <Avatar alt="Imagen de perfil" src="https://img.icons8.com/doodle/344/group.png" className={classes.large} />
             </Container>
 
             <Container className="informacion">

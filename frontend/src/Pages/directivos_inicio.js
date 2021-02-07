@@ -5,6 +5,7 @@ import "../Styles/Directivos.css";
 
 import { withRouter } from "react-router-dom";
 import { Link } from "react-router-dom";
+import axios from 'axios';
 
 class directivos_inicio extends React.Component {
   constructor(props) {
@@ -17,6 +18,20 @@ class directivos_inicio extends React.Component {
       Cargo: this.props.location.state.Cargo,
     };
   }
+
+  // Peticion get para traer los datos
+  componentDidMount() {
+    axios.get(`https://jsonplaceholder.typicode.com/users`, { id_maestro: this.state.id_maestro })
+      .then(res => {
+        console.log(res.data)
+        this.setState({
+          datos: res.data
+        })
+      }).catch(err => {
+        console.log(err.massage)
+      })
+  }
+  // Fin peticion get
 
   render() {
     return (
@@ -137,6 +152,7 @@ class directivos_inicio extends React.Component {
                         Cargo: this.props.location.state.Cargo,
                       },
                     }}
+                    onClick={() => this.componentDidMount}
                   >
                     <div className="img-direc3-Maestros_inicio CardS-Maestros_inicio">
                       <img
