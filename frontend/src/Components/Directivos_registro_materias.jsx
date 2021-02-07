@@ -50,6 +50,7 @@ class Directivos_registro_materias extends React.Component {
 
   //Petición post para agregar nuevas materias
   post_materia = async () => {
+    console.log("Formulario", this.state.form);
     await axios
       .post(
         `http://localhost:4535/materias/directivos-nueva-materia-crear-materia`,

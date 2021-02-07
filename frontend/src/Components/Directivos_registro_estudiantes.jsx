@@ -38,6 +38,10 @@ class Directivos_registro_estudiantes extends React.Component {
       },
     };
   }
+  /*
+      El codigo de estudiante, el estado de cuenta, el tipo de usuario se generan automaticamente -
+      - en la petición post del backend 
+  */
 
   form = () => {
     document.getElementById("RegistroEsContainer").style.filter = "blur(1px)";
@@ -133,52 +137,122 @@ class Directivos_registro_estudiantes extends React.Component {
   render() {
     console.log(this.state.datos);
     const estudiantesRegistro = this.state.datos;
-
     return (
       <>
-      {/* Formulario */}
         <div id="Form">
           <div id="Form2">
             <div id="Form2_21">
-              <img
-                className="ImgProfile"
-                src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/7e/Circle-icons-profile.svg/1200px-Circle-icons-profile.svg.png"
-              />
+              <img className="ImgProfile" src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/7e/Circle-icons-profile.svg/1200px-Circle-icons-profile.svg.png" />
             </div>
             <div id="Form2_2">
               <div className="Form2_2_2">
                 <input
                   className="REInput"
                   id="NombreIn"
-                  placeholder="Nombre"
+                  placeholder="Nombres"
                   autoComplete="off"
-                  onChange={this.handleChange}
-                  name="nombres"
                 />
                 <input
                   className="REInput"
                   id="ApellidoIn"
-                  placeholder="Apellido"
+                  placeholder="Apellidos"
                   autoComplete="off"
-                  onChange={this.handleChange}
-                  name="apellidos"
                 />
-                <select className="REInput" id="TipoDI">
-                  <option value="0" className="Dis">
-                    Tipo Documento
+                <select className="REInput" id="Tipo_documentoIn">
+                  <option value="0" className="Dis" id="TipoDocDis">
+                    Tipo de documento de identidad
                   </option>
-                  <option value="1">Cédula</option>
-                  <option value="2">Tarjeta de identidad</option>
+                  <option value="Cedula">Cédula de ciudadanía</option>
+                  <option value="Tarjeta">Tarjeta de identidad</option>
                 </select>
                 <input
                   className="REInput"
                   id="DocumentoIn"
+                  type="number"
                   placeholder="Documento de identidad"
+                  autoComplete="off"
+                />
+                <select className="REInput" id="SexoIn">
+                  <option value="0" className="Dis" id="SexoDis">
+                    Sexo
+                  </option>
+                  <option value="Hombre">Hombre</option>
+                  <option value="Mujer">Mujer</option>
+                </select>
+                <input
+                  className="REInput"
+                  id="Fecha_nacimientoIn"
+                  placeholder="Fecha de nacimiento"
+                  type="date"
+                  autoComplete="off"
+                />
+              </div>
+            </div>
+            <div id="Form2_2">
+              <div className="Form2_2_2">
+                <input
+                  className="REInput"
+                  id="DirIn"
+                  placeholder="Direccion de recidencia"
+                  autoComplete="off"
+                />
+                <input
+                  className="REInput"
+                  id="CiudadIn"
+                  type="text"
+                  placeholder="Ciudad de recidencia"
+                  autoComplete="off"
+                />
+                <input
+                  className="REInput"
+                  id="TelefIn"
+                  placeholder="Teléfono Fijo"
+                  type="number"
+                  autoComplete="off"
+                />
+                <input
+                  className="REInput"
+                  id="CelularIn"
+                  placeholder="Celular"
+                  type="number"
+                  autoComplete="off"
+                />
+                <input
+                  className="REInput"
+                  id="CorreoIn"
+                  type="text"
+                  placeholder="Correo electronico"
+                  autoComplete="off"
+                />
+                <input
+                  className="REInput"
+                  id="DirIn"
+                  type="text"
+                  placeholder="Direccion"
                   autoComplete="off"
                 />
               </div>
             </div>
             <div className="Form2_2_2">
+              <div>
+                <img src="https://img.icons8.com/carbon-copy/2x/camera--v2.png" alt="Profile img" className="inline" style={{ height: 3 + "vw", marginLeft: 0 }} />
+                <p className="inline">Foto de perfil</p>
+              </div>
+              <input
+                accept="image/*"
+                id="contained-button-pdf"
+                type="file"
+              />
+
+              <div>
+                <img src="https://www.iconpacks.net/icons/2/free-pdf-file-icon-2614-thumb.png" alt="PDF" className="inline" style={{ height: 3 + "vw", marginLeft: 0 }} />
+                <p className="inline">Documento de identidad</p>
+              </div>
+              <input
+                accept=".pdf"
+                id="icon-button-fotoperfil"
+                type="file"
+              />
               <select className="REInput" id="GradoIn" onChange={this.Cambiar}>
                 <option value="0" className="Dis">
                   Grado
@@ -215,7 +289,7 @@ class Directivos_registro_estudiantes extends React.Component {
         {/* Formulario */}
 
         <div id="RegistroEsContainer">
-            {/* Filtro*/}
+          {/* Filtro*/}
           <div className="FiltrosREstudiante">
             <input
               type="text"
@@ -285,28 +359,28 @@ class Directivos_registro_estudiantes extends React.Component {
           {/* Estudiantes */}
           {estudiantesRegistro.map((datosT) => {
             return (
-          <div id="CardsContainerReEs">
-            <div className="FiltrosREstudiante">
-              <div className="SelectR">
-                <p>{datosT.codigo_estudiante}</p>
+              <div id="CardsContainerReEs">
+                <div className="FiltrosREstudiante">
+                  <div className="SelectR">
+                    <p>{datosT.codigo_estudiante}</p>
+                  </div>
+                  <div className="SelectR NameF">
+                    <p className="Peque">{datosT.nombres} {datosT.apellidos}</p>
+                  </div>
+                  <div className="SelectR GradoF">
+                    <p>{datosT.grado_grupo}</p>
+                  </div>
+                  <div className="SelectR GrupoF">
+                    <p>{datosT.codigo_grupo}</p>
+                  </div>
+                  <div className="SelectR AñoInsF">
+                    <p>{datosT.year_grupo}</p>
+                  </div>
+                  <div className="ImgRMas"></div>
+                </div>
               </div>
-              <div className="SelectR NameF">
-                <p className="Peque">{datosT.nombres} {datosT.apellidos}</p>
-              </div>
-              <div className="SelectR GradoF">
-                <p>{datosT.grado_grupo}</p>
-              </div>
-              <div className="SelectR GrupoF">
-                <p>{datosT.codigo_grupo}</p>
-              </div>
-              <div className="SelectR AñoInsF">
-                <p>{datosT.year_grupo}</p>
-              </div>
-              <div className="ImgRMas"></div>
-            </div>
-          </div>
-          );
-        })}
+            );
+          })}
           {/* Fin Estudiantes */}
         </div>
       </>
