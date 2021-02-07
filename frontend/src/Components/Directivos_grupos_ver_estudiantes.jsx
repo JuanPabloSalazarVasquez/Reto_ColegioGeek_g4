@@ -5,23 +5,27 @@ import "../Styles/VerRegEstu.css";
 
 import { withRouter, Link } from "react-router-dom";
 
-
 class Directivos_grupos_ver_estudiantes extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {};
+    this.state = {
+      id_grupo: this.props.location.state.id_grupo,
+      datos: [],
+      datos_materias: []
+    };
   }
 
   //Petición get para obtener los estudiantes existentes dentro de un grupo
-  componentDidMount() {
+  componentWillMount() {
+    console.log(this.state.id_grupo)
     axios
       .get(
-        `http://localhost:4535/grupos-estudiantes/estudiantes-ver-grupos-estudiantes-directivos/${this.state.id_directivo}`
+        `http://localhost:4535/grupos-estudiantes/estudiantes-ver-grupos-estudiantes-directivos/${this.state.id_grupo}`
       )
       .then((res) => {
         console.log(res.data);
         this.setState({
-          datos: res.data,
+          datos: res.data
         });
       })
       .catch((err) => {
@@ -30,30 +34,36 @@ class Directivos_grupos_ver_estudiantes extends React.Component {
   }
   //Fin get
 
-  //Petición post para agregar nuevos estudiantes dentro de un grupo
-  post_grupo() {
+  //Petición get para obtener los estudiantes existentes dentro de un grupo
+  componentDidMount() {
+    console.log(this.state.id_grupo)
     axios
-      .post(
-        `http://localhost:4535/grupos-estudiantes//${this.state.id_directivo}`,
-        {}
-      ) //Esta petición está pendiente en el backend
+      .get(
+        `http://localhost:4535/grupos-materias/directivos-materias-grupo/${this.state.id_grupo}`
+      )
       .then((res) => {
         console.log(res.data);
         this.setState({
-          datos: res.data,
+          datos_materias: res.data
         });
       })
       .catch((err) => {
         console.log(err.massage);
       });
   }
-  //Fin post
+  //Fin get
 
   render() {
+    console.log(this.state.datos);
+    const estudiantesGrupo = this.state.datos;
+    const materiasGrupo = this.state.datos_materias;
+    console.log(this.state.datos_materias)
+
     return (
       <>
         <div id="VerEstuGrupContainer">
           <div className="FiltradoGroup">
+            {/* Filtro Estudiantes */}
             <div className="FiltrosREstudiante">
               <div>
                 <input
@@ -80,20 +90,30 @@ class Directivos_grupos_ver_estudiantes extends React.Component {
                 />
               </div>
             </div>
+            {/* Filtro Estudiantes */}
+            {/* Estudiantes */}
+
+            {estudiantesGrupo.map((datosT) => {
+            return (
             <div className=" EstuFilter">
               <div className="FiltrosREstudiante">
                 <div className="SelectR">
-                  <p>Esito.Matricula</p>
+                  <p>{datosT.codigo_estudiante}</p>
                 </div>
                 <div className="SelectR">
-                  <p>Esito.Name</p>
+                  <p>{datosT.nombres}</p>
                 </div>
                 <div className="SelectR">
-                  <p>Esito.Apellido</p>
+                  <p>{datosT.apellidos}</p>
                 </div>
               </div>
             </div>
+            );
+          })}
+            {/* Fin Estudiantes */}
           </div>
+
+          {/* Materias Grupo */}
           <div className="VerMate">
             <div className="VerMate2">
               <div className="SelectR SelectR3">
@@ -101,23 +121,28 @@ class Directivos_grupos_ver_estudiantes extends React.Component {
               </div>
               <Link
                 to={{
-                  pathname: "/directivos/registro_Grupos"
+                  pathname: "/directivos/registro_Grupos",
                 }}
               >
                 <button className="SelectR button">Volver</button>
               </Link>
             </div>
+            {materiasGrupo.map((datosT) => {
+            return (
             <div className="VerMate3">
               <div className="VerMate4">
                 <div className="SelectR">
-                  <p> Esito.Nombre </p>
+                  <p>{datosT.nombre_materia}</p>
                 </div>
                 <div className="SelectR">
-                  <p>Esito.CodigoM</p>
+                  <p>{datosT.codigo_materia}</p>
                 </div>
               </div>
             </div>
+            );
+          })}
           </div>
+          {/* Fin Materias Grupo */}
         </div>
       </>
     );

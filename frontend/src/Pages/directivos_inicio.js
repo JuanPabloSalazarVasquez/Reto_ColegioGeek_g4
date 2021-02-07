@@ -39,7 +39,7 @@ componentDidMount() {
         <div id="DirectivosContainer">
           <div id="DirectivosGrid">
             <div id="ProfileCont">
-              <Profile Name={directivo.nombres} Cargo="Directivo"/>
+              <Profile Name={directivo.nombres} Cargo="Directivo" foto={directivo.foto_perfil} />
             </div>
             <div id="CardsCont">
               <div id="Grupo1">

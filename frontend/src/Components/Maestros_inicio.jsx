@@ -20,7 +20,6 @@ class Maestros_inicio extends React.Component {
 componentDidMount() {
   axios.get(`http://localhost:4535/maestro/maestros-inicio-maestro/${this.state.datos.id_maestro}`)
     .then(res => {
-      console.log(res.data)
       this.setState({
         datos_maestro: res.data[0]
       })
@@ -48,7 +47,7 @@ logout = () => {
                 <div>
                   <img
                     className="ImgProfile-Maestros_inicio"
-                    src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/7e/Circle-icons-profile.svg/1200px-Circle-icons-profile.svg.png"
+                    src={maestro.foto_perfil}
                   />
                 </div>
                 <div className="DatosContainer-Maestros_inicio">

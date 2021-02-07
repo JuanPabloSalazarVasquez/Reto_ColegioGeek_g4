@@ -21,6 +21,14 @@ class Directivos_registro_grupos extends React.Component {
     super(props);
     this.state = {
       Bool: false,
+      form: {
+        director_id_maestro: "",
+        codigo_grupo: "",
+        jornada_grupo: "",
+        grado_grupo: "",
+        year_grupo: "",
+      },
+      datos: [],
     };
   }
 
@@ -35,12 +43,10 @@ class Directivos_registro_grupos extends React.Component {
     document.getElementById("RegistroEsContainer").style.filter = "blur(0)";
   };
 
-  //Petición get para traer todos los grupo
+  //Petición get para traer todos los grupos
   componentDidMount() {
     axios
-      .get(
-        `http://localhost:4535/grupos/directivos-ver-grupos/${this.state.id_directivo}`
-      )
+      .get(`http://localhost:4535/grupos/directivos-ver-grupos`)
       .then((res) => {
         console.log(res.data);
         this.setState({
@@ -56,15 +62,16 @@ class Directivos_registro_grupos extends React.Component {
   //Petición post para agregar nuevos grupos
   post_grupo() {
     axios
-      .post(
-        `http://localhost:4535/grupos/directivos-nuevo-grupo/${this.state.id_directivo}`,
-        {}
-      )
+      .post(`http://localhost:4535/grupos/directivos-nuevo-grupo`, {
+        director_id_maestro: this.state.form.director_id_maestro,
+        codigo_grupo: this.state.form.codigo_grupo,
+        jornada_grupo: this.state.form.jornada_grupo,
+        grado_grupo: this.state.form.grado_grupo,
+        year_grupo: this.state.form.year_grupo,
+      })
       .then((res) => {
-        console.log(res.data);
-        this.setState({
-          datos: res.data,
-        });
+        console.log("Se ha creado un nuevo grupo");
+        this.componentDidMount();
       })
       .catch((err) => {
         console.log(err.massage);
@@ -73,9 +80,24 @@ class Directivos_registro_grupos extends React.Component {
 
   //Fin post
 
+  handleChange = async (e) => {
+    e.persist();
+    await this.setState({
+      form: {
+        ...this.state.form,
+        [e.target.name]: e.target.value,
+      },
+    });
+    console.log(this.state.form);
+  };
+
   render() {
+    console.log(this.state.datos);
+    const gruposRegistros = this.state.datos;
+
     return (
       <>
+        {/* Formulario */}
         <div id="Form">
           <div id="Form2">
             <div id="Form2_2">
@@ -84,22 +106,31 @@ class Directivos_registro_grupos extends React.Component {
                   <option value="0" className="Dis">
                     Grado
                   </option>
-                  <option value="06">Sexto</option>
-                  <option value="07">Septimo</option>
-                  <option value="08">Octavo</option>
-                  <option value="09">Noveno</option>
-                  <option value="10">Decimo</option>
-                  <option value="11">Once</option>
+                  <option value="6">6</option>
+                  <option value="7">7</option>
+                  <option value="8">8</option>
+                  <option value="9">9</option>
+                  <option value="10">10</option>
+                  <option value="11">11</option>
+                </select>
+                <select className="REInput" id="GradoIn">
+                  <option value="0" className="Dis">
+                    Jornada
+                  </option>
+                  <option value="Mañana">Mañana</option>
+                  <option value="Tarde">Tarde</option>
                 </select>
                 <select className="REInput" id="DirectorNull">
                   <option className="REInput Dis">Director</option>
-                  {arry.map((Esito, index) => {
+                  {/* Seleccionar Director */}
+                  {gruposRegistros.map((datosT) => {
                     return (
-                      <option key={index} value={Esito}>
-                        {Esito}
+                      <option key={datosT.codigo_grupo}>
+                        {datosT.nombres} {datosT.apellidos}
                       </option>
                     );
                   })}
+                  {/* Seleccionar Director */}
                 </select>
               </div>
             </div>
@@ -110,14 +141,7 @@ class Directivos_registro_grupos extends React.Component {
                 type="button"
                 value="Agregar"
               />
-              {this.state.Bool && (
-                <Redirect
-                  to={{
-                    pathname: "/directivos/registro_Grupos",
-                    state: {},
-                  }}
-                ></Redirect>
-              )}
+
               <input
                 type="button"
                 onClick={this.Cambio}
@@ -127,73 +151,102 @@ class Directivos_registro_grupos extends React.Component {
             </div>
           </div>
         </div>
+        {/* Fin Formulario */}
 
         <div id="RegistroEsContainer">
+          {/* Filtro */}
           <div className="FiltrosREstudiante">
             <select className="SelectR">
               <option value="0" className="Dis">
                 Cod Grupo
               </option>
-
-              <option>Esito.CodGrupo</option>
+              {/* Select Codigo Grupo */}
+              {gruposRegistros.map((datosT) => {
+                return (
+                  <option key={datosT.codigo_grupo}>
+                    {datosT.codigo_grupo}
+                  </option>
+                );
+              })}
+              {/* Fin Select Codigo Grupo */}
             </select>
             <select className="SelectR MinMin">
               <option value="0" className="Dis">
                 Grado
               </option>
-              <option value="Sexto">Sexto</option>
-              <option value="Septimo">Septimo</option>
-              <option value="Octavo">Octavo</option>
-              <option value="Noveno">Noveno</option>
-              <option value="Decimo">Decimo</option>
-              <option value="Once">Once</option>
+              <option value="6">Sexto</option>
+              <option value="7">Septimo</option>
+              <option value="8">Octavo</option>
+              <option value="9">Noveno</option>
+              <option value="10">Decimo</option>
+              <option value="11">Once</option>
             </select>
             <select className="SelectR More">
               <option value="0" className="Dis">
                 Director
               </option>
-              {arry2.map((Esito, index) => {
-                return <option key={index}>{Esito}</option>;
+
+              {/* Select Director */}
+              {gruposRegistros.map((datosT) => {
+                return (
+                  <option key={datosT.codigo_grupo}>
+                    {datosT.nombres} {datosT.apellidos}
+                  </option>
+                );
               })}
+              {/* Fin Select Director */}
             </select>
+            {/* Cantidad estudiantes */}
             <input
               type="number"
               className="GrupoF Min"
               placeholder="Cant E"
               autoComplete="off"
             />
+            {/* Fin Cantidad Estudiantes */}
             <div className="SelectR AñoInsF">
               <p>Estudiantes</p>
             </div>
             <input id="ImgRMas" type="button" onClick={this.form} />
           </div>
-          <div id="CardsContainerReEs">
-            <div className="FiltrosREstudiante">
-              <div className="SelectR">
-                <p>Esito.CodGrupo</p>
+          {/* Fin Filtro */}
+
+          {/* Grupos registrados */}
+          {gruposRegistros.map((datosT) => {
+            return (
+              <div id="CardsContainerReEs" key={datosT.codigo_grupo}>
+                <div className="FiltrosREstudiante">
+                  <div className="SelectR">
+                    <p>{datosT.codigo_grupo}</p>
+                  </div>
+                  <div className="SelectR">
+                    <p>{datosT.grado_grupo}</p>
+                  </div>
+                  <div className="SelectR More">
+                    <p>
+                      {datosT.nombres} {datosT.apellidos}
+                    </p>
+                  </div>
+                  <div className="Min GrupoF">
+                    <p>{datosT.cantidad_estudiantes}</p>
+                  </div>
+                  <div className="SelectR AñoInsF">
+                    <Link
+                      to={{
+                        pathname: "/directivos/grupos_VerEstudiantes",
+                        state: {
+                          id_grupo: datosT.id_grupo
+                        }
+                      }}
+                    >
+                      <button className="DickBro">Ver Estudiantes</button>
+                    </Link>
+                  </div>
+                  <div className="ImgRMas"></div>
+                </div>
               </div>
-              <div className="SelectR">
-                <p>Esito.Grado</p>
-              </div>
-              <div className="SelectR More">
-                <p>Esito.Director</p>
-              </div>
-              <div className="Min GrupoF">
-                <p>Esito.CEstudiantes</p>
-              </div>
-              <div className="SelectR AñoInsF">
-                <Link
-                  to={{
-                    pathname: "/directivos/grupos_VerEstudiantes",
-                    state: {},
-                  }}
-                >
-                  <button className="DickBro">Ver Estudiantes</button>
-                </Link>
-              </div>
-              <div className="ImgRMas"></div>
-            </div>
-          </div>
+            );
+          })}
         </div>
       </>
     );

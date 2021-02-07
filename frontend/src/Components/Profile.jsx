@@ -24,7 +24,7 @@ class Profile extends React.Component {
             <>
                 <div id="ProfileContainer">
                     <div>
-                    <img className="ImgProfile" src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/7e/Circle-icons-profile.svg/1200px-Circle-icons-profile.svg.png" />
+                    <img className="ImgProfile" src={this.props.foto} />
                     </div>
                     <div id="DatosContainer">
                     <p className="Pprofile">Bienvenido {this.props.Name}</p>

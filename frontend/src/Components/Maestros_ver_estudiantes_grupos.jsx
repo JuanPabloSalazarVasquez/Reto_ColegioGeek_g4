@@ -11,13 +11,15 @@ class Maestros_ver_estudiantes_grupos extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-
+      id_grupo: this.props.location.state.id_grupo,
+      datos: []
     };
   }
 
    // Peticion get para traer todos estudiantes de un grupo
 componentDidMount(){
-  axios.get(`http://localhost:4535/grupos-estudiantes/maestros-ver-estudiantes-grupo/${this.state.id_maestro}`)
+  console.log(this.state.id_grupo)
+  axios.get(`http://localhost:4535/grupos-estudiantes/maestros-ver-estudiantes-grupo/${this.state.id_grupo}`)
     .then(res =>{
       console.log(res.data)
       this.setState({
@@ -38,7 +40,7 @@ componentDidMount(){
       <>
         <div className="VerEstuGrupContainer-Maestros_ver_estudiantes_grupos">
           <div className="FiltradoEstudiante-Maestros_ver_estudiantes_grupos">
-            <div className="FiltrosREstudiante-Maestros_ver_estudiantes_grupos-Registro">
+          <div className="FiltrosREstudiante-Maestros_ver_estudiantes_grupos">
               <div>
                 <input
                   type="number"
@@ -64,39 +66,25 @@ componentDidMount(){
                 />
               </div>
             </div>
-            {/* Estudiantes del grupo del maestro */}
-            <div className="EstuFilter-Maestros_ver_estudiantes_grupos">
-              <div className="FiltrosREstudiante-Maestros_ver_estudiantes_grupos-Registro">
-                <div className="SelectR-Maestros_ver_estudiantes_grupos">
-                  <p className="pTexts-Maestros_ver_estudiantes_grupos MinMin-Maestros_ver_estudiantes_grupos">Matricula</p>
-                </div>
-                <div className="SelectR-Maestros_ver_estudiantes_grupos">
-                  <p className="pTexts-Maestros_ver_estudiantes_grupos More-Maestros_ver_estudiantes_grupos">Emanuel</p>
-                </div>
-                <div className="SelectR-Maestros_ver_estudiantes_grupos">
-                  <p className="pTexts-Maestros_ver_estudiantes_grupos More-Maestros_ver_estudiantes_grupos">Acevedo Munoz</p>
-                </div>
-              </div>
-            </div>
-            {/* 
+      
           {estudiantesGrupo.map((datosT) => {
             return (
               <div className="EstuFilter-Maestros_ver_estudiantes_grupos">
-              <div className="FiltrosREstudiante-Maestros_ver_estudiantes_grupos-Registro">
+              <div className="FiltrosREstudiante-Maestros_ver_estudiantes_grupos">
                 <div className="SelectR-Maestros_ver_estudiantes_grupos">
-                  <p className="pTexts-Maestros_ver_estudiantes_grupos MinMin-Maestros_ver_estudiantes_grupos">Matricula</p>
+                  <p className="pTexts-Maestros_ver_estudiantes_grupos MinMin-Maestros_ver_estudiantes_grupos">{datosT.codigo_estudiante}</p>
                 </div>
                 <div className="SelectR-Maestros_ver_estudiantes_grupos">
-                  <p className="pTexts-Maestros_ver_estudiantes_grupos More-Maestros_ver_estudiantes_grupos">Emanuel</p>
+                  <p className="pTexts-Maestros_ver_estudiantes_grupos More-Maestros_ver_estudiantes_grupos">{datosT.nombres}</p>
                 </div>
                 <div className="SelectR-Maestros_ver_estudiantes_grupos">
-                  <p className="pTexts-Maestros_ver_estudiantes_grupos More-Maestros_ver_estudiantes_grupos">Acevedo Munoz</p>
+                  <p className="pTexts-Maestros_ver_estudiantes_grupos More-Maestros_ver_estudiantes_grupos">{datosT.apellidos}</p>
                 </div>
               </div>
             </div>
             )
           })}
-          */}
+        
 
 
           </div>

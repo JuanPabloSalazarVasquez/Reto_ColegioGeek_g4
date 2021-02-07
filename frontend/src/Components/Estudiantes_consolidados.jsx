@@ -9,7 +9,7 @@ class Estudiantes_consolidados extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      id_estudiante: 1,
+      id_estudiante: JSON.parse(sessionStorage.getItem("id_estudiante")),
       datos: [],
     };
   }
@@ -18,7 +18,7 @@ class Estudiantes_consolidados extends React.Component {
   componentDidMount() {
     axios
       .get(
-        `http://localhost:4535/consolidados/consolidados-estudiante/${this.state.id_estudiante}`
+        `http://localhost:4535/consolidados/consolidados-estudiante/${this.state.id_estudiante.id_estudiante}`
       )
       .then((res) => {
         console.log(res.data);

@@ -14,6 +14,7 @@ class Maestros_registro_notas_grupo_estudiantes extends React.Component {
       id_grupo: this.props.location.state.id_grupo,
       id_materia: this.props.location.state.id_materia,
       datos: []
+      //No hay forma de llegar a esta página
     };
   }
 
