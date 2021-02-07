@@ -21,7 +21,7 @@ class Login_usuarios extends React.Component {
       datos_user2: null,
       Bool1: false,
       Bool2: false,
-      Bool3: false
+      Bool3: false,
     };
   }
 
@@ -42,7 +42,7 @@ class Login_usuarios extends React.Component {
         ) {
           console.log(res.data.message);
         } else {
-          localStorage.setItem(
+          sessionStorage.setItem(
             "login",
             JSON.stringify({
               login: true,
@@ -69,7 +69,7 @@ class Login_usuarios extends React.Component {
       .then((res) => {
         this.setState({ datos_user: res.data.data });
         this.Ingreso();
-          /*
+        /*
         console.log(res);
         console.log(res.data);
         console.log(res.data.data.id_persona);
@@ -82,32 +82,53 @@ class Login_usuarios extends React.Component {
       });
   };
 
-  Ingreso = async() => {
+  Ingreso = async () => {
     await axios
-      .get(`http://localhost:4535/api/user-datos/${this.state.datos_user.id_persona}/${this.state.datos_user.tipo_usuario}`)
+      .get(
+        `http://localhost:4535/api/user-datos/${this.state.datos_user.id_persona}/${this.state.datos_user.tipo_usuario}`
+      )
       .then((res) => {
-          console.log('Esta es la informacion de la tabla del usuario logeado:', res.data[0])
-          console.log('Tipo_usuario:', this.state.datos_user.tipo_usuario)
-          if(this.state.datos_user.tipo_usuario == 'Estudiante'){
-              this.setState({datos_user2: res.data[0]})
-              this.setState({Bool3: true})
-          }
-          if(this.state.datos_user.tipo_usuario == 'Maestro'){
-            this.setState({datos_user2: res.data[0]})
-            this.setState({Bool2: true})
+        console.log(
+          "Esta es la informacion de la tabla del usuario logeado:",
+          res.data[0]
+        );
+        console.log("Tipo_usuario:", this.state.datos_user.tipo_usuario);
+        if (this.state.datos_user.tipo_usuario == "Estudiante") {
+          console.log("Esta es la res.data[0]", res.data[0]);
+          // this.setState({datos_user2: res.data[0]})
+          sessionStorage.setItem(
+            "id_estudiante",
+            JSON.stringify({
+              id_estudiante: res.data[0].id_estudiante,
+            })
+          );
+          this.setState({ Bool3: true });
         }
-        if(this.state.datos_user.tipo_usuario == 'Directivo'){
-            this.setState({datos_user2: res.data[0]})
-            this.setState({Bool1: true})
+        if (this.state.datos_user.tipo_usuario == "Maestro") {
+          //this.setState({datos_user2: res.data[0]})
+          sessionStorage.setItem(
+            "id_maestro",
+            JSON.stringify({
+              id_maestro: res.data[0].id_maestro,
+            })
+          );
+          this.setState({ Bool2: true });
         }
-
+        if (this.state.datos_user.tipo_usuario == "Directivo") {
+          //this.setState({datos_user2: res.data[0]})
+          sessionStorage.setItem(
+            "id_directivo",
+            JSON.stringify({
+              id_directivo: res.data[0].id_directivo,
+            })
+          );
+          this.setState({ Bool1: true });
+        }
       })
       .catch((err) => {
         console.log(err.massage);
       });
-  }
-
-
+  };
 
   handleChange = async (e) => {
     e.persist();
@@ -185,9 +206,6 @@ class Login_usuarios extends React.Component {
                   <Redirect
                     to={{
                       pathname: "/directivos",
-                      state: {
-                        datos_user2: this.state.datos_user2
-                      }
                     }}
                   ></Redirect>
                 )}
@@ -197,9 +215,6 @@ class Login_usuarios extends React.Component {
                   <Redirect
                     to={{
                       pathname: "/maestros",
-                      state: {
-                        datos_user2: this.state.datos_user2
-                      }
                     }}
                   ></Redirect>
                 )}
@@ -209,9 +224,6 @@ class Login_usuarios extends React.Component {
                   <Redirect
                     to={{
                       pathname: "/estudiantes",
-                      state: {
-                        datos_user2: this.state.datos_user2
-                      }
                     }}
                   ></Redirect>
                 )}

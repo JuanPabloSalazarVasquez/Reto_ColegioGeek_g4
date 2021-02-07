@@ -10,7 +10,7 @@ class Estudiantes_notas_ver_notas extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      id_estudiante: this.props.location.state.id_estudiante,
+      id_estudiante: JSON.parse(localStorage.getItem("id_estudiante")),
       id_materia: this.props.location.state.id_materia,
       datos: [],
     };
@@ -20,7 +20,7 @@ class Estudiantes_notas_ver_notas extends React.Component {
   componentDidMount() {
     axios
       .get(
-        `http://localhost:4535/notas/estudiante-ver-notas-materia-estudiante/${this.state.id_estudiante}/${this.state.id_materia}`
+        `http://localhost:4535/notas/estudiante-ver-notas-materia-estudiante/${this.state.id_estudiante.id_estudiante}/${this.state.id_materia}`
       )
       .then((res) => {
         console.log(res.data);
@@ -84,7 +84,7 @@ class Estudiantes_notas_ver_notas extends React.Component {
                       </p>
                     </div>
                     <div className="SelectR-Estudiantes_notas_ver_notas">
-                      <p className="pTexts-Estudiantes_notas_ver_notas">
+                      <p className="pTexts-Estudiantes_notas_ver_notas" key={datosT.nota}>
                         {datosT.nota}
                       </p>
                     </div>

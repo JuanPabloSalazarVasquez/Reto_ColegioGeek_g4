@@ -11,7 +11,6 @@ class HeaderSistema_Estudiantes extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            datos: this.props.location.state.datos_user2
         }
     }
     render() {
@@ -29,10 +28,7 @@ class HeaderSistema_Estudiantes extends React.Component {
                         </div>
                         <div className='bContainer-HeaderSistema_Estudiantes'>
                             <Link to={{
-                                pathname: this.props.pathname,
-                                state: {
-                                    datos_user2: this.state.datos
-                                }
+                                pathname: this.props.pathname
                             }}>
                                 <button className={`button ${this.props.classDis}`} >Regresar</button>
                             </Link>

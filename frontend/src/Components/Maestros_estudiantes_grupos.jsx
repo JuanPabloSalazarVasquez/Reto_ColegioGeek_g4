@@ -5,13 +5,13 @@ import axios from 'axios';
 
 import "../Styles/Maestros_estudiantes_grupos.css";
 
-import { withRouter, Link } from "react-router-dom";
+import { withRouter, Link, Redirect } from "react-router-dom";
 
 class Maestros_estudiantes_grupos extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      //id_maestro: this.props.location.id_maestro,
+      id_maestro: JSON.parse(sessionStorage.getItem('id_maestro')),
       datos: [],
       Bool: false
     };
@@ -19,7 +19,7 @@ class Maestros_estudiantes_grupos extends React.Component {
 
   // Peticion get para traer todos los grupos en los que el profesor da clase
   componentDidMount() {
-    axios.get(`http://localhost:4535/grupos-estudiantes/maestros-ver-grupos`)
+    axios.get(`http://localhost:4535/grupos-estudiantes/maestros-ver-grupos/${this.state.id_maestro.id_maestro}`)
       .then(res => {
         console.log(res.data)
         this.setState({
@@ -31,6 +31,11 @@ class Maestros_estudiantes_grupos extends React.Component {
   }
   // Fin peticion get
 
+  verEstudiantes = () =>  {
+    this.setState({
+      Bool: true
+    })
+  }
 
   render() {
     console.log(this.state.datos);
@@ -68,58 +73,30 @@ class Maestros_estudiantes_grupos extends React.Component {
               autoComplete="off"
             />
           </div>
-
-          {/* Grupos */}
-          <div className='CardsContainer-Maestros_estudiantes_grupos'>
-            <div className="Filtros-Maestros_estudiantes_grupos">
-              <div className="Select-Maestros_estudiantes_grupos">
-                <p className='p_Texts-Maestros_estudiantes_grupos'>qweasda</p>
-              </div>
-              <div className="Select-Maestros_estudiantes_grupos">
-                <p className='p_Texts-Maestros_estudiantes_grupos'>Once</p>
-              </div>
-              <div className="Select-Maestros_estudiantes_grupos More-Maestros_estudiantes_grupos">
-                <p className='p_Texts-Maestros_estudiantes_grupos'>Emanuel Acevedo Munoz</p>
-              </div>
-              <div className="Min ">
-                <p className='p_Texts-Maestros_estudiantes_grupos'>11</p>
-              </div>
-              <div className="Select-Maestros_estudiantes_grupos">
-                <Link
-                  to={{
-                    pathname: "/maestros/estudiantes_grupos/ver_estudiantes",
-                  }}
-                >
-                  <button className="DickBro">Ver Estudiantes</button>
-                </Link>
-              </div>
-            </div>
-          </div>
-          {/* 
+          
           {gruposMaestro.map((datosT) => {
             return (
               <div className='CardsContainer-Maestros_estudiantes_grupos'>
             <div className="Filtros-Maestros_estudiantes_grupos">
               <div className="Select-Maestros_estudiantes_grupos">
-                <p className='p_Texts-Maestros_estudiantes_grupos'>qweasda</p>
+                <p className='p_Texts-Maestros_estudiantes_grupos' key={datosT.codigo_grupo}>{datosT.codigo_grupo}</p>
               </div>
               <div className="Select-Maestros_estudiantes_grupos">
-                <p className='p_Texts-Maestros_estudiantes_grupos'>Once</p>
+                <p className='p_Texts-Maestros_estudiantes_grupos'>{datosT.grado_grupo}</p>
               </div>
               <div className="Select-Maestros_estudiantes_grupos More-Maestros_estudiantes_grupos">
-                <p className='p_Texts-Maestros_estudiantes_grupos'>Emanuel Acevedo Munoz</p>
+                <p className='p_Texts-Maestros_estudiantes_grupos'>{datosT.nombres} {datosT.apellidos}</p>
               </div>
               <div className="Min ">
-                <p className='p_Texts-Maestros_estudiantes_grupos'>11</p>
+                <p className='p_Texts-Maestros_estudiantes_grupos'>{datosT.nombre_materia}</p>
               </div>
               <div className="Select-Maestros_estudiantes_grupos">
                 
-                  <button className="DickBro">Ver Estudiantes</button>
+                  <button className="DickBro" onClick={this.verEstudiantes}>Ver Estudiantes</button>
                 {this.state.Bool && <Redirect to={{
                                     pathname: "/maestros/estudiantes_grupos/ver_estudiantes",
-                                    state: {
-                                        id_estudiante: this.props.location.state.id_estudiante,
-                                        id_materia: this.props.location.state.id_materia,
+                                    state:{
+                                      id_grupo: datosT.id_grupo
                                     }
                                 }} />}
               </div>
@@ -127,7 +104,7 @@ class Maestros_estudiantes_grupos extends React.Component {
           </div>
             )
           })}
-          */}
+          
 
 
         </div>
