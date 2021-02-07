@@ -6,7 +6,6 @@ import "../Styles/Directivos.css";
 
 import { withRouter } from "react-router-dom";
 import { Link } from "react-router-dom";
-import axios from 'axios';
 
 class directivos_inicio extends React.Component {
   constructor(props) {
