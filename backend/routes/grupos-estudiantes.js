@@ -166,9 +166,9 @@ grupos_estudiantes.get("/maestros-ver-estudiantes-grupo/:id_grupo", async (req, 
 // /directivos/grupos_VerEstudiantes
 // Esta peticion requiere de id_grupo
 // Esta peticion funciona
-grupos_estudiantes.get("/estudiantes-ver-grupos-estudiantes-directivos/:id_directivo", async (req, res) => {
+grupos_estudiantes.get("/estudiantes-ver-grupos-estudiantes-directivos/:id_grupo", async (req, res) => {
     let client = await pool.connect();
-    const { id_grupo } = req.body;
+    const { id_grupo } = req.params;
     try {
       const result = await client.query(
         `SELECT codigo_estudiante, nombres, apellidos
@@ -176,8 +176,7 @@ grupos_estudiantes.get("/estudiantes-ver-grupos-estudiantes-directivos/:id_direc
         INNER JOIN estudiante
         ON grupos_estudiantes.id_estudiante = estudiante.id_estudiante AND id_grupo = ${id_grupo} AND estado = 'En curso'
         INNER JOIN persona
-        ON estudiante.id_persona = persona.id_persona;`,
-        []
+        ON estudiante.id_persona = persona.id_persona;`
       );
       if (result.rows) {
         res.json(result.rows);

@@ -11,7 +11,7 @@ estudiantes.get("/estudiantes-inicio-estudiante/:id_estudiante", async (req, res
   const { id_estudiante } = req.params;
   try {
     const result = await client.query(
-      `SELECT estudiante.id_estudiante, nombres, apellidos, codigo_estudiante
+      `SELECT estudiante.id_estudiante, nombres, apellidos, codigo_estudiante, foto_perfil
       FROM estudiante
       INNER JOIN persona
       ON estudiante.id_persona = persona.id_persona AND id_estudiante = ${id_estudiante};`

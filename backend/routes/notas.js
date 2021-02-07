@@ -117,7 +117,7 @@ notas.get("/notas-materia-estudiante/:id_materia/:id_estudiante", async (req, re
 // /maestros/registrar_notas/grupo_estudiantes/agregar_nota
 // El post se hace respecto a id_estudiante, id_materia y id_grupo
 // Esta peticion funciona
-notas.post('/nueva-nota-estudiante/:id_maestro', async (req, res) => {
+notas.post('/nueva-nota-estudiante', async (req, res) => {
   let client = await pool.connect();
   const {
     id_materia,
@@ -126,6 +126,11 @@ notas.post('/nueva-nota-estudiante/:id_maestro', async (req, res) => {
     nota,
     tipo_nota
   } = req.body
+  console.log(id_materia)
+  console.log(id_grupo)
+  console.log(id_estudiante)
+  console.log(nota)
+  console.log(tipo_nota)
   try {
       const result = await client.query(`INSERT INTO notas VALUES (NEXTVAL ('notas_seq'), ${id_materia}, ${id_grupo}, ${id_estudiante}, ${nota}, '${tipo_nota}');`)
       if (result) {

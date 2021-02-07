@@ -7,7 +7,7 @@ const { pool } = require('../db/db');
 // /Directivos/Registro_Grupos
 // Esta peticion se realiza a la tabla de grupos para crear un nuevo grupo
 // Esta peticion funciona
-grupos.post('/directivos-nuevo-grupo/:id_directivo', async(req,res)=>{
+grupos.post('/directivos-nuevo-grupo', async(req,res)=>{
     let client = await pool.connect();
   const {
     director_id_maestro,
@@ -35,14 +35,14 @@ grupos.post('/directivos-nuevo-grupo/:id_directivo', async(req,res)=>{
 // Esta peticion se realiza a la tabla de grupos-estudiantes y se cuentan los estudiantes por cada grupo
 // trayendo, ademas, los datos de cada grupo
 // Esta peticion funciona
-grupos.get("/directivos-ver-grupos/:id_directivo", async (req, res) => {
+grupos.get("/directivos-ver-grupos", async (req, res) => {
     let client = await pool.connect();
     try {
       const result = await client.query(
         `SELECT grupos.id_grupo, estado, codigo_grupo, grado_grupo, director_id_maestro, nombres, apellidos , COUNT(grupos.id_grupo) AS cantidad_estudiantes
         FROM grupos
         INNER JOIN maestro
-        ON grupos.director_id_maestro = maestros.id_maestro
+        ON grupos.director_id_maestro = maestro.id_maestro
         INNER JOIN persona
         ON maestro.id_persona = persona.id_persona
         INNER JOIN grupos_estudiantes

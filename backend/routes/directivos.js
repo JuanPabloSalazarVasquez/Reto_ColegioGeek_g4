@@ -11,7 +11,7 @@ directivo.get("/directivos-inicio-directivo/:id_directivo", async (req, res) => 
     const { id_directivo } = req.params;
     try {
       const result = await client.query(
-        `SELECT directivo.id_directivo, nombres, apellidos
+        `SELECT directivo.id_directivo, nombres, apellidos, foto_perfil
         FROM directivo
         INNER JOIN persona
         ON directivo.id_persona = persona.id_persona AND id_directivo = ${id_directivo};`

@@ -11,7 +11,7 @@ maestro.get("/maestros-inicio-maestro/:id_maestro", async (req, res) => {
   const { id_maestro } = req.params;
   try {
     const result = await client.query(
-      `SELECT maestro.id_maestro, nombres, apellidos
+      `SELECT maestro.id_maestro, nombres, apellidos, foto_perfil
       FROM maestro
       INNER JOIN persona
       ON maestro.id_persona = persona.id_persona AND id_maestro = ${id_maestro};`
@@ -33,7 +33,7 @@ maestro.get("/maestros-inicio-maestro/:id_maestro", async (req, res) => {
 // Esta es una peticion que se realiza a la tabla de maestros donde consultamos todos los maestros,
 // con las materias que enseñan y si son o no directores de algun grupo
 // Esta peticion funciona
-maestro.get("/directivos-ver-maestros-materias-directores/:id_directivo", async (req, res) => {
+maestro.get("/directivos-ver-maestros-materias-directores", async (req, res) => {
     let client = await pool.connect();
     try {
       const result = await client.query(
@@ -44,7 +44,7 @@ maestro.get("/directivos-ver-maestros-materias-directores/:id_directivo", async 
         LEFT JOIN materias
         ON grupos_materias.id_materia = materias.id_materia
         LEFT JOIN grupos
-        ON grupos.director_id_maestro = maestros.id_maestro
+        ON grupos.director_id_maestro = maestro.id_maestro
         INNER JOIN persona
         ON maestro.id_persona = persona.id_persona
         ;`
