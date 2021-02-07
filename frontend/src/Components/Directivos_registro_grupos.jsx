@@ -34,6 +34,9 @@ class Directivos_registro_grupos extends React.Component {
       datos_grado: []
     };
   }
+  /*
+    El codigo_grupo se genera automaticamente en la petición post del backend 
+  */
 
   form = () => {
     document.getElementById("RegistroEsContainer").style.filter = "blur(1px)";

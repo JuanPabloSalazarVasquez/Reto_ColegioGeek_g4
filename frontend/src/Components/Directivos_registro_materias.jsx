@@ -110,14 +110,6 @@ class Directivos_registro_materias extends React.Component {
                   autoComplete="off"
                 />
                 <input
-                  className="REInput"
-                  id="IntencidadIn"
-                  type="number"
-                  min="0"
-                  placeholder="Intencidad horaria"
-                  autoComplete="off"
-                />
-                <input
                   onClick={this.Push_}
                   className="REInput"
                   type="button"
