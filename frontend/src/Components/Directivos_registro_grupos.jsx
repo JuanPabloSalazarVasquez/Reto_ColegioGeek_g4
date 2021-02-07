@@ -7,15 +7,14 @@ import "../Styles/RegistroEstudiantes.css";
 
 import { withRouter, Link, Redirect } from "react-router-dom";
 
-
 const Año = new Date();
-console.log('Año',Año)
+console.log("Año", Año);
 const AñoY = Año.getFullYear();
-console.log('AñoY',AñoY)
+console.log("AñoY", AñoY);
 const AñoM = Año.getMonth() + 1;
-console.log('AñoM',AñoM)
+console.log("AñoM", AñoM);
 const AñoD = Año.getDate();
-console.log('AñoD',AñoD)
+console.log("AñoD", AñoD);
 
 class Directivos_registro_grupos extends React.Component {
   constructor(props) {
@@ -24,14 +23,14 @@ class Directivos_registro_grupos extends React.Component {
       Bool: false,
       form: {
         director_id_maestro: "",
-        codigo_grupo: '',
+        codigo_grupo: "",
         jornada_grupo: "",
         grado_grupo: "",
         year_grupo: AñoY,
       },
       datos: [],
       datos_maestros: [],
-      datos_grado: []
+      datos_grado: [],
     };
   }
 
@@ -65,7 +64,9 @@ class Directivos_registro_grupos extends React.Component {
   //Petición get para traer todos los grupos
   componentWillMount() {
     axios
-      .get(`http://localhost:4535/maestro/directivos-ver-maestros-directores-registro-grupo`)
+      .get(
+        `http://localhost:4535/maestro/directivos-ver-maestros-directores-registro-grupo`
+      )
       .then((res) => {
         console.log(res.data);
         this.setState({
@@ -79,127 +80,139 @@ class Directivos_registro_grupos extends React.Component {
   // Fin get
 
   //Petición post para agregar nuevos grupos
-  post_grupo = async() => {
-    console.log(this.state.datos.length)
-    console.log('datos_grado', this.state.datos_grado.length)
-    if(this.state.form.grado_grupo == '6'){
-
+  post_grupo = async () => {
+    console.log(this.state.datos.length);
+    console.log("datos_grado", this.state.datos_grado.length);
+    if (this.state.form.grado_grupo == "6") {
       await axios
-      .post(`http://localhost:4535/grupos/directivos-nuevo-grupo`, {
-        director_id_maestro: this.state.form.director_id_maestro,
-        codigo_grupo: `${AñoY + '06' + '0' + (this.state.datos_grado.length += 1)}`,
-        jornada_grupo: this.state.form.jornada_grupo,
-        grado_grupo: this.state.form.grado_grupo,
-        year_grupo: this.state.form.year_grupo,
-      })
-      .then((res) => {
-        console.log("Se ha creado un nuevo grupo");
-        this.componentDidMount();
-      })
-      .catch((err) => {
-        console.log(err.massage);
-      });
-    }else if(this.state.form.grado_grupo == '7'){
+        .post(`http://localhost:4535/grupos/directivos-nuevo-grupo`, {
+          director_id_maestro: this.state.form.director_id_maestro,
+          codigo_grupo: `${
+            AñoY + "06" + "0" + (this.state.datos_grado.length += 1)
+          }`,
+          jornada_grupo: this.state.form.jornada_grupo,
+          grado_grupo: this.state.form.grado_grupo,
+          year_grupo: this.state.form.year_grupo,
+        })
+        .then((res) => {
+          console.log("Se ha creado un nuevo grupo");
+          this.componentDidMount();
+        })
+        .catch((err) => {
+          console.log(err.massage);
+        });
+    } else if (this.state.form.grado_grupo == "7") {
       await axios
-      .post(`http://localhost:4535/grupos/directivos-nuevo-grupo`, {
-        director_id_maestro: this.state.form.director_id_maestro,
-        codigo_grupo: `${AñoY + '07' + '0' + (this.state.datos_grado.length += 1)}`,
-        jornada_grupo: this.state.form.jornada_grupo,
-        grado_grupo: this.state.form.grado_grupo,
-        year_grupo: this.state.form.year_grupo,
-      })
-      .then((res) => {
-        console.log("Se ha creado un nuevo grupo");
-        this.componentDidMount();
-      })
-      .catch((err) => {
-        console.log(err.massage);
-      });
-    }else if(this.state.form.grado_grupo == '8'){
+        .post(`http://localhost:4535/grupos/directivos-nuevo-grupo`, {
+          director_id_maestro: this.state.form.director_id_maestro,
+          codigo_grupo: `${
+            AñoY + "07" + "0" + (this.state.datos_grado.length += 1)
+          }`,
+          jornada_grupo: this.state.form.jornada_grupo,
+          grado_grupo: this.state.form.grado_grupo,
+          year_grupo: this.state.form.year_grupo,
+        })
+        .then((res) => {
+          console.log("Se ha creado un nuevo grupo");
+          this.componentDidMount();
+        })
+        .catch((err) => {
+          console.log(err.massage);
+        });
+    } else if (this.state.form.grado_grupo == "8") {
       await axios
-      .post(`http://localhost:4535/grupos/directivos-nuevo-grupo`, {
-        director_id_maestro: this.state.form.director_id_maestro,
-        codigo_grupo: `${AñoY + '08' + '0' + (this.state.datos_grado.length += 1)}`,
-        jornada_grupo: this.state.form.jornada_grupo,
-        grado_grupo: this.state.form.grado_grupo,
-        year_grupo: this.state.form.year_grupo,
-      })
-      .then((res) => {
-        console.log("Se ha creado un nuevo grupo");
-        this.componentDidMount();
-      })
-      .catch((err) => {
-        console.log(err.massage);
-      });
-    }else if(this.state.form.grado_grupo == '9'){
+        .post(`http://localhost:4535/grupos/directivos-nuevo-grupo`, {
+          director_id_maestro: this.state.form.director_id_maestro,
+          codigo_grupo: `${
+            AñoY + "08" + "0" + (this.state.datos_grado.length += 1)
+          }`,
+          jornada_grupo: this.state.form.jornada_grupo,
+          grado_grupo: this.state.form.grado_grupo,
+          year_grupo: this.state.form.year_grupo,
+        })
+        .then((res) => {
+          console.log("Se ha creado un nuevo grupo");
+          this.componentDidMount();
+        })
+        .catch((err) => {
+          console.log(err.massage);
+        });
+    } else if (this.state.form.grado_grupo == "9") {
       await axios
-      .post(`http://localhost:4535/grupos/directivos-nuevo-grupo`, {
-        director_id_maestro: this.state.form.director_id_maestro,
-        codigo_grupo: `${AñoY + '09' + '0' + (this.state.datos_grado.length += 1)}`,
-        jornada_grupo: this.state.form.jornada_grupo,
-        grado_grupo: this.state.form.grado_grupo,
-        year_grupo: this.state.form.year_grupo,
-      })
-      .then((res) => {
-        console.log("Se ha creado un nuevo grupo");
-        this.componentDidMount();
-      })
-      .catch((err) => {
-        console.log(err.massage);
-      });
-    }else if(this.state.form.grado_grupo == '10'){
+        .post(`http://localhost:4535/grupos/directivos-nuevo-grupo`, {
+          director_id_maestro: this.state.form.director_id_maestro,
+          codigo_grupo: `${
+            AñoY + "09" + "0" + (this.state.datos_grado.length += 1)
+          }`,
+          jornada_grupo: this.state.form.jornada_grupo,
+          grado_grupo: this.state.form.grado_grupo,
+          year_grupo: this.state.form.year_grupo,
+        })
+        .then((res) => {
+          console.log("Se ha creado un nuevo grupo");
+          this.componentDidMount();
+        })
+        .catch((err) => {
+          console.log(err.massage);
+        });
+    } else if (this.state.form.grado_grupo == "10") {
       await axios
-      .post(`http://localhost:4535/grupos/directivos-nuevo-grupo`, {
-        director_id_maestro: this.state.form.director_id_maestro,
-        codigo_grupo: `${AñoY + '10' + '0' + (this.state.datos_grado.length += 1)}`,
-        jornada_grupo: this.state.form.jornada_grupo,
-        grado_grupo: this.state.form.grado_grupo,
-        year_grupo: this.state.form.year_grupo,
-      })
-      .then((res) => {
-        console.log("Se ha creado un nuevo grupo");
-        this.componentDidMount();
-      })
-      .catch((err) => {
-        console.log(err.massage);
-      });
-    }else if(this.state.form.grado_grupo == '11'){
+        .post(`http://localhost:4535/grupos/directivos-nuevo-grupo`, {
+          director_id_maestro: this.state.form.director_id_maestro,
+          codigo_grupo: `${
+            AñoY + "10" + "0" + (this.state.datos_grado.length += 1)
+          }`,
+          jornada_grupo: this.state.form.jornada_grupo,
+          grado_grupo: this.state.form.grado_grupo,
+          year_grupo: this.state.form.year_grupo,
+        })
+        .then((res) => {
+          console.log("Se ha creado un nuevo grupo");
+          this.componentDidMount();
+        })
+        .catch((err) => {
+          console.log(err.massage);
+        });
+    } else if (this.state.form.grado_grupo == "11") {
       await axios
-      .post(`http://localhost:4535/grupos/directivos-nuevo-grupo`, {
-        director_id_maestro: this.state.form.director_id_maestro,
-        codigo_grupo: `${AñoY + '11' + '0' + (this.state.datos_grado.length += 1)}`,
-        jornada_grupo: this.state.form.jornada_grupo,
-        grado_grupo: this.state.form.grado_grupo,
-        year_grupo: this.state.form.year_grupo,
-      })
-      .then((res) => {
-        console.log("Se ha creado un nuevo grupo");
-        this.componentDidMount();
-      })
-      .catch((err) => {
-        console.log(err.massage);
-      });
-  }
-  }
+        .post(`http://localhost:4535/grupos/directivos-nuevo-grupo`, {
+          director_id_maestro: this.state.form.director_id_maestro,
+          codigo_grupo: `${
+            AñoY + "11" + "0" + (this.state.datos_grado.length += 1)
+          }`,
+          jornada_grupo: this.state.form.jornada_grupo,
+          grado_grupo: this.state.form.grado_grupo,
+          year_grupo: this.state.form.year_grupo,
+        })
+        .then((res) => {
+          console.log("Se ha creado un nuevo grupo");
+          this.componentDidMount();
+        })
+        .catch((err) => {
+          console.log(err.massage);
+        });
+    }
+  };
   //Fin post
 
-//Petición get para traer todos los grupos
-get_grado = async () => {
-  await axios
-    .get(`http://localhost:4535/grupos/directivos-ver-grupos-grados/${this.state.form.grado_grupo}`)
-    .then((res) => {
-      console.log(res.data);
-      this.setState({
-        datos_grado: res.data
+  //Petición get para traer todos los grupos
+  get_grado = async () => {
+    await axios
+      .get(
+        `http://localhost:4535/grupos/directivos-ver-grupos-grados/${this.state.form.grado_grupo}`
+      )
+      .then((res) => {
+        console.log(res.data);
+        this.setState({
+          datos_grado: res.data,
+        });
+        this.post_grupo();
+      })
+      .catch((err) => {
+        console.log(err.massage);
       });
-      this.post_grupo();
-    })
-    .catch((err) => {
-      console.log(err.massage);
-    });
-}
-// Fin get
-
+  };
+  // Fin get
 
   handleChange = async (e) => {
     e.persist();
@@ -215,7 +228,7 @@ get_grado = async () => {
   render() {
     console.log(this.state.datos);
     const gruposRegistros = this.state.datos;
-    console.log(this.state.datos_maestros)
+    console.log(this.state.datos_maestros);
     const maestrosDirectores = this.state.datos_maestros;
 
     return (
@@ -225,8 +238,12 @@ get_grado = async () => {
           <div id="Form2">
             <div id="Form2_2">
               <div className="Form2_2_2">
-                <select className="REInput" id="GradoIn" onChange={this.handleChange}
-                    name="grado_grupo">
+                <select
+                  className="REInput"
+                  id="GradoIn"
+                  onChange={this.handleChange}
+                  name="grado_grupo"
+                >
                   <option value="0" className="Dis">
                     Grado
                   </option>
@@ -237,21 +254,32 @@ get_grado = async () => {
                   <option value="10">10</option>
                   <option value="11">11</option>
                 </select>
-                <select className="REInput" id="GradoIn" onChange={this.handleChange}
-                    name="jornada_grupo">
+                <select
+                  className="REInput"
+                  id="GradoIn"
+                  onChange={this.handleChange}
+                  name="jornada_grupo"
+                >
                   <option value="0" className="Dis">
                     Jornada
                   </option>
                   <option value="Mañana">Mañana</option>
                   <option value="Tarde">Tarde</option>
                 </select>
-                <select className="REInput" id="DirectorNull" onChange={this.handleChange}
-                    name="director_id_maestro">
+                <select
+                  className="REInput"
+                  id="DirectorNull"
+                  onChange={this.handleChange}
+                  name="director_id_maestro"
+                >
                   <option className="REInput Dis">Director</option>
                   {/* Seleccionar Director */}
                   {maestrosDirectores.map((datosT) => {
                     return (
-                      <option key={datosT.numero_documento} value={datosT.id_maestro}>
+                      <option
+                        key={datosT.numero_documento}
+                        value={datosT.id_maestro}
+                      >
                         {datosT.nombres} {datosT.apellidos}
                       </option>
                     );
@@ -361,8 +389,8 @@ get_grado = async () => {
                       to={{
                         pathname: "/directivos/grupos_VerEstudiantes",
                         state: {
-                          id_grupo: datosT.id_grupo
-                        }
+                          id_grupo: datosT.id_grupo,
+                        },
                       }}
                     >
                       <button className="DickBro">Ver Estudiantes</button>

@@ -5,6 +5,11 @@ import "../Styles/RegistroEstudiantes.css";
 
 import { withRouter, Redirect } from "react-router-dom";
 
+const Año = new Date();
+const AñoY = Año.getFullYear();
+const AñoM = Año.getMonth() + 1;
+const AñoD = Año.getDate();
+
 class Directivos_registro_maestros extends React.Component {
   constructor(props) {
     super(props);
@@ -12,13 +17,22 @@ class Directivos_registro_maestros extends React.Component {
       Bool: false,
       LengE: this.props.LengE + 1,
       form: {
-        nombres: "",
-        apellidos: "",
-        numero_documento: "",
-        telefono_residencial: "",
-        telefono_celular: "",
-        correo_electronico: "",
-        direccion_residencial: "",
+          nombres: 'Eliana',
+          apellidos: 'Cristina Munoz',
+          tipo_documento: 'Cedula',
+          numero_documento: '21792896',
+          sexo: 'Mujer',
+          fecha_nacimiento: '1987-07-02',
+          direccion_residencial: 'Carrera 66 # 52 Sur 60',
+          ciudad_residencial: 'Medellin',
+          telefono_residencial: '4187277',
+          telefono_celular: '3187604293',
+          correo_electronico: 'elianacristin56@gmail.com',
+          estado_cuenta: 'Activa',
+          foto_perfil: 'https://img.europapress.es/fotoweb/fotonoticia_20200221191003_420.jpg',
+          pdf_documento: 'https://img.europapress.es/fotoweb/fotonoticia_20200221191003_420.jpg',
+          tipo_usuario: 'Maestro',
+          codigo_maestro: ''
       },
       datos_maestros: [],
     };
@@ -54,45 +68,50 @@ class Directivos_registro_maestros extends React.Component {
   //Fin get
 
   //Petición post para agregar nuevos maestros
-  post_maestro() {
-    axios
-      .post(`http://localhost:4535/maestro/directivos-nuevo-maestro-persona`, {
-        nombres: this.state.form.nombres,
-        apellidos: this.state.form.apellidos,
-        edad: this.state.form.edad, //esto falta en el backend
-        numero_documento: this.state.form.numero_documento,
-        telefono_residencial: this.state.form.telefono_residencial,
-        telefono_celular: this.state.form.telefono_celular,
-        correo_electronico: this.state.form.correo_electronico,
-        direccion_residencial: this.state.form.direccion_residencial,
-        estado_civil: this.state.form.estado_civil, //esto falta en el backend
-        materia: this.state.form.materia, //esto falta en el backend
-      })
-      .then((res) => {
-        console.log(res.data);
-        this.setState({
-          datos: res.data,
+  post_maestro = async() => {
+    await axios
+        .post(`http://localhost:4535/maestro/directivos-nuevo-maestro-persona`, {
+          nombres: this.state.form.nombres,
+          apellidos: this.state.form.apellidos,
+          tipo_documento: this.state.form.tipo_documento,
+          numero_documento: this.state.form.numero_documento,
+          sexo: this.state.form.sexo,
+          fecha_nacimiento: this.state.form.fecha_nacimiento,
+          direccion_residencial: this.state.form.direccion_residencial,
+          ciudad_residencial: this.state.form.ciudad_residencial,
+          telefono_residencial: this.state.form.telefono_residencial,
+          telefono_celular: this.state.form.telefono_celular,
+          correo_electronico: this.state.form.correo_electronico,
+          estado_cuenta: this.state.form.estado_cuenta,
+          foto_perfil: this.state.form.foto_perfil,
+          pdf_documento: this.state.form.pdf_documento,
+          tipo_usuario: this.state.form.tipo_usuario,
+          codigo_maestro: `${AñoY + "06" + "0" + (this.state.datos_maestros.length += 1)}`
+        })
+        .then((res) => {
+          console.log("Se ha creado un nuevo maestro");
+          this.componentDidMount();
+          this.post_email();
+        })
+        .catch((err) => {
+          console.log(err.massage);
         });
-      })
-      .catch((err) => {
-        console.log(err.massage);
-      });
   }
   //Fin post
 
 
   //Petición post para enviar un correo al nuevo usuario
-  post_email() {
-    axios
+  post_email = async() => {
+    await axios
       .post(`http://localhost:4535/send`, {
-        to:"david.rodriguez@agileinnova.org",
-        subject:"Mensaje prueba Emanuel Acevedo Muñoz!!",
-        full_name: "Juan David Rodriguez"
+        to: this.state.form.correo_electronico,
+        subject:"Bienvenido a Colegio Geek",
+        full_name: `${this.state.form.nombres + " " + this.state.form.apellidos}`
       })
       .then((res) => {
         console.log(res.data);
         this.setState({
-          datos: res.data,
+          datos: res.data
         });
       })
       .catch((err) => {
@@ -203,7 +222,7 @@ class Directivos_registro_maestros extends React.Component {
                 <option value="EDF001">EDF001</option>
               </select>
               <input
-                onClick={this.Push_}
+                onClick={this.post_maestro}
                 className="REInput"
                 type="button"
                 value="Agregar"

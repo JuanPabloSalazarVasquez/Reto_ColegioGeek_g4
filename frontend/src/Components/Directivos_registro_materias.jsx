@@ -9,16 +9,16 @@ class Directivos_registro_materias extends React.Component {
     this.state = {
       Bool: false,
       form: {
-        nombre_materia: '',
-        codigo_materia: '',
-        sexto: '',
-        septimo: '',
-        octavo: '',
-        noveno: '',
-        decimo: '',
-        once: ''
+        nombre_materia: "",
+        codigo_materia: "",
+        sexto: "N",
+        septimo: "N",
+        octavo: "N",
+        noveno: "N",
+        decimo: "N",
+        once: "N",
       },
-      datos_materias: []
+      datos_materias: [],
     };
   }
 
@@ -35,13 +35,11 @@ class Directivos_registro_materias extends React.Component {
   //Petición get para obtener las materias existentes
   componentDidMount() {
     axios
-      .get(
-        `http://localhost:4535/materias/directivos-ver-all-materias`
-      )
+      .get(`http://localhost:4535/materias/directivos-ver-all-materias`)
       .then((res) => {
         console.log(res.data);
         this.setState({
-          datos_materias: res.data
+          datos_materias: res.data,
         });
       })
       .catch((err) => {
@@ -51,39 +49,39 @@ class Directivos_registro_materias extends React.Component {
   //Fin get
 
   //Petición post para agregar nuevas materias
-  post_materia() {
-    axios
+  post_materia = async () => {
+    await axios
       .post(
-        `http://localhost:4535/materias/directivos-nuevo-materia`,
-        {
-          nombre_materia: this.state.form.nombre_materia,
-          codigo_materia: this.state.form.codigo_materia,
-          sexto: this.state.form.sexto,
-          septimo: this.state.form.septimo,
-          octavo: this.state.form.octavo,
-          noveno: this.state.form.noveno,
-          decimo: this.state.form.decimo,
-          once: this.state.form.once
-        }
+        `http://localhost:4535/materias/directivos-nueva-materia-crear-materia`,
+        this.state.form
       )
       .then((res) => {
-        console.log(res.data);
-        this.setState({
-          datos: res.data,
-        });
+        console.log("Se ha creado una nueva materia");
+        this.componentDidMount();
       })
       .catch((err) => {
         console.log(err.massage);
       });
-  }
+  };
+
+  handleChange = async (e) => {
+    e.persist();
+    await this.setState({
+      form: {
+        ...this.state.form,
+        [e.target.name]: e.target.value,
+      },
+    });
+    console.log(this.state.form);
+  };
 
   render() {
-
     console.log(this.state.datos_materias);
     const materiasRegistro = this.state.datos_materias;
 
     return (
       <>
+        {/* Formulario */}
         <div id="Form">
           <div id="Form2">
             <div id="Form2_21">
@@ -102,23 +100,19 @@ class Directivos_registro_materias extends React.Component {
                   id="CodigoGIn"
                   placeholder="Codigo"
                   autoComplete="off"
+                  onChange={this.handleChange}
+                  name="codigo_materia"
                 />
                 <input
                   className="REInput"
                   id="NombreIn"
                   placeholder="Nombre"
                   autoComplete="off"
+                  onChange={this.handleChange}
+                  name="nombre_materia"
                 />
                 <input
-                  className="REInput"
-                  id="IntencidadIn"
-                  type="number"
-                  min="0"
-                  placeholder="Intencidad horaria"
-                  autoComplete="off"
-                />
-                <input
-                  onClick={this.Push_}
+                  onClick={this.post_materia}
                   className="REInput"
                   type="button"
                   value="Agregar"
@@ -133,27 +127,69 @@ class Directivos_registro_materias extends React.Component {
             </div>
             <div className="Form2_2_2">
               <p className="PChek">
-                6: <input type="checkbox" id="Check1" />
+                6:{" "}
+                <input
+                  type="checkbox"
+                  id="Check1"
+                  onChange={this.handleChange}
+                  name="sexto"
+                  value="S"
+                />
               </p>
               <p className="PChek">
-                7: <input type="checkbox" id="Check2" />
+                7:{" "}
+                <input
+                  type="checkbox"
+                  id="Check2"
+                  onChange={this.handleChange}
+                  name="septimo"
+                  value="S"
+                />
               </p>
               <p className="PChek">
-                8: <input type="checkbox" id="Check3" />
+                8:{" "}
+                <input
+                  type="checkbox"
+                  id="Check3"
+                  onChange={this.handleChange}
+                  name="octavo"
+                  value="S"
+                />
               </p>
               <p className="PChek">
-                9: <input type="checkbox" id="Check4" />
+                9:{" "}
+                <input
+                  type="checkbox"
+                  id="Check4"
+                  onChange={this.handleChange}
+                  name="noveno"
+                  value="S"
+                />
               </p>
               <p className="PChek">
-                10: <input type="checkbox" id="Check5" />
+                10:{" "}
+                <input
+                  type="checkbox"
+                  id="Check5"
+                  onChange={this.handleChange}
+                  name="decimo"
+                  value="S"
+                />
               </p>
               <p className="PChek">
-                11: <input type="checkbox" id="Check6" />
+                11:{" "}
+                <input
+                  type="checkbox"
+                  id="Check6"
+                  onChange={this.handleChange}
+                  name="once"
+                  value="S"
+                />
               </p>
             </div>
           </div>
         </div>
-
+        {/* Fin Formulario */}
         <div id="RegistroEsContainer">
           {/* Filtro */}
           <div className="FiltrosREstudiante">
@@ -207,44 +243,44 @@ class Directivos_registro_materias extends React.Component {
           {/* Materias */}
           {materiasRegistro.map((datosT) => {
             return (
-          <div id="CardsContainerReEs">
-            <div className="FiltrosREstudiante">
-              <div className="SelectR">
-                <p>{datosT.codigo_materia}</p>
-              </div>
-              <div className="SelectR">
-                <p className="Peque">{datosT.nombre_materia}</p>
-              </div>
+              <div id="CardsContainerReEs">
+                <div className="FiltrosREstudiante">
+                  <div className="SelectR">
+                    <p>{datosT.codigo_materia}</p>
+                  </div>
+                  <div className="SelectR">
+                    <p className="Peque">{datosT.nombre_materia}</p>
+                  </div>
 
-              <div className="SelectR">
-                <p className="Peque">{datosT.sexto}</p>
-              </div>
+                  <div className="SelectR">
+                    <p className="Peque">{datosT.sexto}</p>
+                  </div>
 
-              <div className="SelectR">
-                <p className="Peque">{datosT.septimo}</p>
-              </div>
+                  <div className="SelectR">
+                    <p className="Peque">{datosT.septimo}</p>
+                  </div>
 
-              <div className="SelectR">
-                <p className="Peque">{datosT.octavo}</p>
-              </div>
+                  <div className="SelectR">
+                    <p className="Peque">{datosT.octavo}</p>
+                  </div>
 
-              <div className="SelectR">
-                <p className="Peque">{datosT.noveno}</p>
-              </div>
+                  <div className="SelectR">
+                    <p className="Peque">{datosT.noveno}</p>
+                  </div>
 
-              <div className="SelectR">
-                <p className="Peque">{datosT.decimo}</p>
-              </div>
+                  <div className="SelectR">
+                    <p className="Peque">{datosT.decimo}</p>
+                  </div>
 
-              <div className="SelectR">
-                <p className="Peque">{datosT.once}</p>
-              </div>
+                  <div className="SelectR">
+                    <p className="Peque">{datosT.once}</p>
+                  </div>
 
-              <div className="ImgRMas"></div>
-            </div>
-          </div>
-          );
-        })}
+                  <div className="ImgRMas"></div>
+                </div>
+              </div>
+            );
+          })}
           {/* Fin Materias */}
         </div>
       </>

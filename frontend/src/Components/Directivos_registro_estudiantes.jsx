@@ -10,7 +10,6 @@ const AñoY = Año.getFullYear();
 const AñoM = Año.getMonth() + 1;
 const AñoD = Año.getDate();
 
-let GrupoVar = "";
 
 class Directivos_registro_estudiantes extends React.Component {
   constructor(props) {
@@ -19,10 +18,23 @@ class Directivos_registro_estudiantes extends React.Component {
       Bool: false,
       datos: [],
       form: {
-        nombres: "",
-        apellidos: "",
-        tipo_documento: "",
-        numero_documento: "",
+          nombres: 'Eliana',
+          apellidos: 'Cristina Munoz',
+          tipo_documento: 'Tarjeta de identidad',
+          numero_documento: '21792896',
+          sexo: 'Mujer',
+          fecha_nacimiento: '2005-07-02',
+          direccion_residencial: 'Carrera 66 # 52 Sur 60',
+          ciudad_residencial: 'Medellin',
+          telefono_residencial: '4187277',
+          telefono_celular: '3187604293',
+          correo_electronico: 'elianacristin56@gmail.com',
+          estado_cuenta: 'Activa',
+          foto_perfil: 'https://img.europapress.es/fotoweb/fotonoticia_20200221191003_420.jpg',
+          pdf_documento: 'https://img.europapress.es/fotoweb/fotonoticia_20200221191003_420.jpg',
+          tipo_usuario: 'Estudiante',
+          codigo_estudiante: '',
+          estado_estudiante: 'Estudiando'
       },
     };
   }
@@ -55,41 +67,50 @@ class Directivos_registro_estudiantes extends React.Component {
   //Fin get
 
   //Petición post para agregar nuevos estudiantes
-  post_estudiante() {
-    axios
-      .post(
-        `http://localhost:4535/estudiantes/directivos-nuevo-estudiante-persona`,
-        {
+  post_estudiante = async() => {
+    await axios
+        .post(`http://localhost:4535/estudiantes/directivos-nuevo-estudiante-persona`, {
           nombres: this.state.form.nombres,
           apellidos: this.state.form.apellidos,
           tipo_documento: this.state.form.tipo_documento,
           numero_documento: this.state.form.numero_documento,
-        }
-      )
-      .then((res) => {
-        console.log(res.data);
-        this.setState({
-          datos: res.data,
+          sexo: this.state.form.sexo,
+          fecha_nacimiento: this.state.form.fecha_nacimiento,
+          direccion_residencial: this.state.form.direccion_residencial,
+          ciudad_residencial: this.state.form.ciudad_residencial,
+          telefono_residencial: this.state.form.telefono_residencial,
+          telefono_celular: this.state.form.telefono_celular,
+          correo_electronico: this.state.form.correo_electronico,
+          estado_cuenta: this.state.form.estado_cuenta,
+          foto_perfil: this.state.form.foto_perfil,
+          pdf_documento: this.state.form.pdf_documento,
+          tipo_usuario: this.state.form.tipo_usuario,
+          codigo_estudiante: `${AñoY + "06" + "00" + (this.state.datos.length += 1)}`,
+          estado_estudiante: this.state.form.estado_estudiante
+        })
+        .then((res) => {
+          console.log("Se ha creado un nuevo estudiante");
+          this.componentDidMount();
+          this.post_email();
+        })
+        .catch((err) => {
+          console.log(err.massage);
         });
-      })
-      .catch((err) => {
-        console.log(err.massage);
-      });
   }
   //Fin post
 
   //Petición post para enviar un correo al nuevo usuario
-  post_email() {
-    axios
+  post_email = async() => {
+    await axios
       .post(`http://localhost:4535/send`, {
-        to:"david.rodriguez@agileinnova.org",
-        subject:"Mensaje prueba Emanuel Acevedo Muñoz!!",
-        full_name: "Juan David Rodriguez"
+        to: this.state.form.correo_electronico,
+        subject:"Bienvenido a Colegio Geek",
+        full_name: `${this.state.form.nombres + " " + this.state.form.apellidos}`
       })
       .then((res) => {
         console.log(res.data);
         this.setState({
-          datos: res.data,
+          datos: res.data
         });
       })
       .catch((err) => {
@@ -177,7 +198,7 @@ class Directivos_registro_estudiantes extends React.Component {
                 <option value="Esito.CodGrupo">Esito.CodGrupo</option>
               </select>
               <input
-                onClick={this.Push_}
+                onClick={this.post_estudiante}
                 className="REInput"
                 type="button"
                 value="Agregar"
