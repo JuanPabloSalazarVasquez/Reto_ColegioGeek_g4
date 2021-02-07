@@ -12,20 +12,15 @@ class Directivos_registro_maestros extends React.Component {
       Bool: false,
       LengE: this.props.LengE + 1,
       form: {
-        nombres: '',
-        apellidos: '',
-        tipo_documento: '',
-        numero_documento: '',
-        sexo: '',
-        fecha_nacimiento: '',
-        direccion_residencial: '',
-        ciudad_residencial: '',
-        telefono_residencial: '',
-        telefono_celular: '',
-        correo_electronico: '',
-        foto_perfil: '',
-        pdf_documento: '',
-      }
+        nombres: "",
+        apellidos: "",
+        numero_documento: "",
+        telefono_residencial: "",
+        telefono_celular: "",
+        correo_electronico: "",
+        direccion_residencial: "",
+      },
+      datos_maestros: [],
     };
   }
   /*
@@ -53,7 +48,7 @@ class Directivos_registro_maestros extends React.Component {
       .then((res) => {
         console.log(res.data);
         this.setState({
-          datos: res.data,
+          datos_maestros: res.data,
         });
       })
       .catch((err) => {
@@ -65,24 +60,18 @@ class Directivos_registro_maestros extends React.Component {
   //Petición post para agregar nuevos maestros
   post_maestro() {
     axios
-      .post(
-        `http://localhost:4535/maestro/directivos-nuevo-maestro-persona`,
-        {
-          nombres: this.state.form.nombres,
-          apellidos: this.state.form.apellidos,
-          tipo_documento: this.state.form.tipo_documento,
-          numero_documento: this.state.form.numero_documento,
-          sexo: this.state.form.sexo,
-          fecha_nacimiento: this.state.form.fecha_nacimiento,
-          direccion_residencial: this.state.form.direccion_residencial,
-          ciudad_residencial: this.state.form.ciudad_residencial,
-          telefono_residencial: this.state.form.telefono_residencial,
-          telefono_celular: this.state.form.telefono_celular,
-          correo_electronico: this.state.form.correo_electronico,
-          foto_perfil: this.state.form.foto_perfil,
-          pdf_documento: this.state.form.pdf_documento,
-        }
-      )
+      .post(`http://localhost:4535/maestro/directivos-nuevo-maestro-persona`, {
+        nombres: this.state.form.nombres,
+        apellidos: this.state.form.apellidos,
+        edad: this.state.form.edad, //esto falta en el backend
+        numero_documento: this.state.form.numero_documento,
+        telefono_residencial: this.state.form.telefono_residencial,
+        telefono_celular: this.state.form.telefono_celular,
+        correo_electronico: this.state.form.correo_electronico,
+        direccion_residencial: this.state.form.direccion_residencial,
+        estado_civil: this.state.form.estado_civil, //esto falta en el backend
+        materia: this.state.form.materia, //esto falta en el backend
+      })
       .then((res) => {
         console.log(res.data);
         this.setState({
@@ -95,10 +84,36 @@ class Directivos_registro_maestros extends React.Component {
   }
   //Fin post
 
+
+  //Petición post para enviar un correo al nuevo usuario
+  post_email() {
+    axios
+      .post(`http://localhost:4535/send`, {
+        to:"david.rodriguez@agileinnova.org",
+        subject:"Mensaje prueba Emanuel Acevedo Muñoz!!",
+        full_name: "Juan David Rodriguez"
+      })
+      .then((res) => {
+        console.log(res.data);
+        this.setState({
+          datos: res.data,
+        });
+      })
+      .catch((err) => {
+        console.log(err.massage);
+      });
+  }
+  //Fin post
+
+
   render() {
+    console.log(this.state.datos_maestros);
+    const maestrosRegistro = this.state.datos_maestros;
+
     return (
       <>
         <div id="Form">
+          {/* Formulario */}
           <div id="Form2">
             <div id="Form2_21">
               <img
@@ -251,9 +266,11 @@ class Directivos_registro_maestros extends React.Component {
               />
             </div>
           </div>
+          {/* Formulario */}
         </div>
 
         <div id="RegistroEsContainer">
+          {/* Filtro */}
           <div className="FiltrosREstudiante">
             <input
               type="number"
@@ -305,26 +322,33 @@ class Directivos_registro_maestros extends React.Component {
 
             <input id="ImgRMas" type="button" onClick={this.form} />
           </div>
-          <div id="CardsContainerReEs">
-            <div className="FiltrosREstudiante">
-              <div className="SelectR">
-                <p className="Peque">Esito.Usuario</p>
+          {/* Fin Filtro */}
+
+          {/* Maestros */}
+          {maestrosRegistro.map((datosT) => {
+            return (
+              <div id="CardsContainerReEs">
+                <div className="FiltrosREstudiante">
+                  <div className="SelectR">
+                    <p className="Peque">{datosT.numero_documento}</p>
+                  </div>
+                  <div className="SelectR NameF">
+                    <p className="Peque">
+                      {datosT.nombres} {datosT.apellidos}
+                    </p>
+                  </div>
+                  <div className="SelectR GradoF">
+                    <p>{datosT.codigo_materia}</p>
+                  </div>
+                  <div className="SelectR GrupoF">
+                    <p>{datosT.codigo_grupo}</p>
+                  </div>
+                  <div className="ImgRMas"></div>
+                </div>
               </div>
-              <div className="SelectR NameF">
-                <p className="Peque">Esito.Name Esito.Apellido</p>
-              </div>
-              <div className="SelectR GradoF">
-                <p>Esito.Materia</p>
-              </div>
-              <div className="SelectR GrupoF">
-                <p>Esito.Director</p>
-              </div>
-              <div className="SelectR AñoInsF">
-                <p>Esito.Grupo_D</p>
-              </div>
-              <div className="ImgRMas"></div>
-            </div>
-          </div>
+            );
+          })}
+          {/* Fin Maestros */}
         </div>
       </>
     );

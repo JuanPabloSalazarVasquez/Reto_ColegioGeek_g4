@@ -4,14 +4,15 @@ import axios from 'axios';
 import "../Styles/Maestros_inicio.css";
 
 import { withRouter } from "react-router-dom";
-import { Link } from "react-router-dom";
+import { Link, Redirect } from "react-router-dom";
 
 class Maestros_inicio extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      datos: this.props.location.state.datos_user2,
-      datos_maestro: ''
+      datos: JSON.parse(sessionStorage.getItem('id_maestro')),
+      datos_maestro: '',
+      Bool1: false
     };
   }
 
@@ -19,7 +20,6 @@ class Maestros_inicio extends React.Component {
 componentDidMount() {
   axios.get(`http://localhost:4535/maestro/maestros-inicio-maestro/${this.state.datos.id_maestro}`)
     .then(res => {
-      console.log(res.data)
       this.setState({
         datos_maestro: res.data[0]
       })
@@ -28,6 +28,11 @@ componentDidMount() {
     })
 }
 // Fin peticion get
+
+logout = () => {
+  sessionStorage.clear()
+  this.setState({Bool1: true})
+}
 
   render() {
 
@@ -42,7 +47,7 @@ componentDidMount() {
                 <div>
                   <img
                     className="ImgProfile-Maestros_inicio"
-                    src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/7e/Circle-icons-profile.svg/1200px-Circle-icons-profile.svg.png"
+                    src={maestro.foto_perfil}
                   />
                 </div>
                 <div className="DatosContainer-Maestros_inicio">
@@ -53,11 +58,17 @@ componentDidMount() {
                     Cargo: Maestro
                   </p>
                 </div>
-                <Link to="/">
-                  <button className="button button2-Maestros_inicio">
+                
+                  <button className="button button2-Maestros_inicio" onClick={this.logout}>
                     Cerrar sesión
                   </button>
-                </Link>
+                  {this.state.Bool1 && (
+                  <Redirect
+                    to={{
+                      pathname: "/"
+                    }}
+                  ></Redirect>
+                )}
               </div>
             </div>
             <div className="CardsCont-Maestros_inicio">

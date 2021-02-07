@@ -10,14 +10,16 @@ class Maestros_registro_notas extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      id_maestro: this.props.location.state.id_maestro,
+      id_maestro: JSON.parse(sessionStorage.getItem('id_maestro')),
       datos: []
     };
   }
 
 // Peticion get para traer todos los grupos en los que da clase un profesor
 componentDidMount(){
-  axios.get(`http://localhost:4535/grupos-estudiantes/estudiantes-grupo-notas-ver-clases-grupos`)
+  console.log(this.state.id_maestro)
+  console.log(this.state.id_maestro.id_maestro)
+  axios.get(`http://localhost:4535/grupos-estudiantes/estudiantes-grupo-notas-ver-clases-grupos/${this.state.id_maestro.id_maestro}`)
     .then(res =>{
       console.log(res.data)
       this.setState({
@@ -65,7 +67,7 @@ componentDidMount(){
           {gruposMaestro.map((datosT) => {
             return (
               <div className="CardsContainerMaestrosRegistroNotas-Maestros_registro_notas">
-            <div className="FiltrosMaestrosRegistroNotas-Maestros_registro_notas">
+            <div className="FiltrosMaestrosRegistroNotas-Maestros_registro_notas" key={datosT.id_materia}>
               <div className="SelectMaestrosRegistroNotas-Maestros_registro_notas">
                 <p>{datosT.codigo_grupo}</p>
               </div>
@@ -83,7 +85,6 @@ componentDidMount(){
                   to={{
                     pathname: "/maestros/registrar_notas/grupo_estudiantes",
                     state: {
-                      id_maestro: this.state.id_maestro,
                       id_grupo: datosT.id_grupo,
                       id_materia: datosT.id_materia
                   }

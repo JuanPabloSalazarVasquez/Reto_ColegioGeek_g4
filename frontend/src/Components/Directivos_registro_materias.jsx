@@ -17,7 +17,8 @@ class Directivos_registro_materias extends React.Component {
         noveno: '',
         decimo: '',
         once: ''
-      }
+      },
+      datos_materias: []
     };
   }
 
@@ -35,12 +36,12 @@ class Directivos_registro_materias extends React.Component {
   componentDidMount() {
     axios
       .get(
-        `http://localhost:4535/notas/estudiante-ver-notas-materia-estudiante`
+        `http://localhost:4535/materias/directivos-ver-all-materias`
       )
       .then((res) => {
         console.log(res.data);
         this.setState({
-          datos: res.data,
+          datos_materias: res.data
         });
       })
       .catch((err) => {
@@ -77,6 +78,10 @@ class Directivos_registro_materias extends React.Component {
   }
 
   render() {
+
+    console.log(this.state.datos_materias);
+    const materiasRegistro = this.state.datos_materias;
+
     return (
       <>
         <div id="Form">
@@ -142,6 +147,7 @@ class Directivos_registro_materias extends React.Component {
         </div>
 
         <div id="RegistroEsContainer">
+          {/* Filtro */}
           <div className="FiltrosREstudiante">
             <input
               type="text"
@@ -188,49 +194,50 @@ class Directivos_registro_materias extends React.Component {
               ></Redirect>
             )}
           </div>
+          {/* Fin Filtro */}
+
+          {/* Materias */}
+          {materiasRegistro.map((datosT) => {
+            return (
           <div id="CardsContainerReEs">
             <div className="FiltrosREstudiante">
               <div className="SelectR">
-                <p>Esito.CodigoM</p>
+                <p>{datosT.codigo_materia}</p>
               </div>
               <div className="SelectR">
-                <p className="Peque">Esito.Nombre</p>
+                <p className="Peque">{datosT.nombre_materia}</p>
               </div>
 
-              <input
-                type="checkbox"
-                className="Chek Sexto"
-                checked="Esito.Sexto"
-              />
-              <input
-                type="checkbox"
-                className="Chek Septimo"
-                checked="Esito.Septimo"
-              />
-              <input
-                type="checkbox"
-                className="Chek Octavo"
-                checked="Esito.Octavo"
-              />
-              <input
-                type="checkbox"
-                className="Chek Noveno"
-                checked="Esito.Noveno"
-              />
-              <input
-                type="checkbox"
-                className="Chek Decimo"
-                checked="Esito.Decimo"
-              />
-              <input
-                type="checkbox"
-                className="Chek Once"
-                checked="Esito.Once"
-              />
+              <div className="SelectR">
+                <p className="Peque">{datosT.sexto}</p>
+              </div>
+
+              <div className="SelectR">
+                <p className="Peque">{datosT.septimo}</p>
+              </div>
+
+              <div className="SelectR">
+                <p className="Peque">{datosT.octavo}</p>
+              </div>
+
+              <div className="SelectR">
+                <p className="Peque">{datosT.noveno}</p>
+              </div>
+
+              <div className="SelectR">
+                <p className="Peque">{datosT.decimo}</p>
+              </div>
+
+              <div className="SelectR">
+                <p className="Peque">{datosT.once}</p>
+              </div>
 
               <div className="ImgRMas"></div>
             </div>
           </div>
+          );
+        })}
+          {/* Fin Materias */}
         </div>
       </>
     );

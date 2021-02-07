@@ -11,7 +11,7 @@ class directivos_inicio extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      datos: this.props.location.state.datos_user2,
+      datos: JSON.parse(sessionStorage.getItem('id_directivo')),
       datos_directivos: ''
     };
   }
@@ -39,7 +39,7 @@ componentDidMount() {
         <div id="DirectivosContainer">
           <div id="DirectivosGrid">
             <div id="ProfileCont">
-              <Profile Name={directivo.nombres} Cargo="Directivo"/>
+              <Profile Name={directivo.nombres} Cargo="Directivo" foto={directivo.foto_perfil} />
             </div>
             <div id="CardsCont">
               <div id="Grupo1">
