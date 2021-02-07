@@ -80,6 +80,28 @@ class Directivos_registro_maestros extends React.Component {
   }
   //Fin post
 
+
+  //Petición post para enviar un correo al nuevo usuario
+  post_email() {
+    axios
+      .post(`http://localhost:4535/send`, {
+        to:"david.rodriguez@agileinnova.org",
+        subject:"Mensaje prueba Emanuel Acevedo Muñoz!!",
+        full_name: "Juan David Rodriguez"
+      })
+      .then((res) => {
+        console.log(res.data);
+        this.setState({
+          datos: res.data,
+        });
+      })
+      .catch((err) => {
+        console.log(err.massage);
+      });
+  }
+  //Fin post
+
+
   render() {
     console.log(this.state.datos_maestros);
     const maestrosRegistro = this.state.datos_maestros;
