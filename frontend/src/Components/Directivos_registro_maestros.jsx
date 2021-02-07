@@ -11,8 +11,27 @@ class Directivos_registro_maestros extends React.Component {
     this.state = {
       Bool: false,
       LengE: this.props.LengE + 1,
+      form: {
+        nombres: '',
+        apellidos: '',
+        tipo_documento: '',
+        numero_documento: '',
+        sexo: '',
+        fecha_nacimiento: '',
+        direccion_residencial: '',
+        ciudad_residencial: '',
+        telefono_residencial: '',
+        telefono_celular: '',
+        correo_electronico: '',
+        foto_perfil: '',
+        pdf_documento: '',
+      }
     };
   }
+  /*
+    El codigo de maestro, el estado de cuenta y el tipo de usuario se generan automaticamente -
+    - en la petición post del backend
+  */
 
   form = () => {
     document.getElementById("RegistroEsContainer").style.filter = "blur(1px)";
@@ -29,8 +48,7 @@ class Directivos_registro_maestros extends React.Component {
   componentDidMount() {
     axios
       .get(
-        `http://localhost:4535/maestro/directivos-ver-maestros-materias-directores/${this.state.id_directivo}`,
-        {}
+        `http://localhost:4535/maestro/directivos-ver-maestros-materias-directores`
       )
       .then((res) => {
         console.log(res.data);
@@ -48,9 +66,22 @@ class Directivos_registro_maestros extends React.Component {
   post_maestro() {
     axios
       .post(
-        `http://localhost:4535/maestro/directivos-nuevo-maestro-persona/${this.state.id_directivo}`,
-        {},
-        {}
+        `http://localhost:4535/maestro/directivos-nuevo-maestro-persona`,
+        {
+          nombres: this.state.form.nombres,
+          apellidos: this.state.form.apellidos,
+          tipo_documento: this.state.form.tipo_documento,
+          numero_documento: this.state.form.numero_documento,
+          sexo: this.state.form.sexo,
+          fecha_nacimiento: this.state.form.fecha_nacimiento,
+          direccion_residencial: this.state.form.direccion_residencial,
+          ciudad_residencial: this.state.form.ciudad_residencial,
+          telefono_residencial: this.state.form.telefono_residencial,
+          telefono_celular: this.state.form.telefono_celular,
+          correo_electronico: this.state.form.correo_electronico,
+          foto_perfil: this.state.form.foto_perfil,
+          pdf_documento: this.state.form.pdf_documento,
+        }
       )
       .then((res) => {
         console.log(res.data);
@@ -80,22 +111,22 @@ class Directivos_registro_maestros extends React.Component {
                 <input
                   className="REInput"
                   id="NombreIn"
-                  placeholder="Nombre"
+                  placeholder="Nombres"
                   autoComplete="off"
                 />
                 <input
                   className="REInput"
                   id="ApellidoIn"
-                  placeholder="Apellido"
+                  placeholder="Apellidos"
                   autoComplete="off"
                 />
-                <input
-                  className="REInput"
-                  id="EdadIn"
-                  placeholder="Edad"
-                  type="number"
-                  autoComplete="off"
-                />
+                <select className="REInput" id="Tipo_documentoIn">
+                  <option value="0" className="Dis" id="TipoDocDis">
+                    Tipo de documento de identidad
+                  </option>
+                  <option value="Cedula">Cédula de ciudadanía</option>
+                  <option value="Tarjeta">Tarjeta de identidad</option>
+                </select>
                 <input
                   className="REInput"
                   id="DocumentoIn"
@@ -103,10 +134,37 @@ class Directivos_registro_maestros extends React.Component {
                   placeholder="Documento de identidad"
                   autoComplete="off"
                 />
+                <select className="REInput" id="SexoIn">
+                  <option value="0" className="Dis" id="SexoDis">
+                    Sexo
+                  </option>
+                  <option value="Hombre">Hombre</option>
+                  <option value="Mujer">Mujer</option>
+                </select>
+                <input
+                  className="REInput"
+                  id="Fecha_nacimientoIn"
+                  placeholder="Fecha de nacimiento"
+                  type="date"
+                  autoComplete="off"
+                />
               </div>
             </div>
             <div id="Form2_2">
               <div className="Form2_2_2">
+                <input
+                  className="REInput"
+                  id="DirIn"
+                  placeholder="Direccion de recidencia"
+                  autoComplete="off"
+                />
+                <input
+                  className="REInput"
+                  id="CiudadIn"
+                  type="text"
+                  placeholder="Ciudad de recidencia"
+                  autoComplete="off"
+                />
                 <input
                   className="REInput"
                   id="TelefIn"
@@ -138,13 +196,25 @@ class Directivos_registro_maestros extends React.Component {
               </div>
             </div>
             <div className="Form2_2_2">
-              <select className="REInput" id="EstadoIn">
-                <option value="0" className="Dis" id="EstadoCivDis">
-                  Estado civil
-                </option>
-                <option value="Soltero">Soltero</option>
-                <option value="Casado">Casado</option>
-              </select>
+              <div>
+                <img src="https://img.icons8.com/carbon-copy/2x/camera--v2.png" alt="Profile img" className="inline" style={{ height: 3 + "vw", marginLeft: 0 }} />
+                <p className="inline">Foto de perfil</p>
+              </div>
+              <input
+                accept="image/*"
+                id="contained-button-pdf"
+                type="file"
+              />
+
+              <div>
+                <img src="https://www.iconpacks.net/icons/2/free-pdf-file-icon-2614-thumb.png" alt="PDF" className="inline" style={{ height: 3 + "vw", marginLeft: 0 }} />
+                <p className="inline">Documento de identidad</p>
+              </div>
+              <input
+                accept=".pdf"
+                id="icon-button-fotoperfil"
+                type="file"
+              />
               <select className="REInput" id="MateriaIn">
                 <option value="0" className="Dis" id="MateriaInDis">
                   Materia

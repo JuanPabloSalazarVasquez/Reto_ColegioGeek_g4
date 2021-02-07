@@ -21,8 +21,17 @@ class Directivos_registro_grupos extends React.Component {
     super(props);
     this.state = {
       Bool: false,
+      datos: [],
+      form: {
+        director_id_maestro: '',
+        grado_grupo: '',
+        jornada: ''
+      }
     };
   }
+  /*
+    El codigo_grupo se genera automaticamente en la petición post del backend 
+  */
 
   form = () => {
     document.getElementById("RegistroEsContainer").style.filter = "blur(1px)";
@@ -39,7 +48,7 @@ class Directivos_registro_grupos extends React.Component {
   componentDidMount() {
     axios
       .get(
-        `http://localhost:4535/grupos/directivos-ver-grupos/${this.state.id_directivo}`
+        `http://localhost:4535/grupos/directivos-ver-grupos`
       )
       .then((res) => {
         console.log(res.data);
@@ -57,8 +66,12 @@ class Directivos_registro_grupos extends React.Component {
   post_grupo() {
     axios
       .post(
-        `http://localhost:4535/grupos/directivos-nuevo-grupo/${this.state.id_directivo}`,
-        {}
+        `http://localhost:4535/grupos/directivos-nuevo-grupo/`,
+        {
+          director_id_maestro: this.state.form.director_id_maestro,
+          grado_grupo: this.state.form.grado_grupo,
+          jornada: this.state.form.jornada
+        }
       )
       .then((res) => {
         console.log(res.data);
@@ -80,6 +93,16 @@ class Directivos_registro_grupos extends React.Component {
           <div id="Form2">
             <div id="Form2_2">
               <div className="Form2_2_2">
+              <select className="REInput" id="DirectorNull">
+                  <option className="REInput Dis">Director</option>
+                  {arry.map((Esito, index) => {
+                    return (
+                      <option key={index} value={Esito}>
+                        {Esito}
+                      </option>
+                    );
+                  })}
+                </select>
                 <select className="REInput" id="GradoIn">
                   <option value="0" className="Dis">
                     Grado
@@ -91,15 +114,12 @@ class Directivos_registro_grupos extends React.Component {
                   <option value="10">Decimo</option>
                   <option value="11">Once</option>
                 </select>
-                <select className="REInput" id="DirectorNull">
-                  <option className="REInput Dis">Director</option>
-                  {arry.map((Esito, index) => {
-                    return (
-                      <option key={index} value={Esito}>
-                        {Esito}
-                      </option>
-                    );
-                  })}
+                <select className="REInput" id="JornadaIn">
+                  <option value="0" className="Dis">
+                    Jornada
+                  </option>
+                  <option value="Mañana">Mañana</option>
+                  <option value="Tarde">Tarde</option>
                 </select>
               </div>
             </div>
