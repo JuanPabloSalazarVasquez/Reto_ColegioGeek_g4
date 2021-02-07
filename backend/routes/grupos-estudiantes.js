@@ -103,7 +103,7 @@ grupos_estudiantes.get("/estudiantes-grupo-notas-ver-clases-grupos/:id_maestro",
 // Esta peticion funciona
 grupos_estudiantes.get("/maestros-ver-grupos/:id_maestro", async (req, res) => {
   let client = await pool.connect();
-  const { id_maestro } = req.body;
+  const { id_maestro } = req.params;
   try {
     const result = await client.query(
       `SELECT grupos.id_grupo, codigo_grupo, grado_grupo, nombres, apellidos, nombre_materia
@@ -111,9 +111,9 @@ grupos_estudiantes.get("/maestros-ver-grupos/:id_maestro", async (req, res) => {
       INNER JOIN grupos 
       ON grupos_materias.id_grupo = grupos.id_grupo AND id_maestro = ${id_maestro}
       INNER JOIN maestro
-      ON grupos.director_id_maestro = maestros.id_maestro
+      ON grupos.director_id_maestro = maestro.id_maestro
       INNER JOIN persona
-      ON maestros.id_persona = persona.id_persona
+      ON maestro.id_persona = persona.id_persona
       INNER JOIN materias
       ON grupos_materias.id_materia = materias.id_materia
       ;`
@@ -134,9 +134,9 @@ grupos_estudiantes.get("/maestros-ver-grupos/:id_maestro", async (req, res) => {
 // /maestros/estudiantes_grupos/ver_estudiantes
 // Esta peticion necesita id_grupo
 // Esta peticion funciona
-grupos_estudiantes.get("/maestros-ver-estudiantes-grupo/:id_maestro", async (req, res) => {
+grupos_estudiantes.get("/maestros-ver-estudiantes-grupo/:id_grupo", async (req, res) => {
   let client = await pool.connect();
-  const { id_grupo } = req.body;
+  const { id_grupo } = req.params;
   try {
     const result = await client.query(
       `SELECT codigo_estudiante, nombres, apellidos
