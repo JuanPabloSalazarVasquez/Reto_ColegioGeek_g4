@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import "../sass/Directivos.scss";
-import axios from 'axios';
+import Axios from 'axios';
 import { makeStyles } from '@material-ui/core/styles';
 import Breadcrumbs from '@material-ui/core/Breadcrumbs';
 import Link from '@material-ui/core/Link';
@@ -76,7 +76,7 @@ export default function DirectivosConfiguracion() {
   // let [user, setUser] = useState([]);
   // const url = 'https://jsonplaceholder.typicode.com/users'
   // useEffect(() => {
-  //   axios
+  //   Axios
   //     .get("https://jsonplaceholder.typicode.com/users")
   //     .then(response => setUsers(response.data));
   // }, []);
@@ -88,12 +88,40 @@ export default function DirectivosConfiguracion() {
   //   }
   //   fethUser();
   // }, []);
+  // useEffect(() => {
+  //   const upData = async () => {
+  //     const { data } = await Axios.put("https://jsonplaceholder.typicode.com/users");
+  //     console.log(data)
+  //   }
+  // }, []);
+
+  let [data, setData] = useState([]);
   useEffect(() => {
-    const upData = async () => {
-      const { data } = await axios.put("https://jsonplaceholder.typicode.com/users");
-      console.log(data)
-    }
-  });
+    console.log("Loading...");
+    const fetchData = async (id, userId, title, body) => {
+      try {
+        const { data } = await Axios.put(
+          `https://jsonplaceholder.typicode.com/posts/${id}`,
+          {
+            id,
+            title,
+            body,
+            userId
+          }
+        );
+        console.log(data);
+      } catch (error) {
+        console.log(error);
+      }
+    };
+  
+    fetchData(
+      1,
+      1,
+      "PEPEPEPEPE",
+      "LOREMLOREMMOREM"
+    );
+  }, []);
 
   return (
     <div className={classes.root}>
