@@ -6,7 +6,7 @@ const { pool } = require('../db/db');
 // Peticion get para mostrar todos las materias que se encuentran registradas
 // /Directivos/Registro_Materias
 // Esta peticion funciona
-materias.get("/directivos-ver-all-materias", async (req, res) => {
+materias.get("/directivos-ver-all-materias/:id_directivo", async (req, res) => {
     let client = await pool.connect();
     try {
       const result = await client.query(
@@ -31,7 +31,7 @@ materias.get("/directivos-ver-all-materias", async (req, res) => {
 // Peticion post para crear un registro en la tabla de materias
 /// /Directivos/Registro_Materias
 // Esta peticion funciona
-materias.post('/directivos-nuevo-materia', async(req,res)=>{
+materias.post('/directivos-nuevo-materia/:id_directivo', async(req,res)=>{
     let client = await pool.connect();
   const {
     nombre_materia,

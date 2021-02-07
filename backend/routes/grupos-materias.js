@@ -9,7 +9,7 @@ const { pool } = require("../db/db");
 // Se hace la consulta a la tabla grupos-materias y se hace un inner join con grupos y grupos-estudiantes
 // /maestros/registrar_notas
 // Esta peticion funciona
-grupos_materias.get("/grupos-clase-maestro", async (req, res) => {
+grupos_materias.get("/grupos-clase-maestro/:id_maestro", async (req, res) => {
   let client = await pool.connect();
   const { id_maestro } = req.params;
   try {

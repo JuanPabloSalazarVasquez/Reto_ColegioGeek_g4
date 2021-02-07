@@ -1,9 +1,9 @@
-CREATE USER postgres;
-ALTER USER postgres;
+CREATE USER emanuel;
+ALTER USER emanuel WITH PASSWORD '1000306848';
 
 
 CREATE DATABASE colegio_geek_db WITH 
-OWNER = 'postgres'
+OWNER = 'emanuel'
 ENCODING = 'UTF8'
 
 CREATE DATABASE colegio_geek_db WITH 

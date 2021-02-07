@@ -11,7 +11,7 @@ const { pool } = require('../db/db');
 // Esta peticion funciona
 grupos_estudiantes.get("/grupos-cursados/:id_estudiante", async (req, res) => {
     let client = await pool.connect();
-    const { id_estudiante } = req.body;
+    const { id_estudiante } = req.params;
     try {
       const result = await client.query(
         `SELECT codigo_grupo, grado_grupo, director_id_maestro, year_grupo
