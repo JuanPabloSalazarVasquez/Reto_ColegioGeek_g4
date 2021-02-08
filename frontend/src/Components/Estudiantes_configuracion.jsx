@@ -17,7 +17,7 @@ class Estudiantes_configuracion extends React.Component {
 
 //Petición get para obtener información de la cuenta
   componentDidMount(){
-    axios.get(`http://35.185.93.150:4535/persona/${this.state.id_estudiante}`) //Esta peticion está pendiente en el backend
+    axios.get(`http://34.75.218.172:4535/persona/${this.state.id_estudiante}`) //Esta peticion está pendiente en el backend
       .then(res =>{
         console.log(res.data)
         this.setState({
@@ -31,7 +31,7 @@ class Estudiantes_configuracion extends React.Component {
 
   //Petición put para modificar los datos de la cuenta
   componentDidMount(){
-    axios.put(`http://35.185.93.150:4535/persona/${this.state.id_estudiante}`) //Esta peticion está pendiente en el backend
+    axios.put(`http://34.75.218.172:4535/persona/${this.state.id_estudiante}`) //Esta peticion está pendiente en el backend
       .then(res =>{
         console.log(res.data)
         this.setState({

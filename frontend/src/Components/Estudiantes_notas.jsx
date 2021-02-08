@@ -21,7 +21,7 @@ class Estudiantes_notas extends React.Component {
     console.log(this.state.id_estudiante);
     axios
       .get(
-        `http://35.185.93.150:4535/notas/materias-estudiante/${this.state.id_estudiante}`
+        `http://34.75.218.172:4535/notas/materias-estudiante/${this.state.id_estudiante}`
       )
       .then((res) => {
         console.log(res.data);

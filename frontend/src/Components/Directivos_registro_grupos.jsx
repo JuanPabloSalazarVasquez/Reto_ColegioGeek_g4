@@ -68,7 +68,7 @@ class Directivos_registro_grupos extends React.Component {
   //Petición get para obtener las materias existentes
   get_materias() {
     axios
-      .get(`http://35.185.93.150:4535/materias/directivos-ver-all-materias`)
+      .get(`http://34.75.218.172:4535/materias/directivos-ver-all-materias`)
       .then((res) => {
         console.log(res.data);
         this.setState({
@@ -84,7 +84,7 @@ class Directivos_registro_grupos extends React.Component {
   //Petición get para traer todos los grupos
   componentDidMount() {
     axios
-      .get(`http://35.185.93.150:4535/grupos/directivos-ver-grupos`)
+      .get(`http://34.75.218.172:4535/grupos/directivos-ver-grupos`)
       .then((res) => {
         console.log(res.data);
         this.setState({
@@ -102,7 +102,7 @@ class Directivos_registro_grupos extends React.Component {
   componentWillMount() {
     axios
       .get(
-        `http://35.185.93.150:4535/maestro/directivos-ver-maestros-directores-registro-grupo`
+        `http://34.75.218.172:4535/maestro/directivos-ver-maestros-directores-registro-grupo`
       )
       .then((res) => {
         console.log(res.data);
@@ -121,7 +121,7 @@ class Directivos_registro_grupos extends React.Component {
     console.log("Formulario de agregar materia", this.state.form_materia);
     await axios
       .post(
-        `http://35.185.93.150:4535/grupos-materias/nuevo-registro-grupos-materias`,
+        `http://34.75.218.172:4535/grupos-materias/nuevo-registro-grupos-materias`,
         this.state.form_materia
       )
       .then((res) => {
@@ -139,7 +139,7 @@ class Directivos_registro_grupos extends React.Component {
     console.log("datos_grado", this.state.datos_grado.length);
     if (this.state.form.grado_grupo == "6") {
       await axios
-        .post(`http://35.185.93.150:4535/grupos/directivos-nuevo-grupo`, {
+        .post(`http://34.75.218.172:4535/grupos/directivos-nuevo-grupo`, {
           director_id_maestro: this.state.form.director_id_maestro,
           codigo_grupo: `${
             AñoY + "06" + "0" + (this.state.datos_grado.length += 1)
@@ -157,7 +157,7 @@ class Directivos_registro_grupos extends React.Component {
         });
     } else if (this.state.form.grado_grupo == "7") {
       await axios
-        .post(`http://35.185.93.150:4535/grupos/directivos-nuevo-grupo`, {
+        .post(`http://34.75.218.172:4535/grupos/directivos-nuevo-grupo`, {
           director_id_maestro: this.state.form.director_id_maestro,
           codigo_grupo: `${
             AñoY + "07" + "0" + (this.state.datos_grado.length += 1)
@@ -175,7 +175,7 @@ class Directivos_registro_grupos extends React.Component {
         });
     } else if (this.state.form.grado_grupo == "8") {
       await axios
-        .post(`http://35.185.93.150:4535/grupos/directivos-nuevo-grupo`, {
+        .post(`http://34.75.218.172:4535/grupos/directivos-nuevo-grupo`, {
           director_id_maestro: this.state.form.director_id_maestro,
           codigo_grupo: `${
             AñoY + "08" + "0" + (this.state.datos_grado.length += 1)
@@ -193,7 +193,7 @@ class Directivos_registro_grupos extends React.Component {
         });
     } else if (this.state.form.grado_grupo == "9") {
       await axios
-        .post(`http://35.185.93.150:4535/grupos/directivos-nuevo-grupo`, {
+        .post(`http://34.75.218.172:4535/grupos/directivos-nuevo-grupo`, {
           director_id_maestro: this.state.form.director_id_maestro,
           codigo_grupo: `${
             AñoY + "09" + "0" + (this.state.datos_grado.length += 1)
@@ -211,7 +211,7 @@ class Directivos_registro_grupos extends React.Component {
         });
     } else if (this.state.form.grado_grupo == "10") {
       await axios
-        .post(`http://35.185.93.150:4535/grupos/directivos-nuevo-grupo`, {
+        .post(`http://34.75.218.172:4535/grupos/directivos-nuevo-grupo`, {
           director_id_maestro: this.state.form.director_id_maestro,
           codigo_grupo: `${
             AñoY + "10" + "0" + (this.state.datos_grado.length += 1)
@@ -229,7 +229,7 @@ class Directivos_registro_grupos extends React.Component {
         });
     } else if (this.state.form.grado_grupo == "11") {
       await axios
-        .post(`http://35.185.93.150:4535/grupos/directivos-nuevo-grupo`, {
+        .post(`http://34.75.218.172:4535/grupos/directivos-nuevo-grupo`, {
           director_id_maestro: this.state.form.director_id_maestro,
           codigo_grupo: `${
             AñoY + "11" + "0" + (this.state.datos_grado.length += 1)
@@ -253,7 +253,7 @@ class Directivos_registro_grupos extends React.Component {
   get_grado = async () => {
     await axios
       .get(
-        `http://35.185.93.150:4535/grupos/directivos-ver-grupos-grados/${this.state.form.grado_grupo}`
+        `http://34.75.218.172:4535/grupos/directivos-ver-grupos-grados/${this.state.form.grado_grupo}`
       )
       .then((res) => {
         console.log(res.data);
