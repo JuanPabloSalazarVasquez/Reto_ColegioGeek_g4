@@ -12,7 +12,7 @@ class Maestros_Registrar_Nota_Estudiante extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      id_maestro: JSON.parse(sessionStorage.getItem("id_maestro")),
+      id_maestro: JSON.parse(sessionStorage.getItem('id_maestro')),
       id_grupo: this.props.location.state.id_grupo,
       id_estudiante: this.props.location.state.id_estudiante,
       id_materia: this.props.location.state.id_materia,

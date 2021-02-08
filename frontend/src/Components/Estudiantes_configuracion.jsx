@@ -10,7 +10,7 @@ class Estudiantes_configuracion extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      id_estudiante: this.props.location.state.id_estudiante,
+      id_estudiante: JSON.parse(sessionStorage.getItem("id_estudiante")),
       datos: []
     };
   }

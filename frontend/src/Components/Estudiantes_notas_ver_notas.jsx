@@ -10,7 +10,7 @@ class Estudiantes_notas_ver_notas extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      id_estudiante: JSON.parse(localStorage.getItem("id_estudiante")),
+      id_estudiante: JSON.parse(sessionStorage.getItem("id_estudiante")),
       id_materia: this.props.location.state.id_materia,
       datos: [],
     };
