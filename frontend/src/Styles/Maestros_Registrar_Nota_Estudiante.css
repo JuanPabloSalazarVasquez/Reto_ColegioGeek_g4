@@ -1,0 +1,108 @@
+.VerEstuGrupContainer-Maestros_Registrar_Nota_Estudiante {
+  display: grid;
+  grid-template-rows: 1fr;
+  grid-template-columns: 60% 40%;
+  width: 100%;
+  height: max-content;
+  background-color: rgb(45, 58, 58, 0.9);
+}
+
+.FiltradoEstudiante-Maestros_Registrar_Nota_Estudiante {
+  width: 98vw;
+  padding: 1vw;
+  grid-column: 1/2;
+  grid-row: 1/2;
+  height: 100%;
+}
+.EstuFilter-Maestros_Registrar_Nota_Estudiante {
+  margin-top: 1vw;
+}
+.FiltrosREstudiante-Maestros_Registrar_Nota_Estudiante-Registro {
+  margin: 0 2vw 0 2vw;
+
+  display: flex;
+  justify-content: space-around;
+  padding: 5px;
+  background-color: lightgray;
+
+  padding-bottom: 10px;
+}
+
+.Button-Maestros_Registrar_Nota_Estudiante {
+  padding-left: 16px;
+  padding-top: 8px;
+  padding-right: 16px;
+  padding-bottom: 8px;
+  background-color: white;
+  border: 1px solid black;
+  border-radius: 5px;
+  font-weight: bold;
+  color: black;
+  text-align: center;
+}
+.Button-Maestros_Registrar_Nota_Estudiante:hover {
+  background-color: black;
+  color: white;
+  border: 2px solid white;
+}
+
+.FiltrosREstudiante-Maestros_Registrar_Nota_Estudiante {
+  margin: 0 2vw 0 2vw;
+}
+
+.FiltrosREstudiante-Maestros_Registrar_Nota_Estudiante {
+  display: flex;
+  justify-content: space-around;
+  padding: 5px;
+  background-color: lightgray;
+}
+
+.SelectR-Maestros_Registrar_Nota_Estudiante {
+  width: 100px;
+  height: 40px;
+  font-family: "Alata", sans-serif;
+  font-weight: bold;
+  margin: 0px 4px 0px 4px;
+  color: black;
+}
+
+.pTexts-Maestros_Registrar_Nota_Estudiante {
+  margin: 0px;
+  text-align: center;
+}
+
+.MinMin-Maestros_Registrar_Nota_Estudiante {
+  width: 80px;
+}
+
+.Min-Maestros_Registrar_Nota_Estudiante {
+  width: 40px;
+  height: 40px;
+  font-family: "Alata", sans-serif;
+  font-weight: bold;
+  margin: 0px 4px 0px 4px;
+}
+
+.More-Maestros_Registrar_Nota_Estudiante {
+  width: 180px;
+  height: 40px;
+  font-family: "Alata", sans-serif;
+  font-weight: bold;
+  margin: 0px 4px 0px 4px;
+}
+
+@media (max-width: 430px) {
+  .SelectR-Maestros_Registrar_Nota_Estudiante {
+    padding: 0;
+    font-size: 8px;
+    height: 25px;
+    width: 60px;
+  }
+}
+
+@media (max-width: 660px) {
+  .VerEstuGrupContainer-Maestros_Registrar_Nota_Estudiante {
+    grid-template-rows: 1fr 1fr;
+    grid-template-columns: 1fr;
+  }
+}

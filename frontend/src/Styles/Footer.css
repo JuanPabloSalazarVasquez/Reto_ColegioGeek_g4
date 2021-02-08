@@ -1,0 +1,28 @@
+.FooterContainer{
+    background-color: #1565c0;
+    padding: 5px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    text-align: center;
+    padding: 10px 50px;
+}
+
+.pFooter{
+    color: white;
+    text-align: center;
+}
+
+@media(max-width: 850px){
+    .pFooter{
+        font-size: 12px;
+    }
+
+}
+@media(max-width: 680px){
+    .FooterContainer{
+        flex-flow: column;
+        justify-content: center;
+        align-items: center;
+    }
+ }
