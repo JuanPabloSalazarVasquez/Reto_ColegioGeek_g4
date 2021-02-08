@@ -3,6 +3,37 @@ const maestro = Router();
 const { pool } = require('../db/db');
 
 
+// Peticion get para mostrar todos los maestros que no son directores de grupo
+// /Directivos/Registro_Grupos
+// Esta peticion funciona
+maestro.get("/directivos-ver-maestros-directores-registro-grupo", async (req, res) => {
+  let client = await pool.connect();
+  try {
+    const result = await client.query(
+      `SELECT maestro.id_maestro, numero_documento, nombres, apellidos, codigo_materia, codigo_grupo
+      FROM maestro
+      LEFT JOIN grupos_materias
+      ON grupos_materias.id_maestro = maestro.id_maestro
+      LEFT JOIN materias
+      ON grupos_materias.id_materia = materias.id_materia
+      LEFT JOIN grupos
+      ON grupos.director_id_maestro = maestro.id_maestro AND codigo_grupo = null
+      INNER JOIN persona
+      ON maestro.id_persona = persona.id_persona
+      ;`
+    );
+    if (result.rows) {
+      res.json(result.rows);
+    } else {
+      res.json({});
+    }
+  } catch (error) {
+    console.log(error);
+  } finally {
+  }
+});
+// Fin get
+
 // Peticion get para consultar los datos de un maestro
 // /maestros
 // Esta peticion funciona correctamente
@@ -67,7 +98,7 @@ maestro.get("/directivos-ver-maestros-materias-directores", async (req, res) => 
 // Peticion post para crear un registro en la tabla de personas y ala vez en la tabla de maestros
 /// /Directivos/Registro_Maestros
 // Esta peticion funciona
-maestro.post('/directivos-nuevo-maestro-persona/:id_directivo', async(req,res)=>{
+maestro.post('/directivos-nuevo-maestro-persona', async(req,res)=>{
     let client = await pool.connect();
   const {
     nombres,

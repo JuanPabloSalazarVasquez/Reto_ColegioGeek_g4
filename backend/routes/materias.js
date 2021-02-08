@@ -10,7 +10,7 @@ materias.get("/directivos-ver-all-materias", async (req, res) => {
     let client = await pool.connect();
     try {
       const result = await client.query(
-        `SELECT codigo_materia, nombre_materia, sexto, septimo, octavo, noveno, decimo, once
+        `SELECT materias.id_materia ,codigo_materia, nombre_materia, sexto, septimo, octavo, noveno, decimo, once
         FROM materias;`
       );
       if (result.rows) {
@@ -31,7 +31,7 @@ materias.get("/directivos-ver-all-materias", async (req, res) => {
 // Peticion post para crear un registro en la tabla de materias
 /// /Directivos/Registro_Materias
 // Esta peticion funciona
-materias.post('/directivos-nuevo-materia/:id_directivo', async(req,res)=>{
+materias.post('/directivos-nueva-materia-crear-materia', async (req,res)=>{
     let client = await pool.connect();
   const {
     nombre_materia,
@@ -43,9 +43,10 @@ materias.post('/directivos-nuevo-materia/:id_directivo', async(req,res)=>{
     decimo,
     once
   } = req.body;
+  console.log(nombre_materia, codigo_materia, sexto, septimo, octavo, noveno, decimo, once)
   try {
       const result = await client.query(`INSERT INTO materias VALUES (NEXTVAL ('materias_seq'), '${nombre_materia}', '${codigo_materia}', '${sexto}', '${septimo}', '${octavo}', '${noveno}', '${decimo}', '${once}');`)
-      if (result.rows) {
+      if (result) {
           res.json({message: 'Se crea una nueva materia.'})
       } else {
         res.json({message: 'No se creo una nueva materia.'});

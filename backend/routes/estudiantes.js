@@ -37,11 +37,11 @@ estudiantes.get("/directivos-all-estudiantes", async (req, res) => {
       const result = await client.query(
         `SELECT codigo_estudiante, nombres, apellidos, grado_grupo, codigo_grupo, year_grupo
         FROM estudiante
-        INNER JOIN grupos_estudiantes 
+        LEFT JOIN grupos_estudiantes 
         ON grupos_estudiantes.id_estudiante = estudiante.id_estudiante
-        INNER JOIN persona
+        LEFT JOIN  persona
         ON estudiante.id_persona = persona.id_persona
-        INNER JOIN grupos
+        LEFT JOIN  grupos
         ON grupos_estudiantes.id_grupo = grupos.id_grupo AND grupos_estudiantes.estado = 'En curso';`
       );
       if (result.rows) {
@@ -107,13 +107,19 @@ estudiantes.post('/directivos-nuevo-estudiante-persona', async(req,res)=>{
     pdf_documento,
     tipo_usuario,
     codigo_estudiante,
-    estado_estudiante
+    estado_estudiante,
+    id_grupo
   } = req.body;
+  console.log(id_grupo)
   try {
       const result = await client.query(`INSERT INTO persona VALUES (NEXTVAL ('persona_seq'), '${nombres}', '${apellidos}', '${tipo_documento}', '${numero_documento}', '${sexo}', '${fecha_nacimiento}', '${direccion_residencial}', '${ciudad_residencial}', '${telefono_residencial}', '${telefono_celular}', '${correo_electronico}', '${estado_cuenta}', '${foto_perfil}', '${pdf_documento}', '${tipo_usuario}') RETURNING id_persona;`)
       if (result.rows) {
           console.log(result.rows[0].id_persona);
-       const result2 = await client.query(`INSERT INTO estudiante VALUES (NEXTVAL ('estudiante_seq'), ${result.rows[0].id_persona}, '${codigo_estudiante}', '${estado_estudiante}');`);
+       const result2 = await client.query(`INSERT INTO estudiante VALUES (NEXTVAL ('estudiante_seq'), ${result.rows[0].id_persona}, '${codigo_estudiante}', '${estado_estudiante}') RETURNING id_estudiante;`);
+       const result3 = await client.query(`INSERT INTO grupos_estudiantes VALUES (NEXTVAL ('grupos_estudiantes_seq'), ${result2.rows[0].id_estudiante}, ${id_grupo}, 'En curso');`);
+       console.log('id_estudiante:', result2.rows[0].id_estudiante)
+       
+       console.log('Este es el result 3', result3)
        if(result2){
            res.json({message: 'Se creo un nuevo estudiante.'});
        }else{
