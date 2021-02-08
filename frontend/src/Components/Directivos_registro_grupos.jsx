@@ -33,10 +33,10 @@ class Directivos_registro_grupos extends React.Component {
       datos_grado: [],
       datos_materias: [],
       form_materia: {
-        id_materia: '',
-        id_grupo: '',
-        id_maestro: ''
-      }
+        id_materia: "",
+        id_grupo: "",
+        id_maestro: "",
+      },
     };
   }
   /*
@@ -88,7 +88,7 @@ class Directivos_registro_grupos extends React.Component {
       .then((res) => {
         console.log(res.data);
         this.setState({
-          datos: res.data
+          datos: res.data,
         });
         this.get_materias();
       })
@@ -389,9 +389,11 @@ class Directivos_registro_grupos extends React.Component {
                   </option>
                   {materiasRegistro.map((datosT) => {
                     return (
-                  <option value={datosT.id_materia}>{datosT.nombre_materia}</option>
-                  );
-                })}
+                      <option value={datosT.id_materia}>
+                        {datosT.nombre_materia}
+                      </option>
+                    );
+                  })}
                 </select>
                 <select
                   className="REInput"
@@ -404,8 +406,10 @@ class Directivos_registro_grupos extends React.Component {
                   </option>
                   {gruposRegistros.map((datosT) => {
                     return (
-                  <option value={datosT.id_grupo}>{datosT.codigo_grupo}</option>
-                  );
+                      <option value={datosT.id_grupo}>
+                        {datosT.codigo_grupo}
+                      </option>
+                    );
                   })}
                 </select>
                 <select
@@ -540,7 +544,9 @@ class Directivos_registro_grupos extends React.Component {
                   </div>
                   <div className="ImgRMas"></div>
                   <div>
-                    <button className="DickBro" onClick={this.form2}>Agregar materia</button>
+                    <button className="DickBro" onClick={this.form2}>
+                      Agregar materia
+                    </button>
                   </div>
                 </div>
               </div>
