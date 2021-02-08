@@ -4,6 +4,7 @@ import axios from "axios";
 import "../Styles/Estudiantes_consolidados.css";
 
 import { withRouter } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 class Estudiantes_consolidados extends React.Component {
   constructor(props) {
@@ -80,15 +81,12 @@ class Estudiantes_consolidados extends React.Component {
                       Profesor de la materia
                     </p>
                   </div>
-                  <div className="Min GrupoF">
-                    <p className="pTextos-Estudiantes_consolidados">
-                      {datosT.consolidado}
-                    </p>
-                  </div>
                   <div className="SelectConsolidados-Estudiantes_consolidados">
+                    <Link to={datosT.consolidado}>
                     <button className="ButtonConsolidados-Estudiantes_consolidados">
                       Descargar consolidado
                     </button>
+                    </Link>
                   </div>
                 </div>
               </div>

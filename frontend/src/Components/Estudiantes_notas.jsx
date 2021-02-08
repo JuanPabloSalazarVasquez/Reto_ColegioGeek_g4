@@ -10,16 +10,16 @@ class Estudiantes_notas extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      id_estudiante: JSON.parse(localStorage.getItem("id_estudiante")),
+      id_estudiante: JSON.parse(sessionStorage.getItem("id_estudiante")),
       datos: [],
       Bool: false,
     };
   }
 
   // Peticion get para traer todas las materias a la que esta registrado un estudiante
-  componentDidMount() {
+  componentDidMount = async() => {
     console.log(this.state.id_estudiante);
-    axios
+    await axios
       .get(
         `http://localhost:4535/notas/materias-estudiante/${this.state.id_estudiante.id_estudiante}`
       )
