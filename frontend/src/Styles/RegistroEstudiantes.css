@@ -99,6 +99,24 @@ color: black;
     height: 60vh;
 }
 
+#FormEditar{
+    position: absolute;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    width: 96vw;
+    height: 60vh;
+}
+
+#FormAgregarMateria{
+    position: absolute;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    width: 96vw;
+    height: 60vh;
+}
+
 .DickBro{
     background-color: white;
     border: 1px solid black;
@@ -107,6 +125,15 @@ color: black;
 }
 
 #Form2{
+    display: flex;
+    padding: 2vw;
+    border-radius: 1vw;
+    margin:0 10% 0 10%;
+    background-color: #2D3A3A;
+    height: max-content;
+}
+
+#Form2Editar{
     display: flex;
     padding: 2vw;
     border-radius: 1vw;

@@ -10,7 +10,6 @@ const AñoY = Año.getFullYear();
 const AñoM = Año.getMonth() + 1;
 const AñoD = Año.getDate();
 
-
 class Directivos_registro_estudiantes extends React.Component {
   constructor(props) {
     super(props);
@@ -18,24 +17,28 @@ class Directivos_registro_estudiantes extends React.Component {
       Bool: false,
       datos: [],
       form: {
-          nombres: 'Eliana',
-          apellidos: 'Cristina Munoz',
-          tipo_documento: 'Tarjeta de identidad',
-          numero_documento: '21792896',
-          sexo: 'Mujer',
-          fecha_nacimiento: '2005-07-02',
-          direccion_residencial: 'Carrera 66 # 52 Sur 60',
-          ciudad_residencial: 'Medellin',
-          telefono_residencial: '4187277',
-          telefono_celular: '3187604293',
-          correo_electronico: 'elianacristin56@gmail.com',
-          estado_cuenta: 'Activa',
-          foto_perfil: 'https://img.europapress.es/fotoweb/fotonoticia_20200221191003_420.jpg',
-          pdf_documento: 'https://img.europapress.es/fotoweb/fotonoticia_20200221191003_420.jpg',
-          tipo_usuario: 'Estudiante',
-          codigo_estudiante: '',
-          estado_estudiante: 'Estudiando'
+        nombres: "",
+        apellidos: "",
+        tipo_documento: "",
+        numero_documento: "",
+        sexo: "",
+        fecha_nacimiento: "",
+        direccion_residencial: "",
+        ciudad_residencial: "",
+        telefono_residencial: "",
+        telefono_celular: "",
+        correo_electronico: "",
+        estado_cuenta: "Activa",
+        foto_perfil:
+          "https://hips.hearstapps.com/hmg-prod.s3.amazonaws.com/images/camiseta-blanca-hombre-getty-1553624255.jpg?crop=0.6666666666666666xw:1xh;center,top&resize=640:*",
+        pdf_documento:
+          "https://hips.hearstapps.com/hmg-prod.s3.amazonaws.com/images/camiseta-blanca-hombre-getty-1553624255.jpg?crop=0.6666666666666666xw:1xh;center,top&resize=640:*",
+        tipo_usuario: "Estudiante",
+        codigo_estudiante: "",
+        estado_estudiante: "Estudiando",
+        id_grupo: "",
       },
+      datos_grupo: [],
     };
   }
   /*
@@ -54,6 +57,33 @@ class Directivos_registro_estudiantes extends React.Component {
     document.getElementById("RegistroEsContainer").style.filter = "blur(0)";
   };
 
+  form2 = () => {
+    document.getElementById("RegistroEsContainer").style.filter = "blur(1px)";
+    document.getElementById("FormEditar").style.display = "flex";
+    document.getElementById("FormEditar").style.zIndex = "60";
+  };
+
+  Cambio2 = () => {
+    document.getElementById("FormEditar").style.display = "none";
+    document.getElementById("RegistroEsContainer").style.filter = "blur(0)";
+  };
+
+  //Petición get para traer todos los grupos
+  componentWillMount() {
+    axios
+      .get(`http://localhost:4535/grupos/directivos-ver-grupos`)
+      .then((res) => {
+        console.log(res.data);
+        this.setState({
+          datos_grupo: res.data,
+        });
+      })
+      .catch((err) => {
+        console.log(err.massage);
+      });
+  }
+  // Fin get
+
   //Petición get para obtener los estudiantes existentes
   componentDidMount() {
     axios
@@ -71,9 +101,11 @@ class Directivos_registro_estudiantes extends React.Component {
   //Fin get
 
   //Petición post para agregar nuevos estudiantes
-  post_estudiante = async() => {
+  post_estudiante = async () => {
     await axios
-        .post(`http://localhost:4535/estudiantes/directivos-nuevo-estudiante-persona`, {
+      .post(
+        `http://localhost:4535/estudiantes/directivos-nuevo-estudiante-persona`,
+        {
           nombres: this.state.form.nombres,
           apellidos: this.state.form.apellidos,
           tipo_documento: this.state.form.tipo_documento,
@@ -89,38 +121,42 @@ class Directivos_registro_estudiantes extends React.Component {
           foto_perfil: this.state.form.foto_perfil,
           pdf_documento: this.state.form.pdf_documento,
           tipo_usuario: this.state.form.tipo_usuario,
-          codigo_estudiante: `${AñoY + "06" + "00" + (this.state.datos.length += 1)}`,
-          estado_estudiante: this.state.form.estado_estudiante
-        })
-        .then((res) => {
-          console.log("Se ha creado un nuevo estudiante");
-          this.componentDidMount();
-          this.post_email();
-        })
-        .catch((err) => {
-          console.log(err.massage);
-        });
-  }
+          codigo_estudiante: `${AñoY + "00" + (this.state.datos.length += 1)}`,
+          estado_estudiante: this.state.form.estado_estudiante,
+          id_grupo: this.state.form.id_grupo,
+        }
+      )
+      .then((res) => {
+        console.log("Se ha creado un nuevo estudiante");
+        this.componentDidMount();
+        this.post_email();
+      })
+      .catch((err) => {
+        console.log(err.massage);
+      });
+  };
   //Fin post
 
   //Petición post para enviar un correo al nuevo usuario
-  post_email = async() => {
+  post_email = async () => {
     await axios
       .post(`http://localhost:4535/send`, {
         to: this.state.form.correo_electronico,
-        subject:"Bienvenido a Colegio Geek",
-        full_name: `${this.state.form.nombres + " " + this.state.form.apellidos}`
+        subject: "Bienvenido a Colegio Geek",
+        full_name: `${
+          this.state.form.nombres + " " + this.state.form.apellidos
+        }`,
       })
       .then((res) => {
         console.log(res.data);
         this.setState({
-          datos: res.data
+          datos: res.data,
         });
       })
       .catch((err) => {
         console.log(err.massage);
       });
-  }
+  };
   //Fin post
 
   handleChange = async (e) => {
@@ -137,12 +173,16 @@ class Directivos_registro_estudiantes extends React.Component {
   render() {
     console.log(this.state.datos);
     const estudiantesRegistro = this.state.datos;
+    const gruposRegistro = this.state.datos_grupo;
     return (
       <>
         <div id="Form">
           <div id="Form2">
             <div id="Form2_21">
-              <img className="ImgProfile" src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/7e/Circle-icons-profile.svg/1200px-Circle-icons-profile.svg.png" />
+              <img
+                className="ImgProfile"
+                src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/7e/Circle-icons-profile.svg/1200px-Circle-icons-profile.svg.png"
+              />
             </div>
             <div id="Form2_2">
               <div className="Form2_2_2">
@@ -151,19 +191,30 @@ class Directivos_registro_estudiantes extends React.Component {
                   id="NombreIn"
                   placeholder="Nombres"
                   autoComplete="off"
+                  onChange={this.handleChange}
+                  name="nombres"
                 />
                 <input
                   className="REInput"
                   id="ApellidoIn"
                   placeholder="Apellidos"
                   autoComplete="off"
+                  onChange={this.handleChange}
+                  name="apellidos"
                 />
-                <select className="REInput" id="Tipo_documentoIn">
+                <select
+                  className="REInput"
+                  id="Tipo_documentoIn"
+                  onChange={this.handleChange}
+                  name="tipo_documento"
+                >
                   <option value="0" className="Dis" id="TipoDocDis">
-                    Tipo de documento de identidad
+                    Tipo de documento
                   </option>
                   <option value="Cedula">Cédula de ciudadanía</option>
-                  <option value="Tarjeta">Tarjeta de identidad</option>
+                  <option value="Tarjeta de identidad">
+                    Tarjeta de identidad
+                  </option>
                 </select>
                 <input
                   className="REInput"
@@ -171,8 +222,15 @@ class Directivos_registro_estudiantes extends React.Component {
                   type="number"
                   placeholder="Documento de identidad"
                   autoComplete="off"
+                  onChange={this.handleChange}
+                  name="numero_documento"
                 />
-                <select className="REInput" id="SexoIn">
+                <select
+                  className="REInput"
+                  id="SexoIn"
+                  onChange={this.handleChange}
+                  name="sexo"
+                >
                   <option value="0" className="Dis" id="SexoDis">
                     Sexo
                   </option>
@@ -185,6 +243,8 @@ class Directivos_registro_estudiantes extends React.Component {
                   placeholder="Fecha de nacimiento"
                   type="date"
                   autoComplete="off"
+                  onChange={this.handleChange}
+                  name="fecha_nacimiento"
                 />
               </div>
             </div>
@@ -195,6 +255,8 @@ class Directivos_registro_estudiantes extends React.Component {
                   id="DirIn"
                   placeholder="Direccion de recidencia"
                   autoComplete="off"
+                  onChange={this.handleChange}
+                  name="direccion_residencial"
                 />
                 <input
                   className="REInput"
@@ -202,6 +264,8 @@ class Directivos_registro_estudiantes extends React.Component {
                   type="text"
                   placeholder="Ciudad de recidencia"
                   autoComplete="off"
+                  onChange={this.handleChange}
+                  name="ciudad_residencial"
                 />
                 <input
                   className="REInput"
@@ -209,6 +273,8 @@ class Directivos_registro_estudiantes extends React.Component {
                   placeholder="Teléfono Fijo"
                   type="number"
                   autoComplete="off"
+                  onChange={this.handleChange}
+                  name="telefono_residencial"
                 />
                 <input
                   className="REInput"
@@ -216,6 +282,8 @@ class Directivos_registro_estudiantes extends React.Component {
                   placeholder="Celular"
                   type="number"
                   autoComplete="off"
+                  onChange={this.handleChange}
+                  name="telefono_celular"
                 />
                 <input
                   className="REInput"
@@ -223,53 +291,61 @@ class Directivos_registro_estudiantes extends React.Component {
                   type="text"
                   placeholder="Correo electronico"
                   autoComplete="off"
-                />
-                <input
-                  className="REInput"
-                  id="DirIn"
-                  type="text"
-                  placeholder="Direccion"
-                  autoComplete="off"
+                  onChange={this.handleChange}
+                  name="correo_electronico"
                 />
               </div>
             </div>
             <div className="Form2_2_2">
               <div>
-                <img src="https://img.icons8.com/carbon-copy/2x/camera--v2.png" alt="Profile img" className="inline" style={{ height: 3 + "vw", marginLeft: 0 }} />
+                <img
+                  src="https://img.icons8.com/carbon-copy/2x/camera--v2.png"
+                  alt="Profile img"
+                  className="inline"
+                  style={{ height: 3 + "vw", marginLeft: 0 }}
+                />
                 <p className="inline">Foto de perfil</p>
               </div>
               <input
                 accept="image/*"
                 id="contained-button-pdf"
                 type="file"
+                onChange={this.handleChange}
+                name="foto_perfil"
               />
 
               <div>
-                <img src="https://www.iconpacks.net/icons/2/free-pdf-file-icon-2614-thumb.png" alt="PDF" className="inline" style={{ height: 3 + "vw", marginLeft: 0 }} />
+                <img
+                  src="https://www.iconpacks.net/icons/2/free-pdf-file-icon-2614-thumb.png"
+                  alt="PDF"
+                  className="inline"
+                  style={{ height: 3 + "vw", marginLeft: 0 }}
+                />
                 <p className="inline">Documento de identidad</p>
               </div>
               <input
                 accept=".pdf"
                 id="icon-button-fotoperfil"
                 type="file"
+                onChange={this.handleChange}
+                name="pdf_documento"
               />
-              <select className="REInput" id="GradoIn" onChange={this.Cambiar}>
-                <option value="0" className="Dis">
-                  Grado
-                </option>
-                <option value="Sexto">Sexto</option>
-                <option value="Septimo">Septimo</option>
-                <option value="Octavo">Octavo</option>
-                <option value="Noveno">Noveno</option>
-                <option value="Decimo">Decimo</option>
-                <option value="Once">Once</option>
-              </select>
-              <select className="REInput" id="GrupoIn">
+              <select
+                className="REInput"
+                id="GrupoIn"
+                onChange={this.handleChange}
+                name="id_grupo"
+              >
                 <option value="0" className="Dis">
                   Grupo
                 </option>
-
-                <option value="Esito.CodGrupo">Esito.CodGrupo</option>
+                {gruposRegistro.map((datosT) => {
+                  return (
+                    <option value={datosT.id_grupo} key={datosT.codigo_grupo}>
+                      {datosT.codigo_grupo}
+                    </option>
+                  );
+                })}
               </select>
               <input
                 onClick={this.post_estudiante}
@@ -287,6 +363,48 @@ class Directivos_registro_estudiantes extends React.Component {
           </div>
         </div>
         {/* Formulario */}
+
+        {/* Formulario Editar */}
+        <div id="FormEditar">
+          <div id="Form2Editar">
+            <div id="Form2_21">
+              <img
+                className="ImgProfile"
+                src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/7e/Circle-icons-profile.svg/1200px-Circle-icons-profile.svg.png"
+              />
+            </div>
+            <div id="Form2_2">
+              <div className="Form2_2_2"></div>
+            </div>
+            <div id="Form2_2">
+              <div className="Form2_2_2">
+                <input
+                  className="REInput"
+                  id="DirIn"
+                  placeholder="Direccion de recidencia"
+                  autoComplete="off"
+                />
+              </div>
+            </div>
+            <div className="Form2_2_2">
+              <select className="REInput" id="GrupoIn">
+                <option value="0" className="Dis">
+                  Grupo
+                </option>
+
+                <option value="Esito.CodGrupo">Esito.CodGrupo</option>
+              </select>
+              <input className="REInput" type="button" value="Agregar" />
+              <input
+                type="button"
+                onClick={this.Cambio2}
+                className="REInput"
+                value="Cancelar"
+              />
+            </div>
+          </div>
+        </div>
+        {/* Fin Formulario Editar*/}
 
         <div id="RegistroEsContainer">
           {/* Filtro*/}
@@ -356,6 +474,7 @@ class Directivos_registro_estudiantes extends React.Component {
             )}
           </div>
           {/* Fin Filtro */}
+
           {/* Estudiantes */}
           {estudiantesRegistro.map((datosT) => {
             return (
@@ -365,7 +484,9 @@ class Directivos_registro_estudiantes extends React.Component {
                     <p>{datosT.codigo_estudiante}</p>
                   </div>
                   <div className="SelectR NameF">
-                    <p className="Peque">{datosT.nombres} {datosT.apellidos}</p>
+                    <p className="Peque">
+                      {datosT.nombres} {datosT.apellidos}
+                    </p>
                   </div>
                   <div className="SelectR GradoF">
                     <p>{datosT.grado_grupo}</p>
@@ -377,6 +498,9 @@ class Directivos_registro_estudiantes extends React.Component {
                     <p>{datosT.year_grupo}</p>
                   </div>
                   <div className="ImgRMas"></div>
+                  <div>
+                    <button onClick={this.form2}>Editar</button>
+                  </div>
                 </div>
               </div>
             );

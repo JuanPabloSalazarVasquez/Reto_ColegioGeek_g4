@@ -31,6 +31,12 @@ class Directivos_registro_grupos extends React.Component {
       datos: [],
       datos_maestros: [],
       datos_grado: [],
+      datos_materias: [],
+      form_materia: {
+        id_materia: '',
+        id_grupo: '',
+        id_maestro: ''
+      }
     };
   }
   /*
@@ -48,6 +54,33 @@ class Directivos_registro_grupos extends React.Component {
     document.getElementById("RegistroEsContainer").style.filter = "blur(0)";
   };
 
+  form2 = () => {
+    document.getElementById("RegistroEsContainer").style.filter = "blur(1px)";
+    document.getElementById("FormAgregarMateria").style.display = "flex";
+    document.getElementById("FormAgregarMateria").style.zIndex = "60";
+  };
+
+  Cambio2 = () => {
+    document.getElementById("FormAgregarMateria").style.display = "none";
+    document.getElementById("RegistroEsContainer").style.filter = "blur(0)";
+  };
+
+  //Petición get para obtener las materias existentes
+  get_materias() {
+    axios
+      .get(`http://localhost:4535/materias/directivos-ver-all-materias`)
+      .then((res) => {
+        console.log(res.data);
+        this.setState({
+          datos_materias: res.data,
+        });
+      })
+      .catch((err) => {
+        console.log(err.massage);
+      });
+  }
+  //Fin get
+
   //Petición get para traer todos los grupos
   componentDidMount() {
     axios
@@ -55,8 +88,9 @@ class Directivos_registro_grupos extends React.Component {
       .then((res) => {
         console.log(res.data);
         this.setState({
-          datos: res.data,
+          datos: res.data
         });
+        this.get_materias();
       })
       .catch((err) => {
         console.log(err.massage);
@@ -81,6 +115,23 @@ class Directivos_registro_grupos extends React.Component {
       });
   }
   // Fin get
+
+  //Petición post para agregar un nuevo registro en la tabla de grupos_materias
+  post_agregar_materia = async () => {
+    console.log("Formulario de agregar materia", this.state.form_materia);
+    await axios
+      .post(
+        `http://localhost:4535/grupos-materias/nuevo-registro-grupos-materias`,
+        this.state.form_materia
+      )
+      .then((res) => {
+        console.log("Se ha creado una nueva materia");
+        this.componentDidMount();
+      })
+      .catch((err) => {
+        console.log(err.massage);
+      });
+  };
 
   //Petición post para agregar nuevos grupos
   post_grupo = async () => {
@@ -228,11 +279,23 @@ class Directivos_registro_grupos extends React.Component {
     console.log(this.state.form);
   };
 
+  handleChange_materia = async (e) => {
+    e.persist();
+    await this.setState({
+      form_materia: {
+        ...this.state.form_materia,
+        [e.target.name]: e.target.value,
+      },
+    });
+    console.log(this.state.form_materia);
+  };
+
   render() {
     console.log(this.state.datos);
     const gruposRegistros = this.state.datos;
     console.log(this.state.datos_maestros);
     const maestrosDirectores = this.state.datos_maestros;
+    const materiasRegistro = this.state.datos_materias;
 
     return (
       <>
@@ -309,6 +372,82 @@ class Directivos_registro_grupos extends React.Component {
           </div>
         </div>
         {/* Fin Formulario */}
+
+        {/* Formulario Agregar Materia */}
+        <div id="FormAgregarMateria">
+          <div id="Form2">
+            <div id="Form2_2">
+              <div className="Form2_2_2">
+                <select
+                  className="REInput"
+                  id="GradoIn"
+                  onChange={this.handleChange_materia}
+                  name="id_materia"
+                >
+                  <option value="0" className="Dis">
+                    Materia
+                  </option>
+                  {materiasRegistro.map((datosT) => {
+                    return (
+                  <option value={datosT.id_materia}>{datosT.nombre_materia}</option>
+                  );
+                })}
+                </select>
+                <select
+                  className="REInput"
+                  id="GradoIn"
+                  onChange={this.handleChange_materia}
+                  name="id_grupo"
+                >
+                  <option value="0" className="Dis">
+                    Grupo
+                  </option>
+                  {gruposRegistros.map((datosT) => {
+                    return (
+                  <option value={datosT.id_grupo}>{datosT.codigo_grupo}</option>
+                  );
+                  })}
+                </select>
+                <select
+                  className="REInput"
+                  id="DirectorNull"
+                  onChange={this.handleChange_materia}
+                  name="id_maestro"
+                >
+                  <option className="REInput Dis">Maestro</option>
+                  {/* Seleccionar Director */}
+                  {maestrosDirectores.map((datosT) => {
+                    return (
+                      <option
+                        key={datosT.numero_documento}
+                        value={datosT.id_maestro}
+                      >
+                        {datosT.nombres} {datosT.apellidos}
+                      </option>
+                    );
+                  })}
+                  {/* Seleccionar Director */}
+                </select>
+              </div>
+            </div>
+            <div className="Form2_2_2">
+              <input
+                onClick={this.post_agregar_materia}
+                className="REInput"
+                type="button"
+                value="Agregar"
+              />
+
+              <input
+                type="button"
+                onClick={this.Cambio2}
+                className="REInput"
+                value="Cancelar"
+              />
+            </div>
+          </div>
+        </div>
+        {/* Fin Formulario Agregar Materia */}
 
         <div id="RegistroEsContainer">
           {/* Filtro */}
@@ -400,6 +539,9 @@ class Directivos_registro_grupos extends React.Component {
                     </Link>
                   </div>
                   <div className="ImgRMas"></div>
+                  <div>
+                    <button className="DickBro" onClick={this.form2}>Agregar materia</button>
+                  </div>
                 </div>
               </div>
             );
