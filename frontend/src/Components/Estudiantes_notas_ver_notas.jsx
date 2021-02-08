@@ -20,7 +20,7 @@ class Estudiantes_notas_ver_notas extends React.Component {
   componentDidMount() {
     axios
       .get(
-        `http://localhost:4535/notas/estudiante-ver-notas-materia-estudiante/${this.state.id_estudiante.id_estudiante}/${this.state.id_materia}`
+        `http://35.185.93.150:4535/notas/estudiante-ver-notas-materia-estudiante/${this.state.id_estudiante.id_estudiante}/${this.state.id_materia}`
       )
       .then((res) => {
         console.log(res.data);
