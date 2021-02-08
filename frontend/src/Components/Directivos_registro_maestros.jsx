@@ -59,7 +59,7 @@ class Directivos_registro_maestros extends React.Component {
   componentDidMount() {
     axios
       .get(
-        `http://localhost:4535/maestro/directivos-ver-maestros-materias-directores`
+        `http://34.75.218.172:4535/maestro/directivos-ver-maestros-materias-directores`
       )
       .then((res) => {
         console.log(res.data);
@@ -76,7 +76,7 @@ class Directivos_registro_maestros extends React.Component {
   //Petición post para agregar nuevos maestros
   post_maestro = async () => {
     await axios
-      .post(`http://localhost:4535/maestro/directivos-nuevo-maestro-persona`, {
+      .post(`http://34.75.218.172:4535/maestro/directivos-nuevo-maestro-persona`, {
         nombres: this.state.form.nombres,
         apellidos: this.state.form.apellidos,
         tipo_documento: this.state.form.tipo_documento,
@@ -110,7 +110,7 @@ class Directivos_registro_maestros extends React.Component {
   //Petición post para enviar un correo al nuevo usuario
   post_email = async () => {
     await axios
-      .post(`http://localhost:4535/send`, {
+      .post(`http://34.75.218.172:4535/send`, {
         to: this.state.form.correo_electronico,
         subject: "Bienvenido a Colegio Geek",
         full_name: `${

@@ -20,7 +20,7 @@ class Directivos_grupos_ver_estudiantes extends React.Component {
     console.log(this.state.id_grupo)
     axios
       .get(
-        `http://localhost:4535/grupos-estudiantes/estudiantes-ver-grupos-estudiantes-directivos/${this.state.id_grupo}`
+        `http://34.75.218.172:4535/grupos-estudiantes/estudiantes-ver-grupos-estudiantes-directivos/${this.state.id_grupo}`
       )
       .then((res) => {
         console.log(res.data);
@@ -39,7 +39,7 @@ class Directivos_grupos_ver_estudiantes extends React.Component {
     console.log(this.state.id_grupo)
     axios
       .get(
-        `http://localhost:4535/grupos-materias/directivos-materias-grupo/${this.state.id_grupo}`
+        `http://34.75.218.172:4535/grupos-materias/directivos-materias-grupo/${this.state.id_grupo}`
       )
       .then((res) => {
         console.log(res.data);

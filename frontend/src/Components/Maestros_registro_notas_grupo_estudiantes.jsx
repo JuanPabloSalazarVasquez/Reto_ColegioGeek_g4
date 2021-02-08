@@ -29,7 +29,7 @@ class Maestros_registro_notas_grupo_estudiantes extends React.Component {
       })
 
       axios
-      .get(`http://localhost:4535/grupos-estudiantes/estudiantes-grupo-notas-ver-all-estudiantes/${JSON.parse(sessionStorage.getItem('id_grupo')).id_grupo}`)
+      .get(`http://34.75.218.172:4535/grupos-estudiantes/estudiantes-grupo-notas-ver-all-estudiantes/${JSON.parse(sessionStorage.getItem('id_grupo')).id_grupo}`)
       .then((res) => {
         console.log(res.data);
         this.setState({
@@ -49,7 +49,7 @@ class Maestros_registro_notas_grupo_estudiantes extends React.Component {
       }))
 
       axios
-      .get(`http://localhost:4535/grupos-estudiantes/estudiantes-grupo-notas-ver-all-estudiantes/${this.state.id_grupo}`)
+      .get(`http://34.75.218.172:4535/grupos-estudiantes/estudiantes-grupo-notas-ver-all-estudiantes/${this.state.id_grupo}`)
       .then((res) => {
         console.log(res.data);
         this.setState({

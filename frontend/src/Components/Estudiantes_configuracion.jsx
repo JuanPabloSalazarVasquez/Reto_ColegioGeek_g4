@@ -10,14 +10,14 @@ class Estudiantes_configuracion extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      id_estudiante: this.props.location.state.id_estudiante,
+      id_estudiante: JSON.parse(sessionStorage.getItem("id_estudiante")),
       datos: []
     };
   }
 
 //Petición get para obtener información de la cuenta
   componentDidMount(){
-    axios.get(`http://localhost:4535/persona/${this.state.id_estudiante}`) //Esta peticion está pendiente en el backend
+    axios.get(`http://34.75.218.172:4535/persona/${this.state.id_estudiante}`) //Esta peticion está pendiente en el backend
       .then(res =>{
         console.log(res.data)
         this.setState({
@@ -31,7 +31,7 @@ class Estudiantes_configuracion extends React.Component {
 
   //Petición put para modificar los datos de la cuenta
   componentDidMount(){
-    axios.put(`http://localhost:4535/persona/${this.state.id_estudiante}`) //Esta peticion está pendiente en el backend
+    axios.put(`http://34.75.218.172:4535/persona/${this.state.id_estudiante}`) //Esta peticion está pendiente en el backend
       .then(res =>{
         console.log(res.data)
         this.setState({

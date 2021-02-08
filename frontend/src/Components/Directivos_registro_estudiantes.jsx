@@ -71,7 +71,7 @@ class Directivos_registro_estudiantes extends React.Component {
   //Petición get para traer todos los grupos
   componentWillMount() {
     axios
-      .get(`http://localhost:4535/grupos/directivos-ver-grupos`)
+      .get(`http://34.75.218.172:4535/grupos/directivos-ver-grupos`)
       .then((res) => {
         console.log(res.data);
         this.setState({
@@ -87,7 +87,7 @@ class Directivos_registro_estudiantes extends React.Component {
   //Petición get para obtener los estudiantes existentes
   componentDidMount() {
     axios
-      .get(`http://localhost:4535/estudiantes/directivos-all-estudiantes`)
+      .get(`http://34.75.218.172:4535/estudiantes/directivos-all-estudiantes`)
       .then((res) => {
         console.log(res.data);
         this.setState({
@@ -104,7 +104,7 @@ class Directivos_registro_estudiantes extends React.Component {
   post_estudiante = async () => {
     await axios
       .post(
-        `http://localhost:4535/estudiantes/directivos-nuevo-estudiante-persona`,
+        `http://34.75.218.172:4535/estudiantes/directivos-nuevo-estudiante-persona`,
         {
           nombres: this.state.form.nombres,
           apellidos: this.state.form.apellidos,
@@ -140,7 +140,7 @@ class Directivos_registro_estudiantes extends React.Component {
   //Petición post para enviar un correo al nuevo usuario
   post_email = async () => {
     await axios
-      .post(`http://localhost:4535/send`, {
+      .post(`http://34.75.218.172:4535/send`, {
         to: this.state.form.correo_electronico,
         subject: "Bienvenido a Colegio Geek",
         full_name: `${

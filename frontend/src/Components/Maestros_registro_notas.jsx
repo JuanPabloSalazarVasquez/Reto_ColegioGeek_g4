@@ -19,7 +19,7 @@ class Maestros_registro_notas extends React.Component {
 componentDidMount(){
   console.log(this.state.id_maestro)
   console.log(this.state.id_maestro.id_maestro)
-  axios.get(`http://localhost:4535/grupos-estudiantes/estudiantes-grupo-notas-ver-clases-grupos/${this.state.id_maestro.id_maestro}`)
+  axios.get(`http://34.75.218.172:4535/grupos-estudiantes/estudiantes-grupo-notas-ver-clases-grupos/${this.state.id_maestro.id_maestro}`)
     .then(res =>{
       console.log(res.data)
       this.setState({

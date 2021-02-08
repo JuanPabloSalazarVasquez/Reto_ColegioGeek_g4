@@ -18,7 +18,7 @@ class Maestros_inicio extends React.Component {
 
   // Peticion get para traer la informacion de un directivo
 componentDidMount() {
-  axios.get(`http://localhost:4535/maestro/maestros-inicio-maestro/${this.state.datos.id_maestro}`)
+  axios.get(`http://34.75.218.172:4535/maestro/maestros-inicio-maestro/${this.state.datos.id_maestro}`)
     .then(res => {
       this.setState({
         datos_maestro: res.data[0]

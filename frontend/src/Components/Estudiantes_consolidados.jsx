@@ -19,7 +19,7 @@ class Estudiantes_consolidados extends React.Component {
   componentDidMount() {
     axios
       .get(
-        `http://localhost:4535/consolidados/consolidados-estudiante/${this.state.id_estudiante.id_estudiante}`
+        `http://34.75.218.172:4535/consolidados/consolidados-estudiante/${this.state.id_estudiante.id_estudiante}`
       )
       .then((res) => {
         console.log(res.data);

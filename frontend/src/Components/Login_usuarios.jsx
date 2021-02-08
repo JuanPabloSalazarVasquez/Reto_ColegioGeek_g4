@@ -27,7 +27,7 @@ class Login_usuarios extends React.Component {
 
   login = async () => {
     await axios
-      .post(`http://localhost:4535/api/login`, {
+      .post(`http://34.75.218.172:4535/api/login`, {
         tipo_usuario: this.state.form.tipo_usuario,
         correo_electronico: this.state.form.correo_electronico,
         numero_documento: this.state.form.numero_documento,
@@ -61,7 +61,7 @@ class Login_usuarios extends React.Component {
     let token_authorization = "bearer " + this.state.token;
     console.log(token_authorization);
     await axios
-      .get(`http://localhost:4535/api/privada`, {
+      .get(`http://34.75.218.172:4535/api/privada`, {
         headers: {
           Authorization: `${token_authorization}`,
         },
@@ -83,7 +83,7 @@ class Login_usuarios extends React.Component {
   Ingreso = async () => {
     await axios
       .get(
-        `http://localhost:4535/api/user-datos/${this.state.datos_user.id_persona}/${this.state.datos_user.tipo_usuario}`
+        `http://34.75.218.172:4535/api/user-datos/${this.state.datos_user.id_persona}/${this.state.datos_user.tipo_usuario}`
       )
       .then((res) => {
         console.log(
