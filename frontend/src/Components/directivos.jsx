@@ -14,8 +14,7 @@ import Button from '@material-ui/core/Button';
 import PhotoCamera from '@material-ui/icons/PhotoCamera';
 import PictureAsPdfIcon from '@material-ui/icons/PictureAsPdf';
 import DateFnsUtils from '@date-io/date-fns';
-import { MuiPickersUtilsProvider, KeyboardTimePicker, KeyboardDatePicker } from '@material-ui/pickers';
-import { TimePicker, DatePicker, DateTimePicker } from 'formik-material-ui-pickers';
+import { MuiPickersUtilsProvider, KeyboardDatePicker } from '@material-ui/pickers';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -73,13 +72,47 @@ export default function DirectivosConfiguracion() {
   };
 
   // De forma similar a componentDidMount y componentDidUpdate
-  // let [user, setUser] = useState([]);
-  // const url = 'https://jsonplaceholder.typicode.com/users'
-  // useEffect(() => {
-  //   Axios
-  //     .get("https://jsonplaceholder.typicode.com/users")
-  //     .then(response => setUsers(response.data));
-  // }, []);
+  const db = `https://api-fake-procrastin-app.vercel.app/users`;
+
+  const [data, setData] = useState(
+    { name: '', lastname: '' }
+  );
+  const handleInputChange = (event) => {
+    // console.log(event.target.name)
+    console.log(event.target.value)
+    setData({
+      ...data,
+      [event.target.name]: event.target.value
+    })
+  }
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    console.log('enviando datos...' + data.name + ' ' + data.lastname);
+  };
+
+  useEffect(() => {
+    async function peticionGet() {
+      // You can await here
+      const response = await fetch(db);
+      const remoteData = await response.json(data);
+      setData(remoteData);
+      console.log(remoteData[1].id);
+      console.log(remoteData[1].name);
+      console.log(remoteData[1].lastname);
+      localStorage.setItem('id', remoteData[1].id, { path: "/" });
+      localStorage.setItem('name', remoteData[1].name, { path: "/" });
+      localStorage.setItem('lastname', remoteData[1].lastname, { path: "/" });
+      // ...
+    }
+    peticionGet();
+
+    // const upData = async () => {
+    //   const { data } = await Axios.put(`https://jsonplaceholder.typicode.com/`);
+    //   console.log(data)
+    // }
+    // upData();
+  }, []);
+
   // useEffect(() => {
   //   async function fethUser() {
   //     const response = await fetch(url);
@@ -88,40 +121,13 @@ export default function DirectivosConfiguracion() {
   //   }
   //   fethUser();
   // }, []);
+
   // useEffect(() => {
   //   const upData = async () => {
-  //     const { data } = await Axios.put("https://jsonplaceholder.typicode.com/users");
+  //     const { data } = await Axios.put("https://jsonplaceholder.typicode.com/|");
   //     console.log(data)
   //   }
   // }, []);
-
-  let [data, setData] = useState([]);
-  useEffect(() => {
-    console.log("Loading...");
-    const fetchData = async (id, userId, title, body) => {
-      try {
-        const { data } = await Axios.put(
-          `https://jsonplaceholder.typicode.com/posts/${id}`,
-          {
-            id,
-            title,
-            body,
-            userId
-          }
-        );
-        console.log(data);
-      } catch (error) {
-        console.log(error);
-      }
-    };
-  
-    fetchData(
-      1,
-      1,
-      "PEPEPEPEPE",
-      "LOREMLOREMMOREM"
-    );
-  }, []);
 
   return (
     <div className={classes.root}>
@@ -132,11 +138,11 @@ export default function DirectivosConfiguracion() {
           <Typography color="textPrimary">Configuración</Typography>
         </Breadcrumbs>
         {/* <Paper className={classes.paper}>
-          <code>{JSON.stringify(user)}</code>
+          <code>{JSON.stringify(data)}</code>
         </Paper> */}
 
         <Paper className={classes.paper} className="form">
-          <form className={classes.root} noValidate autoComplete="off">
+          <form className={classes.root} noValidate autoComplete="off" onSubmit={handleSubmit}>
             <Container className="img-perfil">
               <Avatar alt="Imagen de perfil" src="https://img.icons8.com/doodle/344/group.png" className={classes.large} />
             </Container>
@@ -145,15 +151,17 @@ export default function DirectivosConfiguracion() {
               <TextField
                 id="outlined-nombres"
                 label="Nombres"
-                defaultValue="Maria"
+                defaultValue={localStorage.getItem('name')}
                 variant="outlined"
+                onChange={handleInputChange}
               />
 
               <TextField
                 id="outlined-apellidos"
                 label="Apellidos"
-                defaultValue="Santos"
+                defaultValue={localStorage.getItem('lastname')}
                 variant="outlined"
+                onChange={handleInputChange}
               />
 
               <TextField
@@ -302,6 +310,7 @@ export default function DirectivosConfiguracion() {
               <input accept="image/*" className={classes.input} id="icon-button-fotoperfil" type="file" />
             </Container>
             <Button
+              type="submit"
               variant="contained"
               color="primary"
               className={classes.button}

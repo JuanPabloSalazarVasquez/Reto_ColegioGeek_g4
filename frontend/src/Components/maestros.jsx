@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import "../sass/Directivos.scss";
-import axios from 'axios';
+import Axios from 'axios';
 import { makeStyles } from '@material-ui/core/styles';
 import Breadcrumbs from '@material-ui/core/Breadcrumbs';
 import Link from '@material-ui/core/Link';
@@ -14,8 +14,7 @@ import Button from '@material-ui/core/Button';
 import PhotoCamera from '@material-ui/icons/PhotoCamera';
 import PictureAsPdfIcon from '@material-ui/icons/PictureAsPdf';
 import DateFnsUtils from '@date-io/date-fns';
-import { MuiPickersUtilsProvider, KeyboardTimePicker, KeyboardDatePicker } from '@material-ui/pickers';
-import { TimePicker, DatePicker, DateTimePicker } from 'formik-material-ui-pickers';
+import { MuiPickersUtilsProvider, KeyboardDatePicker } from '@material-ui/pickers';
 
 const useStyles = makeStyles((theme) => ({
   root: {
