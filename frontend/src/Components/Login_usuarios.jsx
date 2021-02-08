@@ -69,13 +69,11 @@ class Login_usuarios extends React.Component {
       .then((res) => {
         this.setState({ datos_user: res.data.data });
         this.Ingreso();
-        /*
         console.log(res);
         console.log(res.data);
         console.log(res.data.data.id_persona);
         this.setState({ id_persona: res.data.id_persona });
         console.log(this.state.id_persona);
-        */
       })
       .catch((err) => {
         console.log(err.massage);
