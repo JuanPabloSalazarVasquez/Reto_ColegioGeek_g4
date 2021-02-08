@@ -22,7 +22,7 @@ componentDidMount() {
   console.log('Este es el id_estudiante en estudiante inicio:',sessionStorage.getItem('id_estudiante'))
   console.log('Esta es datos del estado:',this.state.datos);
   console.log('Esta es datos del estado el id:',this.state.datos.id_estudiante);
-  axios.get(`http://localhost:4535/estudiantes/estudiantes-inicio-estudiante/${this.state.datos.id_estudiante}`)
+  axios.get(`http://35.185.93.150:4535/estudiantes/estudiantes-inicio-estudiante/${this.state.datos.id_estudiante}`)
     .then(res => {
       console.log('res.data del get',res.data)
       this.setState({

@@ -35,7 +35,7 @@ class Directivos_registro_materias extends React.Component {
   //Petición get para obtener las materias existentes
   componentDidMount() {
     axios
-      .get(`http://localhost:4535/materias/directivos-ver-all-materias`)
+      .get(`http://35.185.93.150:4535/materias/directivos-ver-all-materias`)
       .then((res) => {
         console.log(res.data);
         this.setState({
@@ -53,7 +53,7 @@ class Directivos_registro_materias extends React.Component {
     console.log("Formulario", this.state.form);
     await axios
       .post(
-        `http://localhost:4535/materias/directivos-nueva-materia-crear-materia`,
+        `http://35.185.93.150:4535/materias/directivos-nueva-materia-crear-materia`,
         this.state.form
       )
       .then((res) => {

@@ -14,7 +14,7 @@ class Maestros_configuracion extends React.Component {
 
   //Petición get para obtener información de la cuenta
   componentDidMount() {
-    axios.get(`http://localhost:4535/persona`) //Esta peticion está pendiente en el backend
+    axios.get(`http://35.185.93.150:4535/persona`)
       .then(res => {
         console.log(res.data)
         this.setState({
@@ -28,7 +28,7 @@ class Maestros_configuracion extends React.Component {
 
   //Petición put para modificar los datos de la cuenta
   componentDidMount() {
-    axios.put(`http://localhost:4535/persona`) //Esta peticion está pendiente en el backend
+    axios.put(`http://35.185.93.150:4535/persona`)
       .then(res => {
         console.log(res.data)
         this.setState({

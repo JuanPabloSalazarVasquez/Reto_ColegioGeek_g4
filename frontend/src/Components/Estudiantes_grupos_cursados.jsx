@@ -17,7 +17,7 @@ class Estudiantes_materias extends React.Component {
   componentDidMount() {
     axios
       .get(
-        `http://localhost:4535/grupos-estudiantes/grupos-cursados/${this.state.id_estudiante.id_estudiante}`
+        `http://35.185.93.150:4535/grupos-estudiantes/grupos-cursados/${this.state.id_estudiante.id_estudiante}`
       )
       .then((res) => {
         console.log(res.data);

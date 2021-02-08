@@ -19,7 +19,7 @@ class Maestros_ver_estudiantes_grupos extends React.Component {
    // Peticion get para traer todos estudiantes de un grupo
 componentDidMount(){
   console.log(this.state.id_grupo)
-  axios.get(`http://localhost:4535/grupos-estudiantes/maestros-ver-estudiantes-grupo/${this.state.id_grupo}`)
+  axios.get(`http://35.185.93.150:4535/grupos-estudiantes/maestros-ver-estudiantes-grupo/${this.state.id_grupo}`)
     .then(res =>{
       console.log(res.data)
       this.setState({

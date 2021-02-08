@@ -29,7 +29,7 @@ class Maestros_Registrar_Nota_Estudiante extends React.Component {
   peticionPost = async () => {
     await axios
       .post(
-        "http://localhost:4535/notas/nueva-nota-estudiante", //Esta petición falta en el backend
+        "http://35.185.93.150:4535/notas/nueva-nota-estudiante", //Esta petición falta en el backend
         {
           id_materia: this.state.id_materia,
           id_grupo: this.state.id_grupo,
@@ -52,7 +52,7 @@ class Maestros_Registrar_Nota_Estudiante extends React.Component {
   componentWillMount() {
     axios
       .get(
-        `http://localhost:4535/estudiantes/maestro-registro-estudiante-info-estudiante/${this.state.id_estudiante}`
+        `http://35.185.93.150:4535/estudiantes/maestro-registro-estudiante-info-estudiante/${this.state.id_estudiante}`
       )
       .then((res) => {
         console.log(res.data);
@@ -71,7 +71,7 @@ class Maestros_Registrar_Nota_Estudiante extends React.Component {
   componentDidMount() {
     axios
       .get(
-        `http://localhost:4535/notas/notas-materia-estudiante/${this.state.id_materia}/${this.state.id_estudiante}`
+        `http://35.185.93.150:4535/notas/notas-materia-estudiante/${this.state.id_materia}/${this.state.id_estudiante}`
       )
       .then((res) => {
         console.log(res.data);
